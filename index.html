@@ -1,0 +1,2518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Lasantha Kumara English Classes" data-si="ලසන්ත කුමාර ඉංග්‍රීසි පන්ති">Lasantha Kumara English Classes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-dark: #0f1f33;
+            --primary-light: #2a4a73;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --accent-light: #fef3c7;
+            --teal: #14b8a6;
+            --teal-light: #ccfbf1;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-gray: #f1f5f9;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Sinhala', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--white);
+            overflow-x: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            z-index: 999;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            padding: 4px;
+            display: flex;
+            gap: 2px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .lang-toggle:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .lang-btn:not(.active):hover {
+            color: var(--primary);
+            background: var(--bg-light);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+            padding: 0 2rem;
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(10deg) scale(1.1);
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--accent), var(--teal));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
+            color: var(--white) !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition) !important;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4) !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, #0a1628 100%);
+            overflow: hidden;
+            padding: 120px 2rem 80px;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(20, 184, 166, 0.06) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(245, 158, 11, 0.08);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 { width: 300px; height: 300px; top: -100px; right: -100px; animation-delay: 0s; }
+        .shape-2 { width: 200px; height: 200px; bottom: 10%; left: -50px; animation-delay: 2s; background: rgba(20, 184, 166, 0.08); }
+        .shape-3 { width: 150px; height: 150px; top: 40%; right: 10%; animation-delay: 4s; }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--accent-light);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-badge i {
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .hero-image-wrapper {
+            margin-top: 3rem;
+            position: relative;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 700px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.25rem;
+        }
+
+        /* Section Utilities */
+        section {
+            padding: 100px 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: var(--text-medium);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: pulse 2s infinite;
+            transition: var(--transition);
+        }
+
+        .about-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .about-badge .years {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .about-badge .text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .feature-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+            background: var(--white);
+        }
+
+        .feature-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover i {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--teal);
+        }
+
+        .feature-item div {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .feature-item span {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        /* Classes Section */
+        .classes {
+            background: var(--bg-light);
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .class-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--teal));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .class-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .class-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--accent-light), #fffbeb);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            font-size: 1.6rem;
+        }
+
+        .class-card:hover .class-icon {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .class-icon i {
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .class-card:hover .class-icon i {
+            color: var(--white);
+        }
+
+        .class-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .class-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .class-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .class-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .class-meta i {
+            color: var(--accent);
+        }
+
+        .class-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .class-btn i {
+            transition: var(--transition);
+        }
+
+        .class-btn:hover {
+            color: var(--accent);
+            gap: 0.75rem;
+        }
+
+        .class-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Schedule Section - Cards Layout */
+        .schedule {
+            background: var(--white);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .schedule-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent);
+        }
+
+        .schedule-card-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-card-header::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .schedule-card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .schedule-card-header span {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        .schedule-card-body {
+            padding: 1.5rem;
+        }
+
+        .schedule-slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .schedule-slot:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-slot:hover {
+            padding-left: 8px;
+            color: var(--primary);
+        }
+
+        .schedule-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .schedule-time i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .schedule-subject {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .schedule-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .badge-morning { background: #dbeafe; color: #1e40af; }
+        .badge-afternoon { background: #fef3c7; color: #92400e; }
+        .badge-evening { background: #fce7f3; color: #9d174d; }
+
+        .schedule-legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .schedule-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials .section-tag,
+        .testimonials .section-title,
+        .testimonials .section-subtitle {
+            color: var(--white);
+        }
+
+        .testimonials .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-stars {
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover .author-avatar {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .author-info h4 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .author-info span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info > p {
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: var(--radius);
+        }
+
+        .contact-item:hover {
+            background: var(--white);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--white);
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .contact-item div {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .contact-item span {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover i {
+            color: var(--white);
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .contact-form-wrapper:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+            background: var(--bg-light);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 0.25rem;
+        }
+
+        .password-toggle:hover {
+            color: var(--accent);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.1rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .success-message i {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+            display: block;
+            animation: scaleIn 0.5s ease-out 0.2s both;
+        }
+
+        .success-message h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-brand p {
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .footer-column h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about-image-wrapper {
+                order: -1;
+                display: flex;
+                justify-content: center;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .lang-toggle {
+                top: 80px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                opacity: 0;
+                visibility: hidden;
+            }
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .hero-image {
+                height: 250px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-brand {
+                max-width: 100%;
+            }
+            .footer-contact p {
+                justify-content: center;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            section {
+                padding: 60px 1.5rem;
+            }
+            .contact-form-wrapper {
+                padding: 2rem;
+            }
+            .lang-toggle {
+                top: 75px;
+            }
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Image hover effects */
+        .img-hover-zoom {
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+        }
+
+        .img-hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+
+        .img-hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle" id="langToggle">
+        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')">English</button>
+        <button class="lang-btn" data-lang="si" onclick="switchLanguage('si')">සිංහල</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span data-en="Lasantha Kumara English" data-si="ලසන්ත කුමාර ඉංග්‍රීසි">Lasantha Kumara English</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-en="Home" data-si="මුල් පිටුව">Home</a></li>
+                <li><a href="#about" data-en="About" data-si="අපි ගැන">About</a></li>
+                <li><a href="#classes" data-en="Classes" data-si="පන්ති">Classes</a></li>
+                <li><a href="#schedule" data-en="Schedule" data-si="කාලසටහන">Schedule</a></li>
+                <li><a href="#testimonials" data-en="Testimonials" data-si="ප්‍රශංසා">Testimonials</a></li>
+                <li><a href="#contact" class="nav-cta" data-en="Enroll Now" data-si="දැන් ලියාපදිංචි වන්න">Enroll Now</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-grid"></div>
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                <span data-en="Trusted by 500+ Students & Parents" data-si="ශිෂ්‍යයන් 500+ ක් සහ දෙමාපියන් විශ්වාස කරයි">Trusted by 500+ Students & Parents</span>
+            </div>
+            
+            <h1 class="hero-title">
+                <span data-en="Master English with" data-si="ඉංග්‍රීසි භාෂාව">Master English with</span> <span>Lasantha Kumara</span>
+            </h1>
+            
+            <p class="hero-subtitle" data-en="Transform your English skills with expert guidance. From spoken English to academic excellence, we provide personalized learning that builds confidence and delivers results." data-si="විශේෂඥ මඟපෙන්වීමෙන් ඔබේ ඉංග්‍රීසි කුසලතා වර්ධනය කර ගන්න. කථන ඉංග්‍රීසි සිට අධ්‍යයනික විශිෂ්ටත්වය දක්වා, අපි විශ්වාසය ගොඩනගන සහ ප්‍රතිඵල ලබා දෙන පුද්ගලික අධ්‍යයනය සපයමු.">
+                Transform your English skills with expert guidance. From spoken English to academic excellence, we provide personalized learning that builds confidence and delivers results.
+            </p>
+            
+            <div class="hero-cta-group">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-user-plus"></i>
+                    <span data-en="Enroll Now" data-si="දැන් ලියාපදිංචි වන්න">Enroll Now</span>
+                </a>
+                <a href="#schedule" class="btn-secondary">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span data-en="View Schedule" data-si="කාලසටහන බලන්න">View Schedule</span>
+                </a>
+            </div>
+            
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80" alt="Students learning English" class="hero-image">
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label" data-en="Years Experience" data-si="වසර අත්දැකීම">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label" data-en="Students Taught" data-si="ඉගැන්වූ ශිෂ්‍යයන්">Students Taught</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label" data-en="Pass Rate" data-si="සමත් වීමේ අනුපාතය">Pass Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid reveal">
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=80" alt="Education" class="about-image">
+                    <div class="about-badge">
+                        <span class="years">15+</span>
+                        <span class="text" data-en="Years of<br>Excellence" data-si="වසර<br>විශිෂ්ටත්වය">Years of<br>Excellence</span>
+                    </div>
+                </div>
+                
+                <div class="about-content">
+                    <h3 data-en="Dedicated to English Excellence" data-si="ඉංග්‍රීසි විශිෂ්ටත්වයට කැපවී සිටිමු">Dedicated to English Excellence</h3>
+                    <p data-en="Mr. Lasantha Kumara is a passionate English educator with over 15 years of experience in teaching students from all backgrounds. His unique teaching methodology combines traditional grammar foundations with modern communicative approaches, ensuring every student achieves fluency and confidence." data-si="මහතා ලසන්ත කුමාර සියලු පසුබිම්වලින් පැමිණෙන ශිෂ්‍යයන්ට ඉගැන්වීමෙහිලා වසර 15කට වඩා අත්දැකීමක් ඇති උත්සාහවන්ත ඉංග්‍රීසි අධ්‍යාපනවේදියෙකි. ඔහුගේ අද්විතීය ඉගැන්වීමේ ක්‍රමවේදය සාම්ප්‍රදායික ව්‍යාකරණ පදනම් නවීන සන්නිවේදන ආකාරවලින් සම්බන්ධ කරයි, සෑම ශිෂ්‍යයෙකුම සාරභෞතිකත්වය සහ විශ්වාසය ලබා ගැනීමට තහවුරු කරයි.">
+                        Mr. Lasantha Kumara is a passionate English educator with over 15 years of experience in teaching students from all backgrounds. His unique teaching methodology combines traditional grammar foundations with modern communicative approaches, ensuring every student achieves fluency and confidence.
+                    </p>
+                    <p data-en="Whether you are preparing for O/L, A/L exams, or simply want to improve your spoken English for career growth, our classes are designed to meet your specific needs with personalized attention and proven results." data-si="ඔබ O/L, A/L විභාග සඳහා සූදානම් වනවාද, හෝ වෘත්තීය වර්ධනය සඳහා ඔබේ කථන ඉංග්‍රීසි වැඩි දියුණු කිරීමට අවශ්‍යද, අපගේ පන්ති ඔබේ විශේෂිත අවශ්‍යතා සපිරීමට පුද්ගලික අවධානයෙන් සහ තහවුරු කළ ප්‍රතිඵල සහිතව සැකසී ඇත.">
+                        Whether you are preparing for O/L, A/L exams, or simply want to improve your spoken English for career growth, our classes are designed to meet your specific needs with personalized attention and proven results.
+                    </p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <span data-en="Certified English Teacher" data-si="සහතික කළ ඉංග්‍රීසි ගුරුවරයා">Certified English Teacher</span>
+                                <span data-en="National Institute of Education Certified" data-si="ජාතික අධ්‍යාපන ආයතනයෙන් සහතික කළ">National Institute of Education Certified</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <span data-en="Best Teacher Award 2022" data-si="2022 හොඳම ගුරුතුමාට ලබා දුන් ත්‍යාගය">Best Teacher Award 2022</span>
+                                <span data-en="Regional Education Office Recognition" data-si="ප්‍රාදේශීය අධ්‍යාපන කාර්යාලයේ පිළිගැනීම">Regional Education Office Recognition</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <span data-en="Small Class Sizes" data-si="කුඩා පන්ති ප්‍රමාණ">Small Class Sizes</span>
+                                <span data-en="Maximum 15 students per batch" data-si="බැච් එකකට උපරිම ශිෂ්‍යයන් 15 දෙනෙකු">Maximum 15 students per batch</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <span data-en="O/L & A/L Specialized" data-si="O/L සහ A/L විශේෂිත">O/L & A/L Specialized</span>
+                                <span data-en="Focused exam preparation programs" data-si="අවධානය යොමු කළ විභාග සූදානම් වැඩසටහන්">Focused exam preparation programs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section class="classes" id="classes">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-en="Our Programs" data-si="අපගේ වැඩසටහන්">Our Programs</span>
+                <h2 class="section-title" data-en="English Classes Offered" data-si="පවත්වන ඉංග්‍රීසි පන්ති">English Classes Offered</h2>
+                <p class="section-subtitle" data-en="Comprehensive English tuition programs designed for students of all levels, from beginners to advanced learners preparing for national examinations." data-si="ආරම්භකයන් සිට ජාතික විභාග සඳහා සූදානම් වන උසස් අධ්‍යයනය කරන්නන් දක්වා සියලු මට්ටම්වල ශිෂ්‍යයන් සඳහා සැකසූ සම්පූර්ණ ඉංග්‍රීසි ටියුෂන් වැඩසටහන්.">
+                    Comprehensive English tuition programs designed for students of all levels, from beginners to advanced learners preparing for national examinations.
+                </p>
+            </div>
+            
+            <div class="classes-grid reveal">
+                <div class="class-card">
+                    <div class="class-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 data-en="Spoken English" data-si="කථන ඉංග්‍රීසි">Spoken English</h3>
+                    <p data-en="Build confidence in everyday conversations, interviews, and public speaking. Focus on pronunciation, fluency, and natural expression through interactive sessions." data-si="දිනපතා සංවාද, සම්මුඛ පරීක්ෂණ සහ ප්‍රසිද්ධ කථනයේ විශ්වාසය ගොඩනගන්න. අන්තර්ක්‍රියාකාරී සැසිවාර මගින් උච්චාරණ, සාරභෞතිකත්වය සහ ස්වාභාවික ප්‍රකාශනය කෙරෙහි අවධානය යොමු කරයි.">
+                        Build confidence in everyday conversations, interviews, and public speaking. Focus on pronunciation, fluency, and natural expression through interactive sessions.
+                    </p>
+                    <div class="class-meta">
+                        <span><i class="fas fa-clock"></i> <span data-en="2 hrs/week" data-si="පැය 2/සතිය">2 hrs/week</span></span>
+                        <span><i class="fas fa-users"></i> <span data-en="Max 12" data-si="උපරිම 12">Max 12</span></span>
+                    </div>
+                    <a href="#contact" class="class-btn">
+                        <span data-en="Learn More" data-si="තවත් දැනගන්න">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-icon">
+                        <i class="fas fa-spell-check"></i>
+                    </div>
+                    <h3 data-en="Grammar & Writing" data-si="ව්‍යාකරණ සහ ලිවීම">Grammar & Writing</h3>
+                    <p data-en="Master English grammar from basics to advanced. Improve essay writing, letter composition, and creative writing skills with detailed feedback and practice." data-si="ආරම්භක සිට උසස් දක්වා ඉංග්‍රීසි ව්‍යාකරණය තේරුම් ගන්න. විස්තරාත්මක ප්‍රතිපෝෂණය සහ පුහුණුව මගින් රචනා රචනය, ලිපි රචනය සහ සෞන්දර්යාත්මක රචනා කුසලතා වැඩි දියුණු කර ගන්න.">
+                        Master English grammar from basics to advanced. Improve essay writing, letter composition, and creative writing skills with detailed feedback and practice.
+                    </p>
+                    <div class="class-meta">
+                        <span><i class="fas fa-clock"></i> <span data-en="3 hrs/week" data-si="පැය 3/සතිය">3 hrs/week</span></span>
+                        <span><i class="fas fa-users"></i> <span data-en="Max 15" data-si="උපරිම 15">Max 15</span></span>
+                    </div>
+                    <a href="#contact" class="class-btn">
+                        <span data-en="Learn More" data-si="තවත් දැනගන්න">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 data-en="O/L English" data-si="O/L ඉංග්‍රීසි">O/L English</h3>
+                    <p data-en="Comprehensive preparation for Ordinary Level English examination. Covering all papers with past paper discussions, model exams, and exam techniques." data-si="සාමාන්‍ය මට්ටමේ ඉංග්‍රීසි විභාගය සඳහා සම්පූර්ණ සූදානම. පසුගිය ප්‍රශ්න පත්‍ර සාකච්ඡා, ආදර්ශ විභාග සහ විභාග ක්‍රමවේද සහිතව සියලු ප්‍රශ්න පත්‍ර ආවරණය කරයි.">
+                        Comprehensive preparation for Ordinary Level English examination. Covering all papers with past paper discussions, model exams, and exam techniques.
+                    </p>
+                    <div class="class-meta">
+                        <span><i class="fas fa-clock"></i> <span data-en="4 hrs/week" data-si="පැය 4/සතිය">4 hrs/week</span></span>
+                        <span><i class="fas fa-users"></i> <span data-en="Max 15" data-si="උපරිම 15">Max 15</span></span>
+                    </div>
+                    <a href="#contact" class="class-btn">
+                        <span data-en="Learn More" data-si="තවත් දැනගන්න">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 data-en="A/L English" data-si="A/L ඉංග්‍රීසි">A/L English</h3>
+                    <p data-en="Advanced Level English tuition with in-depth literature analysis, language study, and intensive exam preparation for university entrance success." data-si="උසස් මට්ටමේ ඉංග්‍රීසි ටියුෂන්, ගැඹුරු සාහිත්‍ය විශ්ලේෂණය, භාෂා අධ්‍යයනය සහ විශ්ව විද්‍යාල ප්‍රවේශය සඳහා දැඩි විභාග සූදානම.">
+                        Advanced Level English tuition with in-depth literature analysis, language study, and intensive exam preparation for university entrance success.
+                    </p>
+                    <div class="class-meta">
+                        <span><i class="fas fa-clock"></i> <span data-en="5 hrs/week" data-si="පැය 5/සතිය">5 hrs/week</span></span>
+                        <span><i class="fas fa-users"></i> <span data-en="Max 10" data-si="උපරිම 10">Max 10</span></span>
+                    </div>
+                    <a href="#contact" class="class-btn">
+                        <span data-en="Learn More" data-si="තවත් දැනගන්න">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 data-en="Grade 6-9 English" data-si="ගුණ 6-9 ඉංග්‍රීසි">Grade 6-9 English</h3>
+                    <p data-en="Strong foundational English classes to build vocabulary, comprehension, and basic grammar skills essential for future academic success." data-si="අනාගත අධ්‍යයනික විශිෂ්ටත්වය සඳහා අත්‍යවශ්‍ය වචන භාණ්ඩය, තේරුම් ගැනීම සහ මූලික ව්‍යාකරණ කුසලතා ගොඩනගන ශක්තිමත් පදනම් ඉංග්‍රීසි පන්ති.">
+                        Strong foundational English classes to build vocabulary, comprehension, and basic grammar skills essential for future academic success.
+                    </p>
+                    <div class="class-meta">
+                        <span><i class="fas fa-clock"></i> <span data-en="2 hrs/week" data-si="පැය 2/සතිය">2 hrs/week</span></span>
+                        <span><i class="fas fa-users"></i> <span data-en="Max 20" data-si="උපරිම 20">Max 20</span></span>
+                    </div>
+                    <a href="#contact" class="class-btn">
+                        <span data-en="Learn More" data-si="තවත් දැනගන්න">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 data-en="Business English" data-si="ව්‍යාපාරික ඉංග්‍රීසි">Business English</h3>
+                    <p data-en="Professional English for workplace communication, emails, presentations, and meetings. Ideal for career advancement and corporate professionals." data-si="රැකියා ස්ථාන සන්නිවේදනය, ඊමේල්, සමර්පණ සහ සම්මේලන සඳහා වෘත්තීය ඉංග්‍රීසි. වෘත්තීය දියුණුව සහ සමාගම් වෘත්තිකයන් සඳහා ඉතා සුදුසුයි.">
+                        Professional English for workplace communication, emails, presentations, and meetings. Ideal for career advancement and corporate professionals.
+                    </p>
+                    <div class="class-meta">
+                        <span><i class="fas fa-clock"></i> <span data-en="2 hrs/week" data-si="පැය 2/සතිය">2 hrs/week</span></span>
+                        <span><i class="fas fa-users"></i> <span data-en="Max 12" data-si="උපරිම 12">Max 12</span></span>
+                    </div>
+                    <a href="#contact" class="class-btn">
+                        <span data-en="Learn More" data-si="තවත් දැනගන්න">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section - Card Layout -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-en="Timetable" data-si="කාලසටහන">Timetable</span>
+                <h2 class="section-title" data-en="Class Schedule" data-si="පන්ති කාලසටහන">Class Schedule</h2>
+                <p class="section-subtitle" data-en="Plan your week with our structured class schedule. All sessions are designed to maximize learning efficiency while accommodating student needs." data-si="අපගේ ව්‍යුහාත්මක පන්ති කාලසටහන සමඟ ඔබේ සතිය සැලසුම් කර ගන්න. සියලු සැසිවාර ශිෂ්‍ය අවශ්‍යතා සපුරාලමින් ඉගෙනුම් කාර්යක්ෂමතාව උපරිම කිරීමට සැකසී ඇත.">
+                    Plan your week with our structured class schedule. All sessions are designed to maximize learning efficiency while accommodating student needs.
+                </p>
+            </div>
+            
+            <div class="schedule-grid reveal">
+                <!-- Monday -->
+                <div class="schedule-card">
+                    <div class="schedule-card-header">
+                        <h3 data-en="Monday" data-si="සඳුදා">Monday</h3>
+                        <span data-en="Start the week strong" data-si="සතිය ශක්තිමත්ව ආරම්භ කරන්න">Start the week strong</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 4:00 PM - 6:00 PM</div>
+                            <div class="schedule-subject" data-en="O/L English" data-si="O/L ඉංග්‍රීසි">O/L English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 6:30 PM - 8:30 PM</div>
+                            <div class="schedule-subject" data-en="Spoken English" data-si="කථන ඉංග්‍රීසි">Spoken English</div>
+                        </div>
+                        <span class="schedule-badge badge-evening" data-en="Evening Batch" data-si="සවස් බැච්">Evening Batch</span>
+                    </div>
+                </div>
+
+                <!-- Tuesday -->
+                <div class="schedule-card">
+                    <div class="schedule-card-header">
+                        <h3 data-en="Tuesday" data-si="අඟහරුවාදා">Tuesday</h3>
+                        <span data-en="Grammar & Writing Focus" data-si="ව්‍යාකරණ සහ ලිවීම කෙරෙහි අවධානය">Grammar & Writing Focus</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 3:00 PM - 5:00 PM</div>
+                            <div class="schedule-subject" data-en="Grade 6-9 English" data-si="ගුණ 6-9 ඉංග්‍රීසි">Grade 6-9 English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 5:30 PM - 7:30 PM</div>
+                            <div class="schedule-subject" data-en="Grammar & Writing" data-si="ව්‍යාකරණ සහ ලිවීම">Grammar & Writing</div>
+                        </div>
+                        <span class="schedule-badge badge-afternoon" data-en="Afternoon Batch" data-si="පස්වරු බැච්">Afternoon Batch</span>
+                    </div>
+                </div>
+
+                <!-- Wednesday -->
+                <div class="schedule-card">
+                    <div class="schedule-card-header">
+                        <h3 data-en="Wednesday" data-si="බදාදා">Wednesday</h3>
+                        <span data-en="Mid-week Mastery" data-si="සතිය මැද විශිෂ්ටත්වය">Mid-week Mastery</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 4:00 PM - 6:00 PM</div>
+                            <div class="schedule-subject" data-en="A/L English" data-si="A/L ඉංග්‍රීසි">A/L English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 6:30 PM - 8:30 PM</div>
+                            <div class="schedule-subject" data-en="Business English" data-si="ව්‍යාපාරික ඉංග්‍රීසි">Business English</div>
+                        </div>
+                        <span class="schedule-badge badge-evening" data-en="Evening Batch" data-si="සවස් බැච්">Evening Batch</span>
+                    </div>
+                </div>
+
+                <!-- Thursday -->
+                <div class="schedule-card">
+                    <div class="schedule-card-header">
+                        <h3 data-en="Thursday" data-si="බ්‍රහස්පතින්දා">Thursday</h3>
+                        <span data-en="Intensive Practice" data-si="දැඩි පුහුණුව">Intensive Practice</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 3:00 PM - 5:00 PM</div>
+                            <div class="schedule-subject" data-en="O/L English" data-si="O/L ඉංග්‍රීසි">O/L English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 5:30 PM - 7:30 PM</div>
+                            <div class="schedule-subject" data-en="Spoken English" data-si="කථන ඉංග්‍රීසි">Spoken English</div>
+                        </div>
+                        <span class="schedule-badge badge-afternoon" data-en="Afternoon Batch" data-si="පස්වරු බැච්">Afternoon Batch</span>
+                    </div>
+                </div>
+
+                <!-- Friday -->
+                <div class="schedule-card">
+                    <div class="schedule-card-header">
+                        <h3 data-en="Friday" data-si="සිකුරාදා">Friday</h3>
+                        <span data-en="Weekend Prep" data-si="සති අන්ත සූදානම">Weekend Prep</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 4:00 PM - 6:00 PM</div>
+                            <div class="schedule-subject" data-en="Grade 6-9 English" data-si="ගුණ 6-9 ඉංග්‍රීසි">Grade 6-9 English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 6:30 PM - 8:30 PM</div>
+                            <div class="schedule-subject" data-en="Grammar & Writing" data-si="ව්‍යාකරණ සහ ලිවීම">Grammar & Writing</div>
+                        </div>
+                        <span class="schedule-badge badge-evening" data-en="Evening Batch" data-si="සවස් බැච්">Evening Batch</span>
+                    </div>
+                </div>
+
+                <!-- Saturday -->
+                <div class="schedule-card">
+                    <div class="schedule-card-header">
+                        <h3 data-en="Saturday" data-si="සෙනසුරාදා">Saturday</h3>
+                        <span data-en="Full Day Learning" data-si="පූර්ණ දින ඉගෙනුම">Full Day Learning</span>
+                    </div>
+                    <div class="schedule-card-body">
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 8:00 AM - 10:00 AM</div>
+                            <div class="schedule-subject" data-en="A/L English" data-si="A/L ඉංග්‍රීසි">A/L English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 10:30 AM - 12:30 PM</div>
+                            <div class="schedule-subject" data-en="O/L English" data-si="O/L ඉංග්‍රීසි">O/L English</div>
+                        </div>
+                        <div class="schedule-slot">
+                            <div class="schedule-time"><i class="fas fa-clock"></i> 2:00 PM - 4:00 PM</div>
+                            <div class="schedule-subject" data-en="Business English" data-si="ව්‍යාපාරික ඉංග්‍රීසි">Business English</div>
+                        </div>
+                        <span class="schedule-badge badge-morning" data-en="Morning & Afternoon" data-si="උදේ සහ පස්වරු">Morning & Afternoon</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-legend reveal">
+                <div class="schedule-legend-item">
+                    <span class="schedule-badge badge-morning">Morning</span>
+                    <span data-en="8:00 AM - 12:30 PM" data-si="පෙ.ව. 8:00 - 12:30">8:00 AM - 12:30 PM</span>
+                </div>
+                <div class="schedule-legend-item">
+                    <span class="schedule-badge badge-afternoon">Afternoon</span>
+                    <span data-en="3:00 PM - 5:30 PM" data-si="ප.ව. 3:00 - 5:30">3:00 PM - 5:30 PM</span>
+                </div>
+                <div class="schedule-legend-item">
+                    <span class="schedule-badge badge-evening">Evening</span>
+                    <span data-en="6:00 PM - 8:30 PM" data-si="ප.ව. 6:00 - 8:30">6:00 PM - 8:30 PM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-en="Success Stories" data-si="සාර්ථකත්ව කථා">Success Stories</span>
+                <h2 class="section-title" data-en="What Students & Parents Say" data-si="ශිෂ්‍යයන් සහ දෙමාපියන් කියන්නේ මොනවාද">What Students & Parents Say</h2>
+                <p class="section-subtitle" data-en="Real feedback from our community of learners who have transformed their English journey with dedicated guidance." data-si="කැපවීමෙන් යුතු මඟපෙන්වීමෙන් ඔවුන්ගේ ඉංග්‍රීසි ගමන පරිවර්තනය කළ අපගේ ඉගෙනුම් සමාජයෙන් සැබෑ ප්‍රතිපෝෂණ.">
+                    Real feedback from our community of learners who have transformed their English journey with dedicated guidance.
+                </p>
+            </div>
+            
+            <div class="testimonials-grid reveal">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text" data-en="Sir Lasantha completely changed my approach to English. I went from failing to scoring an A in my O/L exam. His patience and unique teaching methods made grammar and comprehension so easy to understand." data-si="ලසන්ත සර් මගේ ඉංග්‍රීසි ක්‍රමය සම්පූර්ණයෙන්ම වෙනස් කළේය. මම අසමත් වීමෙන් සිට මගේ O/L විභාගයේ A සමත් වීමට ගියෙමි. ඔහුගේ ඉවසීම සහ අද්විතීය ඉගැන්වීමේ ක්‍රම ව්‍යාකරණය සහ තේරුම් ගැනීම ඉතා පහසු කළේය.">
+                        Sir Lasantha completely changed my approach to English. I went from failing to scoring an A in my O/L exam. His patience and unique teaching methods made grammar and comprehension so easy to understand.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DS</div>
+                        <div class="author-info">
+                            <h4>Dilshan Sampath</h4>
+                            <span data-en="O/L Student, Batch 2023" data-si="O/L ශිෂ්‍යයා, 2023 බැච්">O/L Student, Batch 2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text" data-en="As a parent, I was amazed by the dedication Sir shows to each student. My daughter's confidence in English grew tremendously. The regular progress updates and personal attention are truly exceptional." data-si="දෙමාපියෙකු ලෙස, සෑම ශිෂ්‍යයෙකුටම සර් දක්වන කැපවීමෙන් මම පුදුම වීමි. මගේ දියණියගේ ඉංග්‍රීසි භාෂාව පිළිබඳ විශ්වාසය ඉතා වැඩි විය. නිතර ප්‍රගති යාවත්කාලීන කිරීම් සහ පුද්ගලික අවධානය ඇත්තෙන්ම අසාමාන්‍යයි.">
+                        As a parent, I was amazed by the dedication Sir shows to each student. My daughter's confidence in English grew tremendously. The regular progress updates and personal attention are truly exceptional.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">KP</div>
+                        <div class="author-info">
+                            <h4>Kumari Perera</h4>
+                            <span data-en="Parent of A/L Student" data-si="A/L ශිෂ්‍යයාගේ දෙමාපියා">Parent of A/L Student</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text" data-en="The spoken English classes helped me land my dream job. I was always nervous about interviews, but Sir's practice sessions and confidence-building techniques made all the difference. Highly recommended!" data-si="කථන ඉංග්‍රීසි පන්ති මගේ සිහින රැකියාව ලබා ගැනීමට මට උදව් කළේය. සම්මුඛ පරීක්ෂණ ගැන මම සැමවිටම නිර්වින්දනයට පත්ව සිටියෙමි, නමුත් සර්ගේ පුහුණු සැසි සහ විශ්වාසය ගොඩනැගීමේ ක්‍රමවේදයන් සියලු දේ වෙනස් කළේය. ඉතා නිර්දේශ කරමි!">
+                        The spoken English classes helped me land my dream job. I was always nervous about interviews, but Sir's practice sessions and confidence-building techniques made all the difference. Highly recommended!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NR</div>
+                        <div class="author-info">
+                            <h4>Naduni Rathnayake</h4>
+                            <span data-en="Business English Student" data-si="ව්‍යාපාරික ඉංග්‍රීසි ශිෂ්‍යයා">Business English Student</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag" data-en="Get In Touch" data-si="සම්බන්ධ වන්න">Get In Touch</span>
+                <h2 class="section-title" data-en="Enroll or Contact Us" data-si="ලියාපදිංචි වන්න හෝ අමතන්න">Enroll or Contact Us</h2>
+                <p class="section-subtitle" data-en="Ready to start your English transformation? Fill out the form below or reach out directly to reserve your spot." data-si="ඔබේ ඉංග්‍රීසි පරිවර්තනය ආරම්භ කිරීමට සූදානම්ද? ඔබේ ස්ථානය වෙන්කරවා ගැනීමට පහත පෝරමය පුරවන්න හෝ සෘජුවම සම්බන්ධ වන්න.">
+                    Ready to start your English transformation? Fill out the form below or reach out directly to reserve your spot.
+                </p>
+            </div>
+            
+            <div class="contact-grid reveal">
+                <div class="contact-info">
+                    <h3 data-en="Start Your Journey Today" data-si="අද ඔබේ ගමන ආරම්භ කරන්න">Start Your Journey Today</h3>
+                    <p data-en="Have questions about our classes or want to enroll? We are here to help you make the best decision for your English learning future." data-si="අපගේ පන්ති ගැන ප්‍රශ්න ඇත්ද, හෝ ලියාපදිංචි වීමට අවශ්‍යද? ඔබේ ඉංග්‍රීසි ඉගෙනුම් අනාගතය සඳහා හොඳම තීරණය ගැනීමට අපි මෙහි සිටිමු.">
+                        Have questions about our classes or want to enroll? We are here to help you make the best decision for your English learning future.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <span data-en="Phone" data-si="දුරකථන">Phone</span>
+                                <span>+94 77 123 4567</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <span data-en="Email" data-si="ඊමේල්">Email</span>
+                                <span>info@lasanthaenglish.lk</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <span data-en="Location" data-si="ස්ථානය">Location</span>
+                                <span data-en="123 Education Lane, Colombo 05, Sri Lanka" data-si="123 අධ්‍යාපන මාවත, කොළඹ 05, ශ්‍රී ලංකාව">123 Education Lane, Colombo 05, Sri Lanka</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <span data-en="Office Hours" data-si="කාර්යාල වේලාවන්">Office Hours</span>
+                                <span data-en="Mon - Sat: 8:00 AM - 6:00 PM" data-si="සඳුදා - සෙනසුරාදා: පෙ.ව. 8:00 - ප.ව. 6:00">Mon - Sat: 8:00 AM - 6:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h4 data-en="Enrollment Submitted!" data-si="ලියාපදිංචිය ඉදිරිපත් කරන ලදී!">Enrollment Submitted!</h4>
+                        <p data-en="Thank you for your interest. We will contact you within 24 hours to confirm your registration." data-si="ඔබේ උනන්දුවට ස්තුතියි. ඔබේ ලියාපදිංචිය තහවුරු කිරීමට අපි පැය 24ක් ඇතුළත ඔබ අමතන්නෙමු.">
+                            Thank you for your interest. We will contact you within 24 hours to confirm your registration.
+                        </p>
+                    </div>
+                    
+                    <form id="enrollmentForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" data-en="First Name" data-si="මුල් නම">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="John" data-en-placeholder="John" data-si-placeholder="ජෝන්" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" data-en="Last Name" data-si="අවසාන නම">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Doe" data-en-placeholder="Doe" data-si-placeholder="පෙරේරා" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" data-en="Email Address" data-si="ඊමේල් ලිපිනය">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" data-en-placeholder="john@example.com" data-si-placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-en="Phone Number" data-si="දුරකථන අංකය">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+94 77 123 4567" data-en-placeholder="+94 77 123 4567" data-si-placeholder="+94 77 123 4567" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" data-en="Create Password" data-si="මුරපදයක් සාදන්න">Create Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" name="password" placeholder="Min 6 characters" data-en-placeholder="Min 6 characters" data-si-placeholder="අවම අකුරු 6ක්" required>
+                                <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="grade" data-en="Grade Level" data-si="ශ්‍රේණිය">Grade Level</label>
+                            <select id="grade" name="grade" required>
+                                <option value="" disabled selected data-en="Select your grade" data-si="ඔබේ ශ්‍රේණිය තෝරන්න">Select your grade</option>
+                                <option value="6-9" data-en="Grade 6 - 9" data-si="ගුණ 6 - 9">Grade 6 - 9</option>
+                                <option value="ol" data-en="O/L (Grade 10-11)" data-si="O/L (ගුණ 10-11)">O/L (Grade 10-11)</option>
+                                <option value="al" data-en="A/L (Grade 12-13)" data-si="A/L (ගුණ 12-13)">A/L (Grade 12-13)</option>
+                                <option value="adult" data-en="Adult / Professional" data-si="වැඩිහිටි / වෘත්තික">Adult / Professional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" data-en="Preferred Class" data-si="කැමති පන්තිය">Preferred Class</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected data-en="Select a class" data-si="පන්තියක් තෝරන්න">Select a class</option>
+                                <option value="spoken" data-en="Spoken English" data-si="කථන ඉංග්‍රීසි">Spoken English</option>
+                                <option value="grammar" data-en="Grammar & Writing" data-si="ව්‍යාකරණ සහ ලිවීම">Grammar & Writing</option>
+                                <option value="ol" data-en="O/L English" data-si="O/L ඉංග්‍රීසි">O/L English</option>
+                                <option value="al" data-en="A/L English" data-si="A/L ඉංග්‍රීසි">A/L English</option>
+                                <option value="business" data-en="Business English" data-si="ව්‍යාපාරික ඉංග්‍රීසි">Business English</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" data-en="Additional Message (Optional)" data-si="අමතර පණිවිඩය (විකල්පයකි)">Additional Message (Optional)</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Tell us about your goals..." data-en-placeholder="Tell us about your goals..." data-si-placeholder="ඔබේ ඉලක්ක ගැන අපට කියන්න..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-en="Submit Enrollment" data-si="ලියාපදිංචිය ඉදිරිපත් කරන්න">Submit Enrollment</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <span data-en="Lasantha Kumara English" data-si="ලසන්ත කුමාර ඉංග්‍රීසි">Lasantha Kumara English</span>
+                    </a>
+                    <p data-en="Empowering students with English language excellence since 2009. Your success is our mission." data-si="2009 සිට ශිෂ්‍යයන්ට ඉංග්‍රීසි භාෂා විශිෂ්ටත්වය ලබා දීම. ඔබේ සාර්ථකත්වය අපගේ මෙහෙවරයි.">
+                        Empowering students with English language excellence since 2009. Your success is our mission.
+                    </p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 data-en="Quick Links" data-si="ඉක්මන් සබැඳි">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> <span data-en="Home" data-si="මුල් පිටුව">Home</span></a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> <span data-en="About" data-si="අපි ගැන">About</span></a></li>
+                        <li><a href="#classes"><i class="fas fa-chevron-right"></i> <span data-en="Classes" data-si="පන්ති">Classes</span></a></li>
+                        <li><a href="#schedule"><i class="fas fa-chevron-right"></i> <span data-en="Schedule" data-si="කාලසටහන">Schedule</span></a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span data-en="Contact" data-si="සම්බන්ධතා">Contact</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 data-en="Programs" data-si="වැඩසටහන්">Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="#classes"><i class="fas fa-chevron-right"></i> <span data-en="Spoken English" data-si="කථන ඉංග්‍රීසි">Spoken English</span></a></li>
+                        <li><a href="#classes"><i class="fas fa-chevron-right"></i> <span data-en="O/L English" data-si="O/L ඉංග්‍රීසි">O/L English</span></a></li>
+                        <li><a href="#classes"><i class="fas fa-chevron-right"></i> <span data-en="A/L English" data-si="A/L ඉංග්‍රීසි">A/L English</span></a></li>
+                        <li><a href="#classes"><i class="fas fa-chevron-right"></i> <span data-en="Business English" data-si="ව්‍යාපාරික ඉංග්‍රීසි">Business English</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 data-en="Contact Info" data-si="සම්බන්ධතා තොරතුරු">Contact Info</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +94 77 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> info@lasanthaenglish.lk</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-en="Colombo 05, Sri Lanka" data-si="කොළඹ 05, ශ්‍රී ලංකාව">Colombo 05, Sri Lanka</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-en=" Lasantha Kumara English Classes. All rights reserved." data-si=" ලසන්ත කුමාර ඉංග්‍රීසි පන්ති. සියලුම හිමිකම් ඇවිරිණි."> Lasantha Kumara English Classes. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // ============================================
+        // LANGUAGE TOGGLE SYSTEM
+        // ============================================
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            if (lang === currentLang) return;
+            
+            currentLang = lang;
+            
+            // Update toggle buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all elements with data-en and data-si
+            document.querySelectorAll('[data-en][data-si]').forEach(el => {
+                // Fade out
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(5px)';
+                
+                setTimeout(() => {
+                    // Update text content
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.getAttribute(`data-${lang}-placeholder`) || el.getAttribute(`data-${lang}`);
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = el.getAttribute(`data-${lang}`);
+                    } else {
+                        el.textContent = el.getAttribute(`data-${lang}`);
+                    }
+                    
+                    // Fade in
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 150);
+            });
+            
+            // Update select option texts
+            document.querySelectorAll('select option[data-en][data-si]').forEach(opt => {
+                opt.textContent = opt.getAttribute(`data-${lang}`);
+            });
+            
+            // Update page title
+            const titleEl = document.querySelector('title[data-en][data-si]');
+            if (titleEl) {
+                document.title = titleEl.getAttribute(`data-${lang}`);
+            }
+            
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang && savedLang !== 'en') {
+            switchLanguage(savedLang);
+        }
+
+        // ============================================
+        // NAVBAR SCROLL EFFECT
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // ============================================
+        // SCROLL REVEAL
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // BACK TO TOP
+        // ============================================
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================
+        // PASSWORD TOGGLE
+        // ============================================
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordInput = document.getElementById('password');
+        
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            passwordToggle.querySelector('i').classList.toggle('fa-eye');
+            passwordToggle.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        // ============================================
+        // FORM VALIDATION & SUBMISSION
+        // ============================================
+        const form = document.getElementById('enrollmentForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fields = ['firstName', 'lastName', 'email', 'phone', 'password', 'grade', 'subject'];
+            let isValid = true;
+            
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                field.style.borderColor = 'var(--border)';
+                field.style.animation = '';
+            });
+            
+            // Validate each field
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const value = field.value.trim();
+                
+                if (!value) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                }
+                
+                if (fieldId === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        field.style.borderColor = '#ef4444';
+                        isValid = false;
+                    }
+                }
+                
+                if (fieldId === 'password' && value.length < 6) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                }
+            });
+            
+            if (isValid) {
+                successMessage.style.display = 'block';
+                form.style.display = 'none';
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Simulate form submission - in production, send to backend/Firebase
+                console.log('Form submitted:', {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    grade: document.getElementById('grade').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                });
+                
+                setTimeout(() => {
+                    form.reset();
+                    form.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    fields.forEach(fieldId => {
+                        document.getElementById(fieldId).style.borderColor = 'var(--border)';
+                    });
+                }, 6000);
+            } else {
+                // Shake invalid fields
+                fields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (field.style.borderColor === 'rgb(239, 68, 68)') {
+                        field.style.animation = 'shake 0.5s ease-in-out';
+                        setTimeout(() => { field.style.animation = ''; }, 500);
+                    }
+                });
+            }
+        });
+
+        // ============================================
+        // SMOOTH SCROLL
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ============================================
+        // ACTIVE NAV LINK
+        // ============================================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"]');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinksAll.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--primary)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
