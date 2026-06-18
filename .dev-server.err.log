@@ -1,0 +1,385 @@
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="layout" pagePath="(frontend)...">
+      <SegmentTrieNode>
+      <link>
+      <script>
+      <script>
+      <script>
+      <RootLayout>
+        <html className="geistsans_..." lang="si" suppressHydrationWarning={true}>
+          <head>
+          <body>
+            <Providers>
+              <ThemeProvider>
+                <HeaderThemeProvider>
+                  <AdminBar>
+                  <Header>
+                    <HeaderClient data={{navItems:[...], ...}} user={{...}}>
+                      <header className="site-heade...">
+                        <div className="premium-co...">
+                          <LinkComponent>
+                          <HeaderNav data={{navItems:[...], ...}} transparent={true} user={{...}}>
+                            <nav aria-label="Main navig..." className="hidden ite...">
+                              <button
+                                className="ml-2 rounded-full border px-3 py-2 text-xs font-bold border-white/30"
+                                onClick={function toggleLanguage}
+                                type="button"
+-                               fdprocessedid="xw1jqh"
+                              >
++                               EN / සිං
+                              <LinkComponent>
+                              <button
+                                className="rounded-full bg-[#ffc107] px-4 py-2.5 text-sm font-bold text-[#111827]"
+                                onClick={function logout}
+                                type="button"
+-                               fdprocessedid="bqiptc"
+                              >
++                               Log out
+                            ...
+                  ...
+                    <PremiumHome>
+                      <main className="premium-ho...">
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        <section>
+                        ...
+                          <Reveal delay={120}>
+                            <div className="reveal" ref={{current:null}} style={{...}}>
+                              <ContactForm classes={[...]}>
+                                <form className="rounded-3x..." onSubmit={function submit}>
+                                  <div className="grid gap-5...">
+                                    <FormField label="First name" name="firstName" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="firstName"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="c652cn"
+                                        >
+                                    <FormField label="Last name" name="lastName" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="lastName"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="a2mcqc"
+                                        >
+                                    <FormField label="Email" name="email" required={true} type="email">
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="email"
+                                          required={true}
+                                          type="email"
+-                                         fdprocessedid="q2hgb"
+                                        >
+                                    <FormField label="Phone" name="phone" required={true} type="tel">
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="phone"
+                                          required={true}
+                                          type="tel"
+-                                         fdprocessedid="e2tgh"
+                                        >
+                                  <div className="mt-5">
+                                    <FormField label="Subject" name="subject" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="subject"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="rp6bxl"
+                                        >
+                                  <label className="mt-5 block...">
+                                    <select
+                                      className="form-control mt-2"
+                                      name="preferredClass"
+-                                     fdprocessedid="jpbgor"
+                                    >
+                                  <label>
+                                  <button
+                                    className="mt-6 w-full rounded-xl bg-navy px-5 py-3 font-bold text-white disabled:..."
+                                    disabled={false}
+                                    type="submit"
+-                                   fdprocessedid="xaqwkn"
+                                  >
++                                   Send message
+                                  ...
+                  ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] ⨯ unhandledRejection: ChunkLoadError: Failed to load chunk /_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0_vb381._.js from module [turbopack]/browser/dev/hmr-client/hmr-client.ts [app-client] (ecmascript, async loader)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopSync (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9449:40)
+    at renderRootSync (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9433:13)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9098:47)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
+[browser] Uncaught ChunkLoadError: Failed to load chunk /_next/static/chunks/13m5_react-hook-form_dist_index_esm_mjs_0ii2t8c._.js from module [project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+    at Page (src\app\(frontend)\[slug]\page.tsx:44:7)
+  42 |   return (
+  43 |     <article className={decodedSlug === 'home' ? '' : 'pt-16 pb-24'}>
+> 44 |       <PageClient />
+     |       ^
+  45 |       {/* Allows redirects for valid pages too */}
+  46 |       <PayloadRedirects disableNotFound url={url} />
+  47 |
+[browser] Uncaught NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+    at removeChild (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:11920:24)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at commitDeletionEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8071:21)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8195:13)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8286:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8403:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8403:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8219:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8219:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8219:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at commitMutationEffectsOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8214:17)
+    at recursivelyTraverseMutationEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8205:106)
+    at getCurrentFiberStackInDev (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:917:35)
+    at Object.captureOwnerStack (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:1552:50)
+    at setOwnerStackIfAvailable (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2330:43)
+    at onUnhandledError (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:3218:53)
+    at onUncaughtError (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:2010:50)
+    at onCaughtError (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:1981:16)
+    at logCaughtError (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:5784:13)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at inst.componentDidCatch.update.callback (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:5825:13)
+    at callCallback (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:4491:18)
+    at commitCallbacks (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:4499:130)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at commitClassCallbacks (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7301:17)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7862:31)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7854:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7850:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+    at recursivelyTraverseLayoutEffects (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:8530:105)
+    at commitLayoutEffectOnFiber (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:7948:17)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="(frontend)...">
+            <SegmentTrieNode>
+            <Page>
+              <article className="">
+                <PageClient>
+                <PremiumHome>
+                  <main className="premium-ho...">
+                    <section>
+                    <section>
+                    <section>
+                    <section>
+                    <section>
+                    <section>
+                    <section>
+                    <section>
+                    <section>
+                    <section className="premium-se..." id="contact">
+                      <div className="premium-co...">
+                        <div>
+                        <div className="mt-12 grid...">
+                          <Reveal className="p-6 sm:p-10">
+                            <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                              <ContactForm classes={[...]}>
+                                <form className="rounded-3x..." onSubmit={function submit}>
+                                  <div className="grid gap-5...">
+                                    <FormField label="First name" name="firstName" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="firstName"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="bmi9mk6"
+                                        >
+                                    <FormField label="Last name" name="lastName" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="lastName"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="o0q3f6"
+                                        >
+                                    <FormField label="Email" name="email" required={true} type="email">
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="email"
+                                          required={true}
+                                          type="email"
+-                                         fdprocessedid="xfbzww"
+                                        >
+                                    <FormField label="Phone" name="phone" required={true} type="tel">
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="phone"
+                                          required={true}
+                                          type="tel"
+-                                         fdprocessedid="dj55ex"
+                                        >
+                                  <div className="mt-5">
+                                    <FormField label="Subject" name="subject" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="subject"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="54rvxs"
+                                        >
+                                  <label className="mt-5 block...">
+                                    <select
+                                      className="form-control mt-2"
+                                      name="preferredClass"
+-                                     fdprocessedid="a0prxk"
+                                    >
+                                  <label>
+                                  <button
+                                    className="mt-6 w-full rounded-xl bg-navy px-5 py-3 font-bold text-white disabled:..."
+                                    disabled={false}
+                                    type="submit"
+-                                   fdprocessedid="r9t32v"
+                                  >
++                                   Send message
+                                  ...
+                          ...
+          ...
+        ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
