@@ -10,6 +10,10 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'missionText',
+      type: 'textarea',
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [
@@ -24,6 +28,10 @@ export const Footer: GlobalConfig = {
           RowLabel: '@/Footer/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'copyrightText',
+      type: 'text',
     },
   ],
   hooks: {

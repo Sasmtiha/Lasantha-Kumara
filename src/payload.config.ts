@@ -9,11 +9,22 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { Classes } from './collections/Classes'
+import { ContactSubmissions } from './collections/ContactSubmissions'
+import { Enrollments } from './collections/Enrollments'
+import { Notices } from './collections/Notices'
+import { Resources } from './collections/Resources'
+import { Schedules } from './collections/Schedules'
+import { Students } from './collections/Students'
+import { Teachers } from './collections/Teachers'
+import { Testimonials } from './collections/Testimonials'
+import { Gallery } from './collections/Gallery'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -62,9 +73,25 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [
+    Pages,
+    Classes,
+    Schedules,
+    Testimonials,
+    Gallery,
+    Teachers,
+    Students,
+    Enrollments,
+    Notices,
+    Resources,
+    ContactSubmissions,
+    Posts,
+    Media,
+    Categories,
+    Users,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [SiteSettings, Header, Footer],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

@@ -12,6 +12,20 @@ import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import { AboutTeacher } from '@/blocks/AboutTeacher/config'
+import { ClassesGrid } from '@/blocks/ClassesGrid/config'
+import { EnrollmentCTA } from '@/blocks/EnrollmentCTA/config'
+import { FAQ } from '@/blocks/FAQ/config'
+import { InstituteContact } from '@/blocks/InstituteContact/config'
+import { InstituteHero } from '@/blocks/InstituteHero/config'
+import { InstituteTestimonials } from '@/blocks/InstituteTestimonials/config'
+import { Schedule } from '@/blocks/Schedule/config'
+import { GalleryBlock } from '@/blocks/Gallery/config'
+import { Metrics } from '@/blocks/Metrics/config'
+import { Results } from '@/blocks/Results/config'
+import { StudentPortalPreview } from '@/blocks/StudentPortalPreview/config'
+import { WorkProcess } from '@/blocks/WorkProcess/config'
+import { FeaturedProgram } from '@/blocks/FeaturedProgram/config'
 
 import {
   MetaDescriptionField,
@@ -72,7 +86,27 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                InstituteHero,
+                Metrics,
+                AboutTeacher,
+                WorkProcess,
+                FeaturedProgram,
+                ClassesGrid,
+                Results,
+                StudentPortalPreview,
+                Schedule,
+                GalleryBlock,
+                InstituteTestimonials,
+                EnrollmentCTA,
+                InstituteContact,
+                FAQ,
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

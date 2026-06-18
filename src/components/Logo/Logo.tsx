@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 
 interface Props {
@@ -8,22 +7,12 @@ interface Props {
 }
 
 export const Logo = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
-
-  const loading = loadingFromProps || 'lazy'
-  const priority = priorityFromProps || 'low'
-
   return (
-    /* eslint-disable @next/next/no-img-element */
-    <img
-      alt="Payload Logo"
-      width={193}
-      height={34}
-      loading={loading}
-      fetchPriority={priority}
-      decoding="async"
-      className={clsx('max-w-[9.375rem] w-full h-[34px]', className)}
-      src="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-logo-light.svg"
-    />
+    <span className={props.className}>
+      <span className="flex items-center gap-3">
+        <span className="grid size-10 place-items-center rounded-full border-[3px] border-current text-[11px] font-black tracking-[-0.08em]">IE</span>
+        <strong className="text-lg tracking-tight text-current">IEM<span className="text-gold-dark">lk</span></strong>
+      </span>
+    </span>
   )
 }

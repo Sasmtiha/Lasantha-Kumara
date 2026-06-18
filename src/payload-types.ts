@@ -68,6 +68,16 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    classes: Class;
+    schedules: Schedule;
+    testimonials: Testimonial;
+    gallery: Gallery;
+    teachers: Teacher;
+    students: Student;
+    enrollments: Enrollment;
+    notices: Notice;
+    resources: Resource;
+    'contact-submissions': ContactSubmission;
     posts: Post;
     media: Media;
     categories: Category;
@@ -90,6 +100,16 @@ export interface Config {
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    classes: ClassesSelect<false> | ClassesSelect<true>;
+    schedules: SchedulesSelect<false> | SchedulesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
+    teachers: TeachersSelect<false> | TeachersSelect<true>;
+    students: StudentsSelect<false> | StudentsSelect<true>;
+    enrollments: EnrollmentsSelect<false> | EnrollmentsSelect<true>;
+    notices: NoticesSelect<false> | NoticesSelect<true>;
+    resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -106,14 +126,16 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: null;
   globals: {
+    'site-settings': SiteSetting;
     header: Header;
     footer: Footer;
   };
   globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
@@ -156,7 +178,7 @@ export interface UserAuthOperations {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
@@ -183,11 +205,11 @@ export interface Page {
             reference?:
               | ({
                   relationTo: 'pages';
-                  value: string | Page;
+                  value: number | Page;
                 } | null)
               | ({
                   relationTo: 'posts';
-                  value: string | Post;
+                  value: number | Post;
                 } | null);
             url?: string | null;
             label: string;
@@ -199,15 +221,35 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: (string | null) | Media;
+    media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | InstituteHeroBlock
+    | MetricsBlock
+    | AboutTeacherBlock
+    | WorkProcessBlock
+    | FeaturedProgramBlock
+    | ClassesGridBlock
+    | ResultsBlock
+    | StudentPortalPreviewBlock
+    | ScheduleBlock
+    | GalleryBlock
+    | InstituteTestimonialsBlock
+    | EnrollmentCTABlock
+    | InstituteContactBlock
+    | FAQBlock
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -225,9 +267,9 @@ export interface Page {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: string;
+  id: number;
   title: string;
-  heroImage?: (string | null) | Media;
+  heroImage?: (number | null) | Media;
   content: {
     root: {
       type: string;
@@ -243,18 +285,18 @@ export interface Post {
     };
     [k: string]: unknown;
   };
-  relatedPosts?: (string | Post)[] | null;
-  categories?: (string | Category)[] | null;
+  relatedPosts?: (number | Post)[] | null;
+  categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
-  authors?: (string | User)[] | null;
+  authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
         id?: string | null;
@@ -275,7 +317,7 @@ export interface Post {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt?: string | null;
   caption?: {
     root: {
@@ -292,7 +334,7 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
-  folder?: (string | null) | FolderInterface;
+  folder?: (number | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -368,18 +410,18 @@ export interface Media {
  * via the `definition` "payload-folders".
  */
 export interface FolderInterface {
-  id: string;
+  id: number;
   name: string;
-  folder?: (string | null) | FolderInterface;
+  folder?: (number | null) | FolderInterface;
   documentsAndFolders?: {
     docs?: (
       | {
           relationTo?: 'payload-folders';
-          value: string | FolderInterface;
+          value: number | FolderInterface;
         }
       | {
           relationTo?: 'media';
-          value: string | Media;
+          value: number | Media;
         }
     )[];
     hasNextPage?: boolean;
@@ -394,17 +436,17 @@ export interface FolderInterface {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: string;
+  id: number;
   title: string;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
   generateSlug?: boolean | null;
   slug: string;
-  parent?: (string | null) | Category;
+  parent?: (number | null) | Category;
   breadcrumbs?:
     | {
-        doc?: (string | null) | Category;
+        doc?: (number | null) | Category;
         url?: string | null;
         label?: string | null;
         id?: string | null;
@@ -418,8 +460,14 @@ export interface Category {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   name?: string | null;
+  firstName: string;
+  lastName: string;
+  phone?: string | null;
+  role: 'super_admin' | 'admin' | 'teacher' | 'student' | 'parent';
+  status: 'active' | 'inactive' | 'suspended';
+  profileImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -438,6 +486,442 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InstituteHeroBlock".
+ */
+export interface InstituteHeroBlock {
+  badgeEn: string;
+  headingEn: string;
+  subheadingEn: string;
+  badgeSi?: string | null;
+  headingSi?: string | null;
+  subheadingSi?: string | null;
+  primaryButtonLabel: string;
+  primaryButtonUrl: string;
+  secondaryButtonLabel?: string | null;
+  secondaryButtonUrl?: string | null;
+  heroImage?: (number | null) | Media;
+  metrics?:
+    | {
+        value: string;
+        labelEn: string;
+        labelSi?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'instituteHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MetricsBlock".
+ */
+export interface MetricsBlock {
+  items: {
+    value: string;
+    labelEn: string;
+    labelSi?: string | null;
+    icon?: ('experience' | 'students' | 'results' | 'batch') | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'metrics';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutTeacherBlock".
+ */
+export interface AboutTeacherBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  descriptionSi?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  teacherImage?: (number | null) | Media;
+  featureCards?:
+    | {
+        titleEn: string;
+        titleSi?: string | null;
+        descriptionEn?: string | null;
+        descriptionSi?: string | null;
+        icon?: ('award' | 'book' | 'users' | 'target') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutTeacher';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorkProcessBlock".
+ */
+export interface WorkProcessBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn: string;
+  descriptionSi?: string | null;
+  steps: {
+    titleEn: string;
+    titleSi?: string | null;
+    descriptionEn: string;
+    descriptionSi?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'workProcess';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedProgramBlock".
+ */
+export interface FeaturedProgramBlock {
+  eyebrowEn?: string | null;
+  eyebrowSi?: string | null;
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn?: string | null;
+  descriptionSi?: string | null;
+  image?: (number | null) | Media;
+  buttonLabel?: string | null;
+  buttonUrl?: string | null;
+  features: {
+    titleEn: string;
+    titleSi?: string | null;
+    descriptionEn: string;
+    descriptionSi?: string | null;
+    icon?: ('spoken' | 'grammar' | 'exam' | 'writing' | 'progress') | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featuredProgram';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClassesGridBlock".
+ */
+export interface ClassesGridBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  subtitleEn?: string | null;
+  subtitleSi?: string | null;
+  selectedClasses?: (number | Class)[] | null;
+  showAllClasses?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'classesGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "classes".
+ */
+export interface Class {
+  id: number;
+  titleEn: string;
+  shortDescriptionEn: string;
+  fullDescriptionEn?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  titleSi: string;
+  shortDescriptionSi?: string | null;
+  fullDescriptionSi?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  durationPerWeek?: string | null;
+  maxStudents?: number | null;
+  level: 'beginner' | 'intermediate' | 'advanced' | 'exam' | 'professional';
+  category: 'spoken' | 'grammar' | 'ol' | 'al' | 'grade_6_9' | 'business';
+  teacher?: (number | null) | Teacher;
+  featuredImage?: (number | null) | Media;
+  isActive?: boolean | null;
+  displayOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teachers".
+ */
+export interface Teacher {
+  id: number;
+  user?: (number | null) | User;
+  fullName: string;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  qualifications?: string | null;
+  profileImage?: (number | null) | Media;
+  classesHandled?: (number | Class)[] | null;
+  phone?: string | null;
+  email?: string | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ResultsBlock".
+ */
+export interface ResultsBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn: string;
+  descriptionSi?: string | null;
+  backgroundImage?: (number | null) | Media;
+  ctaLabel?: string | null;
+  ctaUrl?: string | null;
+  metrics?:
+    | {
+        value: string;
+        labelEn: string;
+        labelSi?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'results';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudentPortalPreviewBlock".
+ */
+export interface StudentPortalPreviewBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn: string;
+  descriptionSi?: string | null;
+  buttonLabel?: string | null;
+  buttonUrl?: string | null;
+  features?:
+    | {
+        titleEn: string;
+        titleSi?: string | null;
+        icon?: ('classes' | 'schedule' | 'resources' | 'notices' | 'status' | 'support') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studentPortalPreview';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ScheduleBlock".
+ */
+export interface ScheduleBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  subtitleEn?: string | null;
+  subtitleSi?: string | null;
+  showAllSchedules?: boolean | null;
+  selectedSchedules?: (number | Schedule)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'schedule';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schedules".
+ */
+export interface Schedule {
+  id: number;
+  class: number | Class;
+  dayOfWeek: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+  batchLabel: string;
+  startTime: string;
+  endTime: string;
+  location?: string | null;
+  mode?: ('physical' | 'online' | 'hybrid') | null;
+  isActive?: boolean | null;
+  displayOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock".
+ */
+export interface GalleryBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn?: string | null;
+  descriptionSi?: string | null;
+  selectedImages?: (number | Gallery)[] | null;
+  showAll?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'galleryBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: number;
+  titleEn: string;
+  titleSi?: string | null;
+  category: 'Classes' | 'Events' | 'Student Life' | 'Achievements';
+  image: number | Media;
+  alt: string;
+  isPublished?: boolean | null;
+  displayOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InstituteTestimonialsBlock".
+ */
+export interface InstituteTestimonialsBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  subtitleEn?: string | null;
+  subtitleSi?: string | null;
+  selectedTestimonials?: (number | Testimonial)[] | null;
+  showFeaturedOnly?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'instituteTestimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  name: string;
+  studentType: string;
+  feedbackEn: string;
+  feedbackSi?: string | null;
+  rating: number;
+  image?: (number | null) | Media;
+  isFeatured?: boolean | null;
+  displayOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EnrollmentCTABlock".
+ */
+export interface EnrollmentCTABlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn: string;
+  descriptionSi?: string | null;
+  buttonLabel: string;
+  buttonUrl: string;
+  backgroundStyle?: ('navy' | 'gold' | 'light') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'enrollmentCTA';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InstituteContactBlock".
+ */
+export interface InstituteContactBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn?: string | null;
+  descriptionSi?: string | null;
+  showContactForm?: boolean | null;
+  showContactDetails?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'instituteContact';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  heading: string;
+  items: {
+    questionEn: string;
+    questionSi?: string | null;
+    answerEn: string;
+    answerSi?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -467,11 +951,11 @@ export interface CallToActionBlock {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: string | Page;
+                value: number | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: string | Post;
+                value: number | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -517,11 +1001,11 @@ export interface ContentBlock {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: string | Page;
+                value: number | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: string | Post;
+                value: number | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -542,7 +1026,7 @@ export interface ContentBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
-  media: string | Media;
+  media: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -569,12 +1053,12 @@ export interface ArchiveBlock {
   } | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'posts' | null;
-  categories?: (string | Category)[] | null;
+  categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       }[]
     | null;
   id?: string | null;
@@ -586,7 +1070,7 @@ export interface ArchiveBlock {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
-  form: string | Form;
+  form: number | Form;
   enableIntro?: boolean | null;
   introContent?: {
     root: {
@@ -612,7 +1096,7 @@ export interface FormBlock {
  * via the `definition` "forms".
  */
 export interface Form {
-  id: string;
+  id: number;
   title: string;
   fields?:
     | (
@@ -783,10 +1267,125 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "students".
+ */
+export interface Student {
+  id: number;
+  user: number | User;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  gradeLevel: string;
+  school?: string | null;
+  address?: string | null;
+  guardianName?: string | null;
+  guardianPhone?: string | null;
+  guardianEmail?: string | null;
+  preferredClass?: (number | null) | Class;
+  enrollmentStatus: 'pending' | 'approved' | 'rejected' | 'inactive';
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enrollments".
+ */
+export interface Enrollment {
+  id: number;
+  student: number | Student;
+  user: number | User;
+  class: number | Class;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  gradeLevel: string;
+  guardianName?: string | null;
+  guardianPhone?: string | null;
+  message?: string | null;
+  status: 'pending' | 'approved' | 'rejected' | 'cancelled';
+  adminNote?: string | null;
+  approvedBy?: (number | null) | User;
+  approvedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notices".
+ */
+export interface Notice {
+  id: number;
+  title: string;
+  message: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  targetType: 'all' | 'class' | 'grade' | 'student';
+  targetClass?: (number | null) | Class;
+  targetStudent?: (number | null) | Student;
+  gradeLevel?: string | null;
+  priority?: ('normal' | 'important' | 'urgent') | null;
+  publishDate: string;
+  expiryDate?: string | null;
+  isPublished?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources".
+ */
+export interface Resource {
+  id: number;
+  title: string;
+  description?: string | null;
+  class: number | Class;
+  resourceType: 'pdf' | 'document' | 'video' | 'link' | 'image';
+  file?: (number | null) | Media;
+  externalUrl?: string | null;
+  visibility: 'public' | 'enrolled_students' | 'admins_only';
+  isPublished?: boolean | null;
+  uploadedBy?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  preferredClass?: (number | null) | Class;
+  status: 'new' | 'read' | 'replied' | 'archived';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
-  id: string;
+  id: number;
   /**
    * You will need to rebuild the website when changing this field.
    */
@@ -796,11 +1395,11 @@ export interface Redirect {
     reference?:
       | ({
           relationTo: 'pages';
-          value: string | Page;
+          value: number | Page;
         } | null)
       | ({
           relationTo: 'posts';
-          value: string | Post;
+          value: number | Post;
         } | null);
     url?: string | null;
   };
@@ -812,8 +1411,8 @@ export interface Redirect {
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: string;
-  form: string | Form;
+  id: number;
+  form: number | Form;
   submissionData?:
     | {
         field: string;
@@ -831,18 +1430,18 @@ export interface FormSubmission {
  * via the `definition` "search".
  */
 export interface Search {
-  id: string;
+  id: number;
   title?: string | null;
   priority?: number | null;
   doc: {
     relationTo: 'posts';
-    value: string | Post;
+    value: number | Post;
   };
   slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
   };
   categories?:
     | {
@@ -860,7 +1459,7 @@ export interface Search {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -877,7 +1476,7 @@ export interface PayloadKv {
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
-  id: string;
+  id: number;
   /**
    * Input data provided to the job
    */
@@ -969,52 +1568,92 @@ export interface PayloadJob {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'pages';
-        value: string | Page;
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'classes';
+        value: number | Class;
+      } | null)
+    | ({
+        relationTo: 'schedules';
+        value: number | Schedule;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'gallery';
+        value: number | Gallery;
+      } | null)
+    | ({
+        relationTo: 'teachers';
+        value: number | Teacher;
+      } | null)
+    | ({
+        relationTo: 'students';
+        value: number | Student;
+      } | null)
+    | ({
+        relationTo: 'enrollments';
+        value: number | Enrollment;
+      } | null)
+    | ({
+        relationTo: 'notices';
+        value: number | Notice;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
       } | null)
     | ({
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'categories';
-        value: string | Category;
+        value: number | Category;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'redirects';
-        value: string | Redirect;
+        value: number | Redirect;
       } | null)
     | ({
         relationTo: 'forms';
-        value: string | Form;
+        value: number | Form;
       } | null)
     | ({
         relationTo: 'form-submissions';
-        value: string | FormSubmission;
+        value: number | FormSubmission;
       } | null)
     | ({
         relationTo: 'search';
-        value: string | Search;
+        value: number | Search;
       } | null)
     | ({
         relationTo: 'payload-folders';
-        value: string | FolderInterface;
+        value: number | FolderInterface;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -1024,10 +1663,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -1047,7 +1686,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -1084,6 +1723,20 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        instituteHero?: T | InstituteHeroBlockSelect<T>;
+        metrics?: T | MetricsBlockSelect<T>;
+        aboutTeacher?: T | AboutTeacherBlockSelect<T>;
+        workProcess?: T | WorkProcessBlockSelect<T>;
+        featuredProgram?: T | FeaturedProgramBlockSelect<T>;
+        classesGrid?: T | ClassesGridBlockSelect<T>;
+        results?: T | ResultsBlockSelect<T>;
+        studentPortalPreview?: T | StudentPortalPreviewBlockSelect<T>;
+        schedule?: T | ScheduleBlockSelect<T>;
+        galleryBlock?: T | GalleryBlockSelect<T>;
+        instituteTestimonials?: T | InstituteTestimonialsBlockSelect<T>;
+        enrollmentCTA?: T | EnrollmentCTABlockSelect<T>;
+        instituteContact?: T | InstituteContactBlockSelect<T>;
+        faq?: T | FAQBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
@@ -1103,6 +1756,269 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InstituteHeroBlock_select".
+ */
+export interface InstituteHeroBlockSelect<T extends boolean = true> {
+  badgeEn?: T;
+  headingEn?: T;
+  subheadingEn?: T;
+  badgeSi?: T;
+  headingSi?: T;
+  subheadingSi?: T;
+  primaryButtonLabel?: T;
+  primaryButtonUrl?: T;
+  secondaryButtonLabel?: T;
+  secondaryButtonUrl?: T;
+  heroImage?: T;
+  metrics?:
+    | T
+    | {
+        value?: T;
+        labelEn?: T;
+        labelSi?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MetricsBlock_select".
+ */
+export interface MetricsBlockSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        value?: T;
+        labelEn?: T;
+        labelSi?: T;
+        icon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutTeacherBlock_select".
+ */
+export interface AboutTeacherBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  teacherImage?: T;
+  featureCards?:
+    | T
+    | {
+        titleEn?: T;
+        titleSi?: T;
+        descriptionEn?: T;
+        descriptionSi?: T;
+        icon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorkProcessBlock_select".
+ */
+export interface WorkProcessBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  steps?:
+    | T
+    | {
+        titleEn?: T;
+        titleSi?: T;
+        descriptionEn?: T;
+        descriptionSi?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedProgramBlock_select".
+ */
+export interface FeaturedProgramBlockSelect<T extends boolean = true> {
+  eyebrowEn?: T;
+  eyebrowSi?: T;
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  image?: T;
+  buttonLabel?: T;
+  buttonUrl?: T;
+  features?:
+    | T
+    | {
+        titleEn?: T;
+        titleSi?: T;
+        descriptionEn?: T;
+        descriptionSi?: T;
+        icon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClassesGridBlock_select".
+ */
+export interface ClassesGridBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  subtitleEn?: T;
+  subtitleSi?: T;
+  selectedClasses?: T;
+  showAllClasses?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ResultsBlock_select".
+ */
+export interface ResultsBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  backgroundImage?: T;
+  ctaLabel?: T;
+  ctaUrl?: T;
+  metrics?:
+    | T
+    | {
+        value?: T;
+        labelEn?: T;
+        labelSi?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudentPortalPreviewBlock_select".
+ */
+export interface StudentPortalPreviewBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  buttonLabel?: T;
+  buttonUrl?: T;
+  features?:
+    | T
+    | {
+        titleEn?: T;
+        titleSi?: T;
+        icon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ScheduleBlock_select".
+ */
+export interface ScheduleBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  subtitleEn?: T;
+  subtitleSi?: T;
+  showAllSchedules?: T;
+  selectedSchedules?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock_select".
+ */
+export interface GalleryBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  selectedImages?: T;
+  showAll?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InstituteTestimonialsBlock_select".
+ */
+export interface InstituteTestimonialsBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  subtitleEn?: T;
+  subtitleSi?: T;
+  selectedTestimonials?: T;
+  showFeaturedOnly?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EnrollmentCTABlock_select".
+ */
+export interface EnrollmentCTABlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  buttonLabel?: T;
+  buttonUrl?: T;
+  backgroundStyle?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InstituteContactBlock_select".
+ */
+export interface InstituteContactBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  showContactForm?: T;
+  showContactDetails?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  heading?: T;
+  items?:
+    | T
+    | {
+        questionEn?: T;
+        questionSi?: T;
+        answerEn?: T;
+        answerSi?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1187,6 +2103,191 @@ export interface FormBlockSelect<T extends boolean = true> {
   introContent?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "classes_select".
+ */
+export interface ClassesSelect<T extends boolean = true> {
+  titleEn?: T;
+  shortDescriptionEn?: T;
+  fullDescriptionEn?: T;
+  titleSi?: T;
+  shortDescriptionSi?: T;
+  fullDescriptionSi?: T;
+  generateSlug?: T;
+  slug?: T;
+  durationPerWeek?: T;
+  maxStudents?: T;
+  level?: T;
+  category?: T;
+  teacher?: T;
+  featuredImage?: T;
+  isActive?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schedules_select".
+ */
+export interface SchedulesSelect<T extends boolean = true> {
+  class?: T;
+  dayOfWeek?: T;
+  batchLabel?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  mode?: T;
+  isActive?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  studentType?: T;
+  feedbackEn?: T;
+  feedbackSi?: T;
+  rating?: T;
+  image?: T;
+  isFeatured?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  titleEn?: T;
+  titleSi?: T;
+  category?: T;
+  image?: T;
+  alt?: T;
+  isPublished?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teachers_select".
+ */
+export interface TeachersSelect<T extends boolean = true> {
+  user?: T;
+  fullName?: T;
+  bio?: T;
+  qualifications?: T;
+  profileImage?: T;
+  classesHandled?: T;
+  phone?: T;
+  email?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "students_select".
+ */
+export interface StudentsSelect<T extends boolean = true> {
+  user?: T;
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  phone?: T;
+  gradeLevel?: T;
+  school?: T;
+  address?: T;
+  guardianName?: T;
+  guardianPhone?: T;
+  guardianEmail?: T;
+  preferredClass?: T;
+  enrollmentStatus?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enrollments_select".
+ */
+export interface EnrollmentsSelect<T extends boolean = true> {
+  student?: T;
+  user?: T;
+  class?: T;
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  phone?: T;
+  gradeLevel?: T;
+  guardianName?: T;
+  guardianPhone?: T;
+  message?: T;
+  status?: T;
+  adminNote?: T;
+  approvedBy?: T;
+  approvedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notices_select".
+ */
+export interface NoticesSelect<T extends boolean = true> {
+  title?: T;
+  message?: T;
+  targetType?: T;
+  targetClass?: T;
+  targetStudent?: T;
+  gradeLevel?: T;
+  priority?: T;
+  publishDate?: T;
+  expiryDate?: T;
+  isPublished?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources_select".
+ */
+export interface ResourcesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  class?: T;
+  resourceType?: T;
+  file?: T;
+  externalUrl?: T;
+  visibility?: T;
+  isPublished?: T;
+  uploadedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  phone?: T;
+  subject?: T;
+  message?: T;
+  preferredClass?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1339,6 +2440,12 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  firstName?: T;
+  lastName?: T;
+  phone?: T;
+  role?: T;
+  status?: T;
+  profileImage?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1633,10 +2740,34 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  instituteNameEn: string;
+  instituteNameSi: string;
+  logo?: (number | null) | Media;
+  missionEn?: string | null;
+  missionSi?: string | null;
+  phone: string;
+  whatsappNumber?: string | null;
+  email: string;
+  addressEn?: string | null;
+  addressSi?: string | null;
+  officeHoursEn?: string | null;
+  officeHoursSi?: string | null;
+  facebookUrl?: string | null;
+  instagramUrl?: string | null;
+  youtubeUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
 export interface Header {
-  id: string;
+  id: number;
   navItems?:
     | {
         link: {
@@ -1645,11 +2776,11 @@ export interface Header {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: string | Page;
+                value: number | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: string | Post;
+                value: number | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -1657,6 +2788,12 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  primaryCTA?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  showLanguageToggle?: boolean | null;
+  showLoginLink?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1665,7 +2802,8 @@ export interface Header {
  * via the `definition` "footer".
  */
 export interface Footer {
-  id: string;
+  id: number;
+  missionText?: string | null;
   navItems?:
     | {
         link: {
@@ -1674,11 +2812,11 @@ export interface Footer {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: string | Page;
+                value: number | Page;
               } | null)
             | ({
                 relationTo: 'posts';
-                value: string | Post;
+                value: number | Post;
               } | null);
           url?: string | null;
           label: string;
@@ -1686,8 +2824,33 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  copyrightText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  instituteNameEn?: T;
+  instituteNameSi?: T;
+  logo?: T;
+  missionEn?: T;
+  missionSi?: T;
+  phone?: T;
+  whatsappNumber?: T;
+  email?: T;
+  addressEn?: T;
+  addressSi?: T;
+  officeHoursEn?: T;
+  officeHoursSi?: T;
+  facebookUrl?: T;
+  instagramUrl?: T;
+  youtubeUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1708,6 +2871,14 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  primaryCTA?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  showLanguageToggle?: T;
+  showLoginLink?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1717,6 +2888,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  missionText?: T;
   navItems?:
     | T
     | {
@@ -1731,6 +2903,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  copyrightText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1756,14 +2929,14 @@ export interface TaskSchedulePublish {
     doc?:
       | ({
           relationTo: 'pages';
-          value: string | Page;
+          value: number | Page;
         } | null)
       | ({
           relationTo: 'posts';
-          value: string | Post;
+          value: number | Post;
         } | null);
     global?: string | null;
-    user?: (string | null) | User;
+    user?: (number | null) | User;
   };
   output?: unknown;
 }
