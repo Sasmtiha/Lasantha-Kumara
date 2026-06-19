@@ -27,8 +27,8 @@ export function PortalNav() {
 
   return (
     <nav aria-label="Student portal" className="flex flex-wrap items-center gap-2">
-      {links.map(([href, label]) => <Link className={cn('rounded-lg px-3 py-2 text-sm font-semibold', pathname === href ? 'bg-gold text-navy' : 'text-white hover:bg-white/10')} href={href} key={href}>{label}</Link>)}
-      <button className="rounded-lg px-3 py-2 text-sm font-semibold text-white hover:bg-white/10" onClick={logout} type="button">Log out</button>
+      {links.map(([href, label]) => <Link className={cn('rounded-md px-3 py-2 text-sm font-semibold transition', pathname === href ? 'bg-[#034EA2] text-white' : 'text-white hover:bg-[#034EA2]')} href={href} key={href}>{label}</Link>)}
+      <button className="rounded-md px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#034EA2]" onClick={logout} type="button">Log out</button>
     </nav>
   )
 }

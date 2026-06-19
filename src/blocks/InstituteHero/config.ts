@@ -38,7 +38,42 @@ export const InstituteHero: Block = {
         { name: 'secondaryButtonUrl', type: 'text' },
       ],
     },
-    { name: 'heroImage', type: 'upload', relationTo: 'media' },
+    {
+      name: 'heroSlides',
+      type: 'array',
+      label: 'Hero background slideshow',
+      maxRows: 6,
+      admin: {
+        description:
+          'Add 2–6 landscape images. They will change automatically with a smooth crossfade.',
+        initCollapsed: true,
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'slideDuration',
+      type: 'number',
+      label: 'Seconds per image',
+      defaultValue: 7,
+      min: 4,
+      max: 15,
+    },
+    {
+      name: 'heroImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Fallback background image',
+      admin: {
+        description: 'Used when no slideshow images have been added.',
+      },
+    },
     {
       name: 'metrics',
       type: 'array',

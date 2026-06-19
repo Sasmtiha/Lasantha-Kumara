@@ -502,6 +502,19 @@ export interface InstituteHeroBlock {
   primaryButtonUrl: string;
   secondaryButtonLabel?: string | null;
   secondaryButtonUrl?: string | null;
+  /**
+   * Add 2–6 landscape images. They will change automatically with a smooth crossfade.
+   */
+  heroSlides?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  slideDuration?: number | null;
+  /**
+   * Used when no slideshow images have been added.
+   */
   heroImage?: (number | null) | Media;
   metrics?:
     | {
@@ -691,8 +704,8 @@ export interface Class {
   slug: string;
   durationPerWeek?: string | null;
   maxStudents?: number | null;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'exam' | 'professional';
-  category: 'spoken' | 'grammar' | 'ol' | 'al' | 'grade_6_9' | 'business';
+  level: 'beginner' | 'intermediate' | 'exam';
+  category: 'grade_6' | 'grade_7' | 'grade_8' | 'grade_9' | 'grade_10' | 'grade_11';
   teacher?: (number | null) | Teacher;
   featuredImage?: (number | null) | Media;
   isActive?: boolean | null;
@@ -836,12 +849,55 @@ export interface Gallery {
   titleEn: string;
   titleSi?: string | null;
   category: 'Classes' | 'Events' | 'Student Life' | 'Achievements';
-  image: number | Media;
+  image?: (number | null) | Media;
   alt: string;
   isPublished?: boolean | null;
   displayOrder?: number | null;
   updatedAt: string;
   createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    large?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    xlarge?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1772,6 +1828,13 @@ export interface InstituteHeroBlockSelect<T extends boolean = true> {
   primaryButtonUrl?: T;
   secondaryButtonLabel?: T;
   secondaryButtonUrl?: T;
+  heroSlides?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  slideDuration?: T;
   heroImage?: T;
   metrics?:
     | T
@@ -2175,6 +2238,59 @@ export interface GallerySelect<T extends boolean = true> {
   displayOrder?: T;
   updatedAt?: T;
   createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        medium?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        large?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        xlarge?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

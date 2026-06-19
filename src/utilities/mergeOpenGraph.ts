@@ -3,14 +3,14 @@ import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'English classes in Colombo for school students, exam candidates, adults, and professionals.',
+  description: 'English classes for Grade 6 to Grade 11 students.',
   images: [
     {
       url: `${getServerSideURL()}/website-template-OG.webp`,
     },
   ],
-  siteName: 'IESM English Classes',
-  title: 'IESM English Classes',
+  siteName: 'IEM.lk',
+  title: 'IEM.lk',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

@@ -15,8 +15,8 @@ import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title
-    ? `${doc.title} | IESM English Classes`
-    : 'IESM English Classes'
+    ? `${doc.title} | IEM.lk`
+    : 'IEM.lk'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {

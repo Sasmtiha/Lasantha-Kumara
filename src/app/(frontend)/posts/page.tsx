@@ -58,6 +58,6 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Notices & Articles | IESM English Classes`,
+    title: `Notices & Articles | IEM.lk`,
   }
 }

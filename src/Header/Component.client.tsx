@@ -55,8 +55,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
       )}
       {...(theme ? { 'data-theme': theme } : {})}
     >
-      <div className="premium-container flex min-h-20 items-center justify-between gap-5 py-3">
-        <Link href="/">
+      <div className="premium-container relative grid min-h-20 grid-cols-[1fr_auto] items-center gap-5 py-3 xl:grid-cols-[1fr_auto_1fr]">
+        <Link className="justify-self-start" href="/">
           <Logo loading="eager" priority="high" />
         </Link>
         <HeaderNav data={data} transparent={transparent} user={user} />

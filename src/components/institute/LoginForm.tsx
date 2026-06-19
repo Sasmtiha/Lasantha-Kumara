@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
+import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
@@ -45,8 +46,12 @@ export function LoginForm() {
       <label className="block text-sm font-medium text-[#4b4b54]">Email<input autoComplete="email" className="auth-control mt-2" name="email" placeholder="you@example.com" required type="email" /></label>
       <label className="mt-5 block text-sm font-medium text-[#4b4b54]">Password<input autoComplete="current-password" className="auth-control mt-2" name="password" placeholder="Enter your password" required type="password" /></label>
       {error ? <p className="mt-4 text-sm text-red-700" role="alert">{error}</p> : null}
-      <button className="mt-6 w-full rounded-md bg-[#ffc400] px-5 py-3 font-semibold text-[#34343b] shadow-sm transition hover:bg-[#f4bb00] disabled:opacity-60" disabled={sending} type="submit">{sending ? 'Signing in…' : 'Login'}</button>
-      <Link className="mt-4 block w-full rounded-md bg-[#515151] px-5 py-3 text-center font-semibold text-white shadow-sm transition hover:bg-[#424242]" href="/enroll">Register</Link>
+      <button className="premium-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
+        {sending ? 'Signing in…' : <>Log In <ArrowUpRight className="size-4" /></>}
+      </button>
+      <Link className="premium-button-secondary mt-4 flex w-full" href="/enroll">
+        Register <ArrowUpRight className="size-4" />
+      </Link>
     </form>
   )
 }

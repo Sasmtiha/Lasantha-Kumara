@@ -4,7 +4,7 @@ export const FeaturedProgram: Block = {
   slug: 'featuredProgram',
   interfaceName: 'FeaturedProgramBlock',
   fields: [
-    { name: 'eyebrowEn', type: 'text', defaultValue: 'IESM Special' },
+    { name: 'eyebrowEn', type: 'text', defaultValue: 'IEM.lk Special' },
     { name: 'eyebrowSi', type: 'text' },
     { name: 'headingEn', type: 'text', required: true },
     { name: 'headingSi', type: 'text' },

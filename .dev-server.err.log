@@ -1,0 +1,1940 @@
+[browser] Image with src "/api/gallery/file/556564492_24899137913049124_6568491221571061163_n.jpg.jpeg?2026-06-19T17%3A56%3A03.772Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] Image with src "/api/gallery/file/uuuu.jpg.jpeg?2026-06-19T17%3A56%3A03.277Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] Image with src "/api/gallery/file/481776822_1006912374835656_5158983911564823649_n.jpg.jpeg?2026-06-19T17%3A56%3A02.790Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] Image with src "/api/gallery/file/482246501_1006912201502340_9199611711365992489_n.jpg.jpeg?2026-06-19T17%3A56%3A01.996Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] Image with src "/api/gallery/file/494520685_9840835525972609_9062684296404373762_n.jpg.jpeg?2026-06-19T17%3A56%3A01.319Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] Image with src "/api/gallery/file/557545736_24899137726382476_7268450432695019624_n.jpg.jpeg?2026-06-19T17%3A56%3A00.877Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] Image with src "/api/gallery/file/481910040_1006912378168989_6959065018495282265_n.jpg.jpeg?2026-06-19T17%3A56%3A00.388Z" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative. (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/admin" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/admin" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(payload)/...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <script>
+                          <Layout>
+                            <RootLayout>
+                              <RootLayoutContent>
+                                <html data-theme="dark" dir="LTR" lang="en" suppressHydrationWarning={false}>
+                                  <head>
+                                  <body
+-                                   cz-shortcut-listen="true"
+                                  >
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+    at dispatchAppRouterAction (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:916:37)
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:11823:61)
+    at startTransition (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:1279:31)
+    at Object.hmrRefresh (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:11822:40)
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13990:64)
+    at startTransition (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:1279:31)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13989:44)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={{...}}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="7qhqwp"
+                                          >
+                                          <LinkComponent>
+                                          <button
+                                            className="rounded-full bg-[#ffe600] px-5 py-2.5 text-sm font-medium text-..."
+                                            onClick={function logout}
+                                            type="button"
+-                                           fdprocessedid="cwnezh"
+                                          >
++                                           Log out
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="xmxzan"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="pmc13o"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="mibqd"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <Gallery>
+                                          <section className="premium-se..." id="gallery">
+                                            <div className="premium-co...">
+                                              <div>
+                                              <DynamicGallery items={[...]} locale="en">
+                                                <div className="mt-8 flex ...">
+                                                  <button
+                                                    aria-pressed={true}
+                                                    className="rounded-full px-5 py-2 text-sm font-medium transition b..."
+                                                    onClick={function onClick}
+                                                    type="button"
+-                                                   fdprocessedid="pe2qk"
+                                                  >
++                                                   All
+                                                  <button
+                                                    aria-pressed={false}
+                                                    className="rounded-full px-5 py-2 text-sm font-medium transition b..."
+                                                    onClick={function onClick}
+                                                    type="button"
+-                                                   fdprocessedid="dgnifl"
+                                                  >
++                                                   Classes
+                                                  <button
+                                                    aria-pressed={false}
+                                                    className="rounded-full px-5 py-2 text-sm font-medium transition b..."
+                                                    onClick={function onClick}
+                                                    type="button"
+-                                                   fdprocessedid="644ur"
+                                                  >
++                                                   Events
+                                                  <button
+                                                    aria-pressed={false}
+                                                    className="rounded-full px-5 py-2 text-sm font-medium transition b..."
+                                                    onClick={function onClick}
+                                                    type="button"
+-                                                   fdprocessedid="52cqh8"
+                                                  >
++                                                   Student Life
+                                                  <button
+                                                    aria-pressed={false}
+                                                    className="rounded-full px-5 py-2 text-sm font-medium transition b..."
+                                                    onClick={function onClick}
+                                                    type="button"
+-                                                   fdprocessedid="90t3now3"
+                                                  >
++                                                   Achievements
+                                                <div className="gallery-co...">
+                                                  <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                                    <button
+                                                      aria-label="View 556564492 24899137913049124 6568491221571061163..."
+                                                      className="gallery-tile group gallery-tile-1"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="35q4rd"
+                                                    >
+                                                    <button
+                                                      aria-label="View Uuuu.Jpg"
+                                                      className="gallery-tile group gallery-tile-2"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="synmxg"
+                                                    >
+                                                    <button
+                                                      aria-label="View 481776822 1006912374835656 5158983911564823649 ..."
+                                                      className="gallery-tile group gallery-tile-3"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="gm7ho5"
+                                                    >
+                                                    <button
+                                                      aria-label="View 482246501 1006912201502340 9199611711365992489 ..."
+                                                      className="gallery-tile group gallery-tile-4"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="8gsq72"
+                                                    >
+                                                    <button
+                                                      aria-label="View 494520685 9840835525972609 9062684296404373762 ..."
+                                                      className="gallery-tile group gallery-tile-5"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="ceccoi"
+                                                    >
+                                                    <button
+                                                      aria-label="View 557545736 24899137726382476 7268450432695019624..."
+                                                      className="gallery-tile group gallery-tile-6"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="6abdm"
+                                                    >
+                                                    <button
+                                                      aria-label="View 481910040 1006912378168989 6959065018495282265 ..."
+                                                      className="gallery-tile group gallery-tile-7"
+                                                      onClick={function onClick}
+                                                      type="button"
+-                                                     fdprocessedid="j463lsq"
+                                                    >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="5xai8w"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="thah5f"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="ykxuj"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="wzq84a"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="mt-6 w-full rounded-full bg-[#ffe600] px-5 py-3.5 font-me..."
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="vtlny"
+                                                >
++                                                 Send
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <LoadingBoundary name="(frontend)/" loading={null}>
+      <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+        <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                <SegmentViewNode type="page" pagePath="(frontend)...">
+                  <SegmentTrieNode>
+                  <Page>
+                    <article className="">
+                      <PageClient>
+                      <PremiumHome>
+                        <main className="premium-ho...">
+                          <Hero>
+                            <section className="premium-he..." id="home">
+                              <div className="premium-he...">
+                                <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                  <div>
+                                  <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                    <button
+                                      aria-label="Show background image 1"
+                                      aria-selected={true}
+                                      className="h-2.5 rounded-full border border-white/70 shadow-sm transition-all du..."
+                                      onClick={function onClick}
+                                      role="tab"
+                                      type="button"
+-                                     fdprocessedid="79z2p5"
+                                    >
+                                    <button
+                                      aria-label="Show background image 2"
+                                      aria-selected={false}
+                                      className="h-2.5 rounded-full border border-white/70 bg-white/35 shadow-sm trans..."
+                                      onClick={function onClick}
+                                      role="tab"
+                                      type="button"
+-                                     fdprocessedid="2hmg9p"
+                                    >
+                                    <button
+                                      aria-label="Show background image 3"
+                                      aria-selected={false}
+                                      className="h-2.5 rounded-full border border-white/70 bg-white/35 shadow-sm trans..."
+                                      onClick={function onClick}
+                                      role="tab"
+                                      type="button"
+-                                     fdprocessedid="ba5t1s"
+                                    >
+                              ...
+                          <section>
+                          <section>
+                          <section>
+                          <section>
+                          <section>
+                          <section>
+                          <section>
+                          <Gallery>
+                            <section className="premium-se..." id="gallery">
+                              <div className="premium-co...">
+                                <div>
+                                <DynamicGallery items={[...]} locale="en">
+                                  <div className="mt-8 flex ...">
+                                    <button
+                                      aria-pressed={true}
+                                      className="rounded-full px-5 py-2 text-sm font-medium transition bg-[#ffe600] te..."
+                                      onClick={function onClick}
+                                      type="button"
+-                                     fdprocessedid="plrhit"
+                                    >
++                                     All
+                                    <button
+                                      aria-pressed={false}
+                                      className="rounded-full px-5 py-2 text-sm font-medium transition border border-[..."
+                                      onClick={function onClick}
+                                      type="button"
+-                                     fdprocessedid="uztqtm"
+                                    >
++                                     Classes
+                                    <button
+                                      aria-pressed={false}
+                                      className="rounded-full px-5 py-2 text-sm font-medium transition border border-[..."
+                                      onClick={function onClick}
+                                      type="button"
+-                                     fdprocessedid="plwbkv"
+                                    >
++                                     Events
+                                    <button
+                                      aria-pressed={false}
+                                      className="rounded-full px-5 py-2 text-sm font-medium transition border border-[..."
+                                      onClick={function onClick}
+                                      type="button"
+-                                     fdprocessedid="41rpsr"
+                                    >
++                                     Student Life
+                                    <button
+                                      aria-pressed={false}
+                                      className="rounded-full px-5 py-2 text-sm font-medium transition border border-[..."
+                                      onClick={function onClick}
+                                      type="button"
+-                                     fdprocessedid="0244gl"
+                                    >
++                                     Achievements
+                                  <div className="gallery-co...">
+                                    <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                      <button
+                                        aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                        className="gallery-tile group gallery-tile-1"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="3jlzdc"
+                                      >
+                                      <button
+                                        aria-label="View Uuuu.Jpg"
+                                        className="gallery-tile group gallery-tile-2"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="qe9kwq"
+                                      >
+                                      <button
+                                        aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                        className="gallery-tile group gallery-tile-3"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="kplgki"
+                                      >
+                                      <button
+                                        aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                        className="gallery-tile group gallery-tile-4"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="ysm3jo"
+                                      >
+                                      <button
+                                        aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                        className="gallery-tile group gallery-tile-5"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="z0bm79"
+                                      >
+                                      <button
+                                        aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                        className="gallery-tile group gallery-tile-6"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="seu9fh"
+                                      >
+                                      <button
+                                        aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                        className="gallery-tile group gallery-tile-7"
+                                        onClick={function onClick}
+                                        type="button"
+-                                       fdprocessedid="uewx67"
+                                      >
+                          <section>
+                          ...
+                            <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                              <ContactForm classes={[...]}>
+                                <form onSubmit={function submit}>
+                                  <input>
+                                  <div className="grid gap-5...">
+                                    <FormField label="Full name" name="fullName" required={true}>
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="fullName"
+                                          required={true}
+                                          type="text"
+-                                         fdprocessedid="4w1e2p"
+                                        >
+                                    <FormField label="Email" name="email" required={true} type="email">
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="email"
+                                          required={true}
+                                          type="email"
+-                                         fdprocessedid="5vt4ka"
+                                        >
+                                    <FormField label="Phone" name="phone" required={true} type="tel">
+                                      <label className="block text...">
+                                        <input
+                                          className="form-control mt-2"
+                                          name="phone"
+                                          required={true}
+                                          type="tel"
+-                                         fdprocessedid="mxwyvk"
+                                        >
+                                  <label className="mt-5 block...">
+                                    <select
+                                      className="form-control mt-2"
+                                      name="preferredClass"
+-                                     fdprocessedid="3maqrd"
+                                    >
+                                  <label>
+                                  <button
+                                    className="mt-6 w-full rounded-full bg-[#ffe600] px-5 py-3.5 font-medium text-[#11..."
+                                    disabled={false}
+                                    type="submit"
+-                                   fdprocessedid="69mcds"
+                                  >
++                                   Send
+                                  ...
+                ...
+              ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={{...}}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="zebah"
+                                          >
+                                          <LinkComponent>
+                                          <button
+                                            className="rounded-full bg-[#ffe600] px-5 py-2.5 text-sm font-medium text-..."
+                                            onClick={function logout}
+                                            type="button"
+-                                           fdprocessedid="3pxjhx"
+                                          >
++                                           Log out
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="h621dh"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="t58f5y"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="0o2wt5"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        ...
+                                          <div className="gallery-co...">
+                                            <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                              <button
+                                                aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                                className="gallery-tile group gallery-tile-1"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="o2gnmi"
+                                              >
+                                              <button
+                                                aria-label="View Uuuu.Jpg"
+                                                className="gallery-tile group gallery-tile-2"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="x6vu3d"
+                                              >
+                                              <button
+                                                aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                                className="gallery-tile group gallery-tile-3"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="qqbx8e"
+                                              >
+                                              <button
+                                                aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                                className="gallery-tile group gallery-tile-4"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="l6xch"
+                                              >
+                                              <button
+                                                aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                                className="gallery-tile group gallery-tile-5"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="h1pc5x"
+                                              >
+                                              <button
+                                                aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                                className="gallery-tile group gallery-tile-6"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="8d7v5o"
+                                              >
+                                              <button
+                                                aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                                className="gallery-tile group gallery-tile-7"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="q7606"
+                                              >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="esiq2"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="79ofp"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="6fbmj"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="m5gpdh"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="mt-6 w-full rounded-full bg-[#ffe600] px-5 py-3.5 font-me..."
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="y6dlc"
+                                                >
++                                                 Send
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  [90m37 |[0m [36mimport[0m { [33mDynamicGallery[0m } [36mfrom[0m [32m'./DynamicGallery'[0m
+  [90m38 |[0m [36mimport[0m { [33mHeroSlideshow[0m } [36mfrom[0m [32m'./HeroSlideshow'[0m
+[31m[1m>[0m [90m39 |[0m [36mimport[0m { [33mSectionDecor[0m } [36mfrom[0m [32m'./SectionDecor'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m40 |[0m
+  [90m41 |[0m [36mtype[0m [33mLayoutBlock[0m = [33mPage[0m[[32m'layout'[0m][number]
+  [90m42 |[0m [36mtype[0m [33mLocale[0m = [32m'en'[0m | [32m'si'[0m
+
+
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  37 | import { DynamicGallery } from './DynamicGallery'
+  38 | import { HeroSlideshow } from './HeroSlideshow'
+> 39 | import { SectionDecor } from './SectionDecor'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  40 |
+  41 | type LayoutBlock = Page['layout'][number]
+  42 | type Locale = 'en' | 'si'
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  37 | import { DynamicGallery } from './DynamicGallery'
+  38 | import { HeroSlideshow } from './HeroSlideshow'
+> 39 | import { SectionDecor } from './SectionDecor'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  40 |
+  41 | type LayoutBlock = Page['layout'][number]
+  42 | type Locale = 'en' | 'si'
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <PremiumHome>
+                                    <main className="premium-ho...">
+                                      <Hero>
+                                        <section className="premium-he..." id="home">
+                                          <div className="premium-he...">
+                                            <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                              <div>
+                                              <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                <button
+                                                  aria-label="Show background image 1"
+                                                  aria-selected={true}
+                                                  className="h-2.5 rounded-full border border-white/70 shadow-sm trans..."
+                                                  onClick={function onClick}
+                                                  role="tab"
+                                                  type="button"
+-                                                 fdprocessedid="gw0z4b"
+                                                >
+                                                <button
+                                                  aria-label="Show background image 2"
+                                                  aria-selected={false}
+                                                  className="h-2.5 rounded-full border border-white/70 bg-white/35 sha..."
+                                                  onClick={function onClick}
+                                                  role="tab"
+                                                  type="button"
+-                                                 fdprocessedid="qm1qw"
+                                                >
+                                                <button
+                                                  aria-label="Show background image 3"
+                                                  aria-selected={false}
+                                                  className="h-2.5 rounded-full border border-white/70 bg-white/35 sha..."
+                                                  onClick={function onClick}
+                                                  role="tab"
+                                                  type="button"
+-                                                 fdprocessedid="9jvil8"
+                                                >
+                                          ...
+                                      <section>
+                                      <section>
+                                      <section>
+                                      <section>
+                                      <section>
+                                      <section>
+                                      <section>
+                                      ...
+                                        <div className="gallery-co...">
+                                          <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                            <button
+                                              aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                              className="gallery-tile group gallery-tile-1"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="t3e8g"
+                                            >
+                                            <button
+                                              aria-label="View Uuuu.Jpg"
+                                              className="gallery-tile group gallery-tile-2"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="ycri4s"
+                                            >
+                                            <button
+                                              aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                              className="gallery-tile group gallery-tile-3"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="6d18ue"
+                                            >
+                                            <button
+                                              aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                              className="gallery-tile group gallery-tile-4"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="vkunfg"
+                                            >
+                                            <button
+                                              aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                              className="gallery-tile group gallery-tile-5"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="okalc"
+                                            >
+                                            <button
+                                              aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                              className="gallery-tile group gallery-tile-6"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="vn10c"
+                                            >
+                                            <button
+                                              aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                              className="gallery-tile group gallery-tile-7"
+                                              onClick={function onClick}
+                                              type="button"
+-                                             fdprocessedid="18khco"
+                                            >
+                                      <section>
+                                      ...
+                                        <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                          <ContactForm classes={[...]}>
+                                            <form onSubmit={function submit}>
+                                              <input>
+                                              <div className="grid gap-5...">
+                                                <FormField label="Full name" name="fullName" required={true}>
+                                                  <label className="block text...">
+                                                    <input
+                                                      className="form-control mt-2"
+                                                      name="fullName"
+                                                      required={true}
+                                                      type="text"
+-                                                     fdprocessedid="guf3u"
+                                                    >
+                                                <FormField label="Email" name="email" required={true} type="email">
+                                                  <label className="block text...">
+                                                    <input
+                                                      className="form-control mt-2"
+                                                      name="email"
+                                                      required={true}
+                                                      type="email"
+-                                                     fdprocessedid="w9cy5g"
+                                                    >
+                                                <FormField label="Phone" name="phone" required={true} type="tel">
+                                                  <label className="block text...">
+                                                    <input
+                                                      className="form-control mt-2"
+                                                      name="phone"
+                                                      required={true}
+                                                      type="tel"
+-                                                     fdprocessedid="zrihde"
+                                                    >
+                                              <label className="mt-5 block...">
+                                                <select
+                                                  className="form-control mt-2"
+                                                  name="preferredClass"
+-                                                 fdprocessedid="l9cwde"
+                                                >
+                                              <label>
+                                              <button
+                                                className="premium-button-primary mt-6 w-full disabled:opacity-60"
+                                                disabled={false}
+                                                type="submit"
+-                                               fdprocessedid="ejx7zd"
+                                              >
+                                              ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] ./src/components/institute/PremiumHome.tsx:39:1
+Module not found: Can't resolve './SectionDecor'
+  37 | import { DynamicGallery } from './DynamicGallery'
+  38 | import { HeroSlideshow } from './HeroSlideshow'
+> 39 | import { SectionDecor } from './SectionDecor'
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  40 |
+  41 | type LayoutBlock = Page['layout'][number]
+  42 | type Locale = 'en' | 'si'
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+⨯ Error: Module [project]/src/providers/Theme/index.tsx [app-ssr] (ecmascript) was instantiated because it was required from module [project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/esm/build/templates/app-page.js?page=/(payload)/admin/[[...segments]]/page { MODULE_0 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/not-found.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_1 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/src/app/(payload)/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/not-found.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/src/app/(payload)/admin/[[...segments]]/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_9 => "[project]/src/app/(payload)/admin/[[...segments]]/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+This is often caused by a stale browser cache, misconfigured Cache-Control headers, or a service worker serving outdated responses.
+To fix this, make sure your Cache-Control headers allow revalidation of chunks and review your service worker configuration. As an immediate workaround, try hard-reloading the page, clearing the browser cache, or unregistering any service workers.
+    at ignore-listed frames {
+  digest: '3522829583'
+}
+⨯ Error: Module [project]/src/providers/Theme/index.tsx [app-ssr] (ecmascript) was instantiated because it was required from module [project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/esm/build/templates/app-page.js?page=/(payload)/admin/[[...segments]]/page { MODULE_0 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/not-found.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_1 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/src/app/(payload)/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/not-found.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/node_modules/.pnpm/next@16.2.6_@babel+core@7.29.7_@playwright+test@1.58.2_react-dom@19.2.6_react@19.2.6__react@19.2.6_sass@1.77.4/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/src/app/(payload)/admin/[[...segments]]/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_9 => "[project]/src/app/(payload)/admin/[[...segments]]/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+This is often caused by a stale browser cache, misconfigured Cache-Control headers, or a service worker serving outdated responses.
+To fix this, make sure your Cache-Control headers allow revalidation of chunks and review your service worker configuration. As an immediate workaround, try hard-reloading the page, clearing the browser cache, or unregistering any service workers.
+    at ignore-listed frames {
+  digest: '3522829583'
+}
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopSync (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9449:40)
+    at renderRootSync (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9433:13)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:186)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
+[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopSync (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9449:40)
+    at renderRootSync (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9433:13)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:186)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)

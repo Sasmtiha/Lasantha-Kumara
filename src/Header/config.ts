@@ -30,8 +30,8 @@ export const Header: GlobalConfig = {
       label: 'Primary call to action',
       type: 'group',
       fields: [
-        { name: 'label', type: 'text', defaultValue: 'Enroll Now' },
-        { name: 'url', type: 'text', defaultValue: '/enroll' },
+        { name: 'label', type: 'text', defaultValue: 'Log In' },
+        { name: 'url', type: 'text', defaultValue: '/login' },
       ],
     },
     {

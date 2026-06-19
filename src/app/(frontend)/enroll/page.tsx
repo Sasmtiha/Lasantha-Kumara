@@ -6,8 +6,8 @@ import { EnrollmentForm } from '@/components/institute/EnrollmentForm'
 import { AuthSplitLayout } from '@/components/institute/AuthSplitLayout'
 
 export const metadata: Metadata = {
-  title: 'Register | IESM English Classes',
-  description: 'Apply for English classes in Colombo. Register online for spoken, school, exam, and professional English courses.',
+  title: 'Register | IEM.lk',
+  description: 'Apply online for Grade 6 to Grade 11 English classes.',
 }
 
 export default async function EnrollPage() {
@@ -17,7 +17,7 @@ export default async function EnrollPage() {
   return (
     <AuthSplitLayout
       description="Create your student account and submit your enrollment request."
-      title="Join IESM"
+      title="Join IEM.lk"
     >
       <EnrollmentForm classes={classes.docs} />
     </AuthSplitLayout>

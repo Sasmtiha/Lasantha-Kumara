@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
@@ -69,11 +70,11 @@ export function EnrollmentForm({ classes }: { classes: Class[] }) {
         I confirm that the information is accurate and agree to be contacted about this enrollment.
       </label>
       {error ? <p className="mt-5 rounded-xl bg-red-50 p-3 text-sm text-red-800" role="alert">{error}</p> : null}
-      <button className="mt-6 w-full rounded-md bg-[#ffc400] px-5 py-3 font-semibold text-[#34343b] shadow-sm transition hover:bg-[#f4bb00] disabled:opacity-60" disabled={sending} type="submit">
-        {sending ? 'Submitting…' : 'Submit enrollment'}
+      <button className="premium-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
+        {sending ? 'Submitting…' : <>Submit Enrollment <ArrowUpRight className="size-4" /></>}
       </button>
       <p className="mt-5 text-center text-sm text-[#73737d]">
-        Already registered? <Link className="font-semibold text-[#34343b] underline underline-offset-4" href="/login">Sign in</Link>
+        Already registered? <Link className="font-semibold text-[#034EA2] underline underline-offset-4" href="/login">Sign in</Link>
       </p>
     </form>
   )

@@ -1,32 +1,28 @@
-import Script from 'next/script'
 import React from 'react'
 
 import { defaultTheme, themeLocalStorageKey } from '../ThemeSelector/types'
 
-export const InitTheme: React.FC = () => {
-  return (
-    // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
-    <Script
-      dangerouslySetInnerHTML={{
-        __html: `
-  (function () {
-    function getImplicitPreference() {
-      var mediaQuery = '(prefers-color-scheme: dark)'
-      var mql = window.matchMedia(mediaQuery)
-      var hasImplicitPreference = typeof mql.matches === 'boolean'
+const themeScript = `
+(function () {
+  function getImplicitPreference() {
+    var mediaQuery = '(prefers-color-scheme: dark)'
+    var mql = window.matchMedia(mediaQuery)
+    var hasImplicitPreference = typeof mql.matches === 'boolean'
 
-      if (hasImplicitPreference) {
-        return mql.matches ? 'dark' : 'light'
-      }
-
-      return null
+    if (hasImplicitPreference) {
+      return mql.matches ? 'dark' : 'light'
     }
 
-    function themeIsValid(theme) {
-      return theme === 'light' || theme === 'dark'
-    }
+    return null
+  }
 
-    var themeToSet = '${defaultTheme}'
+  function themeIsValid(theme) {
+    return theme === 'light' || theme === 'dark'
+  }
+
+  var themeToSet = '${defaultTheme}'
+
+  try {
     var preference = window.localStorage.getItem('${themeLocalStorageKey}')
 
     if (themeIsValid(preference)) {
@@ -38,13 +34,26 @@ export const InitTheme: React.FC = () => {
         themeToSet = implicitPreference
       }
     }
+  } catch (_) {
+    var fallbackPreference = getImplicitPreference()
 
-    document.documentElement.setAttribute('data-theme', themeToSet)
-  })();
-  `,
+    if (fallbackPreference) {
+      themeToSet = fallbackPreference
+    }
+  }
+
+  document.documentElement.setAttribute('data-theme', themeToSet)
+})()
+`
+
+export const InitTheme: React.FC = () => {
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: themeScript,
       }}
       id="theme-script"
-      strategy="beforeInteractive"
+      suppressHydrationWarning
     />
   )
 }

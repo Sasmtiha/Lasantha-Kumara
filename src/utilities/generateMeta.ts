@@ -27,8 +27,8 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | IESM English Classes'
-    : 'IESM English Classes'
+    ? doc?.meta?.title + ' | IEM.lk'
+    : 'IEM.lk'
 
   return {
     description: doc?.meta?.description,

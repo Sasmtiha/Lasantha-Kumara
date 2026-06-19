@@ -1,6 +1,6 @@
 import configPromise from '@payload-config'
 import {
-  ArrowRight,
+  ArrowUpRight,
   Bell,
   BookOpen,
   CalendarDays,
@@ -34,6 +34,8 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import { getSiteLocale, localized } from '@/utilities/locale'
 import { Reveal } from './Reveal'
 import { AnimatedMetric } from './AnimatedMetric'
+import { DynamicGallery } from './DynamicGallery'
+import { HeroSlideshow } from './HeroSlideshow'
 
 type LayoutBlock = Page['layout'][number]
 type Locale = 'en' | 'si'
@@ -99,7 +101,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
   ])
 
   return (
-    <main className="premium-home overflow-hidden bg-[#f7f8f5] text-[#111827]">
+    <main className="premium-home overflow-hidden bg-white text-[#111827]">
       {hero ? <Hero block={hero} locale={locale} phone={settings.secondaryPhone || settings.phone} /> : null}
       {about ? <About block={about} locale={locale} /> : null}
       {results ? (
@@ -112,7 +114,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       {process ? <Process block={process} locale={locale} /> : null}
       {featuredProgram ? <FeaturedProgram block={featuredProgram} locale={locale} /> : null}
 
-      <section className="premium-section bg-[#f6f8fb]" id="classes">
+      <section className="premium-section border-y border-black/5 bg-[#f4f4f2]" id="classes">
         <div className="premium-container">
           <SectionHeading
             description={localized(locale, classesBlock?.subtitleEn, classesBlock?.subtitleSi)}
@@ -127,7 +129,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
             {classes.docs.map((course, index) => (
               <Reveal delay={index * 70} key={course.id}>
                 <article className="premium-card group flex min-h-[25rem] flex-col overflow-hidden">
-                  <div className="relative h-36 overflow-hidden bg-[#eaf3ff]">
+                  <div className="relative h-44 overflow-hidden bg-[#e8e9ed]">
                     {course.featuredImage && typeof course.featuredImage === 'object' ? (
                       <Media
                         fill
@@ -136,16 +138,16 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                       />
                     ) : (
                       <div className="absolute inset-0 grid place-items-center">
-                        <GraduationCap className="size-12 text-[#0057a8]/25" />
+                        <GraduationCap className="size-12 text-[#034EA2]/25" />
                       </div>
                     )}
-                    <span className="absolute left-5 top-5 rounded-full bg-[#ed1c24] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                    <span className="absolute left-0 top-0 bg-[#ed1d26] px-4 py-2 text-xs font-medium uppercase tracking-wider text-white">
                       {course.category.replaceAll('_', ' ')}
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-7">
-                    <p className="text-sm font-medium text-[#ed1c24]">{course.titleSi}</p>
-                    <h3 className="mt-2 text-2xl font-bold text-[#0057a8]">{course.titleEn}</h3>
+                    <p className="text-sm font-medium text-[#034EA2]">{course.titleSi}</p>
+                    <h3 className="mt-2 text-2xl font-semibold text-[#111827]">{course.titleEn}</h3>
                     <p className="mt-4 leading-7 text-[#6b7280]">
                       {localized(
                         locale,
@@ -163,10 +165,10 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     </div>
                     <div className="mt-auto flex gap-3 pt-7">
                       <Link className="premium-button-secondary flex-1" href={`/classes/${course.slug}`}>
-                        View Details
+                        View Details <ArrowUpRight className="size-4" />
                       </Link>
                       <Link className="premium-button-primary flex-1" href={`/enroll?class=${course.id}`}>
-                        Enroll
+                        Enroll <ArrowUpRight className="size-4" />
                       </Link>
                     </div>
                   </div>
@@ -195,9 +197,9 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
             )}
           />
           <Reveal className="mt-12">
-            <div className="hidden overflow-hidden rounded-[1.75rem] border border-[#e5e7eb] bg-white shadow-[0_20px_70px_rgba(15,23,42,.06)] md:block">
+            <div className="hidden overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_20px_70px_rgba(15,23,42,.06)] md:block">
               <table className="w-full text-left">
-                <thead className="bg-[#0057a8] text-white">
+                <thead className="bg-[#0a0b0f] text-white">
                   <tr>
                     {['Day', 'Class', 'Time', 'Mode', 'Location'].map((label) => (
                       <th className="px-6 py-5 text-sm font-semibold" key={label}>
@@ -209,13 +211,13 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                 <tbody>
                   {schedules.docs.map((item) => {
                     return (
-                      <tr className="border-t border-[#e5e7eb] transition hover:bg-[#eaf3ff]" key={item.id}>
-                        <td className="px-6 py-5 font-bold text-[#0057a8]">{item.dayOfWeek}</td>
+                      <tr className="border-t border-[#e5e7eb] transition hover:bg-[#f1f3fa]" key={item.id}>
+                        <td className="px-6 py-5 font-semibold text-[#034EA2]">{item.dayOfWeek}</td>
                         <td className="px-6 py-5">
                           {item.batchLabel}
                         </td>
                         <td className="px-6 py-5 text-[#6b7280]">
-                          <span className="rounded-full bg-[#fff9cc] px-3 py-1.5 text-sm font-semibold text-[#6d5800]">{item.startTime} – {item.endTime}</span>
+                          <span className="border-l-2 border-[#ed1d26] bg-[#f4f4f2] px-3 py-1.5 text-sm font-semibold text-[#111827]">{item.startTime} – {item.endTime}</span>
                         </td>
                         <td className="px-6 py-5 capitalize text-[#6b7280]">{item.mode}</td>
                         <td className="px-6 py-5 text-[#6b7280]">{item.location}</td>
@@ -230,10 +232,10 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
             {schedules.docs.map((item) => {
               return (
                 <article className="premium-card p-6" key={item.id}>
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#0057a8]">
+                  <p className="text-xs font-medium uppercase tracking-widest text-[#034EA2]">
                     {item.dayOfWeek}
                   </p>
-                  <h3 className="mt-2 text-xl font-bold">
+                  <h3 className="mt-2 text-xl font-semibold">
                     {item.batchLabel}
                   </h3>
                   <p className="mt-3">{item.startTime} – {item.endTime}</p>
@@ -246,7 +248,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
           </div>
           <div className="mt-9 text-center">
             <Link className="premium-button-primary inline-flex" href="/enroll">
-              Reserve Your Seat <ArrowRight className="size-4" />
+              Reserve Your Seat <ArrowUpRight className="size-4" />
             </Link>
           </div>
         </div>
@@ -262,14 +264,16 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
         locale={locale}
         title={localized(
           locale,
-          galleryBlock?.headingEn || 'Life at IESM',
+          galleryBlock?.headingEn || 'Life at IEM.lk',
           galleryBlock?.headingSi,
         )}
       />
 
-      <section className="premium-section bg-[#f6f8fb]" id="testimonials">
+      <section className="premium-section relative overflow-hidden bg-[#11101d] text-white" id="testimonials">
+        <span aria-hidden className="premium-wordmark right-0 top-0 text-white/[.018]">VOICE</span>
         <div className="premium-container">
           <SectionHeading
+            dark
             description={localized(
               locale,
               testimonialsBlock?.subtitleEn,
@@ -285,19 +289,19 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {testimonials.docs.map((item, index) => (
               <Reveal delay={index * 80} key={item.id}>
-                <figure className="premium-card relative h-full overflow-hidden p-8 before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-[#ed1c24]">
-                  <Quote className="size-9 text-[#0057a8]" />
+                <figure className="relative h-full overflow-hidden rounded-md border border-white/10 bg-white/[.055] p-8 before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-[#ed1d26]">
+                  <Quote className="size-9 text-[#034EA2]" />
                   <div className="mt-5 flex gap-1" aria-label={`${item.rating} out of 5 stars`}>
                     {Array.from({ length: item.rating }).map((_, star) => (
-                      <Star className="size-4 fill-[#f5b400] text-[#f5b400]" key={star} />
+                      <Star className="size-4 fill-[#ed1d26] text-[#ed1d26]" key={star} />
                     ))}
                   </div>
-                  <blockquote className="mt-5 text-lg leading-8 text-[#374151]">
+                  <blockquote className="mt-5 text-lg leading-8 text-white/75">
                     “{localized(locale, item.feedbackEn, item.feedbackSi)}”
                   </blockquote>
-                  <figcaption className="mt-7 border-t border-[#e5e7eb] pt-5">
+                  <figcaption className="mt-7 border-t border-white/10 pt-5">
                     <strong>{item.name}</strong>
-                    <span className="mt-1 block text-sm text-[#6b7280]">{item.studentType}</span>
+                    <span className="mt-1 block text-sm text-white/45">{item.studentType}</span>
                   </figcaption>
                 </figure>
               </Reveal>
@@ -307,19 +311,19 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       </section>
 
       {contact ? (
-        <section className="premium-section bg-[#f6f8fb]" id="contact">
+        <section className="premium-section bg-[#f4f4f2]" id="contact">
           <div className="premium-container">
             <SectionHeading
               description={localized(locale, contact.descriptionEn, contact.descriptionSi)}
               kicker="Contact"
               title={localized(locale, contact.headingEn, contact.headingSi)}
             />
-            <div className="mt-12 grid overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_rgba(0,63,125,.10)] lg:grid-cols-[1.15fr_.85fr]">
+            <div className="mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] lg:grid-cols-[1.15fr_.85fr]">
               <Reveal className="p-6 sm:p-10">
                 <ContactForm classes={classes.docs} />
               </Reveal>
-              <Reveal className="bg-[#0057a8] p-8 text-white sm:p-10" delay={120}>
-                <h3 className="text-3xl font-black">Let’s start your English journey</h3>
+              <Reveal className="bg-[#034B9B] p-8 text-white sm:p-10" delay={120}>
+                <h3 className="text-3xl font-semibold">Let’s start your English journey</h3>
                 <p className="mt-4 leading-7 text-white/70">
                   Speak with our team about classes, schedules and enrollment.
                 </p>
@@ -332,7 +336,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                 </div>
                 {settings.whatsappNumber ? (
                   <a
-                    className="premium-button-light mt-6 inline-flex"
+                    className="portal-outline-button mt-6 inline-flex"
                     href={
                       settings.whatsappNumber.startsWith('http')
                         ? settings.whatsappNumber
@@ -341,7 +345,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    <MessageCircle className="size-4" /> WhatsApp Us
+                    WhatsApp Us <ArrowUpRight className="size-4" />
                   </a>
                 ) : null}
               </Reveal>
@@ -356,34 +360,34 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
 function Hero({ block, locale, phone }: { block: InstituteHeroBlock; locale: Locale; phone?: null | string }) {
   return (
     <section className="premium-hero relative flex min-h-svh items-end overflow-hidden bg-[#101827] text-white" id="home">
-      <div className="premium-hero-media absolute inset-0">
-        {block.heroImage && typeof block.heroImage === 'object' ? (
-          <Media fill imgClassName="object-cover" priority resource={block.heroImage} />
-        ) : (
-          <div className="h-full bg-[radial-gradient(circle_at_75%_30%,#0057a8_0%,#003f7d_38%,#101827_78%)]" />
-        )}
+      <div className="premium-hero-media absolute inset-0 z-0">
+        <HeroSlideshow
+          duration={block.slideDuration}
+          fallback={typeof block.heroImage === 'object' ? block.heroImage : null}
+          slides={block.heroSlides}
+        />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#101827]/95 via-[#003f7d]/75 to-[#0057a8]/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#101827] via-transparent to-[#101827]/20" />
-      <span className="absolute right-[8%] top-[22%] size-24 rounded-full border-[14px] border-[#ed1c24]/60" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(15,23,42,.86)_0%,rgba(0,63,125,.58)_40%,rgba(0,45,88,.18)_72%,rgba(0,0,0,.04)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#101827]/75 via-transparent to-[#101827]/10" />
+      <span className="absolute right-[8%] top-[22%] z-[2] size-24 rounded-full border-[14px] border-[#ed1c24]/60" />
       <div className="premium-container relative z-10 pb-20 pt-40 lg:pb-24">
         <div className="max-w-5xl">
-          <p className="hero-reveal hero-delay-1 inline-flex items-center gap-2 rounded-full bg-[#ed1c24] px-4 py-2 text-xs font-bold uppercase tracking-[.18em] shadow-lg">
-            <Sparkles className="size-4 text-[#ffc107]" />
+          <p className="hero-reveal hero-delay-1 inline-flex items-center gap-2 rounded-full bg-[#ed1c24] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] shadow-lg">
+            <Sparkles className="size-4 text-white" />
             {localized(locale, block.badgeEn, block.badgeSi)}
           </p>
-          <h1 className="hero-reveal hero-delay-2 mt-7 max-w-5xl text-[clamp(3.2rem,8vw,7rem)] font-black uppercase leading-[.88] tracking-[-.055em] [text-shadow:0_6px_30px_rgba(0,0,0,.35)]">
+          <h1 className="hero-reveal hero-delay-2 mt-7 max-w-5xl text-[clamp(3rem,7vw,6.5rem)] font-semibold leading-[.98] tracking-[-.035em] [text-shadow:0_6px_30px_rgba(0,0,0,.35)]">
             {localized(locale, block.headingEn, block.headingSi)}
           </h1>
-          <p className="hero-reveal hero-delay-3 mt-7 max-w-2xl text-lg leading-8 text-white/75 sm:text-xl">
+          <p className="heading-font hero-reveal hero-delay-3 mt-7 max-w-2xl text-lg leading-8 text-white/75 sm:text-xl">
             {localized(locale, block.subheadingEn, block.subheadingSi)}
           </p>
-          <p className="hero-reveal hero-delay-3 mt-4 inline-block bg-[#ffe600] px-3 py-1 text-xl font-black text-[#101827]">
+          <p className="hero-reveal hero-delay-3 mt-4 inline-block border-l-4 border-[#ed1d26] bg-white/95 px-4 py-2 text-xl font-medium text-[#101827]">
             ඉංග්‍රීසි විශ්වාසයෙන් ඉගෙනගන්න
           </p>
           <div className="hero-reveal hero-delay-4 mt-9 flex flex-col gap-3 sm:flex-row">
             <Link className="premium-button-primary" href={block.primaryButtonUrl}>
-              {block.primaryButtonLabel} <ArrowRight className="size-4" />
+              {block.primaryButtonLabel} <ArrowUpRight className="size-4" />
             </Link>
             <Link
               className="premium-button-light"
@@ -409,20 +413,20 @@ function Hero({ block, locale, phone }: { block: InstituteHeroBlock; locale: Loc
 
 function About({ block, locale }: { block: AboutTeacherBlock; locale: Locale }) {
   return (
-    <section className="premium-section relative bg-white" id="about">
+    <section className="premium-section relative border-b border-black/5 bg-white" id="about">
       <span aria-hidden className="premium-wordmark left-0 top-12">ENGLISH</span>
       <div className="premium-container relative grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
         <Reveal>
-          <div className="relative min-h-[32rem] overflow-hidden rounded-[2rem] bg-[#eaf3ff] shadow-[0_30px_90px_rgba(0,63,125,.14)]">
+          <div className="relative min-h-[32rem] overflow-hidden rounded-md bg-[#e8e9ed] shadow-[0_30px_90px_rgba(10,11,15,.13)]">
             {block.teacherImage && typeof block.teacherImage === 'object' ? (
               <Media fill imgClassName="object-cover" resource={block.teacherImage} />
             ) : (
               <div className="absolute inset-0 grid place-items-center">
-                <GraduationCap className="size-24 text-[#0057a8]/20" />
+                <GraduationCap className="size-24 text-[#034EA2]/20" />
               </div>
             )}
-            <div className="absolute bottom-6 left-6 rounded-2xl bg-white/95 p-5 shadow-xl backdrop-blur">
-              <p className="text-3xl font-black text-[#ed1c24]">15+</p>
+            <div className="absolute bottom-0 left-0 border-l-4 border-[#ed1d26] bg-white/95 p-5 shadow-xl backdrop-blur">
+              <p className="text-3xl font-semibold text-[#111827]">15+</p>
               <p className="text-sm text-[#6b7280]">Years teaching English</p>
             </div>
           </div>
@@ -439,8 +443,8 @@ function About({ block, locale }: { block: AboutTeacherBlock; locale: Locale }) 
           />
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {block.featureCards?.map((feature) => (
-              <div className="flex gap-3 rounded-2xl bg-white p-4 shadow-sm" key={feature.id}>
-                <CheckCircle2 className="mt-1 size-5 shrink-0 text-[#f2c200]" />
+              <div className="flex gap-3 border-t border-black/10 py-4" key={feature.id}>
+                <CheckCircle2 className="mt-1 size-5 shrink-0 text-[#ed1d26]" />
                 <div>
                   <strong>{localized(locale, feature.titleEn, feature.titleSi)}</strong>
                   <p className="mt-1 text-sm leading-6 text-[#6b7280]">
@@ -451,7 +455,7 @@ function About({ block, locale }: { block: AboutTeacherBlock; locale: Locale }) 
             ))}
           </div>
           <Link className="premium-button-primary mt-8 inline-flex" href="/enroll">
-            Join Now <ArrowRight className="size-4" />
+            Join Now <ArrowUpRight className="size-4" />
           </Link>
         </Reveal>
       </div>
@@ -479,13 +483,13 @@ function FeaturedProgram({
     <section className="premium-section overflow-hidden bg-white" id="featured-program">
       <div className="premium-container">
         <div className="text-center">
-          <p className="text-sm font-black uppercase tracking-[.22em] text-[#ed1c24]">
+          <p className="text-sm font-medium uppercase tracking-[.14em] text-[#034EA2]">
             {localized(locale, block.eyebrowEn, block.eyebrowSi)}
           </p>
-          <h2 className="mx-auto mt-3 max-w-4xl text-4xl font-black leading-tight text-[#0057a8] sm:text-6xl">
+          <h2 className="mx-auto mt-3 max-w-4xl text-4xl font-semibold leading-tight text-[#111827] sm:text-6xl">
             {localized(locale, block.headingEn, block.headingSi)}
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#6b7280]">
+          <p className="heading-font mx-auto mt-5 max-w-2xl leading-8 text-[#034EA2]">
             {localized(locale, block.descriptionEn, block.descriptionSi)}
           </p>
         </div>
@@ -496,17 +500,17 @@ function FeaturedProgram({
             ))}
           </div>
           <Reveal>
-            <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full border-[14px] border-[#fff9cc] bg-[#eaf3ff] shadow-[0_24px_70px_rgba(0,63,125,.12)]">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-md border-[10px] border-[#034EA2] bg-[#e8e9ed] shadow-[0_24px_70px_rgba(10,11,15,.14)]">
               {block.image && typeof block.image === 'object' ? (
                 <Media fill imgClassName="object-cover" resource={block.image} />
               ) : (
                 <div className="absolute inset-0 grid place-items-center">
-                  <span className="grid size-32 place-items-center rounded-full bg-white text-[#0057a8] shadow-lg">
+                  <span className="grid size-32 place-items-center rounded-md bg-white text-[#034EA2] shadow-lg">
                     <BookOpen className="size-16" />
                   </span>
                 </div>
               )}
-              <span className="absolute right-5 top-5 size-7 rounded-full bg-[#ed1c24]" />
+              <span className="absolute right-0 top-0 size-12 bg-[#ed1d26]" />
             </div>
           </Reveal>
           <div className="space-y-6">
@@ -517,7 +521,7 @@ function FeaturedProgram({
         </div>
         <div className="mt-10 text-center">
           <Link className="premium-button-primary inline-flex" href={block.buttonUrl || '/enroll'}>
-            {block.buttonLabel || 'Join Now'} <ArrowRight className="size-4" />
+            {block.buttonLabel || 'Join Now'} <ArrowUpRight className="size-4" />
           </Link>
         </div>
       </div>
@@ -538,11 +542,11 @@ function FeaturePoint({
   return (
     <Reveal delay={index * 70}>
       <article className="flex gap-4">
-        <span className="grid size-12 shrink-0 place-items-center rounded-full bg-[#ffe600] text-[#003f7d] shadow-sm">
+        <span className="grid size-12 shrink-0 place-items-center rounded-md bg-[#034EA2] text-white shadow-sm">
           <Icon className="size-5" />
         </span>
         <div>
-          <h3 className="text-lg font-black text-[#0057a8]">
+          <h3 className="text-lg font-medium text-[#111827]">
             {localized(locale, feature.titleEn, feature.titleSi)}
           </h3>
           <span className="mt-2 block h-1 w-10 bg-[#ed1c24]" />
@@ -563,7 +567,7 @@ function Process({
   locale: Locale
 }) {
   return (
-    <section className="premium-section relative overflow-hidden bg-[#101827] text-white" id="process">
+    <section className="premium-section relative overflow-hidden bg-[#090a0e] text-white" id="process">
       <span aria-hidden className="premium-wordmark text-white/[.025]">LEARN</span>
       <div className="premium-container relative">
         <SectionHeading
@@ -573,15 +577,15 @@ function Process({
           title={localized(locale, block.headingEn, block.headingSi)}
         />
         <div className="relative mt-16 grid gap-8 lg:grid-cols-5">
-          <div className="absolute left-[10%] right-[10%] top-8 hidden h-0.5 bg-[#0057a8] lg:block" />
+          <div className="absolute left-[10%] right-[10%] top-8 hidden h-px bg-white/15 lg:block" />
           {block.steps.map((step, index) => (
             <Reveal delay={index * 100} key={step.id}>
               <article className="relative">
-                <span className="relative z-10 grid size-16 place-items-center rounded-full border-4 border-[#ffe600] bg-[#101827] text-lg font-black text-white">
+                <span className="relative z-10 grid size-16 place-items-center rounded-md border border-[#034EA2] bg-[#062f61] text-lg font-semibold text-white">
                   <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-[#ed1c24] text-[10px] text-white">{index + 1}</span>
-                  <GraduationCap className="size-6 text-[#ffe600]" />
+                  <GraduationCap className="size-6 text-[#75aff0]" />
                 </span>
-                <h3 className="mt-6 text-xl font-bold">
+                <h3 className="mt-6 text-xl font-semibold">
                   {localized(locale, step.titleEn, step.titleSi)}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-white/60">
@@ -606,11 +610,11 @@ function Results({
   metrics: { id?: null | string; labelEn: string; labelSi?: null | string; value: string }[]
 }) {
   return (
-    <section className="relative overflow-hidden bg-[#fffdf3] py-24 text-[#111827]">
+    <section className="relative overflow-hidden border-b border-black/5 bg-white py-24 text-[#111827]">
       {block.backgroundImage && typeof block.backgroundImage === 'object' ? (
         <Media fill imgClassName="object-cover opacity-30" resource={block.backgroundImage} />
       ) : null}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#fffdf3] via-[#fffdf3]/95 to-[#eaf3ff]/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-[#eef1ff]/85" />
       <div className="premium-container relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
         <Reveal>
           <SectionHeading
@@ -619,18 +623,18 @@ function Results({
             title={localized(locale, block.headingEn, block.headingSi)}
           />
           <Link className="premium-button-primary mt-8 inline-flex" href={block.ctaUrl || '#classes'}>
-            {block.ctaLabel || 'Explore Classes'} <ArrowRight className="size-4" />
+            {block.ctaLabel || 'Explore Classes'} <ArrowUpRight className="size-4" />
           </Link>
         </Reveal>
         <Reveal delay={100}>
-          <div className="relative rounded-[2rem] border border-[#0057a8]/10 bg-white p-7 shadow-[0_24px_70px_rgba(0,63,125,.10)]">
-            <div className="absolute -right-5 -top-8 grid size-32 rotate-[-9deg] place-items-center rounded-full border-[8px] border-double border-[#ed1c24] bg-white text-center text-[#ed1c24] shadow-xl">
-              <span className="text-sm font-black uppercase leading-tight">Trusted<br />Since<br />2009</span>
+          <div className="relative rounded-md border border-black/10 bg-[#f4f4f2] p-7 shadow-[0_24px_70px_rgba(10,11,15,.08)]">
+            <div className="absolute -right-5 -top-8 grid size-32 rotate-[-4deg] place-items-center border-4 border-double border-[#ed1d26] bg-white text-center text-[#111827] shadow-xl">
+              <span className="text-sm font-medium uppercase leading-tight">Trusted<br />Since<br />2009</span>
             </div>
             <div className="grid grid-cols-2 gap-4 pt-10">
             {(metrics.length ? metrics : block.metrics || []).slice(0, 4).map((metric) => (
-              <div className="border-l-4 border-[#ffe600] bg-[#eaf3ff] p-5" key={metric.id}>
-                <strong className="text-4xl font-black text-[#0057a8]"><AnimatedMetric value={metric.value} /></strong>
+              <div className="border-l-4 border-[#ed1d26] bg-white p-5" key={metric.id}>
+                <strong className="text-4xl font-semibold text-[#111827]"><AnimatedMetric value={metric.value} /></strong>
                 <p className="mt-2 text-sm text-[#6b7280]">
                   {localized(locale, metric.labelEn, metric.labelSi)}
                 </p>
@@ -661,9 +665,15 @@ function Portal({
   locale: Locale
 }) {
   return (
-    <section className="premium-section bg-[#fffdf3]" id="portal">
-      <div className="premium-container text-center">
+    <section className="premium-section relative overflow-hidden bg-[#034B9B] text-white" id="portal">
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[url('/stacked-waves-haikei-blue.svg')] bg-cover bg-center opacity-70"
+      />
+      <div className="absolute inset-0 bg-[#034B9B]/25" />
+      <div className="premium-container relative">
         <SectionHeading
+          dark
           description={localized(locale, block.descriptionEn, block.descriptionSi)}
           kicker="Student Portal"
           title={localized(locale, block.headingEn, block.headingSi)}
@@ -674,11 +684,11 @@ function Portal({
             return (
               <Reveal delay={index * 70} key={feature.id}>
                 <article className="group text-center">
-                  <div className="relative mx-auto grid aspect-square max-w-40 place-items-center rounded-full border-4 border-[#ffe600] bg-white shadow-[0_14px_35px_rgba(0,63,125,.08)] transition group-hover:scale-105 group-hover:border-[#0057a8]">
-                    <Icon className="size-10 text-[#0057a8]" />
+                  <div className="relative mx-auto grid aspect-square max-w-40 place-items-center rounded-md border border-white/15 bg-white/[.06] shadow-[0_14px_35px_rgba(0,0,0,.16)] transition group-hover:-translate-y-1 group-hover:border-[#034EA2]">
+                    <Icon className="size-10 text-[#75aff0]" />
                     <span className="absolute right-2 top-4 size-3 rounded-full bg-[#ed1c24]" />
                   </div>
-                  <h3 className="mt-4 font-black text-[#0057a8]">
+                  <h3 className="mt-4 font-medium text-white">
                     {localized(locale, feature.titleEn, feature.titleSi)}
                   </h3>
                 </article>
@@ -686,8 +696,11 @@ function Portal({
             )
           })}
         </div>
-        <Link className="premium-button-primary mt-10 inline-flex" href={block.buttonUrl || '/login'}>
-          {block.buttonLabel || 'Go to Student Portal'} <ArrowRight className="size-4" />
+        <Link
+          className="portal-outline-button mt-10 inline-flex"
+          href={block.buttonUrl || '/login'}
+        >
+          {block.buttonLabel || 'Go to Student Portal'} <ArrowUpRight className="size-4" />
         </Link>
       </div>
     </section>
@@ -706,50 +719,15 @@ function Gallery({
   title: string
 }) {
   return (
-    <section className="premium-section bg-[#f7f8f5]" id="gallery">
+    <section className="premium-section bg-[#f4f4f2]" id="gallery">
       <div className="premium-container">
         <SectionHeading description={description} kicker="Gallery" title={title} />
-        <div className="mt-8 flex flex-wrap gap-2">
-          {['All', 'Classes', 'Events', 'Student Life', 'Achievements'].map((category, index) => (
-            <span
-              className={`rounded-full px-5 py-2 text-sm font-bold ${
-                index === 0 ? 'bg-[#ffe600] text-[#111827]' : 'border border-[#0057a8]/20 bg-white text-[#0057a8]'
-              }`}
-              key={category}
-            >
-              {category}
-            </span>
-          ))}
-        </div>
         {items.length ? (
-          <div className="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3">
-            {items.map((item, index) => {
-              return (
-                <Reveal className="mb-5 break-inside-avoid" delay={index * 60} key={item.id}>
-                  <article className="group relative min-h-64 overflow-hidden rounded-[1.5rem] bg-[#e8e6dd]">
-                    {item.image && typeof item.image === 'object' ? (
-                      <Media
-                        fill
-                        imgClassName="object-cover transition duration-700 group-hover:scale-105"
-                        resource={item.image}
-                      />
-                    ) : null}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80" />
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <p className="text-xs uppercase tracking-widest text-[#ffc107]">{item.category}</p>
-                      <h3 className="mt-2 text-xl font-bold">
-                        {localized(locale, item.titleEn, item.titleSi)}
-                      </h3>
-                    </div>
-                  </article>
-                </Reveal>
-              )
-            })}
-          </div>
+          <DynamicGallery items={items} locale={locale} />
         ) : (
-          <div className="mt-12 overflow-hidden rounded-[2rem] border border-dashed border-[#0057a8]/25 bg-gradient-to-br from-[#eaf3ff] to-white px-6 py-24 text-center">
-            <GraduationCap className="mx-auto size-12 text-[#0057a8]/35" />
-            <p className="mt-5 text-xl font-black text-[#0057a8]">Gallery photos will be added soon</p>
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-dashed border-[#034EA2]/25 bg-gradient-to-br from-[#eaf3ff] to-white px-6 py-24 text-center">
+            <GraduationCap className="mx-auto size-12 text-[#034EA2]/35" />
+            <p className="mt-5 text-xl font-medium text-[#111827]">Gallery photos will be added soon</p>
             <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#6b7280]">
               Classroom moments, student activities and achievements can be managed from Payload Gallery.
             </p>
@@ -763,12 +741,12 @@ function Gallery({
 function InfoCard({ icon, label, value }: { icon: React.ReactNode; label: string; value?: null | string }) {
   return (
     <div className="premium-card flex gap-4 p-5 text-[#111827]">
-      <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#fff9cc] text-[#0057a8]">
+      <span className="grid size-11 shrink-0 place-items-center rounded-md bg-white/90 text-[#034EA2]">
         {icon}
       </span>
       <div className="min-w-0">
         <p className="text-xs uppercase tracking-wider text-[#6b7280]">{label}</p>
-        <p className="mt-1 break-words text-sm font-semibold text-[#111827]">{value || 'Not provided'}</p>
+        <p className="mt-1 break-words text-sm font-medium text-[#111827]">{value || 'Not provided'}</p>
       </div>
     </div>
   )
@@ -787,14 +765,14 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className={`premium-kicker ${dark ? 'text-[#ffe600]' : 'text-[#0057a8]'}`}>
+      <p className={`premium-kicker ${dark ? 'text-[#75aff0]' : 'text-[#034EA2]'}`}>
         {kicker}
       </p>
-      <h2 className={`mt-4 text-4xl font-black leading-[1.08] tracking-[-.03em] sm:text-5xl ${dark ? 'text-white' : 'text-[#111827]'}`}>
+      <h2 className={`mt-4 text-4xl font-semibold leading-[1.15] tracking-[-.015em] sm:text-5xl ${dark ? 'text-white' : 'text-[#111827]'}`}>
         {title}
       </h2>
       {description ? (
-        <p className={`mt-5 text-lg leading-8 ${dark ? 'text-white/60' : 'text-[#6b7280]'}`}>
+        <p className={`heading-font mt-5 text-lg leading-8 ${dark ? 'text-white/70' : 'text-[#034EA2]'}`}>
           {description}
         </p>
       ) : null}

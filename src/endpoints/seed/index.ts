@@ -53,7 +53,7 @@ const richText = (text: string, heading?: 'h1' | 'h2' | 'h3'): NonNullable<Class
 })
 
 export async function seed({ payload, req }: { payload: Payload; req: PayloadRequest }): Promise<void> {
-  payload.logger.info('Seeding IESM English Classes…')
+  payload.logger.info('Seeding IEM.lk…')
 
   // Keep cleanup sequential because PostgreSQL relationships require child
   // collections (for example schedules) to be deleted before their parents.
@@ -114,16 +114,16 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
   })
 
   const classDefinitions = [
-    ['Spoken English', 'කථන ඉංග්‍රීසි', 'spoken-english', 'Build practical vocabulary, clear pronunciation, and confidence for everyday conversations.', 'දෛනික සංවාද සඳහා වචන මාලාව, නිවැරදි උච්චාරණය සහ විශ්වාසය වර්ධනය කරන්න.', 'intermediate', 'spoken'],
-    ['Grammar & Writing', 'ව්‍යාකරණ හා ලිවීම', 'grammar-writing', 'Master essential grammar and develop accurate, expressive writing skills.', 'අත්‍යවශ්‍ය ව්‍යාකරණ සහ නිවැරදි ලිවීමේ කුසලතා ප්‍රගුණ කරන්න.', 'intermediate', 'grammar'],
-    ['O/L English', 'සාමාන්‍ය පෙළ ඉංග්‍රීසි', 'ol-english', 'Focused preparation for the G.C.E. O/L English examination with proven techniques.', 'සාමාන්‍ය පෙළ ඉංග්‍රීසි විභාගය සඳහා ඉලක්කගත සූදානම.', 'exam', 'ol'],
-    ['A/L English', 'උසස් පෙළ ඉංග්‍රීසි', 'al-english', 'Advanced language and literature guidance for strong A/L performance.', 'උසස් පෙළ සඳහා උසස් භාෂා සහ සාහිත්‍ය මාර්ගෝපදේශනය.', 'advanced', 'al'],
-    ['Grade 6-9 English', '6-9 ශ්‍රේණි ඉංග්‍රීසි', 'grade-6-9-english', 'A strong foundation in school English through engaging, age-appropriate lessons.', 'සිසුන්ට ගැළපෙන පාඩම් මගින් පාසල් ඉංග්‍රීසියට ශක්තිමත් පදනමක්.', 'beginner', 'grade_6_9'],
-    ['Business English', 'ව්‍යාපාරික ඉංග්‍රීසි', 'business-english', 'Professional communication, presentations, email writing, and workplace confidence.', 'වෘත්තීය සන්නිවේදනය, ඉදිරිපත් කිරීම් සහ සේවා ස්ථාන විශ්වාසය.', 'professional', 'business'],
+    ['Grade 6 English', '6 ශ්‍රේණිය ඉංග්‍රීසි', 'grade-6-english', 'Build a confident foundation in school English through clear, engaging lessons.', 'පැහැදිලි හා ආකර්ෂණීය පාඩම් මඟින් පාසල් ඉංග්‍රීසියට ශක්තිමත් පදනමක් ගොඩනඟන්න.', 'beginner', 'grade_6', '2 hours'],
+    ['Grade 7 English', '7 ශ්‍රේණිය ඉංග්‍රීසි', 'grade-7-english', 'Strengthen grammar, vocabulary, reading, and writing for the Grade 7 syllabus.', '7 ශ්‍රේණියේ විෂය නිර්දේශයට අදාළ ව්‍යාකරණ, වචන මාලාව, කියවීම සහ ලිවීම වර්ධනය කරන්න.', 'beginner', 'grade_7', '2 hours'],
+    ['Grade 8 English', '8 ශ්‍රේණිය ඉංග්‍රීසි', 'grade-8-english', 'Develop stronger language skills with guided practice for the Grade 8 syllabus.', '8 ශ්‍රේණියේ විෂය නිර්දේශයට අදාළ මඟපෙන්වූ පුහුණුවෙන් භාෂා කුසලතා වර්ධනය කරන්න.', 'intermediate', 'grade_8', '2 hours'],
+    ['Grade 9 English', '9 ශ්‍රේණිය ඉංග්‍රීසි', 'grade-9-english', 'Prepare for upper-school English with focused grammar, comprehension, and writing.', 'ව්‍යාකරණ, අවබෝධය සහ ලිවීම කෙරෙහි අවධානය යොමු කරමින් ඉහළ ශ්‍රේණි සඳහා සූදානම් වන්න.', 'intermediate', 'grade_9', '2 hours'],
+    ['Grade 10 English', '10 ශ්‍රේණිය ඉංග්‍රීසි', 'grade-10-english', 'Begin focused O/L preparation with syllabus coverage, writing, and exam practice.', 'විෂය නිර්දේශ ආවරණය, ලිවීම සහ විභාග පුහුණුව සමඟ O/L සඳහා ඉලක්කගත සූදානම ආරම්භ කරන්න.', 'exam', 'grade_10', '3 hours'],
+    ['Grade 11 English', '11 ශ්‍රේණිය ඉංග්‍රීසි', 'grade-11-english', 'Complete O/L preparation with revision, past papers, and proven exam strategies.', 'පුනරීක්ෂණය, පසුගිය ප්‍රශ්න පත්‍ර සහ සාර්ථක විභාග ක්‍රම සමඟ O/L සූදානම සම්පූර්ණ කරන්න.', 'exam', 'grade_11', '3 hours'],
   ] as const
 
   const classes = []
-  for (const [titleEn, titleSi, slug, shortDescriptionEn, shortDescriptionSi, level, category] of classDefinitions) {
+  for (const [titleEn, titleSi, slug, shortDescriptionEn, shortDescriptionSi, level, category, durationPerWeek] of classDefinitions) {
     classes.push(
       await payload.create({
         collection: 'classes',
@@ -136,7 +136,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
           shortDescriptionSi,
           fullDescriptionEn: richText(`${shortDescriptionEn} Lessons combine clear explanations, guided practice, individual feedback, and regular progress checks.`),
           fullDescriptionSi: richText(`${shortDescriptionSi} පැහැදිලි විස්තර, පුහුණුව සහ පුද්ගල ප්‍රතිචාර මෙම පාඨමාලාවට ඇතුළත් වේ.`),
-          durationPerWeek: '2 hours',
+          durationPerWeek,
           maxStudents: 20,
           level,
           category,
@@ -156,12 +156,12 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
 
   const classBySlug = Object.fromEntries(classes.map((item) => [item.slug, item]))
   const scheduleDefinitions = [
-    ['Saturday', '1:00 PM', '3:00 PM', 'grade-6-9-english', 'Grade 6 English'],
-    ['Saturday', '3:00 PM', '5:00 PM', 'grade-6-9-english', 'Grade 7 English'],
-    ['Sunday', '3:00 PM', '5:00 PM', 'grade-6-9-english', 'Grade 8 English'],
-    ['Sunday', '1:00 PM', '3:00 PM', 'grade-6-9-english', 'Grade 9 English'],
-    ['Saturday', '10:00 AM', '1:00 PM', 'ol-english', 'Grade 10 English'],
-    ['Saturday', '7:00 AM', '10:00 AM', 'ol-english', 'Grade 11 English'],
+    ['Saturday', '1:00 PM', '3:00 PM', 'grade-6-english', 'Grade 6 English'],
+    ['Saturday', '3:00 PM', '5:00 PM', 'grade-7-english', 'Grade 7 English'],
+    ['Sunday', '3:00 PM', '5:00 PM', 'grade-8-english', 'Grade 8 English'],
+    ['Sunday', '1:00 PM', '3:00 PM', 'grade-9-english', 'Grade 9 English'],
+    ['Saturday', '10:00 AM', '1:00 PM', 'grade-10-english', 'Grade 10 English'],
+    ['Saturday', '7:00 AM', '10:00 AM', 'grade-11-english', 'Grade 11 English'],
   ] as const
   const schedules = []
   for (const [dayOfWeek, startTime, endTime, slug, batchLabel] of scheduleDefinitions) {
@@ -188,8 +188,8 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
   const testimonials = []
   const testimonialData = [
     ['Dilshan Sampath', 'O/L Student, Batch 2023', 'Sir made difficult grammar lessons simple. I improved my confidence and achieved an A pass at O/L.', 'අමාරු ව්‍යාකරණ පාඩම් සරලව තේරුම් කළ නිසා මට O/L විභාගයෙන් A සාමාර්ථයක් ලැබුණා.'],
-    ['Kumari Perera', 'Parent of A/L Student', 'The personal attention and regular progress updates gave us confidence throughout the year.', 'පුද්ගල අවධානය සහ නිරන්තර ප්‍රගති දැනුම්දීම් අපට විශාල විශ්වාසයක් ලබා දුන්නා.'],
-    ['Naduni Rathnayake', 'Business English Student', 'I now lead meetings and write professional emails in English without hesitation.', 'දැන් මට ඉංග්‍රීසියෙන් රැස්වීම් මෙහෙයවීමට සහ වෘත්තීය ඊමේල් ලිවීමට විශ්වාසයක් තියෙනවා.'],
+    ['Kumari Perera', 'Parent of Grade 9 Student', 'The personal attention and regular progress updates gave us confidence throughout the year.', 'පුද්ගල අවධානය සහ නිරන්තර ප්‍රගති දැනුම්දීම් අපට විශාල විශ්වාසයක් ලබා දුන්නා.'],
+    ['Naduni Rathnayake', 'Grade 10 Student', 'The focused lessons made grammar and writing much clearer, and I feel ready for my school exams.', 'ඉලක්කගත පාඩම් නිසා ව්‍යාකරණ සහ ලිවීම වඩා පැහැදිලි වුණා. දැන් පාසල් විභාගවලට හොඳින් සූදානම්.'],
   ] as const
   for (const [name, studentType, feedbackEn, feedbackSi] of testimonialData) {
     testimonials.push(await payload.create({ collection: 'testimonials', overrideAccess: true, data: { name, studentType, feedbackEn, feedbackSi, rating: 5, isFeatured: true, displayOrder: testimonials.length + 1 } }))
@@ -211,9 +211,9 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
     collection: 'resources',
     overrideAccess: true,
     data: {
-      title: 'Spoken English Practice Guide',
-      description: 'A starter collection of daily speaking prompts and vocabulary activities.',
-      class: classBySlug['spoken-english'].id,
+      title: 'Grade 11 English Revision Guide',
+      description: 'A starter collection of revision activities for Grade 11 English students.',
+      class: classBySlug['grade-11-english'].id,
       resourceType: 'link',
       externalUrl: 'https://dictionary.cambridge.org/',
       visibility: 'enrolled_students',
@@ -237,7 +237,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         {
           blockType: 'instituteHero',
           badgeSi: 'සිසුන් සහ දෙමාපියන් 500+ කගේ විශ්වාසය',
-          badgeEn: 'IESM English Academy · Trusted by 500+ Students',
+          badgeEn: 'IEM.lk English Academy · Trusted by 500+ Students',
           headingEn: 'Master English with Confidence',
           headingSi: 'ඉංග්‍රීසි විශ්වාසයෙන් ඉගෙනගන්න',
           subheadingEn: 'Transform your English skills with expert guidance, practical lessons, and a clear path to confidence and exam success.',
@@ -286,8 +286,8 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         },
         {
           blockType: 'featuredProgram',
-          eyebrowEn: 'IESM Special',
-          eyebrowSi: 'IESM විශේෂ',
+          eyebrowEn: 'IEM.lk Special',
+          eyebrowSi: 'IEM.lk විශේෂ',
           headingEn: 'The Complete English Class',
           headingSi: 'සම්පූර්ණ ඉංග්‍රීසි පන්තිය',
           descriptionEn: 'One balanced program that strengthens communication, grammar, writing and exam confidence.',
@@ -297,12 +297,12 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
           features: [
             { titleEn: 'Spoken Practice', titleSi: 'කථන පුහුණුව', descriptionEn: 'Build confidence for daily conversations, interviews and presentations.', icon: 'spoken' },
             { titleEn: 'Grammar Mastery', titleSi: 'ව්‍යාකරණ ප්‍රවීණතාව', descriptionEn: 'Learn sentence structure, tense usage and writing rules clearly.', icon: 'grammar' },
-            { titleEn: 'Exam Preparation', titleSi: 'විභාග සූදානම', descriptionEn: 'Focused preparation for school exams, O/L and A/L English.', icon: 'exam' },
+            { titleEn: 'Exam Preparation', titleSi: 'විභාග සූදානම', descriptionEn: 'Focused preparation for school exams and the Grade 10–11 O/L syllabus.', icon: 'exam' },
             { titleEn: 'Writing Improvement', titleSi: 'ලිවීමේ දියුණුව', descriptionEn: 'Improve essays, letters, answers and creative writing.', icon: 'writing' },
             { titleEn: 'Progress Tracking', titleSi: 'ප්‍රගති අධීක්ෂණය', descriptionEn: 'Receive regular guidance and feedback to improve consistently.', icon: 'progress' },
           ],
         },
-        { blockType: 'classesGrid', headingEn: 'Choose the right English class', headingSi: 'ඔබට ගැළපෙන ඉංග්‍රීසි පන්තිය', subtitleEn: 'Courses for school students, exam candidates, adults, and professionals.', showAllClasses: true },
+        { blockType: 'classesGrid', headingEn: 'Choose your grade', headingSi: 'ඔබේ ශ්‍රේණිය තෝරන්න', subtitleEn: 'Focused English classes for students in Grades 6 through 11.', showAllClasses: true },
         {
           blockType: 'results',
           headingEn: 'Real progress comes from consistent practice',
@@ -338,8 +338,8 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         { blockType: 'schedule', headingEn: 'A timetable built around learners', headingSi: 'සිසුන්ට ගැළපෙන කාලසටහන', subtitleEn: 'Weekday and weekend classes at convenient times.', showAllSchedules: true },
         {
           blockType: 'galleryBlock',
-          headingEn: 'Life at IESM',
-          headingSi: 'IESM හි ශිෂ්‍ය ජීවිතය',
+          headingEn: 'Life at IEM.lk',
+          headingSi: 'IEM.lk හි ශිෂ්‍ය ජීවිතය',
           descriptionEn: 'Classes, events, achievements and the everyday moments that shape confident learners.',
           descriptionSi: 'විශ්වාසවන්ත සිසුන් ගොඩනඟන පන්ති, උත්සව, ජයග්‍රහණ සහ දෛනික අවස්ථා.',
           showAll: true,
@@ -350,7 +350,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       ],
       meta: {
         title: 'English Classes in Colombo',
-        description: 'Lasantha Kumara English Classes offers spoken, O/L, A/L, school, grammar, and business English classes in Colombo.',
+        description: 'Lasantha Kumara English Classes offers focused English education for Grade 6 to Grade 11 students.',
       },
     },
   })
@@ -390,8 +390,8 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       disableRevalidate: true,
     },
     data: {
-      instituteNameEn: 'IESM English Classes',
-      instituteNameSi: 'IESM ඉංග්‍රීසි පන්ති',
+      instituteNameEn: 'IEM.lk',
+      instituteNameSi: 'IEM.lk ඉංග්‍රීසි පන්ති',
       phone: '0472 248 019',
       secondaryPhone: '071 449 2540',
       whatsappNumber: 'https://wa.me/qr/LCPU7GTT5YXOC1',
@@ -416,13 +416,13 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       navItems: [
         ['Home', '/#home'],
         ['About', '/#about'],
-        ['Classes', '/#classes'],
         ['Process', '/#process'],
+        ['Classes', '/#classes'],
         ['Schedule', '/#schedule'],
         ['Gallery', '/#gallery'],
         ['Contact', '/#contact'],
       ].map(([label, url]) => ({ link: { type: 'custom' as const, label, url } })),
-      primaryCTA: { label: 'Enroll Now', url: '/enroll' },
+      primaryCTA: { label: 'Log In', url: '/login' },
       showLanguageToggle: true,
       showLoginLink: true,
     },
@@ -441,7 +441,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         ['Contact', '/contact'],
         ['Student Portal', '/login'],
       ].map(([label, url]) => ({ link: { type: 'custom' as const, label, url } })),
-      copyrightText: `© ${new Date().getFullYear()} IESM English Classes. All rights reserved.`,
+      copyrightText: `© ${new Date().getFullYear()} IEM.lk. All rights reserved.`,
     },
   })
 

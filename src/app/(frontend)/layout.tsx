@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 
 import { cn } from '@/utilities/ui'
-import { GeistSans } from 'geist/font/sans'
+import { Noto_Sans_Sinhala, Source_Sans_3, Space_Grotesk } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
+import { SmoothAnchorScroll } from '@/components/institute/SmoothAnchorScroll'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
@@ -17,12 +18,37 @@ import { getServerSideURL } from '@/utilities/getURL'
 
 export const dynamic = 'force-dynamic'
 
+const sourceSans = Source_Sans_3({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-source-sans',
+  weight: ['400', '500', '600', '700'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  weight: ['400', '500', '600', '700'],
+})
+
+const notoSansSinhala = Noto_Sans_Sinhala({
+  display: 'swap',
+  subsets: ['sinhala'],
+  variable: '--font-noto-sinhala',
+  weight: ['400', '500', '600', '700'],
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
   const locale = (await cookies()).get('site-locale')?.value === 'si' ? 'si' : 'en'
 
   return (
-    <html className={cn(GeistSans.variable)} lang={locale} suppressHydrationWarning>
+    <html
+      className={cn(sourceSans.variable, spaceGrotesk.variable, notoSansSinhala.variable)}
+      lang={locale}
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
@@ -30,6 +56,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <Providers>
+          <SmoothAnchorScroll />
           <AdminBar
             adminBarProps={{
               preview: isEnabled,

@@ -6,11 +6,12 @@
 - Local:         http://localhost:3000
 - Network:       http://192.168.56.1:3000
 - Environments: .env
-✓ Ready in 581ms
+✓ Ready in 490ms
 Creating turbopack project { dir: 'D:\\Github\\Payload CMS\\iem', testMode: true }
 - Experiments (use with caution):
   ⨯ turbopackServerFastRefresh
 
+○ Compiling / ...
 [⣷] Pulling schema from database...
 [2K[1G[⣯] Pulling schema from database...
 [2K[1G[⣟] Pulling schema from database...
@@ -92,5 +93,445 @@ Creating turbopack project { dir: 'D:\\Github\\Payload CMS\\iem', testMode: true
 [2K[1G[⣯] Pulling schema from database...
 [2K[1G[⣟] Pulling schema from database...
 [2K[1G[✓] Pulling schema from database...
-[21:58:52] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
- GET / 200 in 16.5s (next.js: 831ms, application-code: 15.7s)
+[23:29:37] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 21.8s (next.js: 6.3s, application-code: 15.5s)
+ GET / 200 in 22.2s (next.js: 877ms, application-code: 21.3s)
+ GET / 200 in 21.8s (next.js: 2.9s, application-code: 18.9s)
+ GET / 200 in 1276ms (next.js: 23ms, application-code: 1252ms)
+ GET /api/users/me 200 in 3.2s (next.js: 3.1s, application-code: 36ms)
+ GET /api/users/me 200 in 5.1s (next.js: 2.9s, application-code: 2.2s)
+ GET /api/payload-preferences/nav 200 in 2.2s (next.js: 11ms, application-code: 2.2s)
+ GET /api/users/me 200 in 1667ms (next.js: 3ms, application-code: 1664ms)
+ GET / 200 in 3.2s (next.js: 4ms, application-code: 3.2s)
+ GET / 200 in 4.3s (next.js: 4ms, application-code: 4.3s)
+ GET /api/users/me 200 in 24ms (next.js: 14ms, application-code: 9ms)
+ GET /api/gallery?limit=100&sort=displayOrder 200 in 450ms (next.js: 11ms, application-code: 439ms)
+ GET /admin 200 in 2.3s (next.js: 5ms, application-code: 2.3s)
+ GET /admin 200 in 2.4s (next.js: 12ms, application-code: 2.4s)
+ GET /api/users/me 200 in 157ms (next.js: 10ms, application-code: 147ms)
+ GET /api/payload-preferences/nav 200 in 141ms (next.js: 3ms, application-code: 138ms)
+✓ Compiled in 179ms
+Generating import map
+✓ Compiled in 415ms
+No new imports found, skipping writing import map
+✓ Compiled in 876ms
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.1s (next.js: 23ms, application-code: 2.1s)
+ GET / 200 in 2.3s (next.js: 356ms, application-code: 1980ms)
+✓ Compiled in 544ms
+✓ Compiled in 668ms
+ GET / 200 in 3.2s (next.js: 155ms, application-code: 3.0s)
+✓ Compiled in 76ms
+ GET / 200 in 3.5s (next.js: 350ms, application-code: 3.1s)
+ GET / 200 in 3.8s (next.js: 3ms, application-code: 3.8s)
+ GET /api/users/me 200 in 34ms (next.js: 17ms, application-code: 17ms)
+ GET / 200 in 4.7s (next.js: 3ms, application-code: 4.7s)
+ GET /api/users/me 200 in 350ms (next.js: 3ms, application-code: 346ms)
+ GET / 200 in 1173ms (next.js: 2ms, application-code: 1171ms)
+ GET /api/users/me 200 in 154ms (next.js: 14ms, application-code: 140ms)
+✓ Compiled in 84ms
+ GET /api/media/file/557545736_24899137726382476_7268450432695019624_n.jpg.jpeg?2026-06-19T17%3A10%3A58.256Z 200 in 75ms (next.js: 13ms, application-code: 63ms)
+ GET /api/media/file/494520685_9840835525972609_9062684296404373762_n.jpg.jpeg?2026-06-19T17%3A45%3A54.094Z 200 in 105ms (next.js: 9ms, application-code: 96ms)
+ GET /api/gallery/file/556564492_24899137913049124_6568491221571061163_n.jpg.jpeg?2026-06-19T17%3A56%3A03.772Z 200 in 110ms (next.js: 13ms, application-code: 96ms)
+ GET /api/gallery/file/uuuu.jpg.jpeg?2026-06-19T17%3A56%3A03.277Z 200 in 111ms (next.js: 18ms, application-code: 94ms)
+ GET /api/media/file/481776822_1006912374835656_5158983911564823649_n.jpg.jpeg?2026-06-19T17%3A45%3A33.276Z 200 in 199ms (next.js: 5ms, application-code: 195ms)
+ GET /api/gallery/file/481776822_1006912374835656_5158983911564823649_n.jpg.jpeg?2026-06-19T17%3A56%3A02.790Z 200 in 180ms (next.js: 9ms, application-code: 171ms)
+ GET /api/gallery/file/494520685_9840835525972609_9062684296404373762_n.jpg.jpeg?2026-06-19T17%3A56%3A01.319Z 200 in 35ms (next.js: 6ms, application-code: 29ms)
+ GET /api/gallery/file/557545736_24899137726382476_7268450432695019624_n.jpg.jpeg?2026-06-19T17%3A56%3A00.877Z 200 in 34ms (next.js: 11ms, application-code: 23ms)
+ GET /api/gallery/file/482246501_1006912201502340_9199611711365992489_n.jpg.jpeg?2026-06-19T17%3A56%3A01.996Z 200 in 92ms (next.js: 5ms, application-code: 87ms)
+ GET /api/gallery/file/481910040_1006912378168989_6959065018495282265_n.jpg.jpeg?2026-06-19T17%3A56%3A00.388Z 200 in 75ms (next.js: 11ms, application-code: 64ms)
+Generating import map
+No new imports found, skipping writing import map
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 3.1s (next.js: 21ms, application-code: 3.1s)
+ GET / 200 in 3.6s (next.js: 282ms, application-code: 3.4s)
+ GET / 200 in 3.2s (next.js: 65ms, application-code: 3.2s)
+ GET /api/users/me 200 in 132ms (next.js: 14ms, application-code: 118ms)
+Generating import map
+✓ Compiled in 457ms
+No new imports found, skipping writing import map
+ GET / 200 in 1830ms (next.js: 175ms, application-code: 1655ms)
+ GET / 200 in 2.5s (next.js: 10ms, application-code: 2.5s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 4.8s (next.js: 14ms, application-code: 4.7s)
+ GET / 200 in 4.7s (next.js: 327ms, application-code: 4.4s)
+ GET / 200 in 2.6s (next.js: 55ms, application-code: 2.5s)
+ GET /api/users/me 200 in 19ms (next.js: 12ms, application-code: 7ms)
+ GET / 200 in 904ms (next.js: 3ms, application-code: 901ms)
+ GET / 200 in 4.1s (next.js: 4ms, application-code: 4.1s)
+ GET / 200 in 2.3s (next.js: 3ms, application-code: 2.3s)
+ GET /api/users/me 200 in 19ms (next.js: 12ms, application-code: 7ms)
+✓ Compiled in 681ms
+Generating import map
+No new imports found, skipping writing import map
+ GET / 200 in 3.6s (next.js: 223ms, application-code: 3.4s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 3.6s (next.js: 17ms, application-code: 3.5s)
+Generating import map
+No new imports found, skipping writing import map
+ GET / 200 in 5.8s (next.js: 185ms, application-code: 5.6s)
+ GET / 200 in 8.3s (next.js: 4ms, application-code: 8.3s)
+ GET / 200 in 12.4s (next.js: 4ms, application-code: 12.4s)
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 84ms
+✓ Compiled in 168ms
+Generating import map
+No new imports found, skipping writing import map
+ GET / 200 in 6.1s (next.js: 192ms, application-code: 5.9s)
+ GET / 200 in 2.9s (next.js: 247ms, application-code: 2.7s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 4.1s (next.js: 10ms, application-code: 4.1s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 4.9s (next.js: 3ms, application-code: 4.9s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 4.9s (next.js: 3ms, application-code: 4.8s)
+ GET / 200 in 1698ms (next.js: 3ms, application-code: 1694ms)
+ GET / 200 in 2.1s (next.js: 3ms, application-code: 2.1s)
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 135ms
+ GET / 200 in 1838ms (next.js: 7ms, application-code: 1831ms)
+ GET / 200 in 2.2s (next.js: 209ms, application-code: 2.0s)
+✓ Compiled in 138ms
+ GET / 200 in 4.5s (next.js: 218ms, application-code: 4.3s)
+ GET / 200 in 3.9s (next.js: 4ms, application-code: 3.9s)
+ GET /api/users/me 200 in 34ms (next.js: 24ms, application-code: 10ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.6s (next.js: 12ms, application-code: 2.6s)
+ GET / 200 in 2.5s (next.js: 5ms, application-code: 2.5s)
+ GET / 200 in 2.5s (next.js: 3ms, application-code: 2.5s)
+ GET /api/users/me 200 in 19ms (next.js: 12ms, application-code: 7ms)
+ GET / 200 in 6.3s (next.js: 3ms, application-code: 6.3s)
+✓ Compiled in 654ms
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 164ms
+✓ Compiled in 146ms
+✓ Compiled in 136ms
+✓ Compiled in 164ms
+Generating import map
+No new imports found, skipping writing import map
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 5.5s (next.js: 16ms, application-code: 5.5s)
+ GET / 200 in 6.0s (next.js: 336ms, application-code: 5.7s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1629ms (next.js: 20ms, application-code: 1609ms)
+ GET / 200 in 2.5s (next.js: 222ms, application-code: 2.2s)
+ GET / 200 in 1297ms (next.js: 4ms, application-code: 1293ms)
+ GET / 200 in 1354ms (next.js: 4ms, application-code: 1351ms)
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 77ms
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1472ms (next.js: 28ms, application-code: 1444ms)
+ GET / 200 in 1880ms (next.js: 234ms, application-code: 1646ms)
+✓ Compiled in 82ms
+ GET / 200 in 1545ms (next.js: 247ms, application-code: 1298ms)
+ GET / 200 in 1117ms (next.js: 5ms, application-code: 1112ms)
+ GET /api/users/me 200 in 23ms (next.js: 16ms, application-code: 7ms)
+ GET / 200 in 807ms (next.js: 3ms, application-code: 803ms)
+ GET / 200 in 1977ms (next.js: 4ms, application-code: 1973ms)
+ GET /api/users/me 200 in 21ms (next.js: 14ms, application-code: 7ms)
+✓ Compiled in 657ms
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 196ms
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.1s (next.js: 30ms, application-code: 2.1s)
+ GET / 200 in 2.6s (next.js: 432ms, application-code: 2.2s)
+ GET / 200 in 2.9s (next.js: 218ms, application-code: 2.7s)
+Generating import map
+No new imports found, skipping writing import map
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.4s (next.js: 17ms, application-code: 2.3s)
+ GET / 200 in 2.8s (next.js: 210ms, application-code: 2.6s)
+ GET / 200 in 2.4s (next.js: 9ms, application-code: 2.4s)
+ GET / 200 in 1659ms (next.js: 3ms, application-code: 1656ms)
+ GET / 200 in 894ms (next.js: 2ms, application-code: 892ms)
+ GET / 200 in 731ms (next.js: 3ms, application-code: 727ms)
+ GET / 200 in 888ms (next.js: 3ms, application-code: 885ms)
+ GET / 200 in 739ms (next.js: 3ms, application-code: 736ms)
+ GET / 200 in 1115ms (next.js: 3ms, application-code: 1113ms)
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 639ms
+ GET / 200 in 2.5s (next.js: 429ms, application-code: 2.0s)
+ GET / 200 in 2.6s (next.js: 239ms, application-code: 2.4s)
+ GET / 200 in 2.9s (next.js: 5ms, application-code: 2.9s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1684ms (next.js: 15ms, application-code: 1669ms)
+✓ Compiled in 75ms
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 614ms
+ GET / 200 in 6.8s (next.js: 219ms, application-code: 6.6s)
+ GET / 200 in 6.8s (next.js: 322ms, application-code: 6.5s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 576ms (next.js: 9ms, application-code: 567ms)
+ GET /api/users/me 200 in 15ms (next.js: 9ms, application-code: 6ms)
+ GET /login 200 in 798ms (next.js: 728ms, application-code: 70ms)
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 69ms
+Generating import map
+No new imports found, skipping writing import map
+Generating import map
+ GET / 200 in 3.8s (next.js: 20ms, application-code: 3.7s)
+✓ Compiled in 97ms
+No new imports found, skipping writing import map
+ GET / 200 in 5.0s (next.js: 6ms, application-code: 5.0s)
+ GET / 200 in 5.0s (next.js: 195ms, application-code: 4.8s)
+ GET / 200 in 4.3s (next.js: 3ms, application-code: 4.3s)
+Generating import map
+✓ Compiled in 98ms
+No new imports found, skipping writing import map
+ GET / 200 in 5.8s (next.js: 6ms, application-code: 5.8s)
+Generating import map
+✓ Compiled in 110ms
+✓ Compiled in 80ms
+No new imports found, skipping writing import map
+Generating import map
+ GET / 200 in 6.5s (next.js: 246ms, application-code: 6.3s)
+ GET / 200 in 7.4s (next.js: 286ms, application-code: 7.1s)
+ GET / 200 in 8.9s (next.js: 266ms, application-code: 8.6s)
+ GET / 200 in 11.6s (next.js: 217ms, application-code: 11.3s)
+No new imports found, skipping writing import map
+ GET / 200 in 7.0s (next.js: 603ms, application-code: 6.4s)
+ GET / 200 in 6.3s (next.js: 24ms, application-code: 6.3s)
+ GET / 200 in 6.2s (next.js: 21ms, application-code: 6.2s)
+ GET / 200 in 6.4s (next.js: 544ms, application-code: 5.8s)
+ GET / 200 in 7.0s (next.js: 351ms, application-code: 6.6s)
+ GET / 200 in 6.3s (next.js: 95ms, application-code: 6.3s)
+ GET / 200 in 5.5s (next.js: 301ms, application-code: 5.2s)
+ GET / 200 in 5.6s (next.js: 526ms, application-code: 5.1s)
+ GET / 200 in 6.8s (next.js: 10ms, application-code: 6.8s)
+ GET / 200 in 6.6s (next.js: 14ms, application-code: 6.6s)
+ GET / 200 in 6.6s (next.js: 83ms, application-code: 6.6s)
+ GET / 200 in 6.6s (next.js: 347ms, application-code: 6.2s)
+ GET / 200 in 5.7s (next.js: 5ms, application-code: 5.7s)
+ GET / 200 in 6.1s (next.js: 272ms, application-code: 5.8s)
+ GET / 200 in 5.9s (next.js: 62ms, application-code: 5.8s)
+✓ Finished filesystem cache database compaction in 16.1s
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1308ms (next.js: 5ms, application-code: 1302ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1309ms (next.js: 68ms, application-code: 1241ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1749ms (next.js: 39ms, application-code: 1710ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.3s (next.js: 5ms, application-code: 2.3s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.2s (next.js: 119ms, application-code: 2.1s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 3.0s (next.js: 329ms, application-code: 2.7s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1839ms (next.js: 5ms, application-code: 1834ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1841ms (next.js: 42ms, application-code: 1798ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1412ms (next.js: 5ms, application-code: 1408ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1162ms (next.js: 16ms, application-code: 1146ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1094ms (next.js: 13ms, application-code: 1082ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1281ms (next.js: 72ms, application-code: 1208ms)
+✓ Compiled in 732ms
+✓ Compiled in 546ms
+Generating import map
+No new imports found, skipping writing import map
+✓ Compiled in 102ms
+✓ Compiled in 131ms
+ GET / 200 in 3.1s (next.js: 366ms, application-code: 2.7s)
+ GET / 200 in 3.1s (next.js: 205ms, application-code: 2.9s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1249ms (next.js: 9ms, application-code: 1240ms)
+Generating import map
+No new imports found, skipping writing import map
+Generating import map
+✓ Compiled in 0ms
+No new imports found, skipping writing import map
+ GET / 200 in 3.8s (next.js: 192ms, application-code: 3.7s)
+ GET / 200 in 3.5s (next.js: 32ms, application-code: 3.5s)
+ GET / 200 in 3.9s (next.js: 6ms, application-code: 3.9s)
+ GET / 200 in 8.2s (next.js: 25ms, application-code: 8.1s)
+ GET / 200 in 5.5s (next.js: 315ms, application-code: 5.2s)
+ GET / 200 in 5.5s (next.js: 227ms, application-code: 5.3s)
+ GET / 200 in 5.1s (next.js: 201ms, application-code: 4.9s)
+ GET / 200 in 5.1s (next.js: 136ms, application-code: 5.0s)
+ GET / 200 in 4.3s (next.js: 4ms, application-code: 4.3s)
+ GET / 200 in 5.1s (next.js: 274ms, application-code: 4.8s)
+✓ Compiled in 693ms
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1438ms (next.js: 6ms, application-code: 1432ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1439ms (next.js: 85ms, application-code: 1353ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 2.2s (next.js: 311ms, application-code: 1839ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1630ms (next.js: 41ms, application-code: 1589ms)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 1934ms (next.js: 6ms, application-code: 1928ms)
+ GET / 200 in 7.4s (next.js: 4ms, application-code: 7.4s)
+ GET / 200 in 1715ms (next.js: 3ms, application-code: 1712ms)
+ GET / 200 in 1266ms (next.js: 3ms, application-code: 1263ms)
+ GET /api/users/me 200 in 622ms (next.js: 433ms, application-code: 189ms)
+ GET / 200 in 1395ms (next.js: 4ms, application-code: 1391ms)
+Generating import map
+No new imports found, skipping writing import map
+[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[⣻] Pulling schema from database...
+[2K[1G[⣽] Pulling schema from database...
+[2K[1G[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[✓] Pulling schema from database...
+Generating import map
+No new imports found, skipping writing import map
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 8.7s (next.js: 11ms, application-code: 8.7s)
+ GET / 200 in 14.4s (next.js: 305ms, application-code: 14.1s)
+ GET / 200 in 13.9s (next.js: 3ms, application-code: 13.9s)
+✓ Compiled in 624ms
+ GET / 200 in 2.6s (next.js: 202ms, application-code: 2.4s)
+ GET / 200 in 2.6s (next.js: 306ms, application-code: 2.3s)
+ GET / 200 in 4.8s (next.js: 3ms, application-code: 4.8s)
+ GET / 200 in 4.7s (next.js: 3ms, application-code: 4.7s)
+ GET /classes/grade-10-english 200 in 12.0s (next.js: 6.6s, application-code: 5.4s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 8.6s (next.js: 14ms, application-code: 8.6s)
+ GET / 200 in 1971ms (next.js: 43ms, application-code: 1928ms)
+Generating import map
+No new imports found, skipping writing import map
+ GET / 200 in 2.8s (next.js: 504ms, application-code: 2.3s)
+ GET / 200 in 2.2s (next.js: 49ms, application-code: 2.1s)
+ GET / 200 in 2.9s (next.js: 387ms, application-code: 2.5s)
+ GET / 200 in 1516ms (next.js: 1349ms, application-code: 167ms)
+ GET / 200 in 2.2s (next.js: 15ms, application-code: 2.2s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 7.7s (next.js: 16ms, application-code: 7.7s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 6.5s (next.js: 224ms, application-code: 6.3s)
+ GET /admin/collections/gallery?depth=1&limit=10&sort=displayOrder 200 in 4.7s (next.js: 9ms, application-code: 4.7s)
+ GET / 500 in 7.0s (next.js: 94ms, application-code: 6.9s)
+ GET / 500 in 7.0s (next.js: 123ms, application-code: 6.9s)
+ GET /api/users/me 200 in 17ms (next.js: 11ms, application-code: 7ms)
+ GET /api/users/me 200 in 1023ms (next.js: 3ms, application-code: 1021ms)
+ GET / 200 in 2.1s (next.js: 3ms, application-code: 2.1s)
+ GET /admin/logout-inactivity?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 914ms (next.js: 21ms, application-code: 894ms)
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 262ms (next.js: 11ms, application-code: 251ms)
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 742ms (next.js: 4ms, application-code: 737ms)
+Generating import map
+No new imports found, skipping writing import map
+ GET / 200 in 2.1s (next.js: 6ms, application-code: 2.1s)
+ GET / 200 in 2.5s (next.js: 282ms, application-code: 2.2s)
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 1734ms (next.js: 10ms, application-code: 1724ms)
+ GET / 200 in 3.6s (next.js: 3ms, application-code: 3.6s)
+ GET /api/users/me 200 in 18ms (next.js: 10ms, application-code: 9ms)
+ GET /login 200 in 358ms (next.js: 195ms, application-code: 163ms)
+✓ Compiled in 605ms
+Generating import map
+No new imports found, skipping writing import map
+Generating import map
+✓ Compiled in 81ms
+No new imports found, skipping writing import map
+✓ Compiled in 361ms
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 2.9s (next.js: 14ms, application-code: 2.9s)
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 2.8s (next.js: 5ms, application-code: 2.8s)
+ GET / 200 in 14.7s (next.js: 209ms, application-code: 14.5s)
+ GET / 200 in 18.2s (next.js: 4ms, application-code: 18.1s)
+ GET / 200 in 22.4s (next.js: 3ms, application-code: 22.4s)
+ GET / 200 in 26.2s (next.js: 5ms, application-code: 26.2s)
+Generating import map
+✓ Compiled in 69ms
+No new imports found, skipping writing import map
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 1938ms (next.js: 19ms, application-code: 1919ms)
+✓ Compiled in 147ms
+ GET / 200 in 5.4s (next.js: 4ms, application-code: 5.4s)
+ GET / 200 in 2.6s (next.js: 3ms, application-code: 2.6s)
+✓ Compiled in 617ms
+Generating import map
+✓ Compiled in 486ms
+No new imports found, skipping writing import map
+✓ Compiled in 85ms
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 10.2s (next.js: 26ms, application-code: 10.1s)
+ GET /api/users/me 200 in 16ms (next.js: 10ms, application-code: 6ms)
+ GET /login 200 in 2.0s (next.js: 195ms, application-code: 1807ms)
+ GET /api/users/me 200 in 6ms (next.js: 2ms, application-code: 4ms)
+ GET / 200 in 31.4s (next.js: 290ms, application-code: 31.1s)
+ GET / 200 in 19.0s (next.js: 185ms, application-code: 18.8s)
+ GET /login 200 in 1553ms (next.js: 3ms, application-code: 1550ms)
+ GET /api/users/me 200 in 15ms (next.js: 9ms, application-code: 5ms)
+ GET /enroll 200 in 5.0s (next.js: 1077ms, application-code: 3.9s)
+ GET /enroll 200 in 5.3s (next.js: 2ms, application-code: 5.3s)
+ GET /api/users/me 200 in 34ms (next.js: 29ms, application-code: 5ms)
+ GET / 200 in 30.1s (next.js: 3ms, application-code: 30.1s)
+ GET /api/users/me 200 in 14ms (next.js: 9ms, application-code: 5ms)
+ GET /login 200 in 53ms (next.js: 3ms, application-code: 50ms)
+ GET /api/users/me 200 in 14ms (next.js: 9ms, application-code: 5ms)
+ GET /login 200 in 1653ms (next.js: 2ms, application-code: 1651ms)
+ GET /api/users/me 200 in 6ms (next.js: 2ms, application-code: 4ms)
+ GET /login 200 in 413ms (next.js: 3ms, application-code: 409ms)
+ GET /api/users/me 200 in 10ms (next.js: 3ms, application-code: 7ms)
+ GET /enroll 200 in 1436ms (next.js: 4ms, application-code: 1433ms)
+ GET /enroll 200 in 1393ms (next.js: 2ms, application-code: 1391ms)
+ GET /api/users/me 200 in 13ms (next.js: 8ms, application-code: 5ms)
+ GET / 200 in 4.0s (next.js: 3ms, application-code: 4.0s)
+ GET / 200 in 1480ms (next.js: 4ms, application-code: 1477ms)
+ GET /api/users/me 200 in 22ms (next.js: 14ms, application-code: 8ms)
+✓ Compiled in 1267ms
+Generating import map
+No new imports found, skipping writing import map
+ GET / 200 in 14.8s (next.js: 535ms, application-code: 14.3s)
+ GET / 200 in 14.1s (next.js: 7ms, application-code: 14.1s)
+ GET / 200 in 2.0s (next.js: 3ms, application-code: 2.0s)
+ GET /admin/login?redirect=%2Fadmin%2Fcollections%2Fgallery 200 in 968ms (next.js: 9ms, application-code: 959ms)
+ GET /api/media/file/557545736_24899137726382476_7268450432695019624_n.jpg.jpeg?2026-06-19T17%3A10%3A58.256Z 200 in 72ms (next.js: 13ms, application-code: 59ms)
+ GET /api/media/file/494520685_9840835525972609_9062684296404373762_n.jpg.jpeg?2026-06-19T17%3A45%3A54.094Z 200 in 77ms (next.js: 33ms, application-code: 43ms)
+ GET /api/gallery/file/556564492_24899137913049124_6568491221571061163_n.jpg.jpeg?2026-06-19T17%3A56%3A03.772Z 200 in 79ms (next.js: 37ms, application-code: 42ms)
+ GET /api/gallery/file/uuuu.jpg.jpeg?2026-06-19T17%3A56%3A03.277Z 200 in 41ms (next.js: 5ms, application-code: 36ms)
+ GET /api/media/file/481776822_1006912374835656_5158983911564823649_n.jpg.jpeg?2026-06-19T17%3A45%3A33.276Z 200 in 226ms (next.js: 28ms, application-code: 198ms)
+ GET /api/gallery/file/481776822_1006912374835656_5158983911564823649_n.jpg.jpeg?2026-06-19T17%3A56%3A02.790Z 200 in 227ms (next.js: 8ms, application-code: 219ms)
+ GET /api/gallery/file/494520685_9840835525972609_9062684296404373762_n.jpg.jpeg?2026-06-19T17%3A56%3A01.319Z 200 in 26ms (next.js: 2ms, application-code: 23ms)
+ GET /api/gallery/file/557545736_24899137726382476_7268450432695019624_n.jpg.jpeg?2026-06-19T17%3A56%3A00.877Z 200 in 26ms (next.js: 4ms, application-code: 22ms)
+ GET /api/gallery/file/482246501_1006912201502340_9199611711365992489_n.jpg.jpeg?2026-06-19T17%3A56%3A01.996Z 200 in 129ms (next.js: 4ms, application-code: 126ms)
+ GET /api/gallery/file/481910040_1006912378168989_6959065018495282265_n.jpg.jpeg?2026-06-19T17%3A56%3A00.388Z 200 in 163ms (next.js: 3ms, application-code: 161ms)
