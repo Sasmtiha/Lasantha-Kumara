@@ -40,6 +40,15 @@ import { HeroSlideshow } from './HeroSlideshow'
 type LayoutBlock = Page['layout'][number]
 type Locale = 'en' | 'si'
 
+const classPlaceholders = [
+  '/class-placeholder-1.png',
+  '/class-placeholder-2.png',
+  '/class-placeholder-3.png',
+  '/class-placeholder-4.png',
+  '/class-placeholder-5.png',
+  '/class-placeholder-6.png',
+]
+
 const findBlock = <T extends LayoutBlock['blockType']>(
   blocks: Page['layout'],
   type: T,
@@ -114,6 +123,8 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       {process ? <Process block={process} locale={locale} /> : null}
       {featuredProgram ? <FeaturedProgram block={featuredProgram} locale={locale} /> : null}
 
+      {portal ? <Portal block={portal} locale={locale} /> : null}
+
       <section className="premium-section border-y border-black/5 bg-[#f4f4f2]" id="classes">
         <div className="premium-container">
           <SectionHeading
@@ -129,7 +140,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
             {classes.docs.map((course, index) => (
               <Reveal delay={index * 70} key={course.id}>
                 <article className="premium-card group flex min-h-[25rem] flex-col overflow-hidden">
-                  <div className="relative h-44 overflow-hidden bg-[#e8e9ed]">
+                  <div className="relative h-44 lg:h-55 overflow-hidden bg-[#e8e9ed]">
                     {course.featuredImage && typeof course.featuredImage === 'object' ? (
                       <Media
                         fill
@@ -137,9 +148,11 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                         resource={course.featuredImage}
                       />
                     ) : (
-                      <div className="absolute inset-0 grid place-items-center">
-                        <GraduationCap className="size-12 text-[#034EA2]/25" />
-                      </div>
+                      <img
+                        alt={course.titleEn}
+                        className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-105"
+                        src={classPlaceholders[index % classPlaceholders.length]}
+                      />
                     )}
                     <span className="absolute left-0 top-0 bg-[#ed1d26] px-4 py-2 text-xs font-medium uppercase tracking-wider text-white">
                       {course.category.replaceAll('_', ' ')}
@@ -178,8 +191,6 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
           </div>
         </div>
       </section>
-
-      {portal ? <Portal block={portal} locale={locale} /> : null}
 
       <section className="premium-section bg-white" id="schedule">
         <div className="premium-container">
@@ -493,24 +504,23 @@ function FeaturedProgram({
             {localized(locale, block.descriptionEn, block.descriptionSi)}
           </p>
         </div>
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_.8fr_1fr] lg:items-center">
+        <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.1fr_1fr] lg:items-center">
           <div className="space-y-6">
             {features.slice(0, 2).map((feature, index) => (
               <FeaturePoint feature={feature} index={index} key={feature.id} locale={locale} />
             ))}
           </div>
           <Reveal>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-md border-[10px] border-[#034EA2] bg-[#e8e9ed] shadow-[0_24px_70px_rgba(10,11,15,.14)]">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-md bg-[#e8e9ed] shadow-[0_24px_70px_rgba(10,11,15,.14)]">
               {block.image && typeof block.image === 'object' ? (
                 <Media fill imgClassName="object-cover" resource={block.image} />
               ) : (
-                <div className="absolute inset-0 grid place-items-center">
-                  <span className="grid size-32 place-items-center rounded-md bg-white text-[#034EA2] shadow-lg">
-                    <BookOpen className="size-16" />
-                  </span>
-                </div>
+                <img
+                  alt="Student"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src="/student-middle.png"
+                />
               )}
-              <span className="absolute right-0 top-0 size-12 bg-[#ed1d26]" />
             </div>
           </Reveal>
           <div className="space-y-6">
@@ -684,9 +694,9 @@ function Portal({
             return (
               <Reveal delay={index * 70} key={feature.id}>
                 <article className="group text-center">
-                  <div className="relative mx-auto grid aspect-square max-w-40 place-items-center rounded-md border border-white/15 bg-white/[.06] shadow-[0_14px_35px_rgba(0,0,0,.16)] transition group-hover:-translate-y-1 group-hover:border-[#034EA2]">
+                  <div className="relative mx-auto grid aspect-square max-w-40 place-items-center rounded-md border border-white/15 bg-white/[.06] shadow-[0_14px_35px_rgba(0,0,0,.16)] transition group-hover:-translate-y-1 group-hover:border-white">
                     <Icon className="size-10 text-[#75aff0]" />
-                    <span className="absolute right-2 top-4 size-3 rounded-full bg-[#ed1c24]" />
+                    <span className="absolute right-2 top-4 size-3 rounded-full bg-white" />
                   </div>
                   <h3 className="mt-4 font-medium text-white">
                     {localized(locale, feature.titleEn, feature.titleSi)}

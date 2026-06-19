@@ -1938,3 +1938,1190 @@ To fix this, make sure your Cache-Control headers allow revalidation of chunks a
     at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
     at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6945:102)
 [browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_06rn_ya._.js:2477:13)
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/#home" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <SmoothAnchorScroll>
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={null}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="3gaos9"
+                                          >
+                                          ...
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="7sefj"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="52wihu"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="j1rhte"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        ...
+                                          <div className="gallery-co...">
+                                            <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                              <button
+                                                aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                                className="gallery-tile group gallery-tile-1"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="gjuo6g"
+                                              >
+                                              <button
+                                                aria-label="View Uuuu.Jpg"
+                                                className="gallery-tile group gallery-tile-2"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="x3mwip"
+                                              >
+                                              <button
+                                                aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                                className="gallery-tile group gallery-tile-3"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="j8ss9k"
+                                              >
+                                              <button
+                                                aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                                className="gallery-tile group gallery-tile-4"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="0zosuc"
+                                              >
+                                              <button
+                                                aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                                className="gallery-tile group gallery-tile-5"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="dge9pq"
+                                              >
+                                              <button
+                                                aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                                className="gallery-tile group gallery-tile-6"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="3s58eo"
+                                              >
+                                              <button
+                                                aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                                className="gallery-tile group gallery-tile-7"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="osj23m"
+                                              >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="wxxbh"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="o74bt"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="869mnv"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="sgkq8m"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="premium-button-primary mt-6 w-full disabled:opacity-60"
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="y3ertb"
+                                                >
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/#home" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <SmoothAnchorScroll>
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={null}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="lzuswa"
+                                          >
+                                          ...
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="sxuvil"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="0xuuq6"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="uyi7c"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        ...
+                                          <div className="gallery-co...">
+                                            <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                              <button
+                                                aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                                className="gallery-tile group gallery-tile-1"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="3cb5dp"
+                                              >
+                                              <button
+                                                aria-label="View Uuuu.Jpg"
+                                                className="gallery-tile group gallery-tile-2"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="a5162"
+                                              >
+                                              <button
+                                                aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                                className="gallery-tile group gallery-tile-3"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="qxrkrw"
+                                              >
+                                              <button
+                                                aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                                className="gallery-tile group gallery-tile-4"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="ezl46"
+                                              >
+                                              <button
+                                                aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                                className="gallery-tile group gallery-tile-5"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="z2ybwe"
+                                              >
+                                              <button
+                                                aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                                className="gallery-tile group gallery-tile-6"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="ylc0oh"
+                                              >
+                                              <button
+                                                aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                                className="gallery-tile group gallery-tile-7"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="4a3s89"
+                                              >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="1s2w9"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="4kz1p9"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="waxiv8"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="zp3l2b"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="premium-button-primary mt-6 w-full disabled:opacity-60"
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="jz5dta"
+                                                >
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] ./src/components/institute/PremiumHome.tsx:149:25
+Expected '</', got 'ident'
+  147 |                       />
+  148 |                       <img
+> 149 |                         alt={course.titleEn}
+      |                         ^^^
+  150 |                         className="absolute inset-0 h-full w-full object-cover transition...
+  151 |                         src={classPlaceholders[index % classPlaceholders.length]}
+  152 |                       />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] ./src/components/institute/PremiumHome.tsx
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/src/components/institute/PremiumHome.tsx [app-rsc] (ecmascript)
+
+Caused by:
+- CJS module can't be async.
+
+Debug info:
+- An error occurred while generating the chunk item [project]/src/components/institute/PremiumHome.tsx [app-rsc] (ecmascript)
+- Execution of <EcmascriptModuleAsset as EcmascriptChunkPlaceable>::chunk_item_content failed
+- Execution of EcmascriptChunkItemContent::new failed
+- CJS module can't be async.
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] ./src/components/institute/PremiumHome.tsx:149:25
+Expected '</', got 'ident'
+  147 |                       />
+  148 |                       <img
+> 149 |                         alt={course.titleEn}
+      |                         ^^^
+  150 |                         className="absolute inset-0 h-full w-full object-cover transition...
+  151 |                         src={classPlaceholders[index % classPlaceholders.length]}
+  152 |                       />
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] ./src/components/institute/PremiumHome.tsx
+Code generation for chunk item errored
+An error occurred while generating the chunk item [project]/src/components/institute/PremiumHome.tsx [app-rsc] (ecmascript)
+
+Caused by:
+- CJS module can't be async.
+
+Debug info:
+- An error occurred while generating the chunk item [project]/src/components/institute/PremiumHome.tsx [app-rsc] (ecmascript)
+- Execution of <EcmascriptModuleAsset as EcmascriptChunkPlaceable>::chunk_item_content failed
+- Execution of EcmascriptChunkItemContent::new failed
+- CJS module can't be async.
+
+Import trace:
+  Server Component:
+    ./src/components/institute/PremiumHome.tsx
+    ./src/app/(frontend)/[slug]/page.tsx
+    ./src/app/(frontend)/page.tsx 
+    at handleErrors (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+    at processMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13914:21)
+    at WebSocket.handleMessage (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13358:52) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_client_02y~h.v._.js:13851:21)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/#home" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <SmoothAnchorScroll>
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={null}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="apujy9"
+                                          >
+                                          ...
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="o2j9y"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="a7d9ob"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="t7nnu6"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        ...
+                                          <div className="gallery-co...">
+                                            <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                              <button
+                                                aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                                className="gallery-tile group gallery-tile-1"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="txtb0p"
+                                              >
+                                              <button
+                                                aria-label="View Uuuu.Jpg"
+                                                className="gallery-tile group gallery-tile-2"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="axum9t"
+                                              >
+                                              <button
+                                                aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                                className="gallery-tile group gallery-tile-3"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="egcac"
+                                              >
+                                              <button
+                                                aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                                className="gallery-tile group gallery-tile-4"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="rymw1c"
+                                              >
+                                              <button
+                                                aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                                className="gallery-tile group gallery-tile-5"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="im13i"
+                                              >
+                                              <button
+                                                aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                                className="gallery-tile group gallery-tile-6"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="pc9qa"
+                                              >
+                                              <button
+                                                aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                                className="gallery-tile group gallery-tile-7"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="ck5n7d"
+                                              >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="o5v0rb"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="emuk3e"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="qush4"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="vbbmxb"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="premium-button-primary mt-6 w-full disabled:opacity-60"
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="4zxrv"
+                                                >
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/#home" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <SmoothAnchorScroll>
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={null}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="n2nzy9"
+                                          >
+                                          ...
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="723gek"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="pxitbc"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="gtmweo"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        ...
+                                          <div className="gallery-co...">
+                                            <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                              <button
+                                                aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                                className="gallery-tile group gallery-tile-1"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="vhuudn"
+                                              >
+                                              <button
+                                                aria-label="View Uuuu.Jpg"
+                                                className="gallery-tile group gallery-tile-2"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="klhna"
+                                              >
+                                              <button
+                                                aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                                className="gallery-tile group gallery-tile-3"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="5c63q"
+                                              >
+                                              <button
+                                                aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                                className="gallery-tile group gallery-tile-4"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="nsyc3"
+                                              >
+                                              <button
+                                                aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                                className="gallery-tile group gallery-tile-5"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="6s3pr5"
+                                              >
+                                              <button
+                                                aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                                className="gallery-tile group gallery-tile-6"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="7r527p"
+                                              >
+                                              <button
+                                                aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                                className="gallery-tile group gallery-tile-7"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="c8r28a"
+                                              >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="e989ba"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="9vvk1v"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="h8kul6"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="uwefq9"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="premium-button-primary mt-6 w-full disabled:opacity-60"
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="x3twnu"
+                                                >
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RenderFromTemplateContext>
+      <ScrollAndMaybeFocusHandler cacheNode={{rsc:{...}, ...}}>
+        <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+          <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+            <LoadingBoundary name="/" loading={null}>
+              <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+                <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} ...>
+                  <RedirectBoundary>
+                    <RedirectErrorBoundary router={{...}}>
+                      <InnerLayoutRouter url="/#classes" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} ...>
+                        <SegmentViewNode type="layout" pagePath="(frontend)...">
+                          <SegmentTrieNode>
+                          <link>
+                          <script>
+                          <script>
+                          <script>
+                          <RootLayout>
+                            <html className="source_san..." lang="en" suppressHydrationWarning={true}>
+                              <head>
+                              <body
+-                               cz-shortcut-listen="true"
+                              >
+                                ...
+                                  <SmoothAnchorScroll>
+                                  <AdminBar>
+                                  ...
+                                    <div className="premium-co...">
+                                      <LinkComponent>
+                                      <HeaderNav data={{id:1, ...}} transparent={true} user={null}>
+                                        <nav>
+                                        <div className="hidden ite...">
+                                          <button
+                                            aria-label="Switch to Sinhala"
+                                            className="relative grid grid-cols-2 rounded-full border p-1 text-xs font-..."
+                                            onClick={function toggleLanguage}
+                                            type="button"
+-                                           fdprocessedid="u1y0tr"
+                                          >
+                                          ...
+                                        ...
+                                  ...
+                                    <PremiumHome>
+                                      <main className="premium-ho...">
+                                        <Hero>
+                                          <section className="premium-he..." id="home">
+                                            <div className="premium-he...">
+                                              <HeroSlideshow duration={7} fallback={{id:1,alt:null, ...}} slides={[...]}>
+                                                <div>
+                                                <div aria-label="Choose her..." className="absolute r..." role="tablist">
+                                                  <button
+                                                    aria-label="Show background image 1"
+                                                    aria-selected={true}
+                                                    className="h-2.5 rounded-full border border-white/70 shadow-sm tra..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="08zuyi"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 2"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="l58g5"
+                                                  >
+                                                  <button
+                                                    aria-label="Show background image 3"
+                                                    aria-selected={false}
+                                                    className="h-2.5 rounded-full border border-white/70 bg-white/35 s..."
+                                                    onClick={function onClick}
+                                                    role="tab"
+                                                    type="button"
+-                                                   fdprocessedid="byaqm"
+                                                  >
+                                            ...
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        <section>
+                                        ...
+                                          <div className="gallery-co...">
+                                            <div className="gallery-cl..." data-count={7} data-variant="forward">
+                                              <button
+                                                aria-label="View 556564492 24899137913049124 6568491221571061163 N.Jpg"
+                                                className="gallery-tile group gallery-tile-1"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="49sr85"
+                                              >
+                                              <button
+                                                aria-label="View Uuuu.Jpg"
+                                                className="gallery-tile group gallery-tile-2"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="6cz1ap"
+                                              >
+                                              <button
+                                                aria-label="View 481776822 1006912374835656 5158983911564823649 N.Jpg"
+                                                className="gallery-tile group gallery-tile-3"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="9tv29p"
+                                              >
+                                              <button
+                                                aria-label="View 482246501 1006912201502340 9199611711365992489 N.Jpg"
+                                                className="gallery-tile group gallery-tile-4"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="lu6p8"
+                                              >
+                                              <button
+                                                aria-label="View 494520685 9840835525972609 9062684296404373762 N.Jpg"
+                                                className="gallery-tile group gallery-tile-5"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="y97xer"
+                                              >
+                                              <button
+                                                aria-label="View 557545736 24899137726382476 7268450432695019624 N.Jpg"
+                                                className="gallery-tile group gallery-tile-6"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="roq8w"
+                                              >
+                                              <button
+                                                aria-label="View 481910040 1006912378168989 6959065018495282265 N.Jpg"
+                                                className="gallery-tile group gallery-tile-7"
+                                                onClick={function onClick}
+                                                type="button"
+-                                               fdprocessedid="7h963"
+                                              >
+                                        <section>
+                                        ...
+                                          <div className="reveal p-6..." ref={{current:null}} style={{...}}>
+                                            <ContactForm classes={[...]}>
+                                              <form onSubmit={function submit}>
+                                                <input>
+                                                <div className="grid gap-5...">
+                                                  <FormField label="Full name" name="fullName" required={true}>
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="fullName"
+                                                        required={true}
+                                                        type="text"
+-                                                       fdprocessedid="mh45"
+                                                      >
+                                                  <FormField label="Email" name="email" required={true} type="email">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="email"
+                                                        required={true}
+                                                        type="email"
+-                                                       fdprocessedid="6cgtnt"
+                                                      >
+                                                  <FormField label="Phone" name="phone" required={true} type="tel">
+                                                    <label className="block text...">
+                                                      <input
+                                                        className="form-control mt-2"
+                                                        name="phone"
+                                                        required={true}
+                                                        type="tel"
+-                                                       fdprocessedid="v92138"
+                                                      >
+                                                <label className="mt-5 block...">
+                                                  <select
+                                                    className="form-control mt-2"
+                                                    name="preferredClass"
+-                                                   fdprocessedid="00ju4e"
+                                                  >
+                                                <label>
+                                                <button
+                                                  className="premium-button-primary mt-6 w-full disabled:opacity-60"
+                                                  disabled={false}
+                                                  type="submit"
+-                                                 fdprocessedid="4juj5"
+                                                >
+                                                ...
+                                  ...
+                      ...
+          ...
+ 
+    at <unknown> (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:74)
+    at emitPendingHydrationWarnings (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3438:13)
+    at completeWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:6885:102)
+    at runWithFiberInDEV (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:965:131)
+    at completeUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9622:23)
+    at performUnitOfWork (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9551:58)
+    at renderRootConcurrent (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9534:71)
+    at performWorkOnRoot (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_0pxfbo6._.js:2647:64) (file://D:/Github/Payload CMS/iem/.next/dev/static/chunks/035w_next_dist_compiled_react-dom_0ali_5~._.js:3439:25)
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
+⨯ TypeError: Cannot read properties of undefined (reading 'id')
+    at ignore-listed frames {
+  digest: '126240744'
+}
