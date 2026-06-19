@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const course = await getClass((await params).slug)
   if (!course) return {}
   return {
-    title: `${course.titleEn} | Lasantha Kumara English Classes`,
+    title: `${course.titleEn} | IESM English Classes`,
     description: course.shortDescriptionEn,
     alternates: { canonical: `/classes/${course.slug}` },
     openGraph: { title: course.titleEn, description: course.shortDescriptionEn },

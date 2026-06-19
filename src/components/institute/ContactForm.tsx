@@ -24,14 +24,13 @@ export function ContactForm({ classes = [] }: { classes?: Class[] }) {
   }
 
   return (
-    <form className="rounded-3xl border bg-white p-6 shadow-lg sm:p-8" onSubmit={submit}>
+    <form onSubmit={submit}>
+      <input name="subject" type="hidden" value="Website enquiry" />
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField label="First name" name="firstName" required />
-        <FormField label="Last name" name="lastName" required />
+        <FormField label="Full name" name="fullName" required />
         <FormField label="Email" name="email" required type="email" />
         <FormField label="Phone" name="phone" required type="tel" />
       </div>
-      <div className="mt-5"><FormField label="Subject" name="subject" required /></div>
       {classes.length ? (
         <label className="mt-5 block text-sm font-semibold text-[#111827]">
           Preferred class
@@ -49,8 +48,8 @@ export function ContactForm({ classes = [] }: { classes?: Class[] }) {
         Message
         <textarea className="form-control mt-2 min-h-32" id="contact-message" name="message" required />
       </label>
-      <button className="mt-6 w-full rounded-xl bg-navy px-5 py-3 font-bold text-white disabled:opacity-60" disabled={state === 'sending'} type="submit">
-        {state === 'sending' ? 'Sending…' : 'Send message'}
+      <button className="mt-6 w-full rounded-full bg-[#ffe600] px-5 py-3.5 font-black text-[#111827] shadow-sm transition hover:bg-[#f2c200] disabled:opacity-60" disabled={state === 'sending'} type="submit">
+        {state === 'sending' ? 'Sending…' : 'Send'}
       </button>
       <p aria-live="polite" className="mt-4 text-sm">
         {state === 'success' ? 'Thank you. We will contact you shortly.' : null}

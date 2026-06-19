@@ -7,7 +7,7 @@ import { AuthSplitLayout } from '@/components/institute/AuthSplitLayout'
 import { getMeUser } from '@/utilities/getMeUser'
 
 export const metadata: Metadata = {
-  title: 'Login | IEMlk',
+  title: 'Login | IESM English Classes',
   description: 'Sign in to your English class student portal.',
 }
 
@@ -23,7 +23,7 @@ export default async function LoginPage() {
   return (
     <AuthSplitLayout
       description="Sign in to your account and continue your learning journey."
-      title="Welcome to IEMlk"
+      title="Welcome to IESM"
     >
       <Suspense>
         <LoginForm />

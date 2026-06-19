@@ -134,6 +134,15 @@
   --bg-soft: #f4f1e8;
   --bg-dark: #182330;
   --border-soft: #e5e7eb;
+  --iesm-blue: #0057a8;
+  --iesm-blue-dark: #003f7d;
+  --iesm-blue-soft: #eaf3ff;
+  --iesm-red: #ed1c24;
+  --iesm-red-dark: #b9151b;
+  --iesm-red-soft: #ffecee;
+  --iesm-yellow: #ffe600;
+  --iesm-yellow-dark: #f2c200;
+  --iesm-yellow-soft: #fff9cc;
 }
 
 [data-theme='dark'] {
@@ -265,26 +274,26 @@ html[data-theme='light'] {
     @apply py-20 sm:py-24 lg:py-32;
   }
   .premium-card {
-    @apply rounded-[1.5rem] border border-[#e5e7eb] bg-white shadow-[0_16px_50px_rgba(15,23,42,.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(15,23,42,.11)];
+    @apply rounded-[1.25rem] border border-[#e5e7eb] bg-white shadow-[0_12px_36px_rgba(0,63,125,.055)] transition duration-300 hover:-translate-y-1 hover:border-[#0057a8]/35 hover:shadow-[0_20px_50px_rgba(0,63,125,.11)];
   }
   .premium-kicker {
     @apply flex items-center gap-2 text-xs font-bold uppercase tracking-[.2em];
   }
   .premium-kicker::before {
     content: '';
-    @apply block size-2 rounded-full bg-[#36b44a];
+    @apply block size-2 rounded-full bg-[#ed1c24];
   }
   .premium-button-primary,
   .premium-button-secondary,
   .premium-button-light,
   .premium-button-green {
-    @apply items-center justify-center gap-2 rounded-full px-6 py-3.5 text-center text-sm font-bold transition duration-300 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3.5 text-center text-sm font-bold leading-none transition duration-300 hover:-translate-y-0.5;
   }
   .premium-button-primary {
-    @apply bg-[#ffc107] text-[#111827] shadow-[0_12px_30px_rgba(255,193,7,.2)] hover:bg-[#eeb400] hover:shadow-[0_16px_38px_rgba(255,193,7,.3)];
+    @apply bg-[#ffe600] text-[#111827] shadow-[0_10px_26px_rgba(242,194,0,.22)] hover:bg-[#f2c200] hover:shadow-[0_14px_32px_rgba(242,194,0,.32)];
   }
   .premium-button-secondary {
-    @apply border border-[#111827]/15 bg-white text-[#111827] hover:border-[#111827] hover:bg-[#111827] hover:text-white;
+    @apply border border-[#0057a8]/25 bg-white text-[#0057a8] hover:border-[#0057a8] hover:bg-[#0057a8] hover:text-white;
   }
   .premium-button-light {
     @apply border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white hover:text-[#111827];

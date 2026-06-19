@@ -33,6 +33,7 @@ export const SiteSettings: GlobalConfig = {
               type: 'row',
               fields: [
                 { name: 'phone', type: 'text', required: true },
+                { name: 'secondaryPhone', type: 'text', label: 'Secondary phone' },
                 { name: 'whatsappNumber', type: 'text' },
                 { name: 'email', type: 'email', required: true },
               ],

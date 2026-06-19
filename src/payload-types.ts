@@ -2750,6 +2750,7 @@ export interface SiteSetting {
   missionEn?: string | null;
   missionSi?: string | null;
   phone: string;
+  secondaryPhone?: string | null;
   whatsappNumber?: string | null;
   email: string;
   addressEn?: string | null;
@@ -2839,6 +2840,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   missionEn?: T;
   missionSi?: T;
   phone?: T;
+  secondaryPhone?: T;
   whatsappNumber?: T;
   email?: T;
   addressEn?: T;

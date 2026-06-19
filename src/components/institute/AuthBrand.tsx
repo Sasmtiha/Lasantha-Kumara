@@ -10,7 +10,7 @@ export function AuthBrand() {
         IE
       </span>
       <span className="text-xl font-bold tracking-tight">
-        IEM<span className="text-[#c58a00]">lk</span>
+        IESM<span className="text-[#ed1c24]"> English</span>
       </span>
     </Link>
   )

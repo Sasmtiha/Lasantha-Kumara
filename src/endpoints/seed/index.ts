@@ -53,7 +53,7 @@ const richText = (text: string, heading?: 'h1' | 'h2' | 'h3'): NonNullable<Class
 })
 
 export async function seed({ payload, req }: { payload: Payload; req: PayloadRequest }): Promise<void> {
-  payload.logger.info('Seeding Lasantha Kumara English Classes…')
+  payload.logger.info('Seeding IESM English Classes…')
 
   // Keep cleanup sequential because PostgreSQL relationships require child
   // collections (for example schedules) to be deleted before their parents.
@@ -81,7 +81,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       password: 'Admin123!',
       firstName: 'Institute',
       lastName: 'Admin',
-      phone: '+94 77 123 4567',
+      phone: '071 449 2540',
       role: 'super_admin',
       status: 'active',
     },
@@ -94,7 +94,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       password: 'Teacher123!',
       firstName: 'Lasantha',
       lastName: 'Kumara',
-      phone: '+94 77 123 4567',
+      phone: '071 449 2540',
       role: 'teacher',
       status: 'active',
     },
@@ -107,7 +107,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       fullName: 'Lasantha Kumara',
       bio: richText('An experienced English educator dedicated to helping Sri Lankan students speak confidently, write clearly, and achieve excellent examination results.'),
       qualifications: 'Certified English Teacher · 15+ years of teaching experience · Best Teacher Award 2022',
-      phone: '+94 77 123 4567',
+      phone: '071 449 2540',
       email: 'lasantha@lasanthaenglish.lk',
       isActive: true,
     },
@@ -156,22 +156,15 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
 
   const classBySlug = Object.fromEntries(classes.map((item) => [item.slug, item]))
   const scheduleDefinitions = [
-    ['Monday', '4:00 PM', '6:00 PM', 'ol-english'],
-    ['Monday', '6:30 PM', '8:30 PM', 'spoken-english'],
-    ['Tuesday', '3:00 PM', '5:00 PM', 'grade-6-9-english'],
-    ['Tuesday', '5:30 PM', '7:30 PM', 'grammar-writing'],
-    ['Wednesday', '4:00 PM', '6:00 PM', 'al-english'],
-    ['Wednesday', '6:30 PM', '8:30 PM', 'business-english'],
-    ['Thursday', '3:00 PM', '5:00 PM', 'ol-english'],
-    ['Thursday', '5:30 PM', '7:30 PM', 'spoken-english'],
-    ['Friday', '4:00 PM', '6:00 PM', 'grade-6-9-english'],
-    ['Friday', '6:30 PM', '7:30 PM', 'grammar-writing'],
-    ['Saturday', '8:00 AM', '10:00 AM', 'al-english'],
-    ['Saturday', '10:30 AM', '12:30 PM', 'ol-english'],
-    ['Saturday', '2:00 PM', '4:00 PM', 'business-english'],
+    ['Saturday', '1:00 PM', '3:00 PM', 'grade-6-9-english', 'Grade 6 English'],
+    ['Saturday', '3:00 PM', '5:00 PM', 'grade-6-9-english', 'Grade 7 English'],
+    ['Sunday', '3:00 PM', '5:00 PM', 'grade-6-9-english', 'Grade 8 English'],
+    ['Sunday', '1:00 PM', '3:00 PM', 'grade-6-9-english', 'Grade 9 English'],
+    ['Saturday', '10:00 AM', '1:00 PM', 'ol-english', 'Grade 10 English'],
+    ['Saturday', '7:00 AM', '10:00 AM', 'ol-english', 'Grade 11 English'],
   ] as const
   const schedules = []
-  for (const [dayOfWeek, startTime, endTime, slug] of scheduleDefinitions) {
+  for (const [dayOfWeek, startTime, endTime, slug, batchLabel] of scheduleDefinitions) {
     const course = classBySlug[slug]
     schedules.push(
       await payload.create({
@@ -180,7 +173,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         data: {
           class: course.id,
           dayOfWeek,
-          batchLabel: `${course.titleEn} – ${dayOfWeek}`,
+          batchLabel,
           startTime,
           endTime,
           location: '123 Education Lane, Colombo 05',
@@ -243,10 +236,10 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       layout: [
         {
           blockType: 'instituteHero',
-          badgeEn: 'Trusted by 500+ Students & Parents',
           badgeSi: 'සිසුන් සහ දෙමාපියන් 500+ කගේ විශ්වාසය',
-          headingEn: 'Master English with Lasantha Kumara',
-          headingSi: 'ලසන්ත කුමාර සමඟ ඉංග්‍රීසි ප්‍රගුණ කරන්න',
+          badgeEn: 'IESM English Academy · Trusted by 500+ Students',
+          headingEn: 'Master English with Confidence',
+          headingSi: 'ඉංග්‍රීසි විශ්වාසයෙන් ඉගෙනගන්න',
           subheadingEn: 'Transform your English skills with expert guidance, practical lessons, and a clear path to confidence and exam success.',
           subheadingSi: 'ප්‍රවීණ මඟපෙන්වීම සහ ප්‍රායෝගික පාඩම් සමඟ ඔබේ ඉංග්‍රීසි කුසලතා වර්ධනය කරගන්න.',
           primaryButtonLabel: 'Enroll Now',
@@ -291,6 +284,24 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
             { titleEn: 'Better Results', titleSi: 'වඩා හොඳ ප්‍රතිඵල', descriptionEn: 'The goal is confident communication and stronger academic performance.' },
           ],
         },
+        {
+          blockType: 'featuredProgram',
+          eyebrowEn: 'IESM Special',
+          eyebrowSi: 'IESM විශේෂ',
+          headingEn: 'The Complete English Class',
+          headingSi: 'සම්පූර්ණ ඉංග්‍රීසි පන්තිය',
+          descriptionEn: 'One balanced program that strengthens communication, grammar, writing and exam confidence.',
+          descriptionSi: 'සන්නිවේදනය, ව්‍යාකරණ, ලිවීම සහ විභාග විශ්වාසය එකවර වර්ධනය කරන සම්පූර්ණ වැඩසටහනක්.',
+          buttonLabel: 'Join Now',
+          buttonUrl: '/enroll',
+          features: [
+            { titleEn: 'Spoken Practice', titleSi: 'කථන පුහුණුව', descriptionEn: 'Build confidence for daily conversations, interviews and presentations.', icon: 'spoken' },
+            { titleEn: 'Grammar Mastery', titleSi: 'ව්‍යාකරණ ප්‍රවීණතාව', descriptionEn: 'Learn sentence structure, tense usage and writing rules clearly.', icon: 'grammar' },
+            { titleEn: 'Exam Preparation', titleSi: 'විභාග සූදානම', descriptionEn: 'Focused preparation for school exams, O/L and A/L English.', icon: 'exam' },
+            { titleEn: 'Writing Improvement', titleSi: 'ලිවීමේ දියුණුව', descriptionEn: 'Improve essays, letters, answers and creative writing.', icon: 'writing' },
+            { titleEn: 'Progress Tracking', titleSi: 'ප්‍රගති අධීක්ෂණය', descriptionEn: 'Receive regular guidance and feedback to improve consistently.', icon: 'progress' },
+          ],
+        },
         { blockType: 'classesGrid', headingEn: 'Choose the right English class', headingSi: 'ඔබට ගැළපෙන ඉංග්‍රීසි පන්තිය', subtitleEn: 'Courses for school students, exam candidates, adults, and professionals.', showAllClasses: true },
         {
           blockType: 'results',
@@ -327,8 +338,8 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         { blockType: 'schedule', headingEn: 'A timetable built around learners', headingSi: 'සිසුන්ට ගැළපෙන කාලසටහන', subtitleEn: 'Weekday and weekend classes at convenient times.', showAllSchedules: true },
         {
           blockType: 'galleryBlock',
-          headingEn: 'Life at IEMlk',
-          headingSi: 'IEMlk හි ශිෂ්‍ය ජීවිතය',
+          headingEn: 'Life at IESM',
+          headingSi: 'IESM හි ශිෂ්‍ය ජීවිතය',
           descriptionEn: 'Classes, events, achievements and the everyday moments that shape confident learners.',
           descriptionSi: 'විශ්වාසවන්ත සිසුන් ගොඩනඟන පන්ති, උත්සව, ජයග්‍රහණ සහ දෛනික අවස්ථා.',
           showAll: true,
@@ -379,17 +390,20 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
       disableRevalidate: true,
     },
     data: {
-      instituteNameEn: 'Lasantha Kumara English Classes',
-      instituteNameSi: 'ලසන්ත කුමාර ඉංග්‍රීසි පන්ති',
-      phone: '+94 77 123 4567',
-      whatsappNumber: '+94 77 123 4567',
-      email: 'info@lasanthaenglish.lk',
+      instituteNameEn: 'IESM English Classes',
+      instituteNameSi: 'IESM ඉංග්‍රීසි පන්ති',
+      phone: '0472 248 019',
+      secondaryPhone: '071 449 2540',
+      whatsappNumber: 'https://wa.me/qr/LCPU7GTT5YXOC1',
+      email: 'iem.lasantha@gmail.com',
       addressEn: '123 Education Lane, Colombo 05, Sri Lanka',
       addressSi: '123, අධ්‍යාපන මාවත, කොළඹ 05, ශ්‍රී ලංකාව',
       officeHoursEn: 'Mon – Sat: 8:00 AM – 6:00 PM',
       officeHoursSi: 'සඳුදා – සෙනසුරාදා: පෙ.ව. 8.00 – ප.ව. 6.00',
       missionEn: 'Empowering students with English language excellence since 2009. Your success is our mission.',
       missionSi: '2009 සිට ඉංග්‍රීසි භාෂා විශිෂ්ටත්වයෙන් සිසුන් සවිබල ගන්වමු. ඔබේ සාර්ථකත්වය අපගේ මෙහෙවරයි.',
+      facebookUrl: 'https://www.facebook.com/iem.lasantha',
+      youtubeUrl: 'https://www.youtube.com/@lasanthakumara8109/featured',
     },
   })
   await payload.updateGlobal({
@@ -427,7 +441,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         ['Contact', '/contact'],
         ['Student Portal', '/login'],
       ].map(([label, url]) => ({ link: { type: 'custom' as const, label, url } })),
-      copyrightText: `© ${new Date().getFullYear()} Lasantha Kumara English Classes. All rights reserved.`,
+      copyrightText: `© ${new Date().getFullYear()} IESM English Classes. All rights reserved.`,
     },
   })
 
