@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { Error } from '../Error'
@@ -21,6 +21,28 @@ export const Select: React.FC<
     errors: Partial<FieldErrorsImpl>
   }
 > = ({ name, control, errors, label, options, required, width, defaultValue }) => {
+  const [dynamicOptions, setDynamicOptions] = useState(options)
+
+  useEffect(() => {
+    if (name === 'preferredClass') {
+      fetch('/api/classes?where[isActive][equals]=true&limit=100')
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && Array.isArray(data.docs)) {
+            const classOptions = data.docs.map((cls: any) => ({
+              label: cls.titleEn,
+              value: cls.id.toString(),
+            }))
+            setDynamicOptions([
+              { label: 'Select a class (optional)', value: '' },
+              ...classOptions,
+            ])
+          }
+        })
+        .catch((err) => console.error('Error fetching classes:', err))
+    }
+  }, [name])
+
   return (
     <Width width={width}>
       <Label htmlFor={name}>
@@ -36,7 +58,7 @@ export const Select: React.FC<
         defaultValue={defaultValue}
         name={name}
         render={({ field: { onChange, value } }) => {
-          const controlledValue = options.find((t) => t.value === value)
+          const controlledValue = dynamicOptions.find((t) => t.value === value)
 
           return (
             <SelectComponent onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
@@ -44,7 +66,7 @@ export const Select: React.FC<
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>
-                {options.map(({ label, value }) => {
+                {dynamicOptions.map(({ label, value }) => {
                   return (
                     <SelectItem key={value} value={value}>
                       {label}

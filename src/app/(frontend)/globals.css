@@ -265,7 +265,11 @@ html:lang(en) .heading-font {
     @apply mt-4 text-lg leading-8 text-muted-foreground;
   }
   .form-control {
-    @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-foreground shadow-sm transition focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700/20;
+    @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-[#111827] shadow-sm transition focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700/20;
+  }
+  select.form-control option {
+    background: #fff;
+    color: #111827;
   }
   .auth-control {
     @apply w-full rounded-md border border-[#d6d6db] bg-white px-3.5 py-3 text-[#111827] shadow-none transition placeholder:text-[#9ca3af] focus:border-[#034EA2] focus:outline-none focus:ring-2 focus:ring-[#034EA2]/20;
@@ -358,6 +362,7 @@ html:lang(en) .heading-font {
   .portal-outline-button:hover svg {
     transform: translate(.18rem, -.18rem);
   }
+
   .premium-wordmark {
     @apply pointer-events-none absolute select-none text-[17vw] font-semibold leading-none tracking-[-.04em] text-[#111827]/[.018];
   }
@@ -380,6 +385,78 @@ html:lang(en) .heading-font {
   .nav-underline:focus-visible::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  .premium-contact-form-wrapper input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+  .premium-contact-form-wrapper textarea {
+    width: 100% !important;
+    border-radius: 0.75rem !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #ffffff !important;
+    padding: 0.75rem 1rem !important;
+    color: #111827 !important;
+    font-size: 1rem !important;
+    height: auto !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+  .premium-contact-form-wrapper input:focus,
+  .premium-contact-form-wrapper textarea:focus {
+    border-color: #1d4ed8 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15) !important;
+  }
+  .premium-contact-form-wrapper button[role="combobox"] {
+    width: 100% !important;
+    border-radius: 0.75rem !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #ffffff !important;
+    padding: 0.75rem 1rem !important;
+    color: #111827 !important;
+    font-size: 1rem !important;
+    height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+  .premium-contact-form-wrapper button[role="combobox"]:focus {
+    border-color: #1d4ed8 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15) !important;
+  }
+  .premium-contact-form-wrapper label {
+    display: block !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #111827 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .premium-contact-form-wrapper button[type="submit"] {
+    margin-top: 1.5rem !important;
+    width: 100% !important;
+    display: inline-flex !important;
+    min-height: 3.5rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+    white-space: nowrap !important;
+    border-radius: 0.3rem !important;
+    padding: 1rem 1.75rem !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    transition: all 0.3s !important;
+    border: 1px solid #0a0b0f !important;
+    background-color: #0a0b0f !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 26px rgba(10, 11, 15, 0.14) !important;
+  }
+  .premium-contact-form-wrapper button[type="submit"]:hover {
+    border-color: #111827 !important;
+    background-color: #111827 !important;
+    color: #ffffff !important;
+    box-shadow: 0 14px 32px rgba(17, 24, 39, 0.24) !important;
+    transform: translateY(-1px) !important;
   }
 }
 
@@ -451,6 +528,7 @@ body:has(.student-portal) .site-footer {
 .gallery-tile-5 { grid-column: 1 / span 3; grid-row: 5 / span 4; }
 .gallery-tile-6 { grid-column: 4 / span 4; grid-row: 5 / span 3; }
 .gallery-tile-7 { grid-column: 8 / span 3; grid-row: 5 / span 2; }
+.gallery-tile-8 { grid-column: 11 / span 2; grid-row: 6 / span 3; }
 
 .gallery-cluster[data-variant='reverse'] .gallery-tile-1 { grid-column: 4 / span 6; }
 .gallery-cluster[data-variant='reverse'] .gallery-tile-2 { grid-column: 10 / span 2; }
@@ -459,16 +537,7 @@ body:has(.student-portal) .site-footer {
 .gallery-cluster[data-variant='reverse'] .gallery-tile-5 { grid-column: 10 / span 3; }
 .gallery-cluster[data-variant='reverse'] .gallery-tile-6 { grid-column: 6 / span 4; }
 .gallery-cluster[data-variant='reverse'] .gallery-tile-7 { grid-column: 3 / span 3; }
-
-.gallery-cluster-marker {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  color: rgba(0, 87, 168, .18);
-  font-size: clamp(4rem, 9vw, 8rem);
-  font-weight: 600;
-  line-height: 1;
-}
+.gallery-cluster[data-variant='reverse'] .gallery-tile-8 { grid-column: 1 / span 2; grid-row: 6 / span 3; }
 
 .hero-reveal {
   opacity: 0;
@@ -538,6 +607,13 @@ section[id] {
   .gallery-cluster[data-variant='reverse'] .gallery-tile-6 { grid-column: 3 / span 3; grid-row: 5 / span 2; }
   .gallery-tile-7,
   .gallery-cluster[data-variant='reverse'] .gallery-tile-7 { grid-column: 1 / span 3; grid-row: 8 / span 2; }
+  .gallery-tile-8,
+  .gallery-cluster[data-variant='reverse'] .gallery-tile-8 { grid-column: 2 / span 4; grid-row: 10 / span 3; }
+
+  .gallery-cluster:has(.gallery-tile-8) {
+    min-height: 58rem;
+    grid-template-rows: repeat(12, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 39.999rem) {
@@ -572,9 +648,11 @@ section[id] {
     grid-row: span 2;
   }
 
-  .gallery-cluster-marker {
-    display: none;
+  .gallery-cluster:has(.gallery-tile-8) {
+    min-height: auto;
+    grid-template-rows: none;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -31,6 +31,7 @@ import type {
   Page,
 } from '@/payload-types'
 import { ContactForm } from '@/components/institute/ContactForm'
+import { FormBlock } from '@/blocks/Form/Component'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { getCachedGlobal } from '@/utilities/getGlobals'
@@ -382,21 +383,56 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
               kicker="Contact"
               title={localized(locale, contact.headingEn, contact.headingSi)}
             />
-            <div className="mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] lg:grid-cols-[1.15fr_.85fr]">
-              <Reveal className="p-6 sm:p-10">
-                <ContactForm classes={classes.docs} />
+            <div className={`mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] ${
+              contact.showContactForm !== false && contact.showContactDetails !== false
+                ? 'lg:grid-cols-[1.15fr_.85fr]'
+                : ''
+            }`}>
+              {contact.showContactForm !== false ? (
+              <Reveal className="p-6 sm:p-10 premium-contact-form-wrapper">
+                {contact.form && typeof contact.form === 'object' ? (
+                  <FormBlock
+                    enableIntro={false}
+                    form={contact.form as any}
+                    disableInnerContainer
+                  />
+                ) : (
+                  <ContactForm
+                    classes={classes.docs}
+                    copy={{
+                      emailLabel: contact.emailLabel,
+                      errorMessage: contact.errorMessage,
+                      fullNameLabel: contact.fullNameLabel,
+                      messageLabel: contact.messageLabel,
+                      phoneLabel: contact.phoneLabel,
+                      preferredClassLabel: contact.preferredClassLabel,
+                      preferredClassPlaceholder: contact.preferredClassPlaceholder,
+                      submitLabel: contact.submitLabel,
+                      successMessage: contact.successMessage,
+                    }}
+                  />
+                )}
               </Reveal>
+              ) : null}
+              {contact.showContactDetails !== false ? (
               <Reveal className="bg-[#034B9B] p-8 text-white sm:p-10" delay={120}>
-                <h3 className="text-3xl font-semibold">Let’s start your English journey</h3>
+                <h3 className="text-3xl font-semibold">
+                  {localized(locale, contact.panelHeadingEn, contact.panelHeadingSi) ||
+                    'Let’s start your English journey'}
+                </h3>
                 <p className="mt-4 leading-7 text-white/70">
-                  Speak with our team about classes, schedules and enrollment.
+                  {localized(
+                    locale,
+                    contact.panelDescriptionEn,
+                    contact.panelDescriptionSi,
+                  ) || 'Speak with our team about classes, schedules and enrollment.'}
                 </p>
                 <div className="mt-8 grid gap-4">
-                  <InfoCard icon={<Headphones />} label="Phone" value={settings.phone} />
-                  <InfoCard icon={<Headphones />} label="Mobile" value={settings.secondaryPhone} />
-                  <InfoCard icon={<MessageCircle />} label="Email" value={settings.email} />
-                  <InfoCard icon={<MapPin />} label="Location" value={localized(locale, settings.addressEn, settings.addressSi)} />
-                  <InfoCard icon={<Clock3 />} label="Office Hours" value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)} />
+                  <InfoCard icon={<Headphones />} label={contact.phoneInfoLabel || 'Phone'} value={settings.phone} />
+                  <InfoCard icon={<Headphones />} label={contact.mobileInfoLabel || 'Mobile'} value={settings.secondaryPhone} />
+                  <InfoCard icon={<MessageCircle />} label={contact.emailInfoLabel || 'Email'} value={settings.email} />
+                  <InfoCard icon={<MapPin />} label={contact.locationInfoLabel || 'Location'} value={localized(locale, settings.addressEn, settings.addressSi)} />
+                  <InfoCard icon={<Clock3 />} label={contact.officeHoursInfoLabel || 'Office Hours'} value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)} />
                 </div>
                 {settings.whatsappNumber ? (
                   <a
@@ -409,10 +445,11 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    WhatsApp Us <ArrowUpRight className="size-4" />
+                    {contact.whatsappLabel || 'WhatsApp Us'} <ArrowUpRight className="size-4" />
                   </a>
                 ) : null}
               </Reveal>
+              ) : null}
             </div>
           </div>
         </section>

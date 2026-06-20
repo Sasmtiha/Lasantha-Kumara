@@ -47,14 +47,19 @@ export const Gallery: CollectionConfig = {
     ],
   },
   fields: [
-    { name: 'titleEn', type: 'text', required: true, label: 'Title (English)' },
-    { name: 'titleSi', type: 'text', label: 'Title (සිංහල)' },
     {
-      name: 'category',
-      type: 'select',
-      required: true,
-      defaultValue: 'Classes',
-      options: ['Classes', 'Events', 'Student Life', 'Achievements'],
+      type: 'row',
+      fields: [
+        { name: 'titleEn', type: 'text', required: true, label: 'Title (English)' },
+        { name: 'titleSi', type: 'text', label: 'Title (සිංහල)' },
+        {
+          name: 'category',
+          type: 'select',
+          required: true,
+          defaultValue: 'Classes',
+          options: ['Classes', 'Events', 'Student Life', 'Achievements'],
+        },
+      ],
     },
     {
       name: 'image',
@@ -62,9 +67,14 @@ export const Gallery: CollectionConfig = {
       relationTo: 'media',
       admin: { hidden: true },
     },
-    { name: 'alt', type: 'text', required: true },
-    { name: 'isPublished', type: 'checkbox', defaultValue: true, index: true },
-    { name: 'displayOrder', type: 'number', defaultValue: 0 },
+    {
+      type: 'row',
+      fields: [
+        { name: 'alt', type: 'text', required: true },
+        { name: 'isPublished', type: 'checkbox', defaultValue: true, index: true },
+        { name: 'displayOrder', type: 'number', defaultValue: 0 },
+      ],
+    },
   ],
   upload: {
     adminThumbnail: 'thumbnail',

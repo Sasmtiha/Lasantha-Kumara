@@ -2,10 +2,11 @@ import React from 'react'
 
 import type { InstituteContactBlock as Props } from '@/payload-types'
 import { ContactForm } from '@/components/institute/ContactForm'
+import { FormBlock } from '@/blocks/Form/Component'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import { getSiteLocale, localized } from '@/utilities/locale'
 
-export async function InstituteContactBlock({ headingEn, headingSi, descriptionEn, descriptionSi, showContactDetails, showContactForm }: Props) {
+export async function InstituteContactBlock({ headingEn, headingSi, descriptionEn, descriptionSi, showContactDetails, showContactForm, form }: Props) {
   const settings = await getCachedGlobal('site-settings', 1)()
   const locale = await getSiteLocale()
   return (
@@ -23,7 +24,15 @@ export async function InstituteContactBlock({ headingEn, headingSi, descriptionE
           </address>
         ) : null}
       </div>
-      {showContactForm ? <ContactForm /> : null}
+      {showContactForm ? (
+        <div className="premium-contact-form-wrapper">
+          {form && typeof form === 'object' ? (
+            <FormBlock enableIntro={false} form={form as any} disableInnerContainer />
+          ) : (
+            <ContactForm />
+          )}
+        </div>
+      ) : null}
     </section>
   )
 }

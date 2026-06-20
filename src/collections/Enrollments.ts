@@ -119,15 +119,84 @@ export const Enrollments: CollectionConfig = {
         data.fullName = [firstName, lastName].filter(Boolean).join(' ')
 
         const classRelation = data.class ?? originalDoc?.class
+        let classID: string | number | undefined
+
         if (classRelation) {
-          const classID = typeof classRelation === 'object' ? classRelation.id : classRelation
+          classID = typeof classRelation === 'object' ? classRelation.id : classRelation
           const classDoc = await req.payload.findByID({
             collection: 'classes',
-            id: classID,
+            id: classID!,
             depth: 0,
           })
           data.gradeLevel =
             classCategoryToGrade[classDoc.category as keyof typeof classCategoryToGrade]
+        }
+
+        // Validate that a student cannot enroll in multiple classes per year with same email/phone
+        const email = data.email ?? originalDoc?.email
+        const phone = data.phone ?? originalDoc?.phone
+
+        if (email || phone) {
+          const currentYear = new Date().getFullYear()
+          const startOfYear = new Date(currentYear, 0, 1).toISOString()
+          const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59, 999).toISOString()
+
+          const orConditions: any[] = []
+          if (email) orConditions.push({ email: { equals: email } })
+          if (phone) orConditions.push({ phone: { equals: phone } })
+
+          const whereQuery: any = {
+            and: [
+              {
+                or: orConditions,
+              },
+              {
+                createdAt: {
+                  greater_than_equal: startOfYear,
+                },
+              },
+              {
+                createdAt: {
+                  less_than_equal: endOfYear,
+                },
+              },
+              {
+                status: {
+                  in: ['pending', 'approved'],
+                },
+              },
+            ],
+          }
+
+          if (originalDoc?.id) {
+            whereQuery.and.push({
+              id: {
+                not_equals: originalDoc.id,
+              },
+            })
+          }
+
+          const existingEnrollments = await req.payload.find({
+            collection: 'enrollments',
+            where: whereQuery,
+            depth: 0,
+            limit: 1,
+          })
+
+          if (existingEnrollments.docs.length > 0) {
+            const existing = existingEnrollments.docs[0]
+            const existingClassID = typeof existing.class === 'object' ? existing.class.id : existing.class
+
+            if (classID && existingClassID !== classID) {
+              throw new Error(
+                'A student with this email address or phone number is already enrolled in a different class for the current year. Students can only enroll in one class per year.'
+              )
+            } else {
+              throw new Error(
+                'A student with this email address or phone number is already enrolled in this class.'
+              )
+            }
+          }
         }
 
         return data

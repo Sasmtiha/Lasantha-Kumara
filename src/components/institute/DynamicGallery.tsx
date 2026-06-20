@@ -9,7 +9,7 @@ import { cn } from '@/utilities/ui'
 
 type Locale = 'en' | 'si'
 
-const collageSize = 7
+const collageSize = 8
 
 export function DynamicGallery({
   items,
@@ -102,11 +102,6 @@ export function DynamicGallery({
                   </button>
                 )
               })}
-              {groupIndex < collageGroups.length - 1 ? (
-                <span aria-hidden className="gallery-cluster-marker">
-                  {String(groupIndex + 1).padStart(2, '0')}
-                </span>
-              ) : null}
             </div>
           ))}
         </div>

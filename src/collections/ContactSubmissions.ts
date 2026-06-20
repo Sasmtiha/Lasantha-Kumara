@@ -25,23 +25,33 @@ export const ContactSubmissions: CollectionConfig = {
       fields: [
         { name: 'firstName', type: 'text', required: true },
         { name: 'lastName', type: 'text', required: true },
+        { name: 'email', type: 'email', required: true },
       ],
     },
-    { name: 'email', type: 'email', required: true },
-    { name: 'phone', type: 'text', required: true },
-    { name: 'subject', type: 'text', required: true },
-    { name: 'message', type: 'textarea', required: true },
-    { name: 'preferredClass', type: 'relationship', relationTo: 'classes' },
     {
-      name: 'status',
-      type: 'select',
-      options: ['new', 'read', 'replied', 'archived'],
-      defaultValue: 'new',
-      required: true,
-      access: {
-        create: ({ req }) => isAdminRole(getRole(req.user)),
-        update: ({ req }) => isAdminRole(getRole(req.user)),
-      },
+      type: 'row',
+      fields: [
+        { name: 'phone', type: 'text', required: true },
+        { name: 'subject', type: 'text', required: true },
+        { name: 'preferredClass', type: 'relationship', relationTo: 'classes' },
+      ],
+    },
+    { name: 'message', type: 'textarea', required: true },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'status',
+          type: 'select',
+          options: ['new', 'read', 'replied', 'archived'],
+          defaultValue: 'new',
+          required: true,
+          access: {
+            create: ({ req }) => isAdminRole(getRole(req.user)),
+            update: ({ req }) => isAdminRole(getRole(req.user)),
+          },
+        },
+      ],
     },
   ],
   timestamps: true,
