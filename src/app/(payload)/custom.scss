@@ -1,42 +1,8 @@
-html[data-theme='light'],
-html[data-theme='dark'] {
-  color-scheme: light;
-  --theme-bg: #f6f8fc;
-  --theme-text: #111827;
-  --theme-input-bg: #ffffff;
-  --theme-border-color: #dce3ec;
-  --theme-elevation-0: #ffffff;
-  --theme-elevation-50: #f7f9fc;
-  --theme-elevation-100: #eef2f7;
-  --theme-elevation-150: #e3e9f1;
-  --theme-elevation-200: #d7dee8;
-  --theme-elevation-250: #c8d1dd;
-  --theme-elevation-300: #b3bfce;
-  --theme-elevation-350: #9aa8ba;
-  --theme-elevation-400: #8493a7;
-  --theme-elevation-450: #718096;
-  --theme-elevation-500: #64748b;
-  --theme-elevation-550: #526176;
-  --theme-elevation-600: #475569;
-  --theme-elevation-650: #3e4b5e;
-  --theme-elevation-700: #334155;
-  --theme-elevation-750: #293548;
-  --theme-elevation-800: #1f2937;
-  --theme-elevation-850: #172033;
-  --theme-elevation-900: #111827;
-  --theme-elevation-950: #0b1120;
-  --theme-elevation-1000: #030712;
-}
-
-body {
-  background: #f6f8fc;
-}
-
 .iem-admin-logo {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  color: #111827;
+  color: var(--theme-text);
 }
 
 .iem-admin-logo__mark,
@@ -46,8 +12,8 @@ body {
   width: 2.55rem;
   height: 2.55rem;
   border-radius: 0.4rem;
-  background: #034ea2;
-  color: #fff;
+  background: var(--theme-elevation-900);
+  color: var(--theme-elevation-0);
   font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -59,14 +25,20 @@ body {
   letter-spacing: -0.04em;
 
   span {
-    color: #034ea2;
+    color: var(--theme-elevation-500);
   }
 }
 
 .iem-admin-icon {
-  width: 2rem;
-  height: 2rem;
-  font-size: 0.55rem;
+  display: inline;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  color: currentColor;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .iem-admin-login-intro {
@@ -75,7 +47,7 @@ body {
 
   h1 {
     margin: 0.45rem 0 0;
-    color: #111827;
+    color: var(--theme-text);
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: -0.025em;
@@ -89,7 +61,7 @@ body {
 
   .iem-admin-login-intro__eyebrow {
     margin: 0;
-    color: #034ea2;
+    color: var(--theme-elevation-600);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -97,21 +69,219 @@ body {
   }
 }
 
-.btn--style-primary {
-  --bg-color: #034ea2;
-  --hover-bg: #023d80;
+.iem-admin-theme-toggle {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--theme-elevation-200);
+  border-radius: 999px;
+  background: var(--theme-elevation-50);
+  color: var(--theme-text);
+  padding: 0 0.8rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+  }
+
+  &:hover {
+    border-color: var(--theme-elevation-400);
+    background: var(--theme-elevation-150);
+    color: var(--theme-text);
+  }
 }
 
-.nav {
-  background: #ffffff;
-  border-right: 1px solid #e3e9f1;
+.iem-admin-theme-toggle__label {
+  line-height: 1;
 }
 
-.nav__link:hover,
-.nav__link.active {
-  color: #034ea2;
+.app-header .iem-admin-theme-toggle {
+  margin-right: 0.5rem;
 }
 
-.theme-selector {
-  display: none !important;
+.login .iem-admin-theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .app-header .iem-admin-theme-toggle {
+    width: 36px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .app-header .iem-admin-theme-toggle__label {
+    display: none;
+  }
+}
+
+// Compact CMS document forms. Simple values share rows while complex editors
+// retain the full available width.
+@media (min-width: 1440px) {
+  .document-fields__fields > .render-fields,
+  .document-fields__fields > div > .render-fields,
+  .document-fields__fields > form > .render-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: calc(var(--base) * 0.8);
+    row-gap: calc(var(--base) * 0.65);
+    align-items: start;
+
+    > .field-type {
+      min-width: 0;
+      margin: 0;
+    }
+
+    > :is(
+      .row,
+      .tabs-field,
+      .group-field,
+      .blocks-field,
+      .array-field,
+      .collapsible-field,
+      .rich-text,
+      .textarea,
+      .upload,
+      .code,
+      .json-field,
+      .point
+    ) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .document-fields .field-type.row .row__fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: calc(var(--base) * 0.8);
+    margin-inline: 0;
+
+    > * {
+      width: 100% !important;
+      margin-inline: 0;
+    }
+
+    &:has(> :nth-child(2):last-child) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1439px) {
+  .document-fields__fields > .render-fields,
+  .document-fields__fields > div > .render-fields,
+  .document-fields__fields > form > .render-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: calc(var(--base) * 0.8);
+    row-gap: calc(var(--base) * 0.65);
+    align-items: start;
+
+    > .field-type {
+      min-width: 0;
+      margin: 0;
+    }
+
+    > :is(
+      .row,
+      .tabs-field,
+      .group-field,
+      .blocks-field,
+      .array-field,
+      .collapsible-field,
+      .rich-text,
+      .textarea,
+      .upload,
+      .code,
+      .json-field,
+      .point
+    ) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .document-fields .field-type.row .row__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: calc(var(--base) * 0.8);
+    margin-inline: 0;
+
+    > * {
+      width: 100% !important;
+      margin-inline: 0;
+    }
+  }
+}
+
+.document-fields {
+  .document-fields__edit {
+    padding-top: var(--base);
+  }
+
+  .render-fields {
+    --spacing-field: calc(var(--base) * 0.7);
+  }
+
+  .field-label {
+    margin-bottom: calc(var(--base) * 0.22);
+  }
+
+  :is(
+    .field-type.text,
+    .field-type.email,
+    .field-type.number,
+    .field-type.password,
+    .field-type.confirm-password
+  ) input {
+    min-height: 38px;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  :is(.field-type.select, .field-type.relationship) {
+    .rs__control {
+      min-height: 38px;
+    }
+
+    .rs__value-container {
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
+  }
+
+  .field-type.row .row__fields {
+    row-gap: calc(var(--base) * 0.5);
+
+    &:has(> *:nth-child(1)) {
+      margin-bottom: calc(var(--base) * 0.65);
+    }
+  }
+
+  .field-type.textarea textarea {
+    min-height: 92px;
+  }
+
+  .exam-publish-field {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: calc(var(--base) * -0.1);
+    padding: calc(var(--base) * 0.65) calc(var(--base) * 0.75);
+    border: 1px solid var(--theme-elevation-150);
+    border-radius: 0.4rem;
+    background: var(--theme-elevation-50);
+
+    .field-description {
+      margin-top: calc(var(--base) * 0.25);
+      margin-left: calc(var(--base) * 1.35);
+    }
+  }
 }

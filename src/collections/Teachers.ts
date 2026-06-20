@@ -20,8 +20,14 @@ export const Teachers: CollectionConfig = {
     update: admins,
   },
   fields: [
-    { name: 'user', type: 'relationship', relationTo: 'users' },
-    { name: 'fullName', type: 'text', required: true },
+    {
+      type: 'row',
+      fields: [
+        { name: 'user', type: 'relationship', relationTo: 'users' },
+        { name: 'fullName', type: 'text', required: true },
+        { name: 'phone', type: 'text' },
+      ],
+    },
     { name: 'bio', type: 'richText' },
     { name: 'qualifications', type: 'textarea' },
     { name: 'profileImage', type: 'upload', relationTo: 'media' },
@@ -32,9 +38,13 @@ export const Teachers: CollectionConfig = {
       relationTo: 'classes',
       hasMany: true,
     },
-    { name: 'phone', type: 'text' },
-    { name: 'email', type: 'email' },
-    { name: 'isActive', type: 'checkbox', defaultValue: true },
+    {
+      type: 'row',
+      fields: [
+        { name: 'email', type: 'email' },
+        { name: 'isActive', type: 'checkbox', defaultValue: true },
+      ],
+    },
   ],
   timestamps: true,
 }

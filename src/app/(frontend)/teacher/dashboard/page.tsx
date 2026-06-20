@@ -24,7 +24,9 @@ export default async function TeacherDashboard() {
   return (
     <div className="container py-14">
       <p className="section-kicker">Teacher dashboard</p>
-      <h1 className="section-title">Welcome, {teacher?.fullName || user.firstName}</h1>
+      <h1 className="section-title">
+        Welcome, {teacher?.fullName || [user.firstName, user.lastName].filter(Boolean).join(' ')}
+      </h1>
       <p className="section-subtitle">Review your assigned classes or open Payload Admin to manage schedules, resources, notices, and students.</p>
       <div className="mt-8 flex flex-wrap gap-3">
         <Link className="premium-button-primary" href="/admin">Open institute admin</Link>

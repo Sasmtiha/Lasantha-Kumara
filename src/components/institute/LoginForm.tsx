@@ -46,10 +46,10 @@ export function LoginForm() {
       <label className="block text-sm font-medium text-[#4b4b54]">Email<input autoComplete="email" className="auth-control mt-2" name="email" placeholder="you@example.com" required type="email" /></label>
       <label className="mt-5 block text-sm font-medium text-[#4b4b54]">Password<input autoComplete="current-password" className="auth-control mt-2" name="password" placeholder="Enter your password" required type="password" /></label>
       {error ? <p className="mt-4 text-sm text-red-700" role="alert">{error}</p> : null}
-      <button className="premium-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
+      <button className="auth-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
         {sending ? 'Signing in…' : <>Log In <ArrowUpRight className="size-4" /></>}
       </button>
-      <Link className="premium-button-secondary mt-4 flex w-full" href="/enroll">
+      <Link className="auth-button-secondary mt-4 flex w-full" href="/enroll">
         Register <ArrowUpRight className="size-4" />
       </Link>
     </form>

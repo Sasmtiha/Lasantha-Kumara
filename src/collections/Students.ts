@@ -11,8 +11,8 @@ export const Students: CollectionConfig = {
   },
   admin: {
     group: 'Institute',
-    useAsTitle: 'firstName',
-    defaultColumns: ['firstName', 'lastName', 'phone', 'gradeLevel', 'preferredClass', 'enrollmentStatus'],
+    useAsTitle: 'fullName',
+    defaultColumns: ['fullName', 'phone', 'gradeLevel', 'preferredClass', 'enrollmentStatus'],
   },
   access: {
     create: admins,
@@ -30,33 +30,64 @@ export const Students: CollectionConfig = {
   },
   fields: [
     {
-      name: 'user',
-      type: 'relationship',
-      relationTo: 'users',
-      required: true,
-      unique: true,
-      access: {
-        update: ({ req }) => isAdminRole(getRole(req.user)),
-      },
+      name: 'fullName',
+      type: 'text',
+      index: true,
+      admin: { hidden: true },
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'user',
+          type: 'relationship',
+          relationTo: 'users',
+          required: true,
+          unique: true,
+          access: {
+            update: ({ req }) => isAdminRole(getRole(req.user)),
+          },
+        },
+        {
+          name: 'preferredClass',
+          type: 'relationship',
+          relationTo: 'classes',
+        },
+        {
+          name: 'enrollmentStatus',
+          type: 'select',
+          defaultValue: 'pending',
+          required: true,
+          options: ['pending', 'approved', 'rejected', 'inactive'],
+          access: {
+            update: ({ req }) => isAdminRole(getRole(req.user)),
+          },
+        },
+      ],
     },
     {
       type: 'row',
       fields: [
         { name: 'firstName', type: 'text', required: true },
         { name: 'lastName', type: 'text', required: true },
+        { name: 'email', type: 'email', required: true },
       ],
     },
-    { name: 'email', type: 'email', required: true },
-    { name: 'phone', type: 'text', required: true },
     {
-      name: 'gradeLevel',
-      type: 'select',
-      required: true,
-      label: 'Grade',
-      options: [...gradeOptions],
-      index: true,
+      type: 'row',
+      fields: [
+        { name: 'phone', type: 'text', required: true },
+        {
+          name: 'gradeLevel',
+          type: 'select',
+          required: true,
+          label: 'Grade',
+          options: [...gradeOptions],
+          index: true,
+        },
+        { name: 'school', type: 'text' },
+      ],
     },
-    { name: 'school', type: 'text' },
     { name: 'address', type: 'textarea' },
     {
       type: 'row',
@@ -65,11 +96,6 @@ export const Students: CollectionConfig = {
         { name: 'guardianPhone', type: 'text' },
         { name: 'guardianEmail', type: 'email' },
       ],
-    },
-    {
-      name: 'preferredClass',
-      type: 'relationship',
-      relationTo: 'classes',
     },
     {
       name: 'currentClasses',
@@ -82,16 +108,6 @@ export const Students: CollectionConfig = {
       },
     },
     {
-      name: 'enrollmentStatus',
-      type: 'select',
-      defaultValue: 'pending',
-      required: true,
-      options: ['pending', 'approved', 'rejected', 'inactive'],
-      access: {
-        update: ({ req }) => isAdminRole(getRole(req.user)),
-      },
-    },
-    {
       name: 'notes',
       type: 'textarea',
       access: {
@@ -100,5 +116,16 @@ export const Students: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    beforeValidate: [
+      ({ data, originalDoc }) => {
+        if (!data) return data
+        const firstName = String(data.firstName ?? originalDoc?.firstName ?? '').trim()
+        const lastName = String(data.lastName ?? originalDoc?.lastName ?? '').trim()
+        data.fullName = [firstName, lastName].filter(Boolean).join(' ')
+        return data
+      },
+    ],
+  },
   timestamps: true,
 }

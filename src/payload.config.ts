@@ -34,9 +34,9 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
-      beforeLogin: ['@/components/ForceAdminLightTheme', '@/components/BeforeLogin'],
+      actions: ['@/components/AdminThemeToggle'],
+      beforeLogin: ['@/components/AdminThemeToggle', '@/components/BeforeLogin'],
       beforeDashboard: ['@/components/BeforeDashboard'],
-      beforeNav: ['@/components/ForceAdminLightTheme'],
       graphics: {
         Icon: '@/components/AdminBrand#AdminIcon',
         Logo: '@/components/AdminBrand#AdminLogo',

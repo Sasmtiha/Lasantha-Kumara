@@ -30,36 +30,41 @@ export const Users: CollectionConfig = {
       fields: [
         { name: 'firstName', type: 'text', required: true, defaultValue: 'Institute' },
         { name: 'lastName', type: 'text', required: true, defaultValue: 'User' },
+        {
+          name: 'phone',
+          type: 'text',
+        },
       ],
     },
     {
-      name: 'phone',
-      type: 'text',
-    },
-    {
-      name: 'role',
-      type: 'select',
-      options: instituteRoles.map((role) => ({
-        label: role.replace('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase()),
-        value: role,
-      })),
-      defaultValue: 'student',
-      required: true,
-      saveToJWT: true,
-      access: {
-        update: adminFieldAccess,
-      },
-    },
-    {
-      name: 'status',
-      type: 'select',
-      options: ['active', 'inactive', 'suspended'],
-      defaultValue: 'active',
-      required: true,
-      saveToJWT: true,
-      access: {
-        update: adminFieldAccess,
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'role',
+          type: 'select',
+          options: instituteRoles.map((role) => ({
+            label: role.replace('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase()),
+            value: role,
+          })),
+          defaultValue: 'student',
+          required: true,
+          saveToJWT: true,
+          access: {
+            update: adminFieldAccess,
+          },
+        },
+        {
+          name: 'status',
+          type: 'select',
+          options: ['active', 'inactive', 'suspended'],
+          defaultValue: 'active',
+          required: true,
+          saveToJWT: true,
+          access: {
+            update: adminFieldAccess,
+          },
+        },
+      ],
     },
     {
       name: 'profileImage',

@@ -25,12 +25,18 @@ export default async function StudentPerformancePage() {
       id: mark.id,
       title: exam?.title || 'English Exam',
       examType: exam?.examType || 'Exam',
+      assessmentArea: exam?.assessmentArea || 'Overall English',
       examDate: mark.examDate,
       marksObtained: mark.marksObtained,
       totalMarks: mark.totalMarks,
       percentage: mark.percentage || 0,
       letterGrade: mark.letterGrade || '—',
-      resultStatus: mark.resultStatus || '—',
+      resultStatus:
+        exam && mark.marksObtained >= exam.passMark
+          ? 'Pass'
+          : exam
+            ? 'Fail'
+            : mark.resultStatus || '—',
       teacherRemarks: mark.teacherRemarks,
     }
   })

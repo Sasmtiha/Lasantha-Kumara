@@ -4,13 +4,12 @@ import { cn } from '@/utilities/ui'
 import { Noto_Sans_Sinhala, Source_Sans_3, Space_Grotesk } from 'next/font/google'
 import React from 'react'
 
-import { AdminBar } from '@/components/AdminBar'
 import { SmoothAnchorScroll } from '@/components/institute/SmoothAnchorScroll'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
-import { cookies, draftMode } from 'next/headers'
+import { cookies } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -39,7 +38,6 @@ const notoSansSinhala = Noto_Sans_Sinhala({
 })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { isEnabled } = await draftMode()
   const locale = (await cookies()).get('site-locale')?.value === 'si' ? 'si' : 'en'
 
   return (
@@ -56,12 +54,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <Providers>
           <SmoothAnchorScroll />
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-
           <Header />
           {children}
           <Footer />

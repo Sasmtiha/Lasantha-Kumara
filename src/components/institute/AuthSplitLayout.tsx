@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react'
+import { X } from 'lucide-react'
+import Link from 'next/link'
 
 import { AuthBrand } from './AuthBrand'
 
@@ -10,7 +12,14 @@ type Props = {
 
 export function AuthSplitLayout({ children, description, title }: Props) {
   return (
-    <main className="auth-page min-h-svh bg-white p-4 sm:p-6 lg:p-8">
+    <main className="auth-page relative min-h-svh bg-white p-4 sm:p-6 lg:p-8">
+      <Link
+        aria-label="Close and return to website"
+        className="absolute right-6 top-6 z-20 grid size-11 place-items-center rounded-full border border-[#d6d6db] bg-white text-[#34343b] shadow-[0_8px_24px_rgba(15,23,42,.08)] transition duration-300 hover:-translate-y-px hover:border-[#034EA2] hover:bg-[#034EA2] hover:text-white sm:right-8 sm:top-8"
+        href="/"
+      >
+        <X className="size-5" />
+      </Link>
       <div className="mx-auto grid min-h-[calc(100svh-2rem)] max-w-[118rem] overflow-hidden lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[minmax(0,1.08fr)_minmax(34rem,.92fr)] lg:gap-8">
         <div
           aria-label="Image placeholder"

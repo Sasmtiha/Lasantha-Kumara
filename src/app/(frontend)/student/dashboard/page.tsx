@@ -25,7 +25,7 @@ export default async function StudentDashboard() {
         <div>
           <p className="premium-kicker text-[#034EA2]">Overview</p>
           <h2 className="mt-3 text-4xl font-medium tracking-[-.025em] text-[#111827]">
-            Welcome back, {user.firstName}
+            Welcome back, {[user.firstName, user.lastName].filter(Boolean).join(' ')}
           </h2>
           <p className="mt-3 text-[#6b7280]">Here is your latest learning activity at IEM.lk.</p>
         </div>

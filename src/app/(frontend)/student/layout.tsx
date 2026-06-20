@@ -24,7 +24,9 @@ export default async function StudentLayout({ children }: { children: React.Reac
           </div>
           <div className="rounded-md border border-white/15 bg-white/10 px-5 py-3 backdrop-blur">
             <p className="text-xs uppercase tracking-wider text-white/55">Signed in as</p>
-            <p className="mt-1 font-semibold">{user.firstName || 'Student'}</p>
+            <p className="mt-1 font-semibold">
+              {[user.firstName, user.lastName].filter(Boolean).join(' ') || 'Student'}
+            </p>
           </div>
         </div>
       </section>

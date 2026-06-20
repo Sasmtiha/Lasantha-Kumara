@@ -307,6 +307,24 @@ html:lang(en) .heading-font {
   .premium-button-secondary {
     @apply border border-[#0a0b0f] bg-white text-[#0a0b0f] hover:border-[#111827] hover:bg-[#111827] hover:text-white;
   }
+  .auth-button-primary,
+  .auth-button-secondary {
+    @apply inline-flex min-h-14 items-center justify-center gap-3 whitespace-nowrap rounded-[.3rem] border px-7 py-4 text-center text-[15px] font-semibold leading-none text-white shadow-[0_10px_26px_rgba(3,78,162,.18)] transition duration-300 hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(3,75,155,.28)];
+  }
+  .auth-button-primary {
+    @apply border-[#034EA2] bg-[#034EA2] hover:border-[#034B9B] hover:bg-[#034B9B];
+  }
+  .auth-button-secondary {
+    @apply border-[#034EA2] bg-transparent text-[#034EA2] shadow-none hover:border-[#034EA2] hover:bg-[#034EA2] hover:text-white;
+  }
+  .auth-button-primary svg,
+  .auth-button-secondary svg {
+    @apply transition-transform duration-300;
+  }
+  .auth-button-primary:hover svg,
+  .auth-button-secondary:hover svg {
+    transform: translate(.18rem, -.18rem);
+  }
   .premium-button-light {
     @apply border border-white bg-white text-[#0a0b0f] hover:border-[#111827] hover:bg-[#111827] hover:text-white;
   }

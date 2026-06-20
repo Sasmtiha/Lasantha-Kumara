@@ -78,7 +78,7 @@ export function EnrollmentForm({ classes }: { classes: Class[] }) {
         I confirm that the information is accurate and agree to be contacted about this enrollment.
       </label>
       {error ? <p className="mt-5 rounded-xl bg-red-50 p-3 text-sm text-red-800" role="alert">{error}</p> : null}
-      <button className="premium-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
+      <button className="auth-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
         {sending ? 'Submitting…' : <>Submit Enrollment <ArrowUpRight className="size-4" /></>}
       </button>
       <p className="mt-5 text-center text-sm text-[#73737d]">

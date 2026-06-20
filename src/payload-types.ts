@@ -783,6 +783,7 @@ export interface Teacher {
   id: number;
   user?: (number | null) | User;
   fullName: string;
+  phone?: string | null;
   bio?: {
     root: {
       type: string;
@@ -801,7 +802,6 @@ export interface Teacher {
   qualifications?: string | null;
   profileImage?: (number | null) | Media;
   classesHandled?: (number | Class)[] | null;
-  phone?: string | null;
   email?: string | null;
   isActive?: boolean | null;
   updatedAt: string;
@@ -1389,7 +1389,10 @@ export interface Form {
  */
 export interface Student {
   id: number;
+  fullName?: string | null;
   user: number | User;
+  preferredClass?: (number | null) | Class;
+  enrollmentStatus: 'pending' | 'approved' | 'rejected' | 'inactive';
   firstName: string;
   lastName: string;
   email: string;
@@ -1400,12 +1403,10 @@ export interface Student {
   guardianName?: string | null;
   guardianPhone?: string | null;
   guardianEmail?: string | null;
-  preferredClass?: (number | null) | Class;
   /**
    * Assign all active classes currently attended by this student.
    */
   currentClasses?: (number | Class)[] | null;
-  enrollmentStatus: 'pending' | 'approved' | 'rejected' | 'inactive';
   notes?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1416,6 +1417,7 @@ export interface Student {
  */
 export interface Enrollment {
   id: number;
+  fullName?: string | null;
   student: number | Student;
   user: number | User;
   class: number | Class;
@@ -1423,13 +1425,19 @@ export interface Enrollment {
   lastName: string;
   email: string;
   phone: string;
+  /**
+   * Automatically matched to the selected class.
+   */
   gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
   guardianName?: string | null;
   guardianPhone?: string | null;
-  message?: string | null;
   status: 'pending' | 'approved' | 'rejected' | 'cancelled';
-  adminNote?: string | null;
+  /**
+   * Automatically set to the administrator who approves this enrollment.
+   */
   approvedBy?: (number | null) | User;
+  message?: string | null;
+  adminNote?: string | null;
   approvedAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1444,12 +1452,27 @@ export interface Exam {
   gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
   class: number | Class;
   examType: 'Unit Test' | 'Monthly Test' | 'Term Test' | 'Mock Exam' | 'Final Exam';
+  /**
+   * The English skill or activity measured by this assessment.
+   */
+  assessmentArea:
+    | 'Overall English'
+    | 'Reading'
+    | 'Writing'
+    | 'Listening'
+    | 'Speaking / Oral'
+    | 'Grammar'
+    | 'Vocabulary'
+    | 'Assignment';
   term?: ('Term 1' | 'Term 2' | 'Term 3' | 'Other') | null;
   examDate: string;
   academicYear: number;
   totalMarks: number;
   passMark: number;
   description?: string | null;
+  /**
+   * Published results become visible in each student’s portal.
+   */
   isPublished?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -1461,13 +1484,22 @@ export interface Exam {
 export interface StudentMark {
   id: number;
   recordLabel?: string | null;
-  student: number | Student;
-  exam: number | Exam;
-  user: number | User;
+  /**
+   * Choose the grade first to filter the student and exam lists.
+   */
   gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
-  class: number | Class;
+  /**
+   * Only students from the selected grade are shown.
+   */
+  student: number | Student;
+  /**
+   * Only exams from the selected grade are shown.
+   */
+  exam: number | Exam;
   marksObtained: number;
+  class: number | Class;
   totalMarks: number;
+  user: number | User;
   percentage?: number | null;
   letterGrade?: ('A' | 'B' | 'C' | 'S' | 'F') | null;
   resultStatus?: ('Pass' | 'Fail') | null;
@@ -2433,11 +2465,11 @@ export interface GallerySelect<T extends boolean = true> {
 export interface TeachersSelect<T extends boolean = true> {
   user?: T;
   fullName?: T;
+  phone?: T;
   bio?: T;
   qualifications?: T;
   profileImage?: T;
   classesHandled?: T;
-  phone?: T;
   email?: T;
   isActive?: T;
   updatedAt?: T;
@@ -2448,7 +2480,10 @@ export interface TeachersSelect<T extends boolean = true> {
  * via the `definition` "students_select".
  */
 export interface StudentsSelect<T extends boolean = true> {
+  fullName?: T;
   user?: T;
+  preferredClass?: T;
+  enrollmentStatus?: T;
   firstName?: T;
   lastName?: T;
   email?: T;
@@ -2459,9 +2494,7 @@ export interface StudentsSelect<T extends boolean = true> {
   guardianName?: T;
   guardianPhone?: T;
   guardianEmail?: T;
-  preferredClass?: T;
   currentClasses?: T;
-  enrollmentStatus?: T;
   notes?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -2471,6 +2504,7 @@ export interface StudentsSelect<T extends boolean = true> {
  * via the `definition` "enrollments_select".
  */
 export interface EnrollmentsSelect<T extends boolean = true> {
+  fullName?: T;
   student?: T;
   user?: T;
   class?: T;
@@ -2481,10 +2515,10 @@ export interface EnrollmentsSelect<T extends boolean = true> {
   gradeLevel?: T;
   guardianName?: T;
   guardianPhone?: T;
-  message?: T;
   status?: T;
-  adminNote?: T;
   approvedBy?: T;
+  message?: T;
+  adminNote?: T;
   approvedAt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -2498,6 +2532,7 @@ export interface ExamsSelect<T extends boolean = true> {
   gradeLevel?: T;
   class?: T;
   examType?: T;
+  assessmentArea?: T;
   term?: T;
   examDate?: T;
   academicYear?: T;
@@ -2514,13 +2549,13 @@ export interface ExamsSelect<T extends boolean = true> {
  */
 export interface StudentMarksSelect<T extends boolean = true> {
   recordLabel?: T;
+  gradeLevel?: T;
   student?: T;
   exam?: T;
-  user?: T;
-  gradeLevel?: T;
-  class?: T;
   marksObtained?: T;
+  class?: T;
   totalMarks?: T;
+  user?: T;
   percentage?: T;
   letterGrade?: T;
   resultStatus?: T;

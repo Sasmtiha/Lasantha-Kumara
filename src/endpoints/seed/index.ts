@@ -235,13 +235,13 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
   })
 
   const examDefinitions = [
-    ['Grammar Foundation Test', 'Monthly Test', '2026-01-24T00:00:00.000Z', 62, 'Good foundation. Review sentence structure.'],
-    ['Reading & Vocabulary Test', 'Unit Test', '2026-02-21T00:00:00.000Z', 71, 'Strong improvement in comprehension.'],
-    ['First Term English Test', 'Term Test', '2026-04-04T00:00:00.000Z', 78, 'Well-structured answers and improved accuracy.'],
-    ['O/L English Mock Exam', 'Mock Exam', '2026-05-30T00:00:00.000Z', 84, 'Excellent progress. Continue timed paper practice.'],
+    ['Grammar Foundation Test', 'Monthly Test', 'Grammar', '2026-01-24T00:00:00.000Z', 62, 'Good foundation. Review sentence structure.'],
+    ['Reading & Vocabulary Test', 'Unit Test', 'Reading', '2026-02-21T00:00:00.000Z', 71, 'Strong improvement in comprehension.'],
+    ['First Term English Test', 'Term Test', 'Writing', '2026-04-04T00:00:00.000Z', 78, 'Well-structured answers and improved accuracy.'],
+    ['O/L English Mock Exam', 'Mock Exam', 'Overall English', '2026-05-30T00:00:00.000Z', 84, 'Excellent progress. Continue timed paper practice.'],
   ] as const
 
-  for (const [title, examType, examDate, marksObtained, teacherRemarks] of examDefinitions) {
+  for (const [title, examType, assessmentArea, examDate, marksObtained, teacherRemarks] of examDefinitions) {
     const exam = await payload.create({
       collection: 'exams',
       overrideAccess: true,
@@ -250,6 +250,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
         gradeLevel: 'Grade 11',
         class: grade11Class.id,
         examType,
+        assessmentArea,
         term: examType === 'Term Test' ? 'Term 1' : 'Other',
         examDate,
         academicYear: 2026,
