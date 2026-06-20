@@ -24,18 +24,18 @@ export const HeaderNav = ({
   data,
   transparent,
   user,
+  open,
+  setOpen,
 }: {
   data: HeaderType
   transparent: boolean
   user: HeaderUser
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const router = useRouter()
-  const pathname = usePathname()
-  const [open, setOpen] = useState(false)
   const [locale, setLocale] = useState<'en' | 'si'>('en')
   const navItems = data?.navItems || []
-
-  useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
     setLocale(document.documentElement.lang === 'si' ? 'si' : 'en')
   }, [])
@@ -145,8 +145,12 @@ export const HeaderNav = ({
         aria-expanded={open}
         aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
         className={cn(
-          'grid size-11 place-items-center rounded-full border xl:hidden',
-          transparent ? 'border-white/30 bg-white/10' : 'border-black/10 bg-white',
+          'grid size-11 place-items-center rounded-full border xl:hidden transition-colors',
+          open
+            ? 'border-white/20 bg-white/10 text-white'
+            : transparent
+              ? 'border-white/30 bg-white/10 text-white'
+              : 'border-black/10 bg-white text-[#111827]',
         )}
         onClick={() => setOpen((value) => !value)}
         type="button"
@@ -155,12 +159,18 @@ export const HeaderNav = ({
       </button>
 
       {open ? (
-        <div className="fixed inset-0 top-20 z-50 overflow-y-auto bg-[#0f172a] px-6 py-8 text-white xl:hidden">
+        <div className="absolute inset-x-0 bottom-0 top-20 z-50 overflow-y-auto bg-[#0f172a] px-6 py-8 text-white xl:hidden">
           <nav aria-label="Mobile navigation" className="mx-auto flex max-w-xl flex-col">
             {navItems.map(({ link }, index) => {
-              const href = link.type === 'custom' ? link.url : '/'
+              const href =
+                link.type === 'custom'
+                  ? link.url
+                  : typeof link.reference?.value === 'object'
+                    ? `/${link.reference.value.slug}`
+                    : undefined
+              if (!href) return null
               return (
-                <Link className="border-b border-white/10 py-5 text-2xl font-semibold" href={href || '/'} key={index}>
+                <Link className="border-b border-white/10 py-5 text-2xl font-semibold" href={href} key={index}>
                   {link.label}
                 </Link>
               )

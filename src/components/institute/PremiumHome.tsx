@@ -474,7 +474,7 @@ function Hero({
     confidenceIndex >= 0 ? subheading.slice(0, confidenceIndex).trimEnd() : subheading
 
   return (
-    <section className="premium-hero relative flex min-h-svh items-end overflow-hidden bg-[#101827] text-white" id="home">
+    <section className="premium-hero relative flex min-h-svh items-center lg:items-end overflow-hidden bg-[#101827] text-white" id="home">
       <div className="premium-hero-media absolute inset-0 z-0">
         <HeroSlideshow
           duration={block.slideDuration}
@@ -484,7 +484,7 @@ function Hero({
       </div>
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,30,65,.94)_0%,rgba(0,58,118,.68)_40%,rgba(0,45,88,.18)_72%,rgba(0,0,0,.04)_100%)]" />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#101827]/75 via-transparent to-[#101827]/10" />
-      <div className="premium-container relative z-10 pb-20 pt-40 lg:pb-24">
+      <div className="premium-container relative z-10 py-20 lg:pb-24 lg:pt-40">
         <div className="max-w-5xl">
           <p className="mb-7 ml-[4%] inline-flex items-center rounded-full bg-[#DF1D29] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] text-white shadow-lg">
             {localized(locale, block.badgeEn, block.badgeSi)}
@@ -518,12 +518,15 @@ function Hero({
                 </>
               ) : null}
             </p>
-            <div className="hero-reveal hero-delay-4 mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link className="hero-button-primary" href={block.primaryButtonUrl}>
+            <div className="hero-reveal hero-delay-4 mt-9 flex flex-row gap-2 sm:gap-3">
+              <Link
+                className="hero-button-primary flex-1 !min-h-11 !px-3 !py-2.5 !text-xs sm:flex-initial sm:!min-h-14 sm:!px-7 sm:!py-4 sm:!text-[15px]"
+                href={block.primaryButtonUrl}
+              >
                 {block.primaryButtonLabel} <ArrowUpRight className="size-4" />
               </Link>
               <Link
-                className="hero-button-secondary"
+                className="hero-button-secondary flex-1 !min-h-11 !px-3 !py-2.5 !text-xs sm:flex-initial sm:!min-h-14 sm:!px-7 sm:!py-4 sm:!text-[15px]"
                 href={block.secondaryButtonUrl || '/login'}
               >
                 {block.secondaryButtonLabel || 'Student Portal'} <ArrowUpRight className="size-4" />
@@ -594,14 +597,19 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
             <h2 className="mt-5 text-4xl font-medium leading-[1.15] tracking-[-.02em] text-[#111827] sm:text-5xl lg:text-6xl">
               {localized(locale, block.headingEn, block.headingSi)}
             </h2>
-          <RichText
+            {block.teacherImage && typeof block.teacherImage === 'object' && (
+              <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f1f2f4] lg:hidden">
+                <Media fill imgClassName="object-cover" resource={block.teacherImage} />
+              </div>
+            )}
+            <RichText
               className="mt-8 max-w-none text-base leading-8 text-[#4b5563] sm:text-lg"
-            data={locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn}
-            enableGutter={false}
-          />
+              data={locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn}
+              enableGutter={false}
+            />
           </div>
         </Reveal>
-        <Reveal className="relative min-h-[30rem] overflow-hidden bg-[#f1f2f4] lg:min-h-full" delay={100}>
+        <Reveal className="relative hidden min-h-[30rem] overflow-hidden bg-[#f1f2f4] lg:block lg:min-h-full" delay={100}>
           {block.teacherImage && typeof block.teacherImage === 'object' ? (
             <>
               <Media fill imgClassName="object-cover" resource={block.teacherImage} />
@@ -651,12 +659,12 @@ function FeaturedProgram({
           </p>
         </div>
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.1fr_1fr] lg:items-center">
-          <div className="space-y-6">
+          <div className="space-y-6 order-2 lg:order-1">
             {features.slice(0, 2).map((feature, index) => (
               <FeaturePoint feature={feature} index={index} key={feature.id} locale={locale} />
             ))}
           </div>
-          <Reveal>
+          <Reveal className="order-1 lg:order-2">
             <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-md bg-[#e8e9ed] shadow-[0_24px_70px_rgba(10,11,15,.14)]">
               {block.image && typeof block.image === 'object' ? (
                 <Media fill imgClassName="object-cover" resource={block.image} />
@@ -669,7 +677,7 @@ function FeaturedProgram({
               )}
             </div>
           </Reveal>
-          <div className="space-y-6">
+          <div className="space-y-6 order-3">
             {features.slice(2).map((feature, index) => (
               <FeaturePoint feature={feature} index={index + 2} key={feature.id} locale={locale} />
             ))}
