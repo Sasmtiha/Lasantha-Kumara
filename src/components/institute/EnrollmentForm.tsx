@@ -69,10 +69,6 @@ export function EnrollmentForm({ classes }: { classes: Class[] }) {
         <Input label="Guardian name (optional)" name="guardianName" />
         <Input label="Guardian phone (optional)" name="guardianPhone" type="tel" />
       </div>
-      <label className="mt-5 block text-sm font-medium text-[#4b4b54]">
-        Anything we should know? (optional)
-        <textarea className="auth-control mt-2 min-h-24 resize-y" name="message" />
-      </label>
       <label className="mt-5 flex items-start gap-3 text-sm text-muted-foreground">
         <input className="mt-1 size-4" name="terms" required type="checkbox" value="accepted" />
         I confirm that the information is accurate and agree to be contacted about this enrollment.
