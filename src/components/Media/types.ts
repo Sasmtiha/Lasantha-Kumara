@@ -13,6 +13,7 @@ export interface Props {
   onClick?: () => void
   onLoad?: () => void
   loading?: 'lazy' | 'eager' // for NextImage only
+  disablePlaceholder?: boolean // avoids a temporary blur background for transparent artwork
   priority?: boolean // for NextImage only
   ref?: Ref<HTMLImageElement | HTMLVideoElement | null>
   resource?: GalleryType | MediaType | string | number | null // for Payload uploads

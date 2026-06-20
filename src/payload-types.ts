@@ -75,6 +75,8 @@ export interface Config {
     teachers: Teacher;
     students: Student;
     enrollments: Enrollment;
+    exams: Exam;
+    'student-marks': StudentMark;
     notices: Notice;
     resources: Resource;
     'contact-submissions': ContactSubmission;
@@ -107,6 +109,8 @@ export interface Config {
     teachers: TeachersSelect<false> | TeachersSelect<true>;
     students: StudentsSelect<false> | StudentsSelect<true>;
     enrollments: EnrollmentsSelect<false> | EnrollmentsSelect<true>;
+    exams: ExamsSelect<false> | ExamsSelect<true>;
+    'student-marks': StudentMarksSelect<false> | StudentMarksSelect<true>;
     notices: NoticesSelect<false> | NoticesSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
     'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
@@ -226,6 +230,7 @@ export interface Page {
   layout: (
     | InstituteHeroBlock
     | MetricsBlock
+    | AboutUsBlock
     | AboutTeacherBlock
     | WorkProcessBlock
     | FeaturedProgramBlock
@@ -503,6 +508,10 @@ export interface InstituteHeroBlock {
   secondaryButtonLabel?: string | null;
   secondaryButtonUrl?: string | null;
   /**
+   * Optional. Replaces the current “Master English with IEM” artwork displayed over the slideshow.
+   */
+  messageArtwork?: (number | null) | Media;
+  /**
    * Add 2–6 landscape images. They will change automatically with a smooth crossfade.
    */
   heroSlides?:
@@ -546,6 +555,53 @@ export interface MetricsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutUsBlock".
+ */
+export interface AboutUsBlock {
+  headingEn: string;
+  headingSi?: string | null;
+  descriptionEn: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  descriptionSi?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * The image shown in the About Us section near the top of the homepage.
+   */
+  image?: (number | null) | Media;
+  buttonLabel?: string | null;
+  buttonUrl?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AboutTeacherBlock".
  */
 export interface AboutTeacherBlock {
@@ -581,6 +637,9 @@ export interface AboutTeacherBlock {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Optional. Upload the large image shown on the right side of the teacher section.
+   */
   teacherImage?: (number | null) | Media;
   featureCards?:
     | {
@@ -707,6 +766,9 @@ export interface Class {
   level: 'beginner' | 'intermediate' | 'exam';
   category: 'grade_6' | 'grade_7' | 'grade_8' | 'grade_9' | 'grade_10' | 'grade_11';
   teacher?: (number | null) | Teacher;
+  /**
+   * Optional. This image replaces the blue grade-number watermark on the homepage class card.
+   */
   featuredImage?: (number | null) | Media;
   isActive?: boolean | null;
   displayOrder?: number | null;
@@ -1332,13 +1394,17 @@ export interface Student {
   lastName: string;
   email: string;
   phone: string;
-  gradeLevel: string;
+  gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
   school?: string | null;
   address?: string | null;
   guardianName?: string | null;
   guardianPhone?: string | null;
   guardianEmail?: string | null;
   preferredClass?: (number | null) | Class;
+  /**
+   * Assign all active classes currently attended by this student.
+   */
+  currentClasses?: (number | Class)[] | null;
   enrollmentStatus: 'pending' | 'approved' | 'rejected' | 'inactive';
   notes?: string | null;
   updatedAt: string;
@@ -1357,7 +1423,7 @@ export interface Enrollment {
   lastName: string;
   email: string;
   phone: string;
-  gradeLevel: string;
+  gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
   guardianName?: string | null;
   guardianPhone?: string | null;
   message?: string | null;
@@ -1365,6 +1431,49 @@ export interface Enrollment {
   adminNote?: string | null;
   approvedBy?: (number | null) | User;
   approvedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "exams".
+ */
+export interface Exam {
+  id: number;
+  title: string;
+  gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
+  class: number | Class;
+  examType: 'Unit Test' | 'Monthly Test' | 'Term Test' | 'Mock Exam' | 'Final Exam';
+  term?: ('Term 1' | 'Term 2' | 'Term 3' | 'Other') | null;
+  examDate: string;
+  academicYear: number;
+  totalMarks: number;
+  passMark: number;
+  description?: string | null;
+  isPublished?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "student-marks".
+ */
+export interface StudentMark {
+  id: number;
+  recordLabel?: string | null;
+  student: number | Student;
+  exam: number | Exam;
+  user: number | User;
+  gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
+  class: number | Class;
+  marksObtained: number;
+  totalMarks: number;
+  percentage?: number | null;
+  letterGrade?: ('A' | 'B' | 'C' | 'S' | 'F') | null;
+  resultStatus?: ('Pass' | 'Fail') | null;
+  examDate: string;
+  teacherRemarks?: string | null;
+  isPublished?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1659,6 +1768,14 @@ export interface PayloadLockedDocument {
         value: number | Enrollment;
       } | null)
     | ({
+        relationTo: 'exams';
+        value: number | Exam;
+      } | null)
+    | ({
+        relationTo: 'student-marks';
+        value: number | StudentMark;
+      } | null)
+    | ({
         relationTo: 'notices';
         value: number | Notice;
       } | null)
@@ -1781,6 +1898,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         instituteHero?: T | InstituteHeroBlockSelect<T>;
         metrics?: T | MetricsBlockSelect<T>;
+        aboutUs?: T | AboutUsBlockSelect<T>;
         aboutTeacher?: T | AboutTeacherBlockSelect<T>;
         workProcess?: T | WorkProcessBlockSelect<T>;
         featuredProgram?: T | FeaturedProgramBlockSelect<T>;
@@ -1828,6 +1946,7 @@ export interface InstituteHeroBlockSelect<T extends boolean = true> {
   primaryButtonUrl?: T;
   secondaryButtonLabel?: T;
   secondaryButtonUrl?: T;
+  messageArtwork?: T;
   heroSlides?:
     | T
     | {
@@ -1861,6 +1980,21 @@ export interface MetricsBlockSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutUsBlock_select".
+ */
+export interface AboutUsBlockSelect<T extends boolean = true> {
+  headingEn?: T;
+  headingSi?: T;
+  descriptionEn?: T;
+  descriptionSi?: T;
+  image?: T;
+  buttonLabel?: T;
+  buttonUrl?: T;
   id?: T;
   blockName?: T;
 }
@@ -2326,6 +2460,7 @@ export interface StudentsSelect<T extends boolean = true> {
   guardianPhone?: T;
   guardianEmail?: T;
   preferredClass?: T;
+  currentClasses?: T;
   enrollmentStatus?: T;
   notes?: T;
   updatedAt?: T;
@@ -2351,6 +2486,47 @@ export interface EnrollmentsSelect<T extends boolean = true> {
   adminNote?: T;
   approvedBy?: T;
   approvedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "exams_select".
+ */
+export interface ExamsSelect<T extends boolean = true> {
+  title?: T;
+  gradeLevel?: T;
+  class?: T;
+  examType?: T;
+  term?: T;
+  examDate?: T;
+  academicYear?: T;
+  totalMarks?: T;
+  passMark?: T;
+  description?: T;
+  isPublished?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "student-marks_select".
+ */
+export interface StudentMarksSelect<T extends boolean = true> {
+  recordLabel?: T;
+  student?: T;
+  exam?: T;
+  user?: T;
+  gradeLevel?: T;
+  class?: T;
+  marksObtained?: T;
+  totalMarks?: T;
+  percentage?: T;
+  letterGrade?: T;
+  resultStatus?: T;
+  examDate?: T;
+  teacherRemarks?: T;
+  isPublished?: T;
   updatedAt?: T;
   createdAt?: T;
 }

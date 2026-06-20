@@ -6,6 +6,8 @@ const collections: CollectionSlug[] = [
   'gallery',
   'resources',
   'notices',
+  'student-marks',
+  'exams',
   'enrollments',
   'students',
   'schedules',
@@ -185,6 +187,95 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
     )
   }
 
+  const studentUser = await payload.create({
+    collection: 'users',
+    overrideAccess: true,
+    data: {
+      email: 'student@example.com',
+      password: 'Student123!',
+      firstName: 'Sample',
+      lastName: 'Student',
+      phone: '071 000 0000',
+      role: 'student',
+      status: 'active',
+    },
+  })
+  const grade11Class = classBySlug['grade-11-english']
+  const student = await payload.create({
+    collection: 'students',
+    overrideAccess: true,
+    data: {
+      user: studentUser.id,
+      firstName: 'Sample',
+      lastName: 'Student',
+      email: 'student@example.com',
+      phone: '071 000 0000',
+      gradeLevel: 'Grade 11',
+      preferredClass: grade11Class.id,
+      currentClasses: [grade11Class.id],
+      enrollmentStatus: 'approved',
+    },
+  })
+  await payload.create({
+    collection: 'enrollments',
+    overrideAccess: true,
+    data: {
+      student: student.id,
+      user: studentUser.id,
+      class: grade11Class.id,
+      firstName: 'Sample',
+      lastName: 'Student',
+      email: 'student@example.com',
+      phone: '071 000 0000',
+      gradeLevel: 'Grade 11',
+      status: 'approved',
+      approvedBy: admin.id,
+      approvedAt: new Date().toISOString(),
+    },
+  })
+
+  const examDefinitions = [
+    ['Grammar Foundation Test', 'Monthly Test', '2026-01-24T00:00:00.000Z', 62, 'Good foundation. Review sentence structure.'],
+    ['Reading & Vocabulary Test', 'Unit Test', '2026-02-21T00:00:00.000Z', 71, 'Strong improvement in comprehension.'],
+    ['First Term English Test', 'Term Test', '2026-04-04T00:00:00.000Z', 78, 'Well-structured answers and improved accuracy.'],
+    ['O/L English Mock Exam', 'Mock Exam', '2026-05-30T00:00:00.000Z', 84, 'Excellent progress. Continue timed paper practice.'],
+  ] as const
+
+  for (const [title, examType, examDate, marksObtained, teacherRemarks] of examDefinitions) {
+    const exam = await payload.create({
+      collection: 'exams',
+      overrideAccess: true,
+      data: {
+        title,
+        gradeLevel: 'Grade 11',
+        class: grade11Class.id,
+        examType,
+        term: examType === 'Term Test' ? 'Term 1' : 'Other',
+        examDate,
+        academicYear: 2026,
+        totalMarks: 100,
+        passMark: 40,
+        isPublished: true,
+      },
+    })
+    await payload.create({
+      collection: 'student-marks',
+      overrideAccess: true,
+      data: {
+        student: student.id,
+        exam: exam.id,
+        user: studentUser.id,
+        gradeLevel: 'Grade 11',
+        class: grade11Class.id,
+        marksObtained,
+        totalMarks: 100,
+        examDate,
+        teacherRemarks,
+        isPublished: true,
+      },
+    })
+  }
+
   const testimonials = []
   const testimonialData = [
     ['Dilshan Sampath', 'O/L Student, Batch 2023', 'Sir made difficult grammar lessons simple. I improved my confidence and achieved an A pass at O/L.', 'අමාරු ව්‍යාකරණ පාඩම් සරලව තේරුම් කළ නිසා මට O/L විභාගයෙන් A සාමාර්ථයක් ලැබුණා.'],
@@ -256,6 +347,15 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
             { value: '98%', labelEn: 'Pass Rate', labelSi: 'සමත් ප්‍රතිශතය', icon: 'results' },
             { value: '20', labelEn: 'Small Batch Learning', labelSi: 'කුඩා කණ්ඩායම් ඉගෙනීම', icon: 'batch' },
           ],
+        },
+        {
+          blockType: 'aboutUs',
+          headingEn: 'A focused place to build confident English',
+          headingSi: 'විශ්වාසයෙන් ඉංග්‍රීසි ගොඩනගන නිවැරදි ස්ථානය',
+          descriptionEn: richText('IEM.lk provides structured English education for Grade 6 to Grade 11 students, combining clear teaching, regular practice, and personal guidance in a supportive learning environment.'),
+          descriptionSi: richText('IEM.lk හි 6 ශ්‍රේණියේ සිට 11 ශ්‍රේණිය දක්වා සිසුන්ට පැහැදිලි ඉගැන්වීම, නිරන්තර පුහුණුව සහ පුද්ගලික මඟපෙන්වීම සමඟ ඉංග්‍රීසි අධ්‍යාපනය ලබා දෙයි.'),
+          buttonLabel: 'Learn More',
+          buttonUrl: '/about',
         },
         {
           blockType: 'aboutTeacher',
@@ -356,7 +456,7 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
   })
 
   const basicPages: Array<[string, string, string, string, Page['layout'][number]]> = [
-    ['About', 'about', 'About Lasantha Kumara', 'Learn about our teacher, approach, and mission.', { blockType: 'aboutTeacher', headingEn: 'More than lessons—guidance for lasting confidence', headingSi: 'පාඩම්වලට වඩා දිගුකාලීන විශ්වාසය', descriptionEn: richText('Since 2009, Lasantha Kumara English Classes has supported learners with structured lessons, personal feedback, and practical language skills.'), featureCards: [] }],
+    ['About', 'about', 'About IEM.lk', 'Learn about our institute, approach, and mission.', { blockType: 'aboutUs', headingEn: 'A focused place to build confident English', headingSi: 'විශ්වාසයෙන් ඉංග්‍රීසි ගොඩනගන නිවැරදි ස්ථානය', descriptionEn: richText('Since 2009, IEM.lk has supported learners with structured lessons, personal feedback, and practical language skills.'), buttonLabel: 'View Classes', buttonUrl: '/#classes' }],
     ['Classes', 'classes', 'English Classes', 'Explore English classes for every age and goal.', { blockType: 'classesGrid', headingEn: 'All English classes', showAllClasses: true }],
     ['Schedule', 'schedule', 'Class Schedule', 'View our current English class timetable.', { blockType: 'schedule', headingEn: 'Weekly class schedule', showAllSchedules: true }],
     ['Testimonials', 'testimonials', 'Student Testimonials', 'Read student and parent feedback.', { blockType: 'instituteTestimonials', headingEn: 'Student success stories', showFeaturedOnly: false }],
@@ -436,9 +536,9 @@ export async function seed({ payload, req }: { payload: Payload; req: PayloadReq
     data: {
       missionText: 'Empowering students with English language excellence since 2009. Your success is our mission.',
       navItems: [
-        ['Classes', '/classes'],
-        ['Schedule', '/schedule'],
-        ['Contact', '/contact'],
+        ['Classes', '/#classes'],
+        ['Schedule', '/#schedule'],
+        ['Contact', '/#contact'],
         ['Student Portal', '/login'],
       ].map(([label, url]) => ({ link: { type: 'custom' as const, label, url } })),
       copyrightText: `© ${new Date().getFullYear()} IEM.lk. All rights reserved.`,

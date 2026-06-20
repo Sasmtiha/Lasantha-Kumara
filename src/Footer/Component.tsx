@@ -2,7 +2,6 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
 
-import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import { getCachedGlobal as getGlobal } from '@/utilities/getGlobals'
 import { Facebook, MessageCircle, Youtube } from 'lucide-react'
@@ -14,6 +13,19 @@ export async function Footer() {
   ])
 
   const navItems = footerData?.navItems || []
+  const sectionLinks = navItems.map(({ link }) => {
+    const sectionByLabel: Record<string, string> = {
+      classes: '/#classes',
+      contact: '/#contact',
+      schedule: '/#schedule',
+    }
+
+    return {
+      href: sectionByLabel[link.label.toLowerCase()] || link.url || '/',
+      label: link.label,
+      newTab: link.newTab,
+    }
+  })
 
   return (
     <footer className="site-footer relative mt-auto overflow-hidden bg-[#090a0e] text-white">
@@ -27,16 +39,23 @@ export async function Footer() {
         <div>
           <h2 className="text-sm font-medium uppercase tracking-[.14em] text-[#75aff0]">Quick Links</h2>
           <nav className="mt-5 flex flex-col gap-3">
-            {navItems.map(({ link }, i) => {
-              return <CMSLink className="text-white/65 hover:text-white" key={i} {...link} />
-            })}
+            {sectionLinks.map((link) => (
+              <Link
+                className="text-white/65 transition hover:translate-x-1 hover:text-white"
+                href={link.href}
+                key={`${link.label}-${link.href}`}
+                target={link.newTab ? '_blank' : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
         <div>
           <h2 className="text-sm font-medium uppercase tracking-[.14em] text-[#75aff0]">Classes</h2>
           <div className="mt-5 flex flex-col gap-3 text-white/65">
             {[6, 7, 8, 9, 10, 11].map((grade) => (
-              <Link href={`/classes/grade-${grade}-english`} key={grade}>Grade {grade} English</Link>
+              <Link className="transition hover:translate-x-1 hover:text-white" href="/#classes" key={grade}>Grade {grade} English</Link>
             ))}
           </div>
         </div>

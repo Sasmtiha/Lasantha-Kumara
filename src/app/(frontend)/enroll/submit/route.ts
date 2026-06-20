@@ -34,7 +34,13 @@ export async function POST(request: Request) {
   const lastName = input.lastName!
   const email = input.email!
   const phone = input.phone!
-  const gradeLevel = input.gradeLevel!
+  const validGrades = ['Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11'] as const
+  type GradeLevel = (typeof validGrades)[number]
+  const gradeInput = input.gradeLevel!
+  if (!validGrades.includes(gradeInput as GradeLevel)) {
+    return Response.json({ message: 'Please select a valid grade.' }, { status: 400 })
+  }
+  const gradeLevel = gradeInput as GradeLevel
   const preferredClass = Number(input.preferredClass)
   if (!Number.isInteger(preferredClass)) {
     return Response.json({ message: 'Please select a valid class.' }, { status: 400 })

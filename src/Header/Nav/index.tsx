@@ -1,6 +1,6 @@
 'use client'
 
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -48,12 +48,6 @@ export const HeaderNav = ({
     router.refresh()
   }
 
-  async function logout() {
-    await fetch('/api/users/logout', { credentials: 'include', method: 'POST' })
-    router.push('/login')
-    router.refresh()
-  }
-
   return (
     <>
       <nav aria-label="Main navigation" className="hidden items-center justify-center gap-1 xl:flex">
@@ -77,37 +71,41 @@ export const HeaderNav = ({
         })}
       </nav>
 
-      <div className="hidden items-center justify-self-end gap-3 xl:flex">
+      <div className="hidden items-center justify-self-end gap-2 xl:flex">
         {data.showLanguageToggle ? (
           <button
             aria-label={`Switch to ${locale === 'en' ? 'Sinhala' : 'English'}`}
             className={cn(
-              'relative grid grid-cols-2 rounded-full border p-1 text-xs font-medium',
-              transparent ? 'border-white/25 bg-white/10' : 'border-black/10 bg-[#f2f2f0]',
+              'relative grid h-11 grid-cols-2 rounded-[.35rem] border p-1 text-xs font-semibold backdrop-blur-md transition-colors duration-300',
+              transparent ? 'border-white/30 bg-black/10' : 'border-black/10 bg-white',
             )}
             onClick={toggleLanguage}
             type="button"
           >
             <span
               className={cn(
-                'relative z-10 rounded-full px-3 py-1.5 transition',
+                'relative z-10 grid min-w-11 place-items-center rounded-[.25rem] px-3 transition duration-300',
                 locale === 'en'
-                  ? 'bg-[#0a0b0f] text-white shadow-sm'
+                  ? transparent
+                    ? 'bg-white text-[#0a0b0f]'
+                    : 'bg-[#034EA2] text-white'
                   : transparent
-                    ? 'text-white/60'
-                    : 'text-[#034EA2]/55',
+                    ? 'text-white/70 hover:text-white'
+                    : 'text-[#4b5563] hover:text-[#034EA2]',
               )}
             >
               EN
             </span>
             <span
               className={cn(
-                'relative z-10 rounded-full px-3 py-1.5 transition',
+                'relative z-10 grid min-w-11 place-items-center rounded-[.25rem] px-3 transition duration-300',
                 locale === 'si'
-                  ? 'bg-[#0a0b0f] text-white shadow-sm'
+                  ? transparent
+                    ? 'bg-white text-[#0a0b0f]'
+                    : 'bg-[#034EA2] text-white'
                   : transparent
-                    ? 'text-white/60'
-                    : 'text-[#034EA2]/55',
+                    ? 'text-white/70 hover:text-white'
+                    : 'text-[#4b5563] hover:text-[#034EA2]',
               )}
             >
               සිං
@@ -115,33 +113,30 @@ export const HeaderNav = ({
           </button>
         ) : null}
         {user ? (
-          <>
-            <Link
-              className={cn(
-                'rounded-md px-4 py-2.5 text-sm font-medium transition',
-                transparent
-                  ? 'border border-white bg-transparent text-white hover:border-[#034EA2] hover:bg-[#034EA2]'
-                  : 'border border-[#0a0b0f] bg-[#0a0b0f] text-white hover:border-[#034EA2] hover:bg-[#034EA2]',
-              )}
-              href={getPortalURL(user.role)}
-            >
-              Dashboard
-            </Link>
-            <button className="rounded-md border border-[#0a0b0f] bg-[#0a0b0f] px-5 py-2.5 text-sm font-medium text-white transition hover:border-[#034EA2] hover:bg-[#034EA2]" onClick={logout} type="button">
-              Log out
-            </button>
-          </>
+          <Link
+            className={cn(
+              'group inline-flex h-11 items-center gap-2 rounded-[.35rem] border px-5 text-sm font-semibold transition duration-300 hover:-translate-y-px',
+              transparent
+                ? 'border-white/70 bg-transparent text-white hover:border-white hover:bg-white hover:text-[#0a0b0f]'
+                : 'border-[#034EA2] bg-[#034EA2] text-white hover:border-[#0a0b0f] hover:bg-[#0a0b0f]',
+            )}
+            href={getPortalURL(user.role)}
+          >
+            {user.role === 'student' ? 'Student Portal' : 'Dashboard'}
+            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         ) : (
           <Link
             className={cn(
-              'rounded-md border px-6 py-2.5 text-sm font-medium shadow-sm transition',
+              'group inline-flex h-11 items-center gap-2 rounded-[.35rem] border px-5 text-sm font-semibold transition duration-300 hover:-translate-y-px',
               transparent
-                ? 'border-white bg-white text-[#0a0b0f] hover:border-[#034EA2] hover:bg-[#034EA2] hover:text-white'
-                : 'border-[#0a0b0f] bg-[#0a0b0f] text-white hover:border-[#034EA2] hover:bg-[#034EA2]',
+                ? 'border-white/70 bg-transparent text-white hover:border-white hover:bg-white hover:text-[#0a0b0f]'
+                : 'border-[#034EA2] bg-[#034EA2] text-white hover:border-[#0a0b0f] hover:bg-[#0a0b0f]',
             )}
             href="/login"
           >
             Log In
+            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         )}
       </div>
@@ -172,10 +167,9 @@ export const HeaderNav = ({
             })}
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {user ? (
-                <>
-                  <Link className="premium-button-light justify-center" href={getPortalURL(user.role)}>Dashboard</Link>
-                  <button className="premium-button-primary justify-center" onClick={logout} type="button">Log out</button>
-                </>
+                <Link className="premium-button-light justify-center sm:col-span-2" href={getPortalURL(user.role)}>
+                  {user.role === 'student' ? 'Student Portal' : 'Dashboard'}
+                </Link>
               ) : (
                 <Link className="premium-button-primary justify-center sm:col-span-2" href="/login">Log In</Link>
               )}

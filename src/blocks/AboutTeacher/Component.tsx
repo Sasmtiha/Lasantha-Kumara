@@ -5,16 +5,32 @@ import type { AboutTeacherBlock as AboutTeacherBlockProps } from '@/payload-type
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { getSiteLocale, localized } from '@/utilities/locale'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
 
 const icons = { award: Award, book: BookOpen, users: Users, target: Target }
 
 export async function AboutTeacherBlock({ headingEn, headingSi, descriptionEn, descriptionSi, teacherImage, featureCards }: AboutTeacherBlockProps) {
   const locale = await getSiteLocale()
+
+  let mediaResource = teacherImage
+  if (mediaResource && (typeof mediaResource === 'number' || typeof mediaResource === 'string')) {
+    try {
+      const payload = await getPayload({ config: configPromise })
+      mediaResource = await payload.findByID({
+        collection: 'media',
+        id: mediaResource,
+      })
+    } catch (e) {
+      // Ignore
+    }
+  }
+
   return (
     <section className="container grid gap-12 py-20 lg:grid-cols-[.8fr_1.2fr]">
       <div>
-        {teacherImage && typeof teacherImage === 'object' ? (
-          <Media className="overflow-hidden rounded-3xl bg-blue-50" imgClassName="aspect-[4/5] w-full object-cover" resource={teacherImage} />
+        {mediaResource && typeof mediaResource === 'object' ? (
+          <Media className="overflow-hidden rounded-3xl bg-blue-50" imgClassName="aspect-[4/5] w-full object-cover" resource={mediaResource} />
         ) : (
           <div className="aspect-[4/5] rounded-3xl bg-blue-50" />
         )}

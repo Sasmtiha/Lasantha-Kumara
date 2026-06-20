@@ -50,7 +50,15 @@ export function EnrollmentForm({ classes }: { classes: Class[] }) {
         <Input label="Phone" name="phone" required type="tel" />
         <Input label="Password" minLength={8} name="password" required type="password" />
         <Input label="Confirm password" minLength={8} name="confirmPassword" required type="password" />
-        <Input label="Grade / level" name="gradeLevel" required />
+        <label className="block text-sm font-medium text-[#4b4b54]">
+          Grade
+          <select className="auth-control mt-2" name="gradeLevel" required>
+            <option value="">Select a grade</option>
+            {[6, 7, 8, 9, 10, 11].map((grade) => (
+              <option key={grade} value={`Grade ${grade}`}>Grade {grade}</option>
+            ))}
+          </select>
+        </label>
         <label className="block text-sm font-medium text-[#4b4b54]">
           Preferred class
           <select className="auth-control mt-2" name="preferredClass" required>

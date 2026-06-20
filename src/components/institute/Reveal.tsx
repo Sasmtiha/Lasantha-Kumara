@@ -23,10 +23,14 @@ export function Reveal({
       ([entry]) => {
         if (entry.isIntersecting) {
           element.dataset.visible = 'true'
-          observer.disconnect()
+          element.dataset.revealPosition = 'visible'
+        } else {
+          element.dataset.visible = 'false'
+          element.dataset.revealPosition =
+            entry.boundingClientRect.top < 0 ? 'above' : 'below'
         }
       },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+      { rootMargin: '-6% 0px -6% 0px', threshold: 0.08 },
     )
 
     observer.observe(element)

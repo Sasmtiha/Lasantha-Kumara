@@ -71,7 +71,16 @@ export const Classes: CollectionConfig = {
       ],
     },
     { name: 'teacher', type: 'relationship', relationTo: 'teachers' },
-    { name: 'featuredImage', type: 'upload', relationTo: 'media' },
+    {
+      name: 'featuredImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Class card image',
+      admin: {
+        description:
+          'Optional. This image replaces the blue grade-number watermark on the homepage class card.',
+      },
+    },
     { name: 'isActive', type: 'checkbox', defaultValue: true, index: true },
     { name: 'displayOrder', type: 'number', defaultValue: 0, index: true },
   ],

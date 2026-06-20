@@ -9,7 +9,6 @@ import { SmoothAnchorScroll } from '@/components/institute/SmoothAnchorScroll'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
-import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { cookies, draftMode } from 'next/headers'
 
@@ -46,11 +45,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       className={cn(sourceSans.variable, spaceGrotesk.variable, notoSansSinhala.variable)}
+      data-theme="light"
       lang={locale}
       suppressHydrationWarning
     >
       <head>
-        <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>

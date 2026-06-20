@@ -13,6 +13,7 @@ import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
 import { AboutTeacher } from '@/blocks/AboutTeacher/config'
+import { AboutUs } from '@/blocks/AboutUs/config'
 import { ClassesGrid } from '@/blocks/ClassesGrid/config'
 import { EnrollmentCTA } from '@/blocks/EnrollmentCTA/config'
 import { FAQ } from '@/blocks/FAQ/config'
@@ -89,6 +90,7 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [
                 InstituteHero,
                 Metrics,
+                AboutUs,
                 AboutTeacher,
                 WorkProcess,
                 FeaturedProgram,

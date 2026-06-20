@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { admins, getRole, isAdminRole } from '@/access/roles'
+import { gradeOptions } from '@/fields/gradeOptions'
 
 export const Enrollments: CollectionConfig = {
   slug: 'enrollments',
@@ -36,7 +37,7 @@ export const Enrollments: CollectionConfig = {
     },
     { name: 'email', type: 'email', required: true },
     { name: 'phone', type: 'text', required: true },
-    { name: 'gradeLevel', type: 'text', required: true },
+    { name: 'gradeLevel', type: 'select', required: true, options: [...gradeOptions], index: true },
     { name: 'guardianName', type: 'text' },
     { name: 'guardianPhone', type: 'text' },
     { name: 'message', type: 'textarea' },

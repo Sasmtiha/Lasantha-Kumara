@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { admins, isAdminRole, getRole } from '@/access/roles'
+import { gradeOptions } from '@/fields/gradeOptions'
 
 export const Students: CollectionConfig = {
   slug: 'students',
@@ -47,7 +48,14 @@ export const Students: CollectionConfig = {
     },
     { name: 'email', type: 'email', required: true },
     { name: 'phone', type: 'text', required: true },
-    { name: 'gradeLevel', type: 'text', required: true, label: 'Grade / Level' },
+    {
+      name: 'gradeLevel',
+      type: 'select',
+      required: true,
+      label: 'Grade',
+      options: [...gradeOptions],
+      index: true,
+    },
     { name: 'school', type: 'text' },
     { name: 'address', type: 'textarea' },
     {
@@ -62,6 +70,16 @@ export const Students: CollectionConfig = {
       name: 'preferredClass',
       type: 'relationship',
       relationTo: 'classes',
+    },
+    {
+      name: 'currentClasses',
+      type: 'relationship',
+      relationTo: 'classes',
+      hasMany: true,
+      label: 'Current classes',
+      admin: {
+        description: 'Assign all active classes currently attended by this student.',
+      },
     },
     {
       name: 'enrollmentStatus',

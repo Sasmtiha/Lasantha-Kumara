@@ -24,6 +24,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const isHome = pathname === '/'
 
   useEffect(() => {
@@ -37,18 +38,46 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
   }, [headerTheme])
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 24)
+    let lastY = window.scrollY
+    let ticking = false
+
+    const update = () => {
+      const currentY = window.scrollY
+      setScrolled(currentY > 24)
+
+      if (currentY <= 80) {
+        setHidden(false)
+      } else if (Math.abs(currentY - lastY) > 6) {
+        setHidden(currentY > lastY)
+      }
+
+      lastY = currentY
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
+
     update()
-    window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const transparent = isHome && !scrolled
 
+  if (pathname.startsWith('/student')) {
+    return null
+  }
+
   return (
     <header
       className={cn(
-        'site-header fixed inset-x-0 top-0 z-50 transition-all duration-300',
+        'site-header fixed inset-x-0 top-0 z-50 will-change-transform transition-[transform,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)]',
+        hidden ? '-translate-y-[110%]' : 'translate-y-0',
         transparent
           ? 'border-transparent bg-transparent text-white'
           : 'border-b border-black/5 bg-white/90 text-[#111827] shadow-[0_8px_30px_rgba(15,23,42,.06)] backdrop-blur-xl',

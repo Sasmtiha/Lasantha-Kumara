@@ -16,6 +16,8 @@ import { Notices } from './collections/Notices'
 import { Resources } from './collections/Resources'
 import { Schedules } from './collections/Schedules'
 import { Students } from './collections/Students'
+import { Exams } from './collections/Exams'
+import { StudentMarks } from './collections/StudentMarks'
 import { Teachers } from './collections/Teachers'
 import { Testimonials } from './collections/Testimonials'
 import { Gallery } from './collections/Gallery'
@@ -32,12 +34,16 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
-      beforeLogin: ['@/components/BeforeLogin'],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
+      beforeLogin: ['@/components/ForceAdminLightTheme', '@/components/BeforeLogin'],
       beforeDashboard: ['@/components/BeforeDashboard'],
+      beforeNav: ['@/components/ForceAdminLightTheme'],
+      graphics: {
+        Icon: '@/components/AdminBrand#AdminIcon',
+        Logo: '@/components/AdminBrand#AdminLogo',
+      },
+    },
+    meta: {
+      titleSuffix: ' · IEM.lk CMS',
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -82,6 +88,8 @@ export default buildConfig({
     Teachers,
     Students,
     Enrollments,
+    Exams,
+    StudentMarks,
     Notices,
     Resources,
     ContactSubmissions,

@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { AboutTeacherBlock } from '@/blocks/AboutTeacher/Component'
+import { AboutUsBlock } from '@/blocks/AboutUs/Component'
 import { ClassesGridBlock } from '@/blocks/ClassesGrid/Component'
 import { EnrollmentCTABlock } from '@/blocks/EnrollmentCTA/Component'
 import { FAQBlock } from '@/blocks/FAQ/Component'
@@ -22,6 +23,7 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  aboutUs: AboutUsBlock,
   aboutTeacher: AboutTeacherBlock,
   classesGrid: ClassesGridBlock,
   enrollmentCTA: EnrollmentCTABlock,

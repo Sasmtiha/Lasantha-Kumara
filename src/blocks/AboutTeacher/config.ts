@@ -8,7 +8,16 @@ export const AboutTeacher: Block = {
     { name: 'headingSi', type: 'text', label: 'Heading (සිංහල)' },
     { name: 'descriptionEn', type: 'richText', required: true, label: 'Description (English)' },
     { name: 'descriptionSi', type: 'richText', label: 'Description (සිංහල)' },
-    { name: 'teacherImage', type: 'upload', relationTo: 'media' },
+    {
+      name: 'teacherImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Teacher section image',
+      admin: {
+        description:
+          'Optional. Upload the large image shown on the right side of the teacher section.',
+      },
+    },
     {
       name: 'featureCards',
       type: 'array',

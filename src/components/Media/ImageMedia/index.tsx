@@ -48,6 +48,7 @@ const placeholderBlur =
 export const ImageMedia: React.FC<MediaProps> = (props) => {
   const {
     alt: altFromProps,
+    disablePlaceholder,
     fill,
     pictureClassName,
     imgClassName,
@@ -91,8 +92,8 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         className={cn(imgClassName)}
         fill={fill}
         height={!fill ? height : undefined}
-        placeholder="blur"
-        blurDataURL={placeholderBlur}
+        placeholder={disablePlaceholder ? 'empty' : 'blur'}
+        blurDataURL={disablePlaceholder ? undefined : placeholderBlur}
         priority={priority}
         quality={100}
         loading={loading}

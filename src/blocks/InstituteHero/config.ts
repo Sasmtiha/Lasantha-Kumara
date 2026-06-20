@@ -39,6 +39,16 @@ export const InstituteHero: Block = {
       ],
     },
     {
+      name: 'messageArtwork',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Hero message artwork',
+      admin: {
+        description:
+          'Optional. Replaces the current “Master English with IEM” artwork displayed over the slideshow.',
+      },
+    },
+    {
       name: 'heroSlides',
       type: 'array',
       label: 'Hero background slideshow',

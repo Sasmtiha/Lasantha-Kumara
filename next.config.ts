@@ -25,6 +25,9 @@ const nextConfig: NextConfig = {
       {
         pathname: '/api/gallery/file/**',
       },
+      {
+        pathname: '/hero-master-english-iem.png',
+      },
     ],
     qualities: [100],
     remotePatterns: [

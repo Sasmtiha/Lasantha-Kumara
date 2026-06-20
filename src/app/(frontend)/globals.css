@@ -310,6 +310,24 @@ html:lang(en) .heading-font {
   .premium-button-light {
     @apply border border-white bg-white text-[#0a0b0f] hover:border-[#111827] hover:bg-[#111827] hover:text-white;
   }
+  .hero-button-primary,
+  .hero-button-secondary {
+    @apply inline-flex min-h-14 items-center justify-center gap-3 whitespace-nowrap rounded-[.3rem] border-2 px-7 py-4 text-center text-[15px] font-semibold leading-none shadow-[0_12px_30px_rgba(0,0,0,.18)] transition duration-300 hover:-translate-y-1;
+  }
+  .hero-button-primary {
+    @apply border-white bg-white text-[#0a0b0f] hover:border-[#034EA2] hover:bg-[#034EA2] hover:text-white hover:shadow-[0_16px_36px_rgba(3,78,162,.35)];
+  }
+  .hero-button-secondary {
+    @apply border-white bg-transparent text-white backdrop-blur-sm hover:border-[#034EA2] hover:bg-[#034EA2] hover:text-white hover:shadow-[0_16px_36px_rgba(3,78,162,.35)];
+  }
+  .hero-button-primary svg,
+  .hero-button-secondary svg {
+    @apply transition-transform duration-300;
+  }
+  .hero-button-primary:hover svg,
+  .hero-button-secondary:hover svg {
+    transform: translate(.18rem, -.18rem);
+  }
   .premium-button-green {
     @apply border border-[#0a0b0f] bg-[#0a0b0f] text-white hover:border-[#111827] hover:bg-[#111827];
   }
@@ -349,6 +367,11 @@ html:lang(en) .heading-font {
 
 body:has(.auth-page) .site-header,
 body:has(.auth-page) .site-footer {
+  display: none;
+}
+
+body:has(.student-portal) .site-header,
+body:has(.student-portal) .site-footer {
   display: none;
 }
 
@@ -443,14 +466,24 @@ body:has(.auth-page) .site-footer {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
+  will-change: opacity, transform;
   transition:
-    opacity .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms),
-    transform .7s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms);
+    opacity .85s cubic-bezier(.22,1,.36,1),
+    transform .85s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal[data-reveal-position='above'] {
+  transform: translateY(-24px);
+}
+
+.reveal[data-reveal-position='below'] {
+  transform: translateY(28px);
 }
 
 .reveal[data-visible='true'] {
   opacity: 1;
   transform: none;
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 @keyframes heroReveal {

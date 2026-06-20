@@ -1,0 +1,117 @@
+html[data-theme='light'],
+html[data-theme='dark'] {
+  color-scheme: light;
+  --theme-bg: #f6f8fc;
+  --theme-text: #111827;
+  --theme-input-bg: #ffffff;
+  --theme-border-color: #dce3ec;
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #f7f9fc;
+  --theme-elevation-100: #eef2f7;
+  --theme-elevation-150: #e3e9f1;
+  --theme-elevation-200: #d7dee8;
+  --theme-elevation-250: #c8d1dd;
+  --theme-elevation-300: #b3bfce;
+  --theme-elevation-350: #9aa8ba;
+  --theme-elevation-400: #8493a7;
+  --theme-elevation-450: #718096;
+  --theme-elevation-500: #64748b;
+  --theme-elevation-550: #526176;
+  --theme-elevation-600: #475569;
+  --theme-elevation-650: #3e4b5e;
+  --theme-elevation-700: #334155;
+  --theme-elevation-750: #293548;
+  --theme-elevation-800: #1f2937;
+  --theme-elevation-850: #172033;
+  --theme-elevation-900: #111827;
+  --theme-elevation-950: #0b1120;
+  --theme-elevation-1000: #030712;
+}
+
+body {
+  background: #f6f8fc;
+}
+
+.iem-admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #111827;
+}
+
+.iem-admin-logo__mark,
+.iem-admin-icon {
+  display: grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 0.4rem;
+  background: #034ea2;
+  color: #fff;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.iem-admin-logo__name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  span {
+    color: #034ea2;
+  }
+}
+
+.iem-admin-icon {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.55rem;
+}
+
+.iem-admin-login-intro {
+  margin-bottom: 1.5rem;
+  text-align: left;
+
+  h1 {
+    margin: 0.45rem 0 0;
+    color: #111827;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    margin: 0.65rem 0 0;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  .iem-admin-login-intro__eyebrow {
+    margin: 0;
+    color: #034ea2;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
+.btn--style-primary {
+  --bg-color: #034ea2;
+  --hover-bg: #023d80;
+}
+
+.nav {
+  background: #ffffff;
+  border-right: 1px solid #e3e9f1;
+}
+
+.nav__link:hover,
+.nav__link.active {
+  color: #034ea2;
+}
+
+.theme-selector {
+  display: none !important;
+}
