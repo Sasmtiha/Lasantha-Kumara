@@ -65,8 +65,8 @@ export async function Footer() {
             <p>{settings.phone}</p><p>{settings.secondaryPhone}</p><p>{settings.email}</p><p>{settings.addressEn}</p>
           </div>
           <div className="mt-5 flex gap-3">
-            {settings.facebookUrl ? <a aria-label="IEM.lk on Facebook" className="grid size-10 place-items-center rounded-md border border-white/15 text-white/70 hover:border-[#034EA2] hover:text-[#034EA2]" href={settings.facebookUrl} rel="noreferrer" target="_blank"><Facebook className="size-4" /></a> : null}
-            {settings.youtubeUrl ? <a aria-label="IEM.lk on YouTube" className="grid size-10 place-items-center rounded-md border border-white/15 text-white/70 hover:border-[#034EA2] hover:text-[#034EA2]" href={settings.youtubeUrl} rel="noreferrer" target="_blank"><Youtube className="size-4" /></a> : null}
+            {settings.facebookUrl ? <a aria-label="IEM.lk on Facebook" className="grid size-10 place-items-center rounded-md border border-white/15 text-white/70 hover:border-white hover:text-white" href={settings.facebookUrl} rel="noreferrer" target="_blank"><Facebook className="size-4" /></a> : null}
+            {settings.youtubeUrl ? <a aria-label="IEM.lk on YouTube" className="grid size-10 place-items-center rounded-md border border-white/15 text-white/70 hover:border-white hover:text-white" href={settings.youtubeUrl} rel="noreferrer" target="_blank"><Youtube className="size-4" /></a> : null}
           </div>
         </div>
       </div>

@@ -21,11 +21,7 @@ export function AuthSplitLayout({ children, description, title }: Props) {
         <X className="size-5" />
       </Link>
       <div className="mx-auto grid min-h-[calc(100svh-2rem)] max-w-[118rem] overflow-hidden lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[minmax(0,1.08fr)_minmax(34rem,.92fr)] lg:gap-8">
-        <div
-          aria-label="Image placeholder"
-          className="hidden min-h-[calc(100svh-4rem)] rounded-[1.35rem] bg-[#eeeeec] lg:block"
-          role="img"
-        />
+        <div className="relative hidden min-h-[calc(100svh-4rem)] overflow-hidden rounded-[1.35rem] bg-[#eeeeec] lg:block" />
 
         <section className="flex min-w-0 items-center justify-center px-2 py-10 sm:px-8 lg:px-12">
           <div className="w-full max-w-[38rem]">
@@ -41,3 +37,4 @@ export function AuthSplitLayout({ children, description, title }: Props) {
     </main>
   )
 }
+
