@@ -17,6 +17,7 @@ export default async function EnrollPage() {
   return (
     <AuthSplitLayout
       description="Create your student account and submit your enrollment request."
+      image="/register.png"
       title="Join IEM.lk"
     >
       <EnrollmentForm classes={classes.docs} />

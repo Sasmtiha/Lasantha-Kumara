@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
       {
         pathname: '/hero-master-english-iem.png',
       },
+      {
+        pathname: '/login.png',
+      },
+      {
+        pathname: '/register.png',
+      },
     ],
     qualities: [100],
     remotePatterns: [

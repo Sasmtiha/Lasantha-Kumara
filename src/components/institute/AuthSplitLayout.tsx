@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { X } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { AuthBrand } from './AuthBrand'
@@ -7,10 +8,11 @@ import { AuthBrand } from './AuthBrand'
 type Props = {
   children: ReactNode
   description: string
+  image?: string
   title: string
 }
 
-export function AuthSplitLayout({ children, description, title }: Props) {
+export function AuthSplitLayout({ children, description, image, title }: Props) {
   return (
     <main className="auth-page relative min-h-svh bg-white p-4 sm:p-6 lg:p-8">
       <Link
@@ -21,7 +23,18 @@ export function AuthSplitLayout({ children, description, title }: Props) {
         <X className="size-5" />
       </Link>
       <div className="mx-auto grid min-h-[calc(100svh-2rem)] max-w-[118rem] overflow-hidden lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[minmax(0,1.08fr)_minmax(34rem,.92fr)] lg:gap-8">
-        <div className="relative hidden min-h-[calc(100svh-4rem)] overflow-hidden rounded-[1.35rem] bg-[#eeeeec] lg:block" />
+        <div className="relative hidden min-h-[calc(100svh-4rem)] overflow-hidden rounded-[1.35rem] bg-[#eeeeec] lg:block">
+          {image && (
+            <Image
+              alt=""
+              className="object-cover"
+              fill
+              priority
+              sizes="(min-width: 1024px) 55vw, 0vw"
+              src={image}
+            />
+          )}
+        </div>
 
         <section className="flex min-w-0 items-center justify-center px-2 py-10 sm:px-8 lg:px-12">
           <div className="w-full max-w-[38rem]">

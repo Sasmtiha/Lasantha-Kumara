@@ -23,6 +23,7 @@ export default async function LoginPage() {
   return (
     <AuthSplitLayout
       description="Sign in to your account and continue your learning journey."
+      image="/login.png"
       title="Welcome to IEM.lk"
     >
       <Suspense>
