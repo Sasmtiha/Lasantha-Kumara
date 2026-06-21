@@ -12,6 +12,11 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
 const nextConfig: NextConfig = {
+  // Payload serves uploads through server routes. Include existing local uploads
+  // in Vercel's serverless function bundle so those routes can read the files.
+  outputFileTracingIncludes: {
+    '/*': ['./public/media/**/*', './public/gallery/**/*'],
+  },
   // Temporarily required on Windows until Next.js fixes Turbopack Sass resolution.
   // See: https://github.com/vercel/next.js/issues/86431
   sassOptions: {
