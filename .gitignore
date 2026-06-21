@@ -38,3 +38,8 @@ public/sitemap*.xml
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+.agents/
+.vscode/
+current-home-review.png
+AGENTS.md
