@@ -1,21 +1,39 @@
-build
-dist / media
-node_modules
-.DS_Store
+# Dependencies
+node_modules/
+
+# Build output and caches
+.next/
+build/
+dist/
+.vercel/
+coverage/
+*.tsbuildinfo
+
+# Environment files (keep templates tracked)
 .env
-.next
+.env.*
+!.env.example
+
+# Logs
+*.log
+.dev-server.*.log
+
+# OS/editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Next.js generated types
 next-env.d.ts
-.vercel
 
 # Payload default media upload directory
 public/media/
 
+# Generated sitemap files
 public/robots.txt
 public/sitemap*.xml
 
-
 # Playwright
-node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
