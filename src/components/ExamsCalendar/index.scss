@@ -1,0 +1,295 @@
+.iem-exams-calendar-view {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 clamp(1.35rem, 2vw, 2rem) 2rem;
+  background: var(--iem-admin-page);
+  color: var(--iem-admin-text);
+}
+
+.iem-exams-calendar {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.iem-exams-calendar__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+
+  h1 {
+    margin: 0.35rem 0 0;
+    color: var(--iem-admin-text);
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 540;
+    line-height: 1.08;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--iem-admin-muted);
+    font-size: 1rem;
+  }
+}
+
+.iem-exams-calendar__eyebrow {
+  margin: 0;
+  color: var(--iem-admin-blue);
+  font-size: 0.76rem;
+  font-weight: 520;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.iem-exams-calendar__actions {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.iem-exams-calendar__button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--iem-admin-border);
+  border-radius: 8px;
+  background: var(--iem-admin-surface);
+  color: var(--iem-admin-blue);
+  padding: 0 0.85rem;
+  font-size: 0.94rem;
+  font-weight: 520;
+  text-decoration: none;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.iem-exams-calendar__button--primary {
+  border-color: var(--iem-admin-blue);
+  background: var(--iem-admin-blue);
+  color: #ffffff !important;
+
+  svg {
+    color: currentColor;
+  }
+}
+
+.iem-exams-calendar__shell {
+  border: 1px solid var(--iem-admin-border);
+  border-radius: 8px;
+  background: var(--iem-admin-surface);
+  overflow: hidden;
+}
+
+.iem-exams-calendar__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--iem-admin-border);
+  padding: 0.9rem 1rem;
+  color: var(--iem-admin-muted);
+  font-size: 0.94rem;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: var(--iem-admin-blue);
+  }
+}
+
+.iem-exams-calendar .fc {
+  --fc-border-color: var(--iem-admin-border);
+  --fc-button-bg-color: var(--iem-admin-surface);
+  --fc-button-border-color: var(--iem-admin-border);
+  --fc-button-text-color: var(--iem-admin-text);
+  --fc-button-hover-bg-color: var(--iem-admin-blue-soft);
+  --fc-button-hover-border-color: var(--iem-admin-border);
+  --fc-button-active-bg-color: var(--iem-admin-blue);
+  --fc-button-active-border-color: var(--iem-admin-blue);
+  --fc-event-bg-color: var(--iem-admin-blue);
+  --fc-event-border-color: var(--iem-admin-blue);
+  --fc-event-text-color: #ffffff;
+  --fc-page-bg-color: var(--iem-admin-surface);
+  font-family: inherit;
+  padding: 1rem;
+}
+
+.iem-exams-calendar .fc .fc-toolbar {
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.iem-exams-calendar .fc .fc-toolbar-title {
+  color: var(--iem-admin-text);
+  font-size: 1.25rem;
+  font-weight: 540;
+}
+
+.iem-exams-calendar .fc .fc-button {
+  border-radius: 8px;
+  box-shadow: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 520;
+  padding: 0.45rem 0.7rem;
+  text-transform: none;
+}
+
+.iem-exams-calendar .fc .fc-button-primary:not(:disabled).fc-button-active,
+.iem-exams-calendar .fc .fc-button-primary:not(:disabled):active {
+  color: #ffffff;
+}
+
+.iem-exams-calendar .fc .fc-col-header-cell {
+  background: var(--iem-admin-blue-soft);
+  color: var(--iem-admin-blue);
+  font-size: 0.82rem;
+  font-weight: 540;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.iem-exams-calendar .fc .fc-daygrid-day-number,
+.iem-exams-calendar .fc .fc-list-day-text,
+.iem-exams-calendar .fc .fc-list-day-side-text {
+  color: var(--iem-admin-text);
+  font-weight: 520;
+  text-decoration: none;
+}
+
+.iem-exams-calendar .fc .fc-day-today {
+  background: color-mix(in srgb, var(--iem-admin-blue-soft) 72%, transparent);
+}
+
+.iem-exams-calendar .fc .fc-event {
+  border: 1px solid var(--iem-admin-blue) !important;
+  border-radius: 6px;
+  background: var(--iem-admin-blue) !important;
+  color: #ffffff !important;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.iem-exams-calendar .fc .fc-event.is-draft {
+  border-color: #6d5bd0 !important;
+  background: #6d5bd0 !important;
+  opacity: 1;
+}
+
+.iem-exams-calendar-event {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+  padding: 0.28rem 0.36rem;
+  color: #ffffff;
+
+  strong,
+  small,
+  span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    font-size: 0.84rem;
+    font-weight: 560;
+  }
+
+  small,
+  span {
+    color: rgb(255 255 255 / 0.78);
+    font-size: 0.72rem;
+    font-weight: 480;
+  }
+}
+
+.iem-exams-calendar .fc .fc-list {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.iem-exams-calendar .fc .fc-list-event {
+  cursor: pointer;
+}
+
+.iem-exams-calendar .fc .fc-list-event td {
+  background: var(--iem-admin-surface);
+  color: var(--iem-admin-text);
+}
+
+.iem-exams-calendar .fc .fc-list-event .iem-exams-calendar-event {
+  padding: 0.24rem 0;
+  color: var(--iem-admin-text);
+
+  strong {
+    color: var(--iem-admin-text);
+  }
+
+  small,
+  span {
+    color: var(--iem-admin-muted);
+  }
+}
+
+.iem-exams-calendar .fc .fc-list-event-dot {
+  border-color: var(--iem-admin-blue) !important;
+}
+
+.iem-exams-calendar .fc .fc-list-event:hover td {
+  background: var(--iem-admin-blue-soft);
+}
+
+html[data-theme='dark'] {
+  .iem-exams-calendar__button--primary,
+  .iem-exams-calendar .fc .fc-button-primary:not(:disabled).fc-button-active,
+  .iem-exams-calendar .fc .fc-button-primary:not(:disabled):active {
+    color: #08111f;
+  }
+
+  .iem-exams-calendar .fc .fc-list-event:hover td {
+    background: rgb(117 175 240 / 0.14);
+  }
+}
+
+@media (max-width: 900px) {
+  .iem-exams-calendar__header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .iem-exams-calendar__actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .iem-exams-calendar__button {
+    flex: 1 1 180px;
+    justify-content: center;
+  }
+
+  .iem-exams-calendar .fc .fc-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .iem-exams-calendar .fc .fc-toolbar-chunk {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

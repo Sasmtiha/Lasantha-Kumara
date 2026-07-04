@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { admins, getRole, isAdminRole } from '@/access/roles'
 import { gradeOptions } from '@/fields/gradeOptions'
+import { paymentStatusOptions } from '@/fields/paymentStatusOptions'
 
 const classCategoryToGrade = {
   grade_6: 'Grade 6',
@@ -12,6 +13,14 @@ const classCategoryToGrade = {
   grade_11: 'Grade 11',
 } as const
 
+const getRelationID = (value: unknown) => {
+  if (value && typeof value === 'object' && 'id' in value) {
+    return String(value.id)
+  }
+
+  return value === undefined || value === null ? undefined : String(value)
+}
+
 export const Enrollments: CollectionConfig = {
   slug: 'enrollments',
   labels: {
@@ -21,7 +30,7 @@ export const Enrollments: CollectionConfig = {
   admin: {
     group: 'Institute',
     useAsTitle: 'fullName',
-    defaultColumns: ['fullName', 'class', 'phone', 'status', 'createdAt'],
+    defaultColumns: ['fullName', 'class', 'phone', 'status', 'paymentStatus', 'createdAt'],
   },
   access: {
     create: admins,
@@ -87,6 +96,15 @@ export const Enrollments: CollectionConfig = {
           index: true,
         },
         {
+          name: 'paymentStatus',
+          type: 'select',
+          options: [...paymentStatusOptions],
+          defaultValue: 'unpaid',
+          required: true,
+          index: true,
+          label: 'Payment status',
+        },
+        {
           name: 'approvedBy',
           type: 'relationship',
           relationTo: 'users',
@@ -112,7 +130,7 @@ export const Enrollments: CollectionConfig = {
   ],
   hooks: {
     beforeValidate: [
-      async ({ data, originalDoc, req }) => {
+      async ({ data, operation, originalDoc, req }) => {
         if (!data) return data
         const firstName = String(data.firstName ?? originalDoc?.firstName ?? '').trim()
         const lastName = String(data.lastName ?? originalDoc?.lastName ?? '').trim()
@@ -122,7 +140,7 @@ export const Enrollments: CollectionConfig = {
         let classID: string | number | undefined
 
         if (classRelation) {
-          classID = typeof classRelation === 'object' ? classRelation.id : classRelation
+          classID = getRelationID(classRelation)
           const classDoc = await req.payload.findByID({
             collection: 'classes',
             id: classID!,
@@ -135,6 +153,18 @@ export const Enrollments: CollectionConfig = {
         // Validate that a student cannot enroll in multiple classes per year with same email/phone
         const email = data.email ?? originalDoc?.email
         const phone = data.phone ?? originalDoc?.phone
+        const status = data.status ?? originalDoc?.status
+        const originalClassID = getRelationID(originalDoc?.class)
+        const enrollmentKeyChanged =
+          operation === 'create' ||
+          String(email || '') !== String(originalDoc?.email || '') ||
+          String(phone || '') !== String(originalDoc?.phone || '') ||
+          String(status || '') !== String(originalDoc?.status || '') ||
+          String(classID || '') !== String(originalClassID || '')
+
+        if (!enrollmentKeyChanged || !['pending', 'approved'].includes(String(status))) {
+          return data
+        }
 
         if (email || phone) {
           const currentYear = new Date().getFullYear()
@@ -185,9 +215,9 @@ export const Enrollments: CollectionConfig = {
 
           if (existingEnrollments.docs.length > 0) {
             const existing = existingEnrollments.docs[0]
-            const existingClassID = typeof existing.class === 'object' ? existing.class.id : existing.class
+            const existingClassID = getRelationID(existing.class)
 
-            if (classID && existingClassID !== classID) {
+            if (classID && existingClassID !== String(classID)) {
               throw new Error(
                 'A student with this email address or phone number is already enrolled in a different class for the current year. Students can only enroll in one class per year.'
               )
@@ -244,6 +274,7 @@ export const Enrollments: CollectionConfig = {
           data: {
             enrollmentStatus,
             gradeLevel: doc.gradeLevel,
+            paymentStatus: doc.paymentStatus || 'unpaid',
             preferredClass: classID,
             currentClasses,
           },

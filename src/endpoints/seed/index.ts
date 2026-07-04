@@ -301,6 +301,7 @@ export async function seed({
       preferredClass: grade11Class.id,
       currentClasses: [grade11Class.id],
       enrollmentStatus: 'approved',
+      paymentStatus: 'paid',
     },
   })
   await payload.create({
@@ -315,6 +316,7 @@ export async function seed({
       email: 'student@example.com',
       phone: '071 000 0000',
       gradeLevel: 'Grade 11',
+      paymentStatus: 'paid',
       status: 'approved',
       approvedBy: admin.id,
       approvedAt: new Date().toISOString(),

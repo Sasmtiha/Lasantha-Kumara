@@ -11,6 +11,16 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
+const supabaseImageRemotePattern = process.env.SUPABASE_PROJECT_REF
+  ? [
+      {
+        hostname: `${process.env.SUPABASE_PROJECT_REF}.supabase.co`,
+        pathname: `/storage/v1/object/public/${process.env.SUPABASE_STORAGE_BUCKET || '**'}/**`,
+        protocol: 'https' as const,
+      },
+    ]
+  : []
+
 const nextConfig: NextConfig = {
   // Payload serves uploads through server routes. Include existing local uploads
   // in Vercel's serverless function bundle so those routes can read the files.
@@ -50,6 +60,7 @@ const nextConfig: NextConfig = {
           protocol: url.protocol.replace(':', '') as 'http' | 'https',
         }
       }),
+      ...supabaseImageRemotePattern,
     ],
   },
   webpack: (webpackConfig) => {

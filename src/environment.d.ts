@@ -5,6 +5,11 @@ declare global {
       DATABASE_URL: string
       NEXT_PUBLIC_SERVER_URL: string
       VERCEL_PROJECT_PRODUCTION_URL: string
+      SUPABASE_PROJECT_REF: string
+      SUPABASE_STORAGE_BUCKET: string
+      SUPABASE_STORAGE_REGION: string
+      SUPABASE_STORAGE_ACCESS_KEY_ID: string
+      SUPABASE_STORAGE_SECRET_ACCESS_KEY: string
     }
   }
 }

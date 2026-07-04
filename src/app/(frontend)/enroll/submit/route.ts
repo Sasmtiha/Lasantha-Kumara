@@ -84,6 +84,7 @@ export async function POST(request: Request) {
       guardianName: input.guardianName,
       guardianPhone: input.guardianPhone,
       enrollmentStatus: 'pending',
+      paymentStatus: 'unpaid',
     },
   })
 
@@ -115,6 +116,7 @@ export async function POST(request: Request) {
         guardianName: input.guardianName,
         guardianPhone: input.guardianPhone,
         message: input.message,
+        paymentStatus: 'unpaid',
         status: 'pending',
       },
     })

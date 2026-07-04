@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { admins, isAdminRole, getRole } from '@/access/roles'
 import { gradeOptions } from '@/fields/gradeOptions'
+import { paymentStatusOptions } from '@/fields/paymentStatusOptions'
 
 export const Students: CollectionConfig = {
   slug: 'students',
@@ -12,7 +13,7 @@ export const Students: CollectionConfig = {
   admin: {
     group: 'Institute',
     useAsTitle: 'fullName',
-    defaultColumns: ['fullName', 'phone', 'gradeLevel', 'preferredClass', 'enrollmentStatus'],
+    defaultColumns: ['fullName', 'phone', 'gradeLevel', 'paymentStatus', 'preferredClass', 'enrollmentStatus'],
   },
   access: {
     create: admins,
@@ -59,6 +60,18 @@ export const Students: CollectionConfig = {
           defaultValue: 'pending',
           required: true,
           options: ['pending', 'approved', 'rejected', 'inactive'],
+          access: {
+            update: ({ req }) => isAdminRole(getRole(req.user)),
+          },
+        },
+        {
+          name: 'paymentStatus',
+          type: 'select',
+          defaultValue: 'unpaid',
+          required: true,
+          index: true,
+          label: 'Payment status',
+          options: [...paymentStatusOptions],
           access: {
             update: ({ req }) => isAdminRole(getRole(req.user)),
           },

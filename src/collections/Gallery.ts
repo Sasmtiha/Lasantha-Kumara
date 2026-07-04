@@ -71,8 +71,21 @@ export const Gallery: CollectionConfig = {
       type: 'row',
       fields: [
         { name: 'alt', type: 'text', required: true },
-        { name: 'isPublished', type: 'checkbox', defaultValue: true, index: true },
         { name: 'displayOrder', type: 'number', defaultValue: 0 },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'isPublished',
+          type: 'checkbox',
+          defaultValue: true,
+          index: true,
+          admin: {
+            className: 'gallery-publish-field',
+          },
+        },
       ],
     },
   ],

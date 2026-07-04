@@ -1,0 +1,119 @@
+.iem-exams-calendar-list-action {
+  display: flex;
+  position: absolute;
+  top: 1.45rem;
+  right: clamp(1.35rem, 2vw, 2rem);
+  z-index: 4;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.iem-exams-calendar-list-action__button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border: 1px solid var(--iem-admin-border);
+  border-radius: 6px;
+  background: var(--iem-admin-surface);
+  color: var(--iem-admin-blue) !important;
+  padding: 0 calc(var(--base) * 0.4);
+  font-size: 0.88rem;
+  font-weight: 520;
+  line-height: calc(var(--base) * 1.1);
+  text-decoration: none;
+}
+
+.iem-exams-calendar-list-action__button svg {
+  width: 0.88rem;
+  height: 0.88rem;
+  flex: 0 0 auto;
+}
+
+.iem-exams-calendar-list-action__button--primary svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.iem-exams-calendar-list-action__button--primary {
+  border-color: var(--iem-admin-blue);
+  background: var(--iem-admin-blue);
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .iem-exams-calendar-list-action__button--primary {
+  color: #08111f !important;
+}
+
+.collection-list:has(.iem-exams-calendar-list-action) .list-header__title-actions {
+  display: none !important;
+}
+
+.collection-list:has(.iem-exams-calendar-list-action) {
+  position: relative;
+}
+
+.iem-exams-inline-calendar-host {
+  width: 100%;
+}
+
+.iem-exams-inline-calendar {
+  width: 100%;
+  margin-top: 1rem;
+  background: var(--iem-admin-page);
+  color: var(--iem-admin-text);
+}
+
+.iem-exams-inline-calendar .iem-exams-calendar {
+  margin: 0;
+  gap: 1.1rem;
+}
+
+.iem-exams-inline-calendar .iem-exams-calendar__shell {
+  margin-top: 0;
+  border: 1px solid var(--iem-admin-border);
+  border-radius: 8px;
+  background: var(--iem-admin-surface);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.iem-exams-inline-calendar .fc,
+.iem-exams-inline-calendar .fc table {
+  background: transparent;
+  border-color: var(--iem-admin-border);
+}
+
+.iem-exams-inline-calendar__loading {
+  display: flex;
+  min-height: 14rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--iem-admin-border);
+  border-radius: 8px;
+  background: var(--iem-admin-surface);
+  color: var(--iem-admin-muted);
+}
+
+html.iem-exams-calendar-mode .collection-list {
+  .list-controls,
+  .iem-list-filter-shell,
+  .table,
+  .paginator,
+  .pagination,
+  .collection-list__pagination {
+    display: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .iem-exams-calendar-list-action {
+    position: static;
+    align-items: stretch;
+    flex-direction: column;
+    margin: 0 0 1rem;
+  }
+}

@@ -3,8 +3,8 @@ import React from 'react'
 const BeforeLogin: React.FC = () => {
   return (
     <div className="iem-admin-login-intro">
-      <p className="iem-admin-login-intro__eyebrow">Institute management</p>
-      <h1>IEM.lk Administration</h1>
+      {/* <p className="iem-admin-login-intro__eyebrow">Learning management</p> */}
+      <h1>Institute of English Middeniya Administration</h1>
       <p>Manage students, classes, exams, marks, schedules and website content.</p>
     </div>
   )

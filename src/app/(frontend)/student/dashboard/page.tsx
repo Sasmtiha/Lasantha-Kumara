@@ -4,6 +4,7 @@ import {
   BookOpen,
   CalendarDays,
   CheckCircle2,
+  CreditCard,
   GraduationCap,
   TrendingUp,
 } from 'lucide-react'
@@ -34,7 +35,7 @@ export default async function StudentDashboard() {
         </Link>
       </div>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-3">
+      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         <DashboardCard
           icon={CheckCircle2}
           label="Enrollment status"
@@ -46,6 +47,11 @@ export default async function StudentDashboard() {
           value={String(approved.length)}
         />
         <DashboardCard icon={BookOpen} label="Current class" value={currentClass} />
+        <DashboardCard
+          icon={CreditCard}
+          label="Payment status"
+          value={student?.paymentStatus || latest?.paymentStatus || 'unpaid'}
+        />
       </div>
 
       <section className="mt-8 rounded-md border border-black/8 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,.06)] sm:p-8">

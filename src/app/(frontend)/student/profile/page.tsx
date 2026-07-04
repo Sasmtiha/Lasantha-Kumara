@@ -24,6 +24,7 @@ export default async function StudentProfilePage() {
           <Field label="Email" value={user.email} />
           <Field label="Phone" value={student?.phone || user.phone} />
           <Field label="Grade / level" value={student?.gradeLevel} />
+          <Field label="Payment status" value={student?.paymentStatus} />
           <Field label="School" value={student?.school} />
           <Field label="Guardian" value={student?.guardianName} />
         </dl>

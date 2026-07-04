@@ -55,9 +55,6 @@ export function DynamicGallery({
     }
   }, [items.length, selectedItem])
 
-  const titleFor = (item: GalleryItem) =>
-    locale === 'si' && item.titleSi ? item.titleSi : item.titleEn
-
   return (
     <>
       {items.length ? (
@@ -74,7 +71,7 @@ export function DynamicGallery({
 
                 return (
                   <button
-                    aria-label={`View ${titleFor(item)}`}
+                    aria-label={`View ${item.category} gallery image`}
                     className={cn('gallery-tile group', `gallery-tile-${itemIndex + 1}`)}
                     key={item.id}
                     onClick={() => setSelectedIndex(visibleIndex)}
@@ -97,7 +94,6 @@ export function DynamicGallery({
                       <span className="text-[11px] uppercase tracking-[.14em] text-[#75aff0]">
                         {item.category}
                       </span>
-                      <span className="mt-1 block text-lg font-semibold">{titleFor(item)}</span>
                     </span>
                   </button>
                 )
@@ -171,7 +167,6 @@ export function DynamicGallery({
               <span className="text-xs uppercase tracking-[.16em] text-[#75aff0]">
                 {selectedItem.category}
               </span>
-              <span className="ml-3 text-sm">{titleFor(selectedItem)}</span>
             </figcaption>
           </figure>
         </div>

@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react'
 type AdminTheme = 'dark' | 'light'
 
 export default function AdminThemeToggle() {
-  const [theme, setTheme] = useState<AdminTheme>('dark')
+  const [theme, setTheme] = useState<AdminTheme>('light')
 
   useEffect(() => {
     const saved = window.localStorage.getItem('payload-theme')
-    const initialTheme: AdminTheme = saved === 'light' ? 'light' : 'dark'
+    const initialTheme: AdminTheme = saved === 'dark' ? 'dark' : 'light'
 
     if (!saved) {
       window.localStorage.setItem('payload-theme', initialTheme)

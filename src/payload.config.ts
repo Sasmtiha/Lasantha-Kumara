@@ -1,7 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import sharp from 'sharp'
 import path from 'path'
-import { buildConfig, PayloadRequest } from 'payload'
+import { buildConfig, PayloadRequest, type CollectionConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
@@ -31,19 +31,46 @@ import { SiteSettings } from './globals/SiteSettings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const withLMSListFilters = (collection: CollectionConfig): CollectionConfig => ({
+  ...collection,
+  admin: {
+    ...collection.admin,
+    components: {
+      ...collection.admin?.components,
+      beforeListTable: [
+        '@/components/LMSListFilters',
+        ...(collection.admin?.components?.beforeListTable || []),
+      ],
+    },
+  },
+})
+
 export default buildConfig({
   admin: {
     components: {
-      actions: ['@/components/AdminThemeToggle'],
+      actions: ['@/components/AdminThemeToggle', '@/components/AdminHeaderSearch'],
       beforeLogin: ['@/components/AdminThemeToggle', '@/components/BeforeLogin'],
-      beforeDashboard: ['@/components/BeforeDashboard'],
       graphics: {
         Icon: '@/components/AdminBrand#AdminIcon',
         Logo: '@/components/AdminBrand#AdminLogo',
       },
+      Nav: '@/components/LMSAdminNav',
+      views: {
+        dashboard: {
+          Component: '@/components/LMSDashboard',
+          meta: {
+            title: 'LMS Dashboard',
+          },
+        },
+      },
     },
     meta: {
-      titleSuffix: ' · IEM.lk CMS',
+      icons: {
+        apple: '/favicon.ico',
+        icon: '/favicon.ico',
+        shortcut: '/favicon.ico',
+      },
+      titleSuffix: ' · IEM.lk LMS',
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -97,7 +124,7 @@ export default buildConfig({
     Media,
     Categories,
     Users,
-  ],
+  ].map(withLMSListFilters),
   cors: [getServerSideURL()].filter(Boolean),
   globals: [SiteSettings, Header, Footer],
   plugins,

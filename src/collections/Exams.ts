@@ -16,6 +16,9 @@ export const Exams: CollectionConfig = {
     group: 'Academic Records',
     useAsTitle: 'title',
     defaultColumns: ['title', 'gradeLevel', 'class', 'examDate', 'totalMarks', 'isPublished'],
+    components: {
+      beforeList: ['@/components/ExamsCalendarListAction'],
+    },
   },
   access: {
     create: ({ req }) => isAcademicStaff(getRole(req.user)),

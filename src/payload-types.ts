@@ -913,8 +913,9 @@ export interface Gallery {
   category: 'Classes' | 'Events' | 'Student Life' | 'Achievements';
   image?: (number | null) | Media;
   alt: string;
-  isPublished?: boolean | null;
   displayOrder?: number | null;
+  isPublished?: boolean | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -1413,6 +1414,7 @@ export interface Student {
   user: number | User;
   preferredClass?: (number | null) | Class;
   enrollmentStatus: 'pending' | 'approved' | 'rejected' | 'inactive';
+  paymentStatus: 'unpaid' | 'paid';
   firstName: string;
   lastName: string;
   email: string;
@@ -1452,6 +1454,7 @@ export interface Enrollment {
   guardianName?: string | null;
   guardianPhone?: string | null;
   status: 'pending' | 'approved' | 'rejected' | 'cancelled';
+  paymentStatus: 'unpaid' | 'paid';
   /**
    * Automatically set to the administrator who approves this enrollment.
    */
@@ -2440,8 +2443,9 @@ export interface GallerySelect<T extends boolean = true> {
   category?: T;
   image?: T;
   alt?: T;
-  isPublished?: T;
   displayOrder?: T;
+  isPublished?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2524,6 +2528,7 @@ export interface StudentsSelect<T extends boolean = true> {
   user?: T;
   preferredClass?: T;
   enrollmentStatus?: T;
+  paymentStatus?: T;
   firstName?: T;
   lastName?: T;
   email?: T;
@@ -2556,6 +2561,7 @@ export interface EnrollmentsSelect<T extends boolean = true> {
   guardianName?: T;
   guardianPhone?: T;
   status?: T;
+  paymentStatus?: T;
   approvedBy?: T;
   message?: T;
   adminNote?: T;
