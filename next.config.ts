@@ -11,6 +11,23 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
+const allowedHostnames = new Set<string>(['localhost', '*.vercel.app'])
+
+if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  allowedHostnames.add(process.env.VERCEL_PROJECT_PRODUCTION_URL)
+}
+if (process.env.VERCEL_URL) {
+  allowedHostnames.add(process.env.VERCEL_URL)
+}
+if (process.env.NEXT_PUBLIC_SERVER_URL) {
+  try {
+    const url = new URL(process.env.NEXT_PUBLIC_SERVER_URL)
+    allowedHostnames.add(url.hostname)
+  } catch {
+    allowedHostnames.add(process.env.NEXT_PUBLIC_SERVER_URL.replace(/^https?:\/\//, ''))
+  }
+}
+
 const supabaseImageRemotePattern = process.env.SUPABASE_PROJECT_REF
   ? [
       {
@@ -53,12 +70,11 @@ const nextConfig: NextConfig = {
     ],
     qualities: [100],
     remotePatterns: [
-      ...[NEXT_PUBLIC_SERVER_URL /* 'https://example.com' */].map((item) => {
-        const url = new URL(item)
-
+      ...Array.from(allowedHostnames).map((host) => {
+        const isLocal = host.includes('localhost') || host.includes('127.0.0.1')
         return {
-          hostname: url.hostname,
-          protocol: url.protocol.replace(':', '') as 'http' | 'https',
+          hostname: host,
+          protocol: (isLocal ? 'http' : 'https') as 'http' | 'https',
         }
       }),
       ...supabaseImageRemotePattern,
