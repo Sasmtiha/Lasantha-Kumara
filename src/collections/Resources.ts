@@ -61,7 +61,7 @@ export const Resources: CollectionConfig = {
       options: ['pdf', 'document', 'video', 'link', 'image'],
       required: true,
     },
-    { name: 'file', type: 'upload', relationTo: 'media' },
+    { name: 'file', type: 'upload', relationTo: 'resource-files' },
     { name: 'externalUrl', type: 'text' },
     {
       name: 'visibility',

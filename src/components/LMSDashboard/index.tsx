@@ -10,6 +10,7 @@ import {
   type GradeTrendPoint,
 } from './ChartsClient'
 import LMSDashboardNotifications from './NotificationsClient'
+import { getRole, isAdminRole } from '@/access/roles'
 import '@/components/ExamsCalendar/index.scss'
 import './index.scss'
 
@@ -55,6 +56,22 @@ const getGradeTrendKey = (grade?: null | string) =>
 
 async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
   const payload = initPageResult.req.payload
+  const user = initPageResult.req.user
+
+  if (!isAdminRole(getRole(user))) {
+    return (
+      <main className="iem-lms-dashboard">
+        <section className="iem-lms-welcome">
+          <div>
+            <p className="iem-lms-eyebrow">IEM Learning Management</p>
+            <h1>Dashboard unavailable</h1>
+            <span>Your account does not have permission to view institute-wide LMS analytics.</span>
+          </div>
+        </section>
+      </main>
+    )
+  }
+
   const monthStart = new Date()
   monthStart.setDate(monthStart.getDate() - 30)
 
@@ -79,6 +96,7 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
     pendingStudents,
     paidStudents,
     unpaidStudents,
+    pendingPaymentSlips,
     activeTeachers,
     pendingEnrollments,
     approvedEnrollments,
@@ -88,6 +106,7 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
     publishedExams,
     publishedResults,
     recentEnrollments,
+    recentStudents,
     recentMessages,
     upcomingExams,
     recentMarks,
@@ -98,6 +117,7 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
     countDocs('students', { enrollmentStatus: { equals: 'pending' } }),
     countDocs('students', { paymentStatus: { equals: 'paid' } }),
     countDocs('students', { paymentStatus: { equals: 'unpaid' } }),
+    countDocs('payment-slips', { status: { equals: 'pending' } }),
     countDocs('teachers', { isActive: { equals: true } }),
     countDocs('enrollments', { status: { equals: 'pending' } }),
     countDocs('enrollments', { status: { equals: 'approved' } }),
@@ -113,6 +133,13 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
       overrideAccess: true,
       sort: '-createdAt',
       where: { status: { equals: 'pending' } },
+    }),
+    payload.find({
+      collection: 'students',
+      depth: 1,
+      limit: 6,
+      overrideAccess: true,
+      sort: '-updatedAt',
     }),
     payload.find({
       collection: 'contact-submissions',
@@ -224,21 +251,21 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
       value: paidStudents,
     },
     {
-      href: collectionUrl('students', 'where[paymentStatus][equals]=unpaid'),
-      label: 'Payments Due',
-      note: 'Students marked unpaid',
-      value: unpaidStudents,
+      href: collectionUrl('payment-slips', 'where[status][equals]=pending'),
+      label: 'Slip Reviews',
+      note: `${formatNumber(unpaidStudents)} students marked unpaid`,
+      value: pendingPaymentSlips,
     },
   ]
 
   const quickActions = [
+    { href: `${collectionUrl('enrollments')}/create`, label: 'Create Enrollment' },
+    { href: collectionUrl('students'), label: 'Open Student Files' },
     { href: collectionUrl('enrollments', 'where[status][equals]=pending'), label: 'Review Enrollments' },
-    { href: collectionUrl('students', 'where[paymentStatus][equals]=unpaid'), label: 'Track Payments' },
-    { href: `${collectionUrl('students')}/create`, label: 'Add Student' },
-    { href: `${collectionUrl('exams')}/create`, label: 'Create Exam' },
+    { href: collectionUrl('payment-slips', 'where[status][equals]=pending'), label: 'Review Payment Slips' },
     { href: `${collectionUrl('student-marks')}/create`, label: 'Record Marks' },
+    { href: `${collectionUrl('exams')}/create`, label: 'Create Exam' },
     { href: `${collectionUrl('notices')}/create`, label: 'Publish Notice' },
-    { href: `${collectionUrl('resources')}/create`, label: 'Upload Resource' },
   ]
 
   const notificationMessages = recentMessages.docs.map((message) => ({
@@ -395,9 +422,36 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
         <article className="iem-lms-panel">
           <div className="iem-lms-panel__header">
             <div>
-              <p className="iem-lms-eyebrow">Quick Access</p>
-              <h2>Common LMS Workflows</h2>
+              <p className="iem-lms-eyebrow">Student Files</p>
+              <h2>Student Management Center</h2>
             </div>
+            <AdminThemePreservingLink href={collectionUrl('students')}>
+              View all
+            </AdminThemePreservingLink>
+          </div>
+          <div className="iem-lms-list iem-lms-list--compact">
+            {recentStudents.docs.length ? (
+              recentStudents.docs.map((student) => (
+                <AdminThemePreservingLink
+                  className="iem-lms-list-item"
+                  href={`${collectionUrl('students')}/${student.id}`}
+                  key={student.id}
+                >
+                  <span className="iem-lms-list-item__avatar">
+                    {getName(student).slice(0, 1)}
+                  </span>
+                  <span>
+                    <strong>{getName(student)}</strong>
+                    <small>
+                      {student.cardNumber || 'No card'} · {student.gradeLevel || 'No grade'} · {student.paymentStatus || 'unpaid'}
+                    </small>
+                  </span>
+                  <em>{student.enrollmentStatus || 'pending'}</em>
+                </AdminThemePreservingLink>
+              ))
+            ) : (
+              <p className="iem-lms-empty">No student files have been created yet.</p>
+            )}
           </div>
           <div className="iem-lms-actions">
             {quickActions.map((action) => (
@@ -416,11 +470,14 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
         <AdminThemePreservingLink href={collectionUrl('resources')}>
           {formatNumber(publishedResources)} learning resources
         </AdminThemePreservingLink>
-        <AdminThemePreservingLink href={collectionUrl('gallery')}>
-          Gallery management
+        <AdminThemePreservingLink href={collectionUrl('teachers')}>
+          {formatNumber(activeTeachers)} active teachers
         </AdminThemePreservingLink>
-        <AdminThemePreservingLink href={collectionUrl('pages')}>
-          Website pages
+        <AdminThemePreservingLink href={collectionUrl('exams')}>
+          {formatNumber(publishedExams)} published exams
+        </AdminThemePreservingLink>
+        <AdminThemePreservingLink href={collectionUrl('enrollments')}>
+          {enrollmentConversion}% enrollment conversion
         </AdminThemePreservingLink>
       </section>
     </main>

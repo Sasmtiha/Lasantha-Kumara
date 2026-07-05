@@ -16,24 +16,29 @@ export function LoginForm() {
     setSending(true)
     setError('')
     const formData = new FormData(event.currentTarget)
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/login/submit', {
       body: JSON.stringify({
-        email: formData.get('email'),
+        identifier: formData.get('identifier'),
         password: formData.get('password'),
       }),
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
     })
-    const result = (await response.json()) as { user?: { role?: string }; errors?: { message?: string }[] }
+    const result = (await response.json()) as {
+      user?: { mustChangePassword?: boolean; role?: string }
+      errors?: { message?: string }[]
+    }
 
     if (!response.ok || !result.user) {
-      setError(result.errors?.[0]?.message || 'Email or password is incorrect.')
+      setError(result.errors?.[0]?.message || 'Email/Student ID or password is incorrect.')
       setSending(false)
       return
     }
 
-    if (result.user.role === 'student') router.push('/student/dashboard')
+    if (result.user.role === 'student' && result.user.mustChangePassword) {
+      router.push('/student/profile?changePassword=1')
+    } else if (result.user.role === 'student') router.push('/student/dashboard')
     else if (result.user.role === 'admin' || result.user.role === 'super_admin') router.push('/admin')
     else if (result.user.role === 'teacher') router.push('/teacher/dashboard')
     else router.push('/')
@@ -43,7 +48,7 @@ export function LoginForm() {
   return (
     <form onSubmit={submit}>
       {searchParams.get('enrolled') ? <p className="mb-5 rounded-xl bg-emerald-50 p-4 text-sm text-emerald-900">Enrollment submitted. Sign in to follow its approval status.</p> : null}
-      <label className="block text-sm font-medium text-[#4b4b54]">Email<input autoComplete="email" className="auth-control mt-2" name="email" placeholder="you@example.com" required type="email" /></label>
+      <label className="block text-sm font-medium text-[#4b4b54]">Email or Student ID<input autoComplete="username" className="auth-control mt-2" name="identifier" placeholder="you@example.com or IEM0051" required type="text" /></label>
       <label className="mt-5 block text-sm font-medium text-[#4b4b54]">Password<input autoComplete="current-password" className="auth-control mt-2" name="password" placeholder="Enter your password" required type="password" /></label>
       {error ? <p className="mt-4 text-sm text-red-700" role="alert">{error}</p> : null}
       <button className="auth-button-primary mt-6 w-full disabled:opacity-60" disabled={sending} type="submit">
@@ -55,3 +60,4 @@ export function LoginForm() {
     </form>
   )
 }
+

@@ -83,7 +83,9 @@ export function DynamicGallery({
                         htmlElement={null}
                         imgClassName="object-cover transition duration-700 group-hover:scale-105"
                         pictureClassName="absolute inset-0 block"
+                        preferredSize="medium"
                         resource={item.url ? item : item.image}
+                        size="(max-width: 768px) 50vw, 25vw"
                       />
                     ) : null}
                     <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/0 to-transparent opacity-20 transition duration-500 group-hover:opacity-85" />
@@ -160,8 +162,10 @@ export function DynamicGallery({
               htmlElement={null}
               imgClassName="object-contain"
               pictureClassName="absolute inset-0 block"
+              preferredSize="xlarge"
               priority
               resource={selectedItem.url ? selectedItem : selectedItem.image}
+              size="90vw"
             />
             <figcaption className="absolute inset-x-0 -bottom-12 text-center text-white">
               <span className="text-xs uppercase tracking-[.16em] text-[#75aff0]">

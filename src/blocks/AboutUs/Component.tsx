@@ -31,11 +31,17 @@ export async function AboutUsBlock({
     <section className="container grid gap-12 py-20 lg:grid-cols-2 lg:items-center">
       <div className="relative min-h-[28rem] overflow-hidden rounded-md bg-[#e8e9ed]">
         {mediaResource && typeof mediaResource === 'object' ? (
-          <Media fill imgClassName="object-cover" resource={mediaResource} />
+          <Media
+            fill
+            imgClassName="object-cover"
+            preferredSize="large"
+            resource={mediaResource}
+            size="(max-width: 1024px) 100vw, 50vw"
+          />
         ) : null}
       </div>
       <div>
-        <p className="section-kicker">About IEM.lk</p>
+        <p className="section-kicker">About IEM</p>
         <h2 className="section-title">{localized(locale, headingEn, headingSi)}</h2>
         <RichText
           className="mt-5 text-muted-foreground"

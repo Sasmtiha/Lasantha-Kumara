@@ -94,7 +94,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
     >
       <div className="premium-container xl:relative grid min-h-20 grid-cols-[1fr_auto] items-center gap-5 py-3 xl:grid-cols-[1fr_auto_1fr]">
         <Link className="justify-self-start" href="/">
-          <Logo loading="eager" priority="high" variant={transparent ? 'hero' : 'theme'} />
+          <Logo loading="eager" priority="high" variant={transparent ? 'hero' : 'light'} />
         </Link>
         <HeaderNav data={data} transparent={transparent} user={user} open={open} setOpen={setOpen} />
       </div>

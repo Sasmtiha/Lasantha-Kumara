@@ -14,6 +14,7 @@ import { ContactSubmissions } from './collections/ContactSubmissions'
 import { Enrollments } from './collections/Enrollments'
 import { Notices } from './collections/Notices'
 import { Resources } from './collections/Resources'
+import { ResourceFiles } from './collections/ResourceFiles'
 import { Schedules } from './collections/Schedules'
 import { Students } from './collections/Students'
 import { Exams } from './collections/Exams'
@@ -21,6 +22,8 @@ import { StudentMarks } from './collections/StudentMarks'
 import { Teachers } from './collections/Teachers'
 import { Testimonials } from './collections/Testimonials'
 import { Gallery } from './collections/Gallery'
+import { PaymentSlips } from './collections/PaymentSlips'
+
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -70,7 +73,7 @@ export default buildConfig({
         icon: '/favicon.ico',
         shortcut: '/favicon.ico',
       },
-      titleSuffix: ' · IEM.lk LMS',
+      titleSuffix: ' · IEM LMS',
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -117,8 +120,10 @@ export default buildConfig({
     Enrollments,
     Exams,
     StudentMarks,
+    PaymentSlips,
     Notices,
     Resources,
+    ResourceFiles,
     ContactSubmissions,
     Posts,
     Media,

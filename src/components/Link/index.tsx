@@ -20,6 +20,21 @@ type CMSLinkType = {
   url?: string | null
 }
 
+const getSafeHref = (href?: null | string) => {
+  if (!href) return null
+
+  const trimmed = href.trim()
+
+  if (trimmed.startsWith('/') || trimmed.startsWith('#')) return trimmed
+
+  try {
+    const parsed = new URL(trimmed)
+    return ['http:', 'https:', 'mailto:', 'tel:'].includes(parsed.protocol) ? trimmed : null
+  } catch {
+    return null
+  }
+}
+
 export const CMSLink: React.FC<CMSLinkType> = (props) => {
   const {
     type,
@@ -33,12 +48,13 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     url,
   } = props
 
-  const href =
+  const href = getSafeHref(
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
           reference.value.slug
         }`
-      : url
+      : url,
+  )
 
   if (!href) return null
 

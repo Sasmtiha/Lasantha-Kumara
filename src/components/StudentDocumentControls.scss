@@ -1,0 +1,35 @@
+.iem-student-doc-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.iem-student-doc-controls a {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.32rem;
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 6px;
+  background: var(--theme-elevation-0);
+  color: var(--theme-text);
+  padding: 0.38rem 0.62rem;
+  font-size: 0.82rem;
+  font-weight: 520;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.iem-student-doc-controls a:hover {
+  border-color: var(--theme-elevation-300);
+  background: var(--theme-elevation-50);
+}
+
+.iem-student-doc-controls svg {
+  width: 0.92rem;
+  height: 0.92rem;
+  flex: 0 0 auto;
+}

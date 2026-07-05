@@ -58,8 +58,8 @@ const findBlock = <T extends LayoutBlock['blockType']>(
   type: T,
 ) =>
   blocks.find((block) => block.blockType === type) as
-    | Extract<LayoutBlock, { blockType: T }>
-    | undefined
+  | Extract<LayoutBlock, { blockType: T }>
+  | undefined
 
 export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
   const locale = await getSiteLocale()
@@ -115,48 +115,35 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
     getCachedGlobal('site-settings', 1)(),
   ])
 
-  // Resolve media relationships if they are returned as IDs instead of populated objects
-  if (hero && hero.messageArtwork && (typeof hero.messageArtwork === 'number' || typeof hero.messageArtwork === 'string')) {
-    try {
-      hero.messageArtwork = await payload.findByID({
-        collection: 'media',
-        id: hero.messageArtwork,
-      })
-    } catch {
-      // Keep the bundled artwork as the fallback.
-    }
-  }
+  await Promise.all([
+    resolveMedia(hero?.messageArtwork, (media) => {
+      if (hero) hero.messageArtwork = media
+    }),
+    resolveMedia(aboutUs?.image, (media) => {
+      if (aboutUs) aboutUs.image = media
+    }),
+    resolveMedia(aboutTeacher?.teacherImage, (media) => {
+      if (aboutTeacher) aboutTeacher.teacherImage = media
+    }),
+    resolveMedia(featuredProgram?.image, (media) => {
+      if (featuredProgram) featuredProgram.image = media
+    }),
+  ])
 
-  if (aboutUs && aboutUs.image && (typeof aboutUs.image === 'number' || typeof aboutUs.image === 'string')) {
-    try {
-      aboutUs.image = await payload.findByID({
-        collection: 'media',
-        id: aboutUs.image,
-      })
-    } catch {
-      // Leave the image empty if the related media no longer exists.
-    }
-  }
+  async function resolveMedia(
+    value: unknown,
+    setMedia: (media: NonNullable<Page['meta']>['image']) => void,
+  ) {
+    if (typeof value !== 'number' && typeof value !== 'string') return
 
-  if (aboutTeacher && aboutTeacher.teacherImage && (typeof aboutTeacher.teacherImage === 'number' || typeof aboutTeacher.teacherImage === 'string')) {
     try {
-      aboutTeacher.teacherImage = await payload.findByID({
+      const media = await payload.findByID({
         collection: 'media',
-        id: aboutTeacher.teacherImage,
+        id: value,
       })
+      setMedia(media)
     } catch {
-      // Leave the image empty if the related media no longer exists.
-    }
-  }
-
-  if (featuredProgram && featuredProgram.image && (typeof featuredProgram.image === 'number' || typeof featuredProgram.image === 'string')) {
-    try {
-      featuredProgram.image = await payload.findByID({
-        collection: 'media',
-        id: featuredProgram.image,
-      })
-    } catch {
-      // Ignore if not found
+      // Render the section without this optional image if the related media no longer exists.
     }
   }
 
@@ -196,6 +183,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                         <Media
                           fill
                           imgClassName="object-cover transition duration-700 ease-out group-hover:scale-[1.04]"
+                          preferredSize="medium"
                           resource={course.featuredImage}
                           size="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                         />
@@ -329,7 +317,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
         locale={locale}
         title={localized(
           locale,
-          galleryBlock?.headingEn || 'Life at IEM.lk',
+          galleryBlock?.headingEn || 'Life at IEM',
           galleryBlock?.headingSi,
         )}
       />
@@ -383,72 +371,71 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
               kicker="Contact"
               title={localized(locale, contact.headingEn, contact.headingSi)}
             />
-            <div className={`mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] ${
-              contact.showContactForm !== false && contact.showContactDetails !== false
-                ? 'lg:grid-cols-[1.15fr_.85fr]'
-                : ''
-            }`}>
+            <div className={`mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] ${contact.showContactForm !== false && contact.showContactDetails !== false
+              ? 'lg:grid-cols-[1.15fr_.85fr]'
+              : ''
+              }`}>
               {contact.showContactForm !== false ? (
-              <Reveal className="p-6 sm:p-10 premium-contact-form-wrapper">
-                {contact.form && typeof contact.form === 'object' ? (
-                  <FormBlock
-                    enableIntro={false}
-                    form={contact.form as any}
-                    disableInnerContainer
-                  />
-                ) : (
-                  <ContactForm
-                    classes={classes.docs}
-                    copy={{
-                      emailLabel: contact.emailLabel,
-                      errorMessage: contact.errorMessage,
-                      fullNameLabel: contact.fullNameLabel,
-                      messageLabel: contact.messageLabel,
-                      phoneLabel: contact.phoneLabel,
-                      preferredClassLabel: contact.preferredClassLabel,
-                      preferredClassPlaceholder: contact.preferredClassPlaceholder,
-                      submitLabel: contact.submitLabel,
-                      successMessage: contact.successMessage,
-                    }}
-                  />
-                )}
-              </Reveal>
+                <Reveal className="p-6 sm:p-10 premium-contact-form-wrapper">
+                  {contact.form && typeof contact.form === 'object' ? (
+                    <FormBlock
+                      enableIntro={false}
+                      form={contact.form as any}
+                      disableInnerContainer
+                    />
+                  ) : (
+                    <ContactForm
+                      classes={classes.docs}
+                      copy={{
+                        emailLabel: contact.emailLabel,
+                        errorMessage: contact.errorMessage,
+                        fullNameLabel: contact.fullNameLabel,
+                        messageLabel: contact.messageLabel,
+                        phoneLabel: contact.phoneLabel,
+                        preferredClassLabel: contact.preferredClassLabel,
+                        preferredClassPlaceholder: contact.preferredClassPlaceholder,
+                        submitLabel: contact.submitLabel,
+                        successMessage: contact.successMessage,
+                      }}
+                    />
+                  )}
+                </Reveal>
               ) : null}
               {contact.showContactDetails !== false ? (
-              <Reveal className="bg-[#034B9B] p-8 text-white sm:p-10" delay={120}>
-                <h3 className="text-3xl font-semibold">
-                  {localized(locale, contact.panelHeadingEn, contact.panelHeadingSi) ||
-                    'Let’s start your English journey'}
-                </h3>
-                <p className="mt-4 leading-7 text-white/70">
-                  {localized(
-                    locale,
-                    contact.panelDescriptionEn,
-                    contact.panelDescriptionSi,
-                  ) || 'Speak with our team about classes, schedules and enrollment.'}
-                </p>
-                <div className="mt-8 grid gap-4">
-                  <InfoCard icon={<Headphones />} label={contact.phoneInfoLabel || 'Phone'} value={settings.phone} />
-                  <InfoCard icon={<Headphones />} label={contact.mobileInfoLabel || 'Mobile'} value={settings.secondaryPhone} />
-                  <InfoCard icon={<MessageCircle />} label={contact.emailInfoLabel || 'Email'} value={settings.email} />
-                  <InfoCard icon={<MapPin />} label={contact.locationInfoLabel || 'Location'} value={localized(locale, settings.addressEn, settings.addressSi)} />
-                  <InfoCard icon={<Clock3 />} label={contact.officeHoursInfoLabel || 'Office Hours'} value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)} />
-                </div>
-                {settings.whatsappNumber ? (
-                  <a
-                    className="portal-outline-button mt-6 inline-flex"
-                    href={
-                      settings.whatsappNumber.startsWith('http')
-                        ? settings.whatsappNumber
-                        : `https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}`
-                    }
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    {contact.whatsappLabel || 'WhatsApp Us'} <ArrowUpRight className="size-4" />
-                  </a>
-                ) : null}
-              </Reveal>
+                <Reveal className="bg-[#034B9B] p-8 text-white sm:p-10" delay={120}>
+                  <h3 className="text-3xl font-semibold">
+                    {localized(locale, contact.panelHeadingEn, contact.panelHeadingSi) ||
+                      'Let’s start your English journey'}
+                  </h3>
+                  <p className="mt-4 leading-7 text-white/70">
+                    {localized(
+                      locale,
+                      contact.panelDescriptionEn,
+                      contact.panelDescriptionSi,
+                    ) || 'Speak with our team about classes, schedules and enrollment.'}
+                  </p>
+                  <div className="mt-8 grid gap-4">
+                    <InfoCard icon={<Headphones />} label={contact.phoneInfoLabel || 'Phone'} value={settings.phone} />
+                    <InfoCard icon={<Headphones />} label={contact.mobileInfoLabel || 'Mobile'} value={settings.secondaryPhone} />
+                    <InfoCard icon={<MessageCircle />} label={contact.emailInfoLabel || 'Email'} value={settings.email} />
+                    <InfoCard icon={<MapPin />} label={contact.locationInfoLabel || 'Location'} value={localized(locale, settings.addressEn, settings.addressSi)} />
+                    <InfoCard icon={<Clock3 />} label={contact.officeHoursInfoLabel || 'Office Hours'} value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)} />
+                  </div>
+                  {settings.whatsappNumber ? (
+                    <a
+                      className="portal-outline-button mt-6 inline-flex"
+                      href={
+                        settings.whatsappNumber.startsWith('http')
+                          ? settings.whatsappNumber
+                          : `https://wa.me/${settings.whatsappNumber.replace(/\D/g, '')}`
+                      }
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {contact.whatsappLabel || 'WhatsApp Us'} <ArrowUpRight className="size-4" />
+                    </a>
+                  ) : null}
+                </Reveal>
               ) : null}
             </div>
           </div>
@@ -486,7 +473,7 @@ function Hero({
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#101827]/75 via-transparent to-[#101827]/10" />
       <div className="premium-container relative z-10 py-20 lg:pb-24 lg:pt-40">
         <div className="max-w-5xl">
-          <p className="mb-7 ml-[4%] inline-flex items-center rounded-full bg-[#DF1D29] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] text-white shadow-lg">
+          <p className="mb-7 inline-flex items-center rounded-full bg-[#DF1D29] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] text-white shadow-lg">
             {localized(locale, block.badgeEn, block.badgeSi)}
           </p>
           {block.messageArtwork && typeof block.messageArtwork === 'object' ? (
@@ -494,6 +481,7 @@ function Hero({
               className="w-full max-w-[48rem]"
               disablePlaceholder
               imgClassName="h-auto w-full object-contain"
+              preferredSize="large"
               priority
               resource={block.messageArtwork}
               size="(max-width: 768px) calc(100vw - 2rem), 48rem"
@@ -508,7 +496,7 @@ function Hero({
               width={1664}
             />
           )}
-          <div className="ml-[5%]">
+          <div>
             <p className="heading-font mt-7 max-w-2xl text-lg leading-8 text-white sm:text-xl">
               {subheadingLead}
               {confidenceIndex >= 0 ? (
@@ -551,15 +539,21 @@ function Hero({
 function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
   return (
     <section className="premium-section relative border-b border-black/5 bg-white" id="about">
-      <span aria-hidden className="premium-wordmark left-0 top-12">IEM.LK</span>
+      <span aria-hidden className="premium-wordmark left-0 top-12">IEM</span>
       <div className="premium-container relative grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
         <Reveal>
           <div className="relative min-h-[30rem] overflow-hidden rounded-md bg-[#e8e9ed] shadow-[0_30px_90px_rgba(10,11,15,.13)]">
             {block.image && typeof block.image === 'object' ? (
-              <Media fill imgClassName="object-cover" resource={block.image} />
+              <Media
+                fill
+                imgClassName="object-cover"
+                preferredSize="large"
+                resource={block.image}
+                size="(max-width: 1024px) 100vw, 50vw"
+              />
             ) : (
               <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-[#eef5ff] to-[#dceaff]">
-                <span className="heading-font text-[clamp(4rem,10vw,8rem)] font-semibold text-[#034EA2]/10">IEM.lk</span>
+                <span className="heading-font text-[clamp(4rem,10vw,8rem)] font-semibold text-[#034EA2]/10">IEM</span>
               </div>
             )}
           </div>
@@ -567,7 +561,7 @@ function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
         <Reveal delay={100}>
           <SectionHeading
             description=""
-            kicker="About IEM.lk"
+            kicker="About IEM"
             title={localized(locale, block.headingEn, block.headingSi)}
           />
           <RichText
@@ -599,7 +593,13 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
             </h2>
             {block.teacherImage && typeof block.teacherImage === 'object' && (
               <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f1f2f4] lg:hidden">
-                <Media fill imgClassName="object-cover" resource={block.teacherImage} />
+                <Media
+                  fill
+                  imgClassName="object-cover"
+                  preferredSize="medium"
+                  resource={block.teacherImage}
+                  size="100vw"
+                />
               </div>
             )}
             <RichText
@@ -612,7 +612,13 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
         <Reveal className="relative hidden min-h-[30rem] overflow-hidden bg-[#f1f2f4] lg:block lg:min-h-full" delay={100}>
           {block.teacherImage && typeof block.teacherImage === 'object' ? (
             <>
-              <Media fill imgClassName="object-cover" resource={block.teacherImage} />
+              <Media
+                fill
+                imgClassName="object-cover"
+                preferredSize="large"
+                resource={block.teacherImage}
+                size="50vw"
+              />
               <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent" />
             </>
           ) : null}
@@ -667,7 +673,13 @@ function FeaturedProgram({
           <Reveal className="order-1 lg:order-2">
             <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-md bg-[#e8e9ed] shadow-[0_24px_70px_rgba(10,11,15,.14)]">
               {block.image && typeof block.image === 'object' ? (
-                <Media fill imgClassName="object-cover" resource={block.image} />
+                <Media
+                  fill
+                  imgClassName="object-cover"
+                  preferredSize="large"
+                  resource={block.image}
+                  size="(max-width: 1024px) 100vw, 33vw"
+                />
               ) : (
                 <img
                   alt="Student"
@@ -781,7 +793,13 @@ function Results({
   return (
     <section className="relative overflow-hidden border-b border-black/5 bg-white py-24 text-[#111827]">
       {block.backgroundImage && typeof block.backgroundImage === 'object' ? (
-        <Media fill imgClassName="object-cover opacity-30" resource={block.backgroundImage} />
+        <Media
+          fill
+          imgClassName="object-cover opacity-30"
+          preferredSize="xlarge"
+          resource={block.backgroundImage}
+          size="100vw"
+        />
       ) : null}
       <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-[#eef1ff]/85" />
       <div className="premium-container relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
@@ -801,14 +819,14 @@ function Results({
               <span className="text-sm font-medium uppercase leading-tight">Trusted<br />Since<br />2009</span>
             </div>
             <div className="grid grid-cols-2 gap-4 pt-10">
-            {(metrics.length ? metrics : block.metrics || []).slice(0, 4).map((metric) => (
-              <div className="border-l-4 border-[#ed1d26] bg-white p-5" key={metric.id}>
-                <strong className="text-4xl font-semibold text-[#111827]"><AnimatedMetric value={metric.value} /></strong>
-                <p className="mt-2 text-sm text-[#6b7280]">
-                  {localized(locale, metric.labelEn, metric.labelSi)}
-                </p>
-              </div>
-            ))}
+              {(metrics.length ? metrics : block.metrics || []).slice(0, 4).map((metric) => (
+                <div className="border-l-4 border-[#ed1d26] bg-white p-5" key={metric.id}>
+                  <strong className="text-4xl font-semibold text-[#111827]"><AnimatedMetric value={metric.value} /></strong>
+                  <p className="mt-2 text-sm text-[#6b7280]">
+                    {localized(locale, metric.labelEn, metric.labelSi)}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>

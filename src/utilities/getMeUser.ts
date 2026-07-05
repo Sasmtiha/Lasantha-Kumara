@@ -1,8 +1,26 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { cache } from 'react'
 
 import type { User } from '../payload-types'
 import { getClientSideURL } from './getURL'
+
+const fetchMeUser = cache(async (token: string | undefined): Promise<User | null> => {
+  if (!token) return null
+  try {
+    const meUserReq = await fetch(`${getClientSideURL()}/api/users/me`, {
+      cache: 'no-store',
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    })
+    if (!meUserReq.ok) return null
+    const { user }: { user: User } = await meUserReq.json()
+    return user
+  } catch {
+    return null
+  }
+})
 
 export const getMeUser = async (args?: {
   nullUserRedirect?: string
@@ -15,29 +33,18 @@ export const getMeUser = async (args?: {
   const cookieStore = await cookies()
   const token = cookieStore.get('payload-token')?.value
 
-  const meUserReq = await fetch(`${getClientSideURL()}/api/users/me`, {
-    headers: {
-      Authorization: `JWT ${token}`,
-    },
-  })
+  const user = await fetchMeUser(token)
 
-  const {
-    user,
-  }: {
-    user: User
-  } = await meUserReq.json()
-
-  if (validUserRedirect && meUserReq.ok && user) {
+  if (validUserRedirect && user) {
     redirect(validUserRedirect)
   }
 
-  if (nullUserRedirect && (!meUserReq.ok || !user)) {
+  if (nullUserRedirect && !user) {
     redirect(nullUserRedirect)
   }
 
-  // Token will exist here because if it doesn't the user will be redirected
   return {
     token: token!,
-    user,
+    user: user!,
   }
 }

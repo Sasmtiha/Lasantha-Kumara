@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const course = await getClass((await params).slug)
   if (!course) return {}
   return {
-    title: `${course.titleEn} | IEM.lk`,
+    title: `${course.titleEn} | IEM`,
     description: course.shortDescriptionEn,
     alternates: { canonical: `/classes/${course.slug}` },
     openGraph: { title: course.titleEn, description: course.shortDescriptionEn },
@@ -34,31 +34,31 @@ export default async function ClassDetailPage({ params }: Props) {
   const enrollment =
     user?.role === 'student'
       ? (
-          await payload.find({
-            collection: 'enrollments',
-            limit: 1,
-            overrideAccess: true,
-            sort: '-createdAt',
-            where: {
-              and: [
-                { user: { equals: user.id } },
-                { class: { equals: course.id } },
-                { status: { in: ['pending', 'approved'] } },
-              ],
-            },
-          })
-        ).docs[0]
+        await payload.find({
+          collection: 'enrollments',
+          limit: 1,
+          overrideAccess: true,
+          sort: '-createdAt',
+          where: {
+            and: [
+              { user: { equals: user.id } },
+              { class: { equals: course.id } },
+              { status: { in: ['pending', 'approved'] } },
+            ],
+          },
+        })
+      ).docs[0]
       : null
 
   const classAction = enrollment
     ? {
-        href: '/student/dashboard',
-        label: enrollment.status === 'approved' ? 'Open Student Portal' : 'Enrollment Pending',
-      }
+      href: '/student/dashboard',
+      label: enrollment.status === 'approved' ? 'Open Student Portal' : 'Enrollment Pending',
+    }
     : {
-        href: `/enroll?class=${course.id}`,
-        label: 'Enroll in this class',
-      }
+      href: `/enroll?class=${course.id}`,
+      label: 'Enroll in this class',
+    }
 
   return (
     <main className="pt-20 bg-white text-[#111827]">

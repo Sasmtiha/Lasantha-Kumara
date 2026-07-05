@@ -4,7 +4,7 @@ import { Star } from 'lucide-react'
 import { getPayload } from 'payload'
 
 export const metadata: Metadata = {
-  title: 'Student Success Stories | IEM.lk',
+  title: 'Student Success Stories | IEM',
   description: 'Read feedback from students and parents who learned English with Lasantha Kumara.',
 }
 

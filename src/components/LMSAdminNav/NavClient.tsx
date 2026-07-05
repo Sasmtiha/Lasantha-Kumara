@@ -1,9 +1,9 @@
 'use client'
 
 import {
-  BarChart3,
   CalendarDays,
   ClipboardList,
+  CreditCard,
   FileText,
   GalleryHorizontalEnd,
   GraduationCap,
@@ -55,14 +55,14 @@ const navGroups: LMSNavGroup[] = [
       { href: '/admin/collections/schedules', icon: CalendarDays, label: 'Class Schedule' },
       { href: '/admin/collections/teachers', icon: UserCog, label: 'Teachers' },
       { href: '/admin/collections/exams', icon: ClipboardList, label: 'English Exams' },
-      { href: '/admin/collections/student-marks', icon: BarChart3, label: 'Student Marks' },
     ],
   },
   {
     label: 'Student Management',
     items: [
       { href: '/admin/collections/students', icon: Users, label: 'Students' },
-      { href: '/admin/collections/enrollments', icon: UserPlus, label: 'Enrollments' },
+      { href: '/admin/collections/enrollments?where[status][equals]=pending', icon: UserPlus, label: 'Enrollments' },
+      { href: '/admin/collections/payment-slips?where[status][equals]=pending', icon: CreditCard, label: 'Payment Slips' },
       { href: '/admin/collections/contact-submissions', icon: Mail, label: 'Contact Messages' },
       { href: '/admin/collections/users', icon: UserCog, label: 'Users' },
     ],
@@ -97,6 +97,9 @@ export default function LMSAdminNavClient() {
   const modalOpen = Object.values(modalState || {}).some((modal) => modal?.isOpen)
 
   useEffect(() => {
+    // Add no-transition class to prevent initial load animation flash
+    document.documentElement.classList.add('iem-admin-nav-no-transition')
+
     setMounted(true)
 
     const saved = window.localStorage.getItem('iem-admin-sidebar')
@@ -113,6 +116,13 @@ export default function LMSAdminNavClient() {
       }
     }
     document.documentElement.style.setProperty('--nav-width', shouldCollapse ? '76px' : '292px')
+
+    // Remove the no-transition class in the next frame so subsequent toggles animate smoothly
+    const raf = requestAnimationFrame(() => {
+      document.documentElement.classList.remove('iem-admin-nav-no-transition')
+    })
+
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   const toggleSidebar = () => {

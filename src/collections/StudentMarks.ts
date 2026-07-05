@@ -1,10 +1,10 @@
-import type { CollectionConfig, Where } from 'payload'
+import { APIError, type CollectionConfig, type Where } from 'payload'
 
 import { getRole, isAdminRole } from '@/access/roles'
+import { getTeacherClassIDs, teacherClassWhere } from '@/access/teacherScope'
 import { gradeOptions } from '@/fields/gradeOptions'
+import { formatStudentId } from '@/utilities/studentCardNumber'
 
-const isAcademicStaff = (role: ReturnType<typeof getRole>) =>
-  isAdminRole(role) || role === 'teacher'
 
 const getLetterGrade = (percentage: number) => {
   if (percentage >= 75) return 'A'
@@ -12,6 +12,14 @@ const getLetterGrade = (percentage: number) => {
   if (percentage >= 55) return 'C'
   if (percentage >= 40) return 'S'
   return 'F'
+}
+
+const getRelationID = (value: unknown) => {
+  if (value && typeof value === 'object' && 'id' in value) {
+    return String(value.id)
+  }
+
+  return value === undefined || value === null ? undefined : String(value)
 }
 
 export const StudentMarks: CollectionConfig = {
@@ -34,10 +42,17 @@ export const StudentMarks: CollectionConfig = {
     ],
   },
   access: {
-    create: ({ req }) => isAcademicStaff(getRole(req.user)),
-    delete: ({ req }) => isAcademicStaff(getRole(req.user)),
-    read: ({ req }) => {
-      if (isAcademicStaff(getRole(req.user))) return true
+    create: async ({ req }) =>
+      isAdminRole(getRole(req.user)) ||
+      (getRole(req.user) === 'teacher' && (await getTeacherClassIDs(req)).length > 0),
+    delete: async ({ req }) => {
+      if (isAdminRole(getRole(req.user))) return true
+      if (getRole(req.user) === 'teacher') return teacherClassWhere(req)
+      return false
+    },
+    read: async ({ req }) => {
+      if (isAdminRole(getRole(req.user))) return true
+      if (getRole(req.user) === 'teacher') return teacherClassWhere(req)
       if (!req.user?.id) return false
       return {
         and: [
@@ -46,7 +61,11 @@ export const StudentMarks: CollectionConfig = {
         ],
       } as Where
     },
-    update: ({ req }) => isAcademicStaff(getRole(req.user)),
+    update: async ({ req }) => {
+      if (isAdminRole(getRole(req.user))) return true
+      if (getRole(req.user) === 'teacher') return teacherClassWhere(req)
+      return false
+    },
   },
   defaultSort: '-examDate',
   fields: [
@@ -188,9 +207,44 @@ export const StudentMarks: CollectionConfig = {
           typeof studentRelation === 'object' ? studentRelation.id : studentRelation
         const examID = typeof examRelation === 'object' ? examRelation.id : examRelation
         const [student, exam] = await Promise.all([
-          req.payload.findByID({ collection: 'students', id: studentID, depth: 0 }),
-          req.payload.findByID({ collection: 'exams', id: examID, depth: 0 }),
+          req.payload.findByID({
+            collection: 'students',
+            id: studentID,
+            depth: 0,
+            overrideAccess: true,
+          }),
+          req.payload.findByID({
+            collection: 'exams',
+            id: examID,
+            depth: 0,
+            overrideAccess: true,
+          }),
         ])
+
+        const examClassID = getRelationID(exam.class)
+
+        if (!isAdminRole(getRole(req.user)) && getRole(req.user) === 'teacher') {
+          const teacherClassIDs = await getTeacherClassIDs(req)
+          const studentClassIDs = (student.currentClasses || []).map(getRelationID)
+
+          if (!examClassID || !teacherClassIDs.includes(examClassID)) {
+            throw new APIError(
+              'You can only manage marks for your assigned classes.',
+              403,
+              null,
+              true,
+            )
+          }
+
+          if (!studentClassIDs.includes(examClassID)) {
+            throw new APIError(
+              'This student is not enrolled in the selected exam class.',
+              400,
+              null,
+              true,
+            )
+          }
+        }
 
         if (student.gradeLevel !== selectedGrade) {
           throw new Error(
@@ -214,13 +268,18 @@ export const StudentMarks: CollectionConfig = {
 
         nextData.user = typeof student.user === 'object' ? student.user.id : student.user
         nextData.gradeLevel = selectedGrade
-        nextData.class = typeof exam.class === 'object' ? exam.class.id : exam.class
+        nextData.class = examClassID
         nextData.totalMarks = totalMarks
         nextData.percentage = Number(percentage.toFixed(2))
         nextData.letterGrade = getLetterGrade(percentage)
         nextData.resultStatus = marksObtained >= Number(exam.passMark || 40) ? 'Pass' : 'Fail'
         nextData.examDate = exam.examDate
-        nextData.recordLabel = `${student.firstName} ${student.lastName} — ${exam.title}`
+        const cardLabel = formatStudentId(student.cardNumber as number | null | undefined)
+        const studentName = `${student.firstName} ${student.lastName}`
+        nextData.recordLabel = cardLabel
+          ? `${cardLabel} · ${studentName} — ${exam.title}`
+          : `${studentName} — ${exam.title}`
+
 
         return nextData
       },

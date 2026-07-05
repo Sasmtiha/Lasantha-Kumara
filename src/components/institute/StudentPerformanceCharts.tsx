@@ -283,7 +283,7 @@ export function StudentPerformanceCharts({ records }: { records: PerformanceReco
                       </p>
                     </td>
                     <td className="px-6 py-5 text-[#6b7280]">{new Date(record.examDate).toLocaleDateString('en-GB')}</td>
-                    <td className="px-6 py-5 font-semibold">{record.marksObtained}/{record.totalMarks}</td>
+                    <td className="px-6 py-5 font-semibold text-[#111827]">{record.marksObtained}/{record.totalMarks}</td>
                     <td className="px-6 py-5 font-semibold text-[#034EA2]">{record.percentage.toFixed(1)}%</td>
                     <td className="px-6 py-5"><span className="grid size-9 place-items-center rounded-md bg-[#eef5ff] font-bold text-[#034EA2]">{record.letterGrade}</span></td>
                     <td className="px-6 py-5">

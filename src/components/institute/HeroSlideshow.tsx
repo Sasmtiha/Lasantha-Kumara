@@ -60,8 +60,10 @@ export function HeroSlideshow({
               fill
               imgClassName="object-cover"
               pictureClassName="absolute inset-0 block"
+              preferredSize="xlarge"
               priority={index === 0}
               resource={image}
+              size="100vw"
             />
           </div>
         ))}

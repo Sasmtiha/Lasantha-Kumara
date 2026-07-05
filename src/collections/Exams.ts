@@ -1,10 +1,16 @@
-import type { CollectionConfig } from 'payload'
+import { APIError, type CollectionConfig } from 'payload'
 
 import { getRole, isAdminRole } from '@/access/roles'
+import { getTeacherClassIDs, teacherClassWhere } from '@/access/teacherScope'
 import { gradeOptions } from '@/fields/gradeOptions'
 
-const isAcademicStaff = (role: ReturnType<typeof getRole>) =>
-  isAdminRole(role) || role === 'teacher'
+const getRelationID = (value: unknown) => {
+  if (value && typeof value === 'object' && 'id' in value) {
+    return String(value.id)
+  }
+
+  return value === undefined || value === null ? undefined : String(value)
+}
 
 export const Exams: CollectionConfig = {
   slug: 'exams',
@@ -21,11 +27,24 @@ export const Exams: CollectionConfig = {
     },
   },
   access: {
-    create: ({ req }) => isAcademicStaff(getRole(req.user)),
-    delete: ({ req }) => isAcademicStaff(getRole(req.user)),
-    read: ({ req }) =>
-      isAcademicStaff(getRole(req.user)) || { isPublished: { equals: true } },
-    update: ({ req }) => isAcademicStaff(getRole(req.user)),
+    create: async ({ req }) =>
+      isAdminRole(getRole(req.user)) ||
+      (getRole(req.user) === 'teacher' && (await getTeacherClassIDs(req)).length > 0),
+    delete: async ({ req }) => {
+      if (isAdminRole(getRole(req.user))) return true
+      if (getRole(req.user) === 'teacher') return teacherClassWhere(req)
+      return false
+    },
+    read: async ({ req }) => {
+      if (isAdminRole(getRole(req.user))) return true
+      if (getRole(req.user) === 'teacher') return teacherClassWhere(req)
+      return { isPublished: { equals: true } }
+    },
+    update: async ({ req }) => {
+      if (isAdminRole(getRole(req.user))) return true
+      if (getRole(req.user) === 'teacher') return teacherClassWhere(req)
+      return false
+    },
   },
   defaultSort: '-examDate',
   fields: [
@@ -130,31 +149,56 @@ export const Exams: CollectionConfig = {
     },
   ],
   hooks: {
+    beforeValidate: [
+      async ({ data, originalDoc, req }) => {
+        if (isAdminRole(getRole(req.user)) || getRole(req.user) !== 'teacher') {
+          return data
+        }
+
+        const classID = getRelationID(data?.class ?? originalDoc?.class)
+        const teacherClassIDs = await getTeacherClassIDs(req)
+
+        if (!classID || !teacherClassIDs.includes(String(classID))) {
+          throw new APIError('You can only manage exams for your assigned classes.', 403, null, true)
+        }
+
+        return data
+      },
+    ],
     afterChange: [
       async ({ doc, req }) => {
-        const marks = await req.payload.find({
-          collection: 'student-marks',
-          depth: 0,
-          limit: 1000,
-          overrideAccess: true,
-          pagination: false,
-          where: { exam: { equals: doc.id } },
-        })
+        let page = 1
+        let hasNextPage = true
 
-        await Promise.all(
-          marks.docs.map((mark) =>
-            req.payload.update({
-              collection: 'student-marks',
-              id: mark.id,
-              overrideAccess: true,
-              data: {
-                exam: doc.id,
-                marksObtained: mark.marksObtained,
-                student: typeof mark.student === 'object' ? mark.student.id : mark.student,
-              },
-            }),
-          ),
-        )
+        while (hasNextPage) {
+          const marks = await req.payload.find({
+            collection: 'student-marks',
+            depth: 0,
+            limit: 200,
+            overrideAccess: true,
+            page,
+            pagination: true,
+            where: { exam: { equals: doc.id } },
+          })
+
+          await Promise.all(
+            marks.docs.map((mark) =>
+              req.payload.update({
+                collection: 'student-marks',
+                id: mark.id,
+                overrideAccess: true,
+                data: {
+                  exam: doc.id,
+                  marksObtained: mark.marksObtained,
+                  student: typeof mark.student === 'object' ? mark.student.id : mark.student,
+                },
+              }),
+            ),
+          )
+
+          hasNextPage = Boolean(marks.hasNextPage)
+          page += 1
+        }
       },
     ],
   },

@@ -35,7 +35,7 @@ const getSupabaseMediaUrl = ({ filename, prefix }: { filename: string; prefix?: 
 }
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | IEM.lk` : 'IEM.lk'
+  return doc?.title ? `${doc.title} | IEM` : 'IEM'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {

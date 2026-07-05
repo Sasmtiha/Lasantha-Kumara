@@ -1,3 +1,9 @@
+html.iem-admin-nav-no-transition,
+html.iem-admin-nav-no-transition * {
+  transition: none !important;
+  animation: none !important;
+}
+
 .payload-admin,
 html[data-theme] {
   --nav-width: 292px;
@@ -100,6 +106,11 @@ html[data-theme] body {
     BlinkMacSystemFont,
     'Segoe UI',
     sans-serif;
+}
+
+.doc-header {
+  margin-top: 0;
+  padding-top: calc(var(--base) * .4);
 }
 
 html[data-theme='light'] {
@@ -927,7 +938,7 @@ html[data-theme='dark'] .iem-theme-logo__image--dark {
   .iem-admin-logo {
     width: 100%;
     margin: 0 auto 2.25rem;
-    justify-content: center;
+    justify-content: left;
   }
 
   .iem-admin-logo__mark {
@@ -1206,5 +1217,38 @@ html[data-theme='dark'] .iem-theme-logo__image--dark {
     border: 1px solid var(--theme-elevation-150);
     border-radius: 0.4rem;
     background: var(--theme-elevation-50);
+  }
+}
+
+// Hide toggle button when a drawer, modal, or dialog is open
+body:has(.drawer) .iem-admin-nav__toggle,
+body:has(.doc-drawer) .iem-admin-nav__toggle,
+body:has(.modal) .iem-admin-nav__toggle,
+body:has(.dialog) .iem-admin-nav__toggle,
+body:has([class*="drawer"]) .iem-admin-nav__toggle,
+body:has([class*="modal"]) .iem-admin-nav__toggle,
+body.modal-open .iem-admin-nav__toggle,
+html.modal-open .iem-admin-nav__toggle {
+  display: none !important;
+}
+
+// Make the block inserter button and block hover line visible in light mode
+html[data-theme='light'] {
+  .lexical-block-inserter,
+  .lexical-block-inserter__btn,
+  .add-block-menu,
+  .lexical-editor__block-inserter,
+  [class*="block-inserter"] {
+    opacity: 0.55 !important;
+    color: var(--iem-admin-text) !important;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+  .lexical-block-inserter__line,
+  [class*="block-inserter"]__line {
+    background-color: #cfddea !important;
   }
 }

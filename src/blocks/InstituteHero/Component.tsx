@@ -43,7 +43,14 @@ export async function InstituteHeroBlock(props: InstituteHeroBlockProps) {
         <div className="relative hidden lg:block">
           <div className="absolute -inset-6 rounded-[2.5rem] border border-gold/25" />
           {heroImage && typeof heroImage === 'object' ? (
-            <Media className="relative overflow-hidden rounded-[2rem] shadow-2xl" imgClassName="aspect-[4/5] w-full object-cover" priority resource={heroImage} />
+            <Media
+              className="relative overflow-hidden rounded-[2rem] shadow-2xl"
+              imgClassName="aspect-[4/5] w-full object-cover"
+              preferredSize="large"
+              priority
+              resource={heroImage}
+              size="(max-width: 1024px) 100vw, 45vw"
+            />
           ) : (
             <div className="relative aspect-[4/5] rounded-[2rem] bg-blue-900/50" />
           )}

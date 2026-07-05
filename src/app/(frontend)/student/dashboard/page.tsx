@@ -6,11 +6,15 @@ import {
   CheckCircle2,
   CreditCard,
   GraduationCap,
+  IdCard,
   TrendingUp,
 } from 'lucide-react'
+
 import Link from 'next/link'
 
 import { getStudentPortalData } from '@/utilities/studentPortal'
+import { formatStudentId } from '@/utilities/studentCardNumber'
+
 
 export default async function StudentDashboard() {
   const { enrollments, student, user } = await getStudentPortalData()
@@ -20,6 +24,9 @@ export default async function StudentDashboard() {
   const currentClass =
     typeof nextClass === 'object' ? nextClass.titleEn : 'Awaiting approval'
 
+  const currentMonthName = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' })
+  const paymentValue = `${student?.paymentStatus || latest?.paymentStatus || 'unpaid'} (${currentMonthName})`
+
   return (
     <div className="py-12">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -28,14 +35,19 @@ export default async function StudentDashboard() {
           <h2 className="mt-3 text-4xl font-medium tracking-[-.025em] text-[#111827]">
             Welcome back, {[user.firstName, user.lastName].filter(Boolean).join(' ')}
           </h2>
-          <p className="mt-3 text-[#6b7280]">Here is your latest learning activity at IEM.lk.</p>
+          <p className="mt-3 text-[#6b7280]">Here is your latest learning activity at IEM.</p>
         </div>
         <Link className="premium-button-primary inline-flex" href="/#contact">
           Contact institute <ArrowUpRight className="size-4" />
         </Link>
       </div>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <DashboardCard
+          icon={IdCard}
+          label="Student ID"
+          value={formatStudentId(student?.cardNumber as number | null | undefined) || 'Not assigned'}
+        />
         <DashboardCard
           icon={CheckCircle2}
           label="Enrollment status"
@@ -50,9 +62,10 @@ export default async function StudentDashboard() {
         <DashboardCard
           icon={CreditCard}
           label="Payment status"
-          value={student?.paymentStatus || latest?.paymentStatus || 'unpaid'}
+          value={paymentValue}
         />
       </div>
+
 
       <section className="mt-8 rounded-md border border-black/8 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,.06)] sm:p-8">
         <div>

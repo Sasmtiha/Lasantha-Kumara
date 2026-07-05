@@ -20,7 +20,7 @@ export default async function StudentNoticesPage() {
     <div className="py-12">
       <p className="premium-kicker text-[#034EA2]">Updates</p>
       <h1 className="mt-3 text-4xl font-medium tracking-[-.025em] text-[#111827]">Notices</h1>
-      <p className="mt-3 text-[#6b7280]">Important announcements and class updates from IEM.lk.</p>
+      <p className="mt-3 text-[#6b7280]">Important announcements and class updates from IEM.</p>
       <div className="mt-9 space-y-5">
         {notices.map((notice) => (
           <article className="rounded-md border border-black/8 bg-white p-6 shadow-[0_16px_45px_rgba(15,23,42,.055)] sm:p-7" key={notice.id}>

@@ -68,7 +68,7 @@ export async function seed({
   payload: Payload
   req: PayloadRequest
 }): Promise<void> {
-  payload.logger.info('Seeding IEM.lk…')
+  payload.logger.info('Seeding IEM…')
 
   // Keep cleanup sequential because PostgreSQL relationships require child
   // collections (for example schedules) to be deleted before their parents.
@@ -484,7 +484,7 @@ export async function seed({
         {
           blockType: 'instituteHero',
           badgeSi: 'සිසුන් සහ දෙමාපියන් 500+ කගේ විශ්වාසය',
-          badgeEn: 'IEM.lk English Academy · Trusted by 500+ Students',
+          badgeEn: 'IEM English Academy · Trusted by 500+ Students',
           headingEn: 'Master English with Confidence',
           headingSi: 'ඉංග්‍රීසි විශ්වාසයෙන් ඉගෙනගන්න',
           subheadingEn:
@@ -526,10 +526,10 @@ export async function seed({
           headingEn: 'A focused place to build confident English',
           headingSi: 'විශ්වාසයෙන් ඉංග්‍රීසි ගොඩනගන නිවැරදි ස්ථානය',
           descriptionEn: richText(
-            'IEM.lk provides structured English education for Grade 6 to Grade 11 students, combining clear teaching, regular practice, and personal guidance in a supportive learning environment.',
+            'IEM provides structured English education for Grade 6 to Grade 11 students, combining clear teaching, regular practice, and personal guidance in a supportive learning environment.',
           ),
           descriptionSi: richText(
-            'IEM.lk හි 6 ශ්‍රේණියේ සිට 11 ශ්‍රේණිය දක්වා සිසුන්ට පැහැදිලි ඉගැන්වීම, නිරන්තර පුහුණුව සහ පුද්ගලික මඟපෙන්වීම සමඟ ඉංග්‍රීසි අධ්‍යාපනය ලබා දෙයි.',
+            'IEM හි 6 ශ්‍රේණියේ සිට 11 ශ්‍රේණිය දක්වා සිසුන්ට පැහැදිලි ඉගැන්වීම, නිරන්තර පුහුණුව සහ පුද්ගලික මඟපෙන්වීම සමඟ ඉංග්‍රීසි අධ්‍යාපනය ලබා දෙයි.',
           ),
           buttonLabel: 'Learn More',
           buttonUrl: '/about',
@@ -614,8 +614,8 @@ export async function seed({
         },
         {
           blockType: 'featuredProgram',
-          eyebrowEn: 'IEM.lk Special',
-          eyebrowSi: 'IEM.lk විශේෂ',
+          eyebrowEn: 'IEM Special',
+          eyebrowSi: 'IEM විශේෂ',
           headingEn: 'The Complete English Class',
           headingSi: 'සම්පූර්ණ ඉංග්‍රීසි පන්තිය',
           descriptionEn:
@@ -710,8 +710,8 @@ export async function seed({
         },
         {
           blockType: 'galleryBlock',
-          headingEn: 'Life at IEM.lk',
-          headingSi: 'IEM.lk හි ශිෂ්‍ය ජීවිතය',
+          headingEn: 'Life at IEM',
+          headingSi: 'IEM හි ශිෂ්‍ය ජීවිතය',
           descriptionEn:
             'Classes, events, achievements and the everyday moments that shape confident learners.',
           descriptionSi: 'විශ්වාසවන්ත සිසුන් ගොඩනඟන පන්ති, උත්සව, ජයග්‍රහණ සහ දෛනික අවස්ථා.',
@@ -754,14 +754,14 @@ export async function seed({
     [
       'About',
       'about',
-      'About IEM.lk',
+      'About IEM',
       'Learn about our institute, approach, and mission.',
       {
         blockType: 'aboutUs',
         headingEn: 'A focused place to build confident English',
         headingSi: 'විශ්වාසයෙන් ඉංග්‍රීසි ගොඩනගන නිවැරදි ස්ථානය',
         descriptionEn: richText(
-          'Since 2009, IEM.lk has supported learners with structured lessons, personal feedback, and practical language skills.',
+          'Since 2009, IEM has supported learners with structured lessons, personal feedback, and practical language skills.',
         ),
         buttonLabel: 'View Classes',
         buttonUrl: '/#classes',
@@ -847,8 +847,8 @@ export async function seed({
       disableRevalidate: true,
     },
     data: {
-      instituteNameEn: 'IEM.lk',
-      instituteNameSi: 'IEM.lk ඉංග්‍රීසි පන්ති',
+      instituteNameEn: 'IEM',
+      instituteNameSi: 'IEM ඉංග්‍රීසි පන්ති',
       phone: '0472 248 019',
       secondaryPhone: '071 449 2540',
       whatsappNumber: 'https://wa.me/qr/LCPU7GTT5YXOC1',
@@ -901,7 +901,7 @@ export async function seed({
         ['Contact', '/#contact'],
         ['Student Portal', '/login'],
       ].map(([label, url]) => ({ link: { type: 'custom' as const, label, url } })),
-      copyrightText: `© ${new Date().getFullYear()} IEM.lk. All rights reserved.`,
+      copyrightText: `© ${new Date().getFullYear()} IEM. All rights reserved.`,
     },
   })
 

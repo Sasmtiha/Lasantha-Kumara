@@ -16,7 +16,7 @@ export const AboutUs: Block = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
-      label: 'About IEM.lk image',
+      label: 'About IEM image',
       admin: {
         description: 'The image shown in the About Us section near the top of the homepage.',
       },

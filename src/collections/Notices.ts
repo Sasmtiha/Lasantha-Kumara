@@ -20,6 +20,20 @@ export const Notices: CollectionConfig = {
       if (isAdminRole(getRole(req.user))) return true
       if (!req.user) return false
 
+      const now = new Date().toISOString()
+      const publishedWindow: Where = {
+        and: [
+          { isPublished: { equals: true } },
+          { publishDate: { less_than_equal: now } },
+          {
+            or: [
+              { expiryDate: { exists: false } },
+              { expiryDate: { greater_than: now } },
+            ],
+          },
+        ],
+      }
+
       const students = await req.payload.find({
         collection: 'students',
         depth: 0,
@@ -31,8 +45,10 @@ export const Notices: CollectionConfig = {
       const student = students.docs[0]
       if (!student) {
         return {
-          isPublished: { equals: true },
-          targetType: { equals: 'all' },
+          and: [
+            publishedWindow,
+            { targetType: { equals: 'all' } },
+          ],
         }
       }
 
@@ -50,25 +66,29 @@ export const Notices: CollectionConfig = {
         typeof item.class === 'object' ? item.class.id : item.class,
       )
       const where: Where = {
-        isPublished: { equals: true },
-        or: [
-          { targetType: { equals: 'all' } },
+        and: [
+          publishedWindow,
           {
-            and: [
-              { targetType: { equals: 'student' } },
-              { targetStudent: { equals: student.id } },
-            ],
-          },
-          {
-            and: [
-              { targetType: { equals: 'grade' } },
-              { gradeLevel: { equals: student.gradeLevel } },
-            ],
-          },
-          {
-            and: [
-              { targetType: { equals: 'class' } },
-              { targetClass: { in: classIDs.length ? classIDs : [-1] } },
+            or: [
+              { targetType: { equals: 'all' } },
+              {
+                and: [
+                  { targetType: { equals: 'student' } },
+                  { targetStudent: { equals: student.id } },
+                ],
+              },
+              {
+                and: [
+                  { targetType: { equals: 'grade' } },
+                  { gradeLevel: { equals: student.gradeLevel } },
+                ],
+              },
+              {
+                and: [
+                  { targetType: { equals: 'class' } },
+                  { targetClass: { in: classIDs.length ? classIDs : [-1] } },
+                ],
+              },
             ],
           },
         ],

@@ -1,6 +1,13 @@
-import type { CollectionConfig } from 'payload'
+import { APIError, type CollectionConfig } from 'payload'
 
-import { adminFieldAccess, admins, adminsOrSelf, getRole, instituteRoles } from '../../access/roles'
+import {
+  adminFieldAccess,
+  admins,
+  adminsOrSelf,
+  getRole,
+  instituteRoles,
+  isActiveUser,
+} from '../../access/roles'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -67,18 +74,133 @@ export const Users: CollectionConfig = {
       ],
     },
     {
+      name: 'mustChangePassword',
+      type: 'checkbox',
+      defaultValue: false,
+      label: 'Require password change',
+      saveToJWT: true,
+      admin: {
+        description:
+          'Use this for accounts created by an administrator with a temporary password.',
+      },
+      access: {
+        update: adminFieldAccess,
+      },
+    },
+    {
       name: 'profileImage',
       type: 'upload',
       relationTo: 'media',
     },
   ],
   hooks: {
+    beforeLogin: [
+      ({ user }) => {
+        if (!isActiveUser(user)) {
+          throw new APIError('This account is not active.', 403, null, true)
+        }
+
+        return user
+      },
+    ],
     beforeValidate: [
       ({ data }) => {
         if (data?.firstName || data?.lastName) {
           data.name = [data.firstName, data.lastName].filter(Boolean).join(' ')
         }
         return data
+      },
+    ],
+    beforeDelete: [
+      async ({ id, req }) => {
+        if (!req.context) req.context = {}
+        if (req.context.deletingAssociated) return
+        req.context.deletingAssociated = true
+
+        // 1. Delete associated Student record(s)
+        const students = await req.payload.find({
+          collection: 'students',
+          where: { user: { equals: id } },
+          limit: 100,
+          overrideAccess: true,
+          req,
+        })
+        for (const doc of students.docs) {
+          await req.payload.delete({
+            collection: 'students',
+            id: doc.id,
+            overrideAccess: true,
+            req,
+          })
+        }
+
+        // 2. Delete associated Enrollment record(s)
+        const enrollments = await req.payload.find({
+          collection: 'enrollments',
+          where: { user: { equals: id } },
+          limit: 100,
+          overrideAccess: true,
+          req,
+        })
+        for (const doc of enrollments.docs) {
+          await req.payload.delete({
+            collection: 'enrollments',
+            id: doc.id,
+            overrideAccess: true,
+            req,
+          })
+        }
+
+        // 3. Delete associated Teacher record(s)
+        const teachers = await req.payload.find({
+          collection: 'teachers',
+          where: { user: { equals: id } },
+          limit: 100,
+          overrideAccess: true,
+          req,
+        })
+        for (const doc of teachers.docs) {
+          await req.payload.delete({
+            collection: 'teachers',
+            id: doc.id,
+            overrideAccess: true,
+            req,
+          })
+        }
+
+        // 4. Delete associated PaymentSlip record(s)
+        const paymentSlips = await req.payload.find({
+          collection: 'payment-slips',
+          where: { user: { equals: id } },
+          limit: 100,
+          overrideAccess: true,
+          req,
+        })
+        for (const doc of paymentSlips.docs) {
+          await req.payload.delete({
+            collection: 'payment-slips',
+            id: doc.id,
+            overrideAccess: true,
+            req,
+          })
+        }
+
+        // 5. Delete associated StudentMark record(s)
+        const studentMarks = await req.payload.find({
+          collection: 'student-marks',
+          where: { user: { equals: id } },
+          limit: 100,
+          overrideAccess: true,
+          req,
+        })
+        for (const doc of studentMarks.docs) {
+          await req.payload.delete({
+            collection: 'student-marks',
+            id: doc.id,
+            overrideAccess: true,
+            req,
+          })
+        }
       },
     ],
   },

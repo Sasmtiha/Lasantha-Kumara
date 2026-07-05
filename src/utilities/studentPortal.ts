@@ -10,22 +10,26 @@ export async function getStudentPortalData() {
   }
   const payload = await getPayload({ config: configPromise })
   const req = await createLocalReq({ user }, payload)
-  const students = await payload.find({
-    collection: 'students',
-    limit: 1,
-    overrideAccess: false,
-    req,
-    where: { user: { equals: user.id } },
-  })
+
+  const [students, enrollments] = await Promise.all([
+    payload.find({
+      collection: 'students',
+      limit: 1,
+      overrideAccess: false,
+      req,
+      where: { user: { equals: user.id } },
+    }),
+    payload.find({
+      collection: 'enrollments',
+      depth: 2,
+      limit: 100,
+      overrideAccess: false,
+      req,
+      sort: '-createdAt',
+      where: { user: { equals: user.id } },
+    }),
+  ])
+
   const student = students.docs[0] || null
-  const enrollments = await payload.find({
-    collection: 'enrollments',
-    depth: 2,
-    limit: 100,
-    overrideAccess: false,
-    req,
-    sort: '-createdAt',
-    where: { user: { equals: user.id } },
-  })
   return { enrollments: enrollments.docs, payload, req, student, user }
 }

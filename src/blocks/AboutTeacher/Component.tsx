@@ -30,7 +30,13 @@ export async function AboutTeacherBlock({ headingEn, headingSi, descriptionEn, d
     <section className="container grid gap-12 py-20 lg:grid-cols-[.8fr_1.2fr]">
       <div>
         {mediaResource && typeof mediaResource === 'object' ? (
-          <Media className="overflow-hidden rounded-3xl bg-blue-50" imgClassName="aspect-[4/5] w-full object-cover" resource={mediaResource} />
+          <Media
+            className="overflow-hidden rounded-3xl bg-blue-50"
+            imgClassName="aspect-[4/5] w-full object-cover"
+            preferredSize="large"
+            resource={mediaResource}
+            size="(max-width: 1024px) 100vw, 40vw"
+          />
         ) : (
           <div className="aspect-[4/5] rounded-3xl bg-blue-50" />
         )}

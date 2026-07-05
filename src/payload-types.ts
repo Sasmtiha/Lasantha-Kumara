@@ -77,8 +77,10 @@ export interface Config {
     enrollments: Enrollment;
     exams: Exam;
     'student-marks': StudentMark;
+    'payment-slips': PaymentSlip;
     notices: Notice;
     resources: Resource;
+    'resource-files': ResourceFile;
     'contact-submissions': ContactSubmission;
     posts: Post;
     media: Media;
@@ -111,8 +113,10 @@ export interface Config {
     enrollments: EnrollmentsSelect<false> | EnrollmentsSelect<true>;
     exams: ExamsSelect<false> | ExamsSelect<true>;
     'student-marks': StudentMarksSelect<false> | StudentMarksSelect<true>;
+    'payment-slips': PaymentSlipsSelect<false> | PaymentSlipsSelect<true>;
     notices: NoticesSelect<false> | NoticesSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    'resource-files': ResourceFilesSelect<false> | ResourceFilesSelect<true>;
     'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -472,6 +476,10 @@ export interface User {
   phone?: string | null;
   role: 'super_admin' | 'admin' | 'teacher' | 'student' | 'parent';
   status: 'active' | 'inactive' | 'suspended';
+  /**
+   * Use this for accounts created by an administrator with a temporary password.
+   */
+  mustChangePassword?: boolean | null;
   profileImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -1411,6 +1419,10 @@ export interface FormBlock {
 export interface Student {
   id: number;
   fullName?: string | null;
+  /**
+   * Assigned from the enrollment record only. To set an IEM number, open the student enrollment.
+   */
+  cardNumber?: string | null;
   user: number | User;
   preferredClass?: (number | null) | Class;
   enrollmentStatus: 'pending' | 'approved' | 'rejected' | 'inactive';
@@ -1440,20 +1452,35 @@ export interface Student {
 export interface Enrollment {
   id: number;
   fullName?: string | null;
-  student: number | Student;
-  user: number | User;
+  student?: (number | null) | Student;
+  user?: (number | null) | User;
   class: number | Class;
+  /**
+   * Required before approval. Assign once from enrollment only; stored as IEM0051 and locked after save.
+   */
+  cardNumber?: string | null;
+  /**
+   * This IEM number is locked. Card No. can only be assigned from the enrollment before approval.
+   */
+  cardNumberLocked?: string | null;
   firstName: string;
   lastName: string;
   email: string;
+  /**
+   * Enter an initial login password for this student. The student will be asked to change it after first login. This value is used once and is not stored on the enrollment.
+   */
+  temporaryPassword?: string | null;
   phone: string;
   /**
    * Automatically matched to the selected class.
    */
-  gradeLevel: 'Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11';
+  gradeLevel?: ('Grade 6' | 'Grade 7' | 'Grade 8' | 'Grade 9' | 'Grade 10' | 'Grade 11') | null;
   guardianName?: string | null;
   guardianPhone?: string | null;
-  status: 'pending' | 'approved' | 'rejected' | 'cancelled';
+  /**
+   * Website-submitted enrollments can be approved or rejected by admins.
+   */
+  status?: ('pending' | 'approved' | 'rejected' | 'cancelled') | null;
   paymentStatus: 'unpaid' | 'paid';
   /**
    * Automatically set to the administrator who approves this enrollment.
@@ -1534,6 +1561,30 @@ export interface StudentMark {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payment-slips".
+ */
+export interface PaymentSlip {
+  id: number;
+  student: number | Student;
+  user: number | User;
+  month: string;
+  gradeLevel: string;
+  status: 'pending' | 'approved' | 'rejected';
+  adminNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "notices".
  */
 export interface Notice {
@@ -1575,13 +1626,32 @@ export interface Resource {
   description?: string | null;
   class: number | Class;
   resourceType: 'pdf' | 'document' | 'video' | 'link' | 'image';
-  file?: (number | null) | Media;
+  file?: (number | null) | ResourceFile;
   externalUrl?: string | null;
   visibility: 'public' | 'enrolled_students' | 'admins_only';
   isPublished?: boolean | null;
   uploadedBy?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resource-files".
+ */
+export interface ResourceFile {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1831,12 +1901,20 @@ export interface PayloadLockedDocument {
         value: number | StudentMark;
       } | null)
     | ({
+        relationTo: 'payment-slips';
+        value: number | PaymentSlip;
+      } | null)
+    | ({
         relationTo: 'notices';
         value: number | Notice;
       } | null)
     | ({
         relationTo: 'resources';
         value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'resource-files';
+        value: number | ResourceFile;
       } | null)
     | ({
         relationTo: 'contact-submissions';
@@ -2525,6 +2603,7 @@ export interface TeachersSelect<T extends boolean = true> {
  */
 export interface StudentsSelect<T extends boolean = true> {
   fullName?: T;
+  cardNumber?: T;
   user?: T;
   preferredClass?: T;
   enrollmentStatus?: T;
@@ -2553,9 +2632,12 @@ export interface EnrollmentsSelect<T extends boolean = true> {
   student?: T;
   user?: T;
   class?: T;
+  cardNumber?: T;
+  cardNumberLocked?: T;
   firstName?: T;
   lastName?: T;
   email?: T;
+  temporaryPassword?: T;
   phone?: T;
   gradeLevel?: T;
   guardianName?: T;
@@ -2613,6 +2695,29 @@ export interface StudentMarksSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payment-slips_select".
+ */
+export interface PaymentSlipsSelect<T extends boolean = true> {
+  student?: T;
+  user?: T;
+  month?: T;
+  gradeLevel?: T;
+  status?: T;
+  adminNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "notices_select".
  */
 export interface NoticesSelect<T extends boolean = true> {
@@ -2645,6 +2750,24 @@ export interface ResourcesSelect<T extends boolean = true> {
   uploadedBy?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resource-files_select".
+ */
+export interface ResourceFilesSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2818,6 +2941,7 @@ export interface UsersSelect<T extends boolean = true> {
   phone?: T;
   role?: T;
   status?: T;
+  mustChangePassword?: T;
   profileImage?: T;
   updatedAt?: T;
   createdAt?: T;

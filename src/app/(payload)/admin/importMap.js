@@ -16,6 +16,9 @@ import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { SlugField as SlugField_2b8867833a34864a02ddf429b0728a40 } from '@payloadcms/next/client'
 import { default as default_7a876e56b028dbb30b51220e72e678f1 } from '@/components/LMSListFilters'
+import { CardNumberCell as CardNumberCell_65624f3797c5d4abf5ebe836f39d55f2 } from '@/components/CardNumberCell'
+import { StudentAdminDashboard as StudentAdminDashboard_01b5661a732eebaf8cef2c8c56853804 } from '@/components/StudentAdminDashboard'
+import { StudentDocumentControls as StudentDocumentControls_a3e73fbcef0b3af74257649de6d5c1e9 } from '@/components/StudentDocumentControls'
 import { default as default_97b513b98e229c9c8bf2c47e6caafd40 } from '@/components/ExamsCalendarListAction'
 import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
@@ -56,6 +59,9 @@ export const importMap = {
   "@payloadcms/plugin-seo/client#PreviewComponent": PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/next/client#SlugField": SlugField_2b8867833a34864a02ddf429b0728a40,
   "@/components/LMSListFilters#default": default_7a876e56b028dbb30b51220e72e678f1,
+  "@/components/CardNumberCell#CardNumberCell": CardNumberCell_65624f3797c5d4abf5ebe836f39d55f2,
+  "@/components/StudentAdminDashboard#StudentAdminDashboard": StudentAdminDashboard_01b5661a732eebaf8cef2c8c56853804,
+  "@/components/StudentDocumentControls#StudentDocumentControls": StudentDocumentControls_a3e73fbcef0b3af74257649de6d5c1e9,
   "@/components/ExamsCalendarListAction#default": default_97b513b98e229c9c8bf2c47e6caafd40,
   "@payloadcms/richtext-lexical/client#HorizontalRuleFeatureClient": HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,

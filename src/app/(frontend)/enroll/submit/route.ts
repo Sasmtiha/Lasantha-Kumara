@@ -1,5 +1,13 @@
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { commitTransaction, createLocalReq, getPayload, initTransaction, killTransaction } from 'payload'
+
+import {
+  isValidEnrollmentEmail,
+  isValidEnrollmentPhone,
+  normalizeEnrollmentEmail,
+  normalizeEnrollmentPhone,
+  normalizeEnrollmentText,
+} from '@/utilities/enrollmentValidation'
 
 type EnrollmentInput = {
   firstName?: string
@@ -16,11 +24,31 @@ type EnrollmentInput = {
   terms?: string
 }
 
+const gradeToClassCategory = {
+  'Grade 6': 'grade_6',
+  'Grade 7': 'grade_7',
+  'Grade 8': 'grade_8',
+  'Grade 9': 'grade_9',
+  'Grade 10': 'grade_10',
+  'Grade 11': 'grade_11',
+} as const
+
 export async function POST(request: Request) {
   const input = (await request.json()) as EnrollmentInput
-  const required = [input.firstName, input.lastName, input.email, input.phone, input.gradeLevel, input.preferredClass]
+  const firstName = normalizeEnrollmentText(input.firstName, 80)
+  const lastName = normalizeEnrollmentText(input.lastName, 80)
+  const email = normalizeEnrollmentEmail(input.email)
+  const phone = normalizeEnrollmentPhone(input.phone)
+  const guardianName = normalizeEnrollmentText(input.guardianName, 120) || undefined
+  const guardianPhone = normalizeEnrollmentPhone(input.guardianPhone) || undefined
+  const message = normalizeEnrollmentText(input.message, 1000) || undefined
+  const required = [firstName, lastName, email, phone, input.gradeLevel]
 
-  if (required.some((value) => !value?.trim()) || !input.email?.includes('@')) {
+  if (
+    required.some((value) => !String(value || '').trim()) ||
+    !isValidEnrollmentEmail(email) ||
+    !isValidEnrollmentPhone(phone)
+  ) {
     return Response.json({ message: 'Please provide valid details in every required field.' }, { status: 400 })
   }
   if (!input.password || input.password.length < 8 || input.password !== input.confirmPassword) {
@@ -30,10 +58,6 @@ export async function POST(request: Request) {
     return Response.json({ message: 'You must accept the enrollment terms.' }, { status: 400 })
   }
 
-  const firstName = input.firstName!
-  const lastName = input.lastName!
-  const email = input.email!
-  const phone = input.phone!
   const validGrades = ['Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11'] as const
   type GradeLevel = (typeof validGrades)[number]
   const gradeInput = input.gradeLevel!
@@ -41,86 +65,197 @@ export async function POST(request: Request) {
     return Response.json({ message: 'Please select a valid grade.' }, { status: 400 })
   }
   const gradeLevel = gradeInput as GradeLevel
-  const preferredClass = Number(input.preferredClass)
-  if (!Number.isInteger(preferredClass)) {
-    return Response.json({ message: 'Please select a valid class.' }, { status: 400 })
-  }
 
   const payload = await getPayload({ config: configPromise })
-  const existing = await payload.find({
-    collection: 'users',
-    limit: 1,
-    overrideAccess: true,
-    where: { email: { equals: email.toLowerCase() } },
-  })
-  if (existing.totalDocs) {
-    return Response.json({ message: 'An account already exists for this email. Please sign in.' }, { status: 409 })
-  }
-
-  const user = await payload.create({
-    collection: 'users',
-    overrideAccess: true,
-    data: {
-      email: email.toLowerCase(),
-      password: input.password,
-      firstName,
-      lastName,
-      phone,
-      role: 'student',
-      status: 'active',
-    },
-  })
-  const student = await payload.create({
-    collection: 'students',
-    overrideAccess: true,
-    data: {
-      user: user.id,
-      firstName,
-      lastName,
-      email: email.toLowerCase(),
-      phone,
-      gradeLevel,
-      preferredClass,
-      guardianName: input.guardianName,
-      guardianPhone: input.guardianPhone,
-      enrollmentStatus: 'pending',
-      paymentStatus: 'unpaid',
-    },
-  })
-
-  const duplicate = await payload.find({
-    collection: 'enrollments',
-    limit: 1,
-    overrideAccess: true,
+  const classCategory = gradeToClassCategory[gradeLevel]
+  const classesForGrade = await payload.find({
+    collection: 'classes',
     where: {
       and: [
-        { student: { equals: student.id } },
-        { class: { equals: preferredClass } },
-        { status: { in: ['pending', 'approved'] } },
-      ],
+        { category: { equals: classCategory } },
+        { isActive: { equals: true } }
+      ]
     },
+    limit: 1,
+    overrideAccess: true,
   })
-  if (!duplicate.totalDocs) {
+
+  const selectedClass = classesForGrade.docs[0]
+  if (!selectedClass) {
+    return Response.json({ message: `No active class found for ${gradeLevel}.` }, { status: 400 })
+  }
+  const preferredClass = selectedClass.id
+  const currentYear = new Date().getFullYear()
+  const startOfYear = new Date(currentYear, 0, 1).toISOString()
+  const endOfYear = new Date(currentYear, 11, 31, 23, 59, 59, 999).toISOString()
+
+  const [existingUserByEmail, existingUserByPhone, existingStudentByEmail, existingStudentByPhone, existingEnrollment] = await Promise.all([
+    payload.find({
+      collection: 'users',
+      limit: 1,
+      overrideAccess: true,
+      where: { email: { equals: email } },
+    }),
+    payload.find({
+      collection: 'users',
+      limit: 1,
+      overrideAccess: true,
+      where: { phone: { equals: phone } },
+    }),
+    payload.find({
+      collection: 'students',
+      limit: 1,
+      overrideAccess: true,
+      where: { email: { equals: email } },
+    }),
+    payload.find({
+      collection: 'students',
+      limit: 1,
+      overrideAccess: true,
+      where: { phone: { equals: phone } },
+    }),
+    payload.find({
+      collection: 'enrollments',
+      depth: 0,
+      limit: 1,
+      overrideAccess: true,
+      where: {
+        and: [
+          {
+            or: [{ email: { equals: email } }, { phone: { equals: phone } }],
+          },
+          {
+            createdAt: { greater_than_equal: startOfYear },
+          },
+          {
+            createdAt: { less_than_equal: endOfYear },
+          },
+          {
+            status: { in: ['pending', 'approved'] },
+          },
+        ],
+      },
+    }),
+  ])
+
+  if (existingUserByEmail.totalDocs) {
+    return Response.json(
+      { message: 'An account already exists for this email. Please sign in.' },
+      { status: 409 },
+    )
+  }
+  if (existingUserByPhone.totalDocs) {
+    return Response.json(
+      { message: 'This phone number is already linked to an account. Please use a different number.' },
+      { status: 409 },
+    )
+  }
+  if (existingStudentByEmail.totalDocs) {
+    return Response.json(
+      { message: 'A student record already exists for this email address.' },
+      { status: 409 },
+    )
+  }
+  if (existingStudentByPhone.totalDocs) {
+    return Response.json(
+      { message: 'A student record already exists for this phone number.' },
+      { status: 409 },
+    )
+  }
+  if (existingEnrollment.totalDocs) {
+    return Response.json(
+      {
+        message:
+          'A student with this email address or phone number is already enrolled for the current year.',
+      },
+      { status: 409 },
+    )
+  }
+
+  const payloadReq = await createLocalReq({}, payload)
+  const startedTransaction = await initTransaction(payloadReq)
+
+  try {
+    const user = await payload.create({
+      collection: 'users',
+      overrideAccess: true,
+      req: payloadReq,
+      data: {
+        email,
+        password: input.password,
+        firstName,
+        lastName,
+        phone,
+        role: 'student',
+        status: 'active',
+      },
+    })
+    const student = await payload.create({
+      collection: 'students',
+      overrideAccess: true,
+      req: payloadReq,
+      data: {
+        user: user.id,
+        firstName,
+        lastName,
+        email,
+        phone,
+        gradeLevel,
+        preferredClass,
+        guardianName,
+        guardianPhone,
+        enrollmentStatus: 'pending',
+        paymentStatus: 'unpaid',
+      },
+    })
+
     await payload.create({
       collection: 'enrollments',
       overrideAccess: true,
+      req: payloadReq,
       data: {
         student: student.id,
         user: user.id,
         class: preferredClass,
         firstName,
         lastName,
-        email: email.toLowerCase(),
+        email,
         phone,
         gradeLevel,
-        guardianName: input.guardianName,
-        guardianPhone: input.guardianPhone,
-        message: input.message,
+        guardianName,
+        guardianPhone,
+        message,
         paymentStatus: 'unpaid',
         status: 'pending',
       },
     })
-  }
 
-  return Response.json({ success: true }, { status: 201 })
+    if (startedTransaction) {
+      await commitTransaction(payloadReq)
+    }
+
+    return Response.json({ success: true }, { status: 201 })
+  } catch (error) {
+    if (startedTransaction) {
+      await killTransaction(payloadReq)
+    }
+
+    const message = error instanceof Error ? error.message : 'Enrollment could not be completed.'
+    const status =
+      typeof error === 'object' && error
+        ? Number(
+            (error as { status?: unknown; statusCode?: unknown }).status ??
+              (error as { status?: unknown; statusCode?: unknown }).statusCode,
+          ) || 500
+        : 500
+    const normalizedStatus = status >= 400 && status < 600 ? status : 500
+    const isDuplicate = message.toLowerCase().includes('already') || normalizedStatus === 409
+
+    return Response.json(
+      {
+        message: isDuplicate ? message : 'Enrollment could not be completed. Please try again.',
+      },
+      { status: isDuplicate ? normalizedStatus : 500 },
+    )
+  }
 }

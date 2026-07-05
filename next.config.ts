@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
   // in Vercel's serverless function bundle so those routes can read the files.
   outputFileTracingIncludes: {
     '/*': ['./public/media/**/*', './public/gallery/**/*'],
+    '/api/resource-files/file/*': ['./protected/resource-files/**/*'],
   },
   // Temporarily required on Windows until Next.js fixes Turbopack Sass resolution.
   // See: https://github.com/vercel/next.js/issues/86431

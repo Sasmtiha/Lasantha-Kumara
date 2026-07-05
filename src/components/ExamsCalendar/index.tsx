@@ -20,8 +20,9 @@ async function ExamsCalendar({ initPageResult }: AdminViewServerProps) {
     collection: 'exams',
     depth: 1,
     limit: 1000,
-    overrideAccess: true,
+    overrideAccess: false,
     pagination: false,
+    req: initPageResult.req,
     sort: 'examDate',
   })
 

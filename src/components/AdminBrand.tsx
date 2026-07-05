@@ -19,7 +19,7 @@ export function AdminLogo() {
 
 export function AdminIcon() {
   return (
-    <span className="iem-admin-icon" aria-label="IEM.lk">
+    <span className="iem-admin-icon" aria-label="IEM">
       <ThemeLogo />
     </span>
   )

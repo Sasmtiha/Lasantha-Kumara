@@ -1,4 +1,4 @@
-import type { BeforeListServerProps, Where } from 'payload'
+import { createLocalReq, type BeforeListServerProps, type CollectionSlug, type Where } from 'payload'
 
 import LMSListFiltersClient, { type LMSListFilterConfig } from './ListFiltersClient'
 import './index.scss'
@@ -80,11 +80,12 @@ const configs: Record<string, LMSListFilterConfig> = {
     statusTabs: undefined,
   },
   enrollments: {
+    excludeApprovedByDefault: true,
     fields: [
       {
         label: 'Status',
         name: 'status',
-        options: ['pending', 'approved', 'rejected', 'cancelled'].map((value) => ({
+        options: ['pending', 'rejected', 'cancelled'].map((value) => ({
           label: value,
           value,
         })),
@@ -142,6 +143,18 @@ const configs: Record<string, LMSListFilterConfig> = {
     ],
     statusField: 'gradeLevel',
     ...gradeTabConfig,
+  },
+  'payment-slips': {
+    fields: [
+      {
+        label: 'Status',
+        name: 'status',
+        options: ['pending', 'approved', 'rejected'].map((value) => ({ label: value, value })),
+      },
+      { label: 'Grade', name: 'gradeLevel', options: gradeOptions },
+    ],
+    statusField: 'status',
+    statusTabs: ['pending', 'approved', 'rejected'].map((value) => ({ label: value, value })),
   },
   resources: {
     fields: [
@@ -343,20 +356,23 @@ async function getStatusCounts({
   collectionSlug,
   config,
   payload,
+  user,
 }: {
   collectionSlug: string
   config: LMSListFilterConfig
   payload: BeforeListServerProps['payload']
+  user: BeforeListServerProps['user']
 }) {
   if (!config.statusField || !config.statusTabs?.length || config.hideStatusTabCounts) return undefined
+  const req = await createLocalReq({ user: user || undefined }, payload)
 
   const all = await payload.find({
-    collection: collectionSlug as any,
+    collection: collectionSlug as CollectionSlug,
     depth: 0,
     limit: 1,
-    overrideAccess: true,
+    overrideAccess: false,
     pagination: true,
-    select: { id: true },
+    req,
   })
 
   const entries = await Promise.all(
@@ -368,12 +384,12 @@ async function getStatusCounts({
       }
 
       const result = await payload.find({
-        collection: collectionSlug as any,
+        collection: collectionSlug as CollectionSlug,
         depth: 0,
         limit: 1,
-        overrideAccess: true,
+        overrideAccess: false,
         pagination: true,
-        select: { id: true },
+        req,
         where,
       })
 
@@ -401,6 +417,7 @@ export default async function LMSListFilters(props: BeforeListServerProps) {
     collectionSlug,
     config,
     payload: props.payload,
+    user: props.user,
   })
 
   return (

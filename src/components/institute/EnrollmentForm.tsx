@@ -5,9 +5,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-import type { Class } from '@/payload-types'
-
-export function EnrollmentForm({ classes }: { classes: Class[] }) {
+export function EnrollmentForm() {
   const router = useRouter()
   const [error, setError] = useState('')
   const [sending, setSending] = useState(false)
@@ -16,29 +14,34 @@ export function EnrollmentForm({ classes }: { classes: Class[] }) {
     event.preventDefault()
     setSending(true)
     setError('')
-    const form = event.currentTarget
-    const data = Object.fromEntries(new FormData(form))
+    try {
+      const form = event.currentTarget
+      const data = Object.fromEntries(new FormData(form)) as Record<string, string>
 
-    if (data.password !== data.confirmPassword) {
-      setError('Passwords do not match.')
+      if (data.password !== data.confirmPassword) {
+        setError('Passwords do not match.')
+        return
+      }
+
+      const response = await fetch('/enroll/submit', {
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+      })
+
+      const payload = (await response.json().catch(() => ({}))) as { error?: string; message?: string }
+
+      if (!response.ok) {
+        setError(payload.message || payload.error || 'Enrollment could not be submitted.')
+        return
+      }
+
+      router.push('/login?enrolled=1')
+    } catch {
+      setError('Enrollment could not be submitted. Please try again.')
+    } finally {
       setSending(false)
-      return
     }
-
-    const response = await fetch('/enroll/submit', {
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST',
-    })
-    const result = (await response.json()) as { message?: string }
-
-    if (!response.ok) {
-      setError(result.message || 'Enrollment could not be submitted.')
-      setSending(false)
-      return
-    }
-
-    router.push('/login?enrolled=1')
   }
 
   return (
@@ -57,13 +60,6 @@ export function EnrollmentForm({ classes }: { classes: Class[] }) {
             {[6, 7, 8, 9, 10, 11].map((grade) => (
               <option key={grade} value={`Grade ${grade}`}>Grade {grade}</option>
             ))}
-          </select>
-        </label>
-        <label className="block text-sm font-medium text-[#4b4b54]">
-          Preferred class
-          <select className="auth-control mt-2" name="preferredClass" required>
-            <option value="">Select a class</option>
-            {classes.map((course) => <option key={course.id} value={course.id}>{course.titleEn}</option>)}
           </select>
         </label>
         <Input label="Guardian name (optional)" name="guardianName" />

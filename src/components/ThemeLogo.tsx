@@ -6,7 +6,7 @@ type ThemeLogoProps = {
   imageClassName?: string
   loading?: 'eager' | 'lazy'
   priority?: 'auto' | 'high' | 'low'
-  variant?: 'hero' | 'theme'
+  variant?: 'hero' | 'theme' | 'light' | 'dark'
 }
 
 export const lightLogoSrc = '/IEM_logo_light_mode_blue_transparent.png'
@@ -30,6 +30,34 @@ export function ThemeLogo({
           fetchPriority={priority}
           loading={loading}
           src={heroLogoSrc}
+        />
+      </span>
+    )
+  }
+
+  if (variant === 'light') {
+    return (
+      <span className={['iem-theme-logo', className].filter(Boolean).join(' ')}>
+        <img
+          alt={alt}
+          className={['iem-theme-logo__image', imageClassName].filter(Boolean).join(' ')}
+          fetchPriority={priority}
+          loading={loading}
+          src={lightLogoSrc}
+        />
+      </span>
+    )
+  }
+
+  if (variant === 'dark') {
+    return (
+      <span className={['iem-theme-logo', className].filter(Boolean).join(' ')}>
+        <img
+          alt={alt}
+          className={['iem-theme-logo__image', imageClassName].filter(Boolean).join(' ')}
+          fetchPriority={priority}
+          loading={loading}
+          src={darkLogoSrc}
         />
       </span>
     )

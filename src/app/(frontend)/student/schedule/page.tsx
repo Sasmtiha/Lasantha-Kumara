@@ -36,7 +36,7 @@ export default async function StudentSchedulePage() {
                 <p className="font-semibold">{item.dayOfWeek}</p>
               </div>
               <h2 className="mt-5 text-2xl font-medium text-[#111827]">{course?.titleEn}</h2>
-              <p className="mt-3 text-lg font-semibold">{item.startTime} – {item.endTime}</p>
+              <p className="mt-3 text-lg font-semibold text-[#111827]">{item.startTime} – {item.endTime}</p>
               <p className="mt-4 flex items-center gap-2 text-sm text-[#6b7280]">
                 <MapPin className="size-4" /> {item.location} · <span className="capitalize">{item.mode}</span>
               </p>

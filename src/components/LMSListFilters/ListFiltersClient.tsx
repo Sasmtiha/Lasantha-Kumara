@@ -3,7 +3,7 @@
 import { CalendarDays, SlidersHorizontal, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 type FilterOption = {
   label: string
@@ -11,6 +11,7 @@ type FilterOption = {
 }
 
 export type LMSListFilterConfig = {
+  excludeApprovedByDefault?: boolean
   fields: {
     label: string
     name: string
@@ -41,6 +42,7 @@ const prettyLabel = (value: string) =>
 const whereEqualsKey = (fieldName: string) => `where[${fieldName}][equals]`
 const dateFromKey = 'where[createdAt][greater_than_equal]'
 const dateToKey = 'where[createdAt][less_than_equal]'
+const statusNotApprovedKey = 'where[status][not_equals]'
 
 const clearWhereParams = (params: URLSearchParams) => {
   Array.from(params.keys()).forEach((key) => {
@@ -79,9 +81,22 @@ export default function LMSListFiltersClient({
     Boolean(searchParams.get(dateFromKey)) ||
     Boolean(searchParams.get(dateToKey))
 
+  useEffect(() => {
+    if (!config.excludeApprovedByDefault || collectionSlug !== 'enrollments') return
+    if (searchParams.has(statusNotApprovedKey) || searchParams.has(whereEqualsKey('status'))) return
+
+    const params = new URLSearchParams(searchParams.toString())
+    params.set(statusNotApprovedKey, 'approved')
+    router.replace(params.toString() ? `${basePath}?${params.toString()}` : basePath)
+  }, [basePath, collectionSlug, config.excludeApprovedByDefault, router, searchParams])
+
   const buildStatusHref = (value?: string) => {
     const params = new URLSearchParams(searchParams.toString())
     clearWhereParams(params)
+
+    if (config.excludeApprovedByDefault && collectionSlug === 'enrollments') {
+      params.set(statusNotApprovedKey, 'approved')
+    }
 
     if (value && config.statusField) {
       params.set(whereEqualsKey(config.statusField), value)
@@ -97,6 +112,10 @@ export default function LMSListFiltersClient({
 
     const params = new URLSearchParams(searchParams.toString())
     clearWhereParams(params)
+
+    if (config.excludeApprovedByDefault && collectionSlug === 'enrollments') {
+      params.set(statusNotApprovedKey, 'approved')
+    }
 
     Object.entries(values).forEach(([fieldName, value]) => {
       if (value) {
@@ -114,6 +133,9 @@ export default function LMSListFiltersClient({
   const clearFilters = () => {
     const params = new URLSearchParams(searchParams.toString())
     clearWhereParams(params)
+    if (config.excludeApprovedByDefault && collectionSlug === 'enrollments') {
+      params.set(statusNotApprovedKey, 'approved')
+    }
     setValues(Object.fromEntries(config.fields.map((field) => [field.name, ''])))
     setDateFrom('')
     setDateTo('')

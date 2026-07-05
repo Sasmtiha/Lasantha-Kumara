@@ -826,6 +826,10 @@ html[data-theme='dark'] {
   gap: 0.62rem;
 }
 
+.iem-lms-list--compact {
+  margin-bottom: 0.85rem;
+}
+
 .iem-lms-list-item {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -933,7 +937,7 @@ html[data-theme='dark'] {
 
 .iem-lms-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 0.75rem;
 
   a {

@@ -6,12 +6,27 @@ import { cn } from '@/utilities/ui'
 import NextImage from 'next/image'
 import React from 'react'
 
-import type { Props as MediaProps } from '../types'
+import type { MediaSizeKey, Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 const { breakpoints } = cssVariables
+
+type PayloadImageSize = {
+  height?: null | number
+  url?: null | string
+  width?: null | number
+}
+
+type SizedMediaResource = {
+  alt?: null | string
+  height?: null | number
+  sizes?: Partial<Record<MediaSizeKey, PayloadImageSize>>
+  updatedAt?: null | string
+  url?: null | string
+  width?: null | number
+}
 
 // A base64 encoded image to use as a placeholder while the image is loading
 const placeholderBlur =
@@ -53,6 +68,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     pictureClassName,
     imgClassName,
     priority,
+    preferredSize,
     resource,
     size: sizeFromProps,
     src: srcFromProps,
@@ -65,15 +81,23 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   let src: StaticImageData | string = srcFromProps || ''
 
   if (!src && resource && typeof resource === 'object') {
-    const { alt: altFromResource, height: fullHeight, url, width: fullWidth } = resource
+    const {
+      alt: altFromResource,
+      height: fullHeight,
+      sizes: generatedSizes,
+      updatedAt,
+      url,
+      width: fullWidth,
+    } = resource as SizedMediaResource
+    const selectedSize = preferredSize ? generatedSizes?.[preferredSize] : undefined
 
-    width = fullWidth!
-    height = fullHeight!
+    width = selectedSize?.width || fullWidth || undefined
+    height = selectedSize?.height || fullHeight || undefined
     alt = altFromResource || ''
 
-    const cacheTag = resource.updatedAt
+    const cacheTag = updatedAt
 
-    src = getMediaUrl(url, cacheTag)
+    src = getMediaUrl(selectedSize?.url || url, cacheTag)
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
@@ -81,9 +105,11 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   // NOTE: this is used by the browser to determine which image to download at different screen sizes
   const sizes = sizeFromProps
     ? sizeFromProps
-    : Object.entries(breakpoints)
-        .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-        .join(', ')
+    : fill
+      ? '100vw'
+      : Object.entries(breakpoints)
+          .map(([, value]) => `(max-width: ${value}px) 100vw`)
+          .join(', ')
 
   return (
     <picture className={cn(pictureClassName)}>
@@ -95,7 +121,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         placeholder={disablePlaceholder ? 'empty' : 'blur'}
         blurDataURL={disablePlaceholder ? undefined : placeholderBlur}
         priority={priority}
-        quality={100}
+        quality={85}
         loading={loading}
         sizes={sizes}
         src={src}
