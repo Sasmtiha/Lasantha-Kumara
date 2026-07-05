@@ -25,7 +25,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '@payloadcms/ui'
 import type { LucideIcon } from 'lucide-react'
 
 import { AdminLogo } from '@/components/AdminBrand'
