@@ -10,6 +10,7 @@ import {
   type GradeTrendPoint,
 } from './ChartsClient'
 import LMSDashboardNotifications from './NotificationsClient'
+import AcademicPerformanceClient from './AcademicPerformanceClient'
 import { getRole, isAdminRole } from '@/access/roles'
 import '@/components/ExamsCalendar/index.scss'
 import './index.scss'
@@ -104,7 +105,7 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
     publishedNotices,
     publishedResources,
     publishedExams,
-    publishedResults,
+    publishedCounts,
     recentEnrollments,
     recentStudents,
     recentMessages,
@@ -125,7 +126,21 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
     countDocs('notices', { isPublished: { equals: true } }),
     countDocs('resources', { isPublished: { equals: true } }),
     countDocs('exams', { isPublished: { equals: true } }),
-    countDocs('student-marks', { isPublished: { equals: true } }),
+    Promise.all(
+      ['Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11'].map(async (grade) => {
+        const count = await countDocs('student-marks', {
+          gradeLevel: { equals: grade },
+          isPublished: { equals: true },
+        })
+        return { grade, count }
+      }),
+    ).then((results) => {
+      const counts: Record<string, number> = {}
+      results.forEach(({ grade, count }) => {
+        counts[grade] = count
+      })
+      return counts
+    }),
     payload.find({
       collection: 'enrollments',
       depth: 1,
@@ -194,6 +209,14 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
         ? formatDate(latestMarks[index].createdAt)
         : `Point ${index + 1}`,
     score: Math.round(score),
+  }))
+
+  const serializedMarks = recentMarks.docs.map((mark) => ({
+    percentage: mark.percentage,
+    gradeLevel: mark.gradeLevel,
+    resultStatus: mark.resultStatus,
+    createdAt: mark.createdAt,
+    examDate: mark.examDate,
   }))
 
   const marksByDate = new Map<string, Record<string, number[]>>()
@@ -311,20 +334,10 @@ async function LMSDashboard({ initPageResult }: AdminViewServerProps) {
       </section>
 
       <section className="iem-lms-overview">
-        <article className="iem-lms-performance-card">
-          <div className="iem-lms-performance-card__top">
-            <p>Academic Performance</p>
-            <AdminThemePreservingLink href={collectionUrl('student-marks')}>
-              See more
-            </AdminThemePreservingLink>
-          </div>
-          <strong>{averageScore || 0}%</strong>
-          <span>Recent overall performance score</span>
-          <div className="iem-lms-performance-card__footer">
-            <span>{passRate || 0}% pass rate</span>
-            <small>{formatNumber(publishedResults)} published result records</small>
-          </div>
-        </article>
+        <AcademicPerformanceClient
+          marks={serializedMarks}
+          publishedCounts={publishedCounts}
+        />
 
         <section className="iem-lms-stat-grid" aria-label="Key LMS statistics">
           {statCards.map((card) => (
