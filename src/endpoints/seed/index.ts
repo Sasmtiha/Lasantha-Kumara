@@ -761,7 +761,7 @@ export async function seed({
         headingEn: 'A focused place to build confident English',
         headingSi: 'විශ්වාසයෙන් ඉංග්‍රීසි ගොඩනගන නිවැරදි ස්ථානය',
         descriptionEn: richText(
-          'Since 2009, IEM has supported learners with structured lessons, personal feedback, and practical language skills.',
+          'Since 2000, IEM has supported learners with structured lessons, personal feedback, and practical language skills.',
         ),
         buttonLabel: 'View Classes',
         buttonUrl: '/#classes',
@@ -858,9 +858,9 @@ export async function seed({
       officeHoursEn: 'Mon – Sat: 8:00 AM – 6:00 PM',
       officeHoursSi: 'සඳුදා – සෙනසුරාදා: පෙ.ව. 8.00 – ප.ව. 6.00',
       missionEn:
-        'Empowering students with English language excellence since 2009. Your success is our mission.',
+        'Empowering students with English language excellence since 2000. Your success is our mission.',
       missionSi:
-        '2009 සිට ඉංග්‍රීසි භාෂා විශිෂ්ටත්වයෙන් සිසුන් සවිබල ගන්වමු. ඔබේ සාර්ථකත්වය අපගේ මෙහෙවරයි.',
+        '2000 සිට ඉංග්‍රීසි භාෂා විශිෂ්ටත්වයෙන් සිසුන් සවිබල ගන්වමු. ඔබේ සාර්ථකත්වය අපගේ මෙහෙවරයි.',
       facebookUrl: 'https://www.facebook.com/iem.lasantha',
       youtubeUrl: 'https://www.youtube.com/@lasanthakumara8109/featured',
     },
@@ -894,7 +894,7 @@ export async function seed({
     },
     data: {
       missionText:
-        'Empowering students with English language excellence since 2009. Your success is our mission.',
+        'Empowering students with English language excellence since 2000. Your success is our mission.',
       navItems: [
         ['Classes', '/#classes'],
         ['Schedule', '/#schedule'],

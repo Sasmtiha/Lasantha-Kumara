@@ -53,13 +53,10 @@ const getGradeNumber = (category: string) => {
   return category.replaceAll('_', ' ').toUpperCase()
 }
 
-const findBlock = <T extends LayoutBlock['blockType']>(
-  blocks: Page['layout'],
-  type: T,
-) =>
+const findBlock = <T extends LayoutBlock['blockType']>(blocks: Page['layout'], type: T) =>
   blocks.find((block) => block.blockType === type) as
-  | Extract<LayoutBlock, { blockType: T }>
-  | undefined
+    | Extract<LayoutBlock, { blockType: T }>
+    | undefined
 
 export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
   const locale = await getSiteLocale()
@@ -100,9 +97,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       limit: 6,
       pagination: false,
       sort: 'displayOrder',
-      ...(testimonialsBlock?.showFeaturedOnly
-        ? { where: { isFeatured: { equals: true } } }
-        : {}),
+      ...(testimonialsBlock?.showFeaturedOnly ? { where: { isFeatured: { equals: true } } } : {}),
     }),
     payload.find({
       collection: 'gallery',
@@ -149,14 +144,12 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
 
   return (
     <main className="premium-home overflow-hidden bg-white text-[#111827]">
-      {hero ? <Hero block={hero} locale={locale} phone={settings.secondaryPhone || settings.phone} /> : null}
+      {hero ? (
+        <Hero block={hero} locale={locale} phone={settings.secondaryPhone || settings.phone} />
+      ) : null}
       {aboutUs ? <AboutUs block={aboutUs} locale={locale} /> : null}
       {results ? (
-        <Results
-          block={results}
-          locale={locale}
-          metrics={metrics?.items || hero?.metrics || []}
-        />
+        <Results block={results} locale={locale} metrics={metrics?.items || hero?.metrics || []} />
       ) : null}
       {process ? <Process block={process} locale={locale} /> : null}
       {featuredProgram ? <FeaturedProgram block={featuredProgram} locale={locale} /> : null}
@@ -202,11 +195,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     <p className="text-sm font-medium text-[#034EA2]">{course.titleSi}</p>
                     <h3 className="mt-2 text-2xl font-semibold text-[#111827]">{course.titleEn}</h3>
                     <p className="mt-4 leading-7 text-[#6b7280]">
-                      {localized(
-                        locale,
-                        course.shortDescriptionEn,
-                        course.shortDescriptionSi,
-                      )}
+                      {localized(locale, course.shortDescriptionEn, course.shortDescriptionSi)}
                     </p>
                     <div className="mt-6 flex gap-5 border-t border-[#e5e7eb] pt-5 text-sm text-[#6b7280]">
                       <span className="flex items-center gap-2">
@@ -217,10 +206,16 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                       </span>
                     </div>
                     <div className="mt-auto flex gap-3 pt-7">
-                      <Link className="premium-button-secondary flex-1" href={`/classes/${course.slug}`}>
+                      <Link
+                        className="premium-button-secondary flex-1"
+                        href={`/classes/${course.slug}`}
+                      >
                         View Details <ArrowUpRight className="size-4" />
                       </Link>
-                      <Link className="premium-button-primary flex-1" href={`/enroll?class=${course.id}`}>
+                      <Link
+                        className="premium-button-primary flex-1"
+                        href={`/enroll?class=${course.id}`}
+                      >
                         Enroll <ArrowUpRight className="size-4" />
                       </Link>
                     </div>
@@ -237,11 +232,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       <section className="premium-section bg-white" id="schedule">
         <div className="premium-container">
           <SectionHeading
-            description={localized(
-              locale,
-              scheduleBlock?.subtitleEn,
-              scheduleBlock?.subtitleSi,
-            )}
+            description={localized(locale, scheduleBlock?.subtitleEn, scheduleBlock?.subtitleSi)}
             kicker="Schedule"
             title={localized(
               locale,
@@ -264,13 +255,16 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                 <tbody>
                   {schedules.docs.map((item) => {
                     return (
-                      <tr className="border-t border-[#e5e7eb] transition hover:bg-[#f1f3fa]" key={item.id}>
+                      <tr
+                        className="border-t border-[#e5e7eb] transition hover:bg-[#f1f3fa]"
+                        key={item.id}
+                      >
                         <td className="px-6 py-5 font-semibold text-[#034EA2]">{item.dayOfWeek}</td>
-                        <td className="px-6 py-5">
-                          {item.batchLabel}
-                        </td>
+                        <td className="px-6 py-5">{item.batchLabel}</td>
                         <td className="px-6 py-5 text-[#6b7280]">
-                          <span className="border-l-2 border-[#ed1d26] bg-[#f4f4f2] px-3 py-1.5 text-sm font-semibold text-[#111827]">{item.startTime} – {item.endTime}</span>
+                          <span className="border-l-2 border-[#ed1d26] bg-[#f4f4f2] px-3 py-1.5 text-sm font-semibold text-[#111827]">
+                            {item.startTime} – {item.endTime}
+                          </span>
                         </td>
                         <td className="px-6 py-5 capitalize text-[#6b7280]">{item.mode}</td>
                         <td className="px-6 py-5 text-[#6b7280]">{item.location}</td>
@@ -288,10 +282,10 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                   <p className="text-xs font-medium uppercase tracking-widest text-[#034EA2]">
                     {item.dayOfWeek}
                   </p>
-                  <h3 className="mt-2 text-xl font-semibold">
-                    {item.batchLabel}
-                  </h3>
-                  <p className="mt-3">{item.startTime} – {item.endTime}</p>
+                  <h3 className="mt-2 text-xl font-semibold">{item.batchLabel}</h3>
+                  <p className="mt-3">
+                    {item.startTime} – {item.endTime}
+                  </p>
                   <p className="mt-3 flex items-center gap-2 text-sm text-[#6b7280]">
                     <MapPin className="size-4" /> {item.location}
                   </p>
@@ -308,22 +302,19 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       </section>
 
       <Gallery
-        description={localized(
-          locale,
-          galleryBlock?.descriptionEn,
-          galleryBlock?.descriptionSi,
-        )}
+        description={localized(locale, galleryBlock?.descriptionEn, galleryBlock?.descriptionSi)}
         items={gallery.docs}
         locale={locale}
-        title={localized(
-          locale,
-          galleryBlock?.headingEn || 'Life at IEM',
-          galleryBlock?.headingSi,
-        )}
+        title={localized(locale, galleryBlock?.headingEn || 'Life at IEM', galleryBlock?.headingSi)}
       />
 
-      <section className="premium-section relative overflow-hidden bg-[#090a0e] text-white" id="testimonials">
-        <span aria-hidden className="premium-wordmark right-0 top-0 text-white/[.018]">VOICE</span>
+      <section
+        className="premium-section relative overflow-hidden bg-[#090a0e] text-white"
+        id="testimonials"
+      >
+        <span aria-hidden className="premium-wordmark right-0 top-0 text-white/[.018]">
+          VOICE
+        </span>
         <div className="premium-container">
           <SectionHeading
             dark
@@ -371,10 +362,13 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
               kicker="Contact"
               title={localized(locale, contact.headingEn, contact.headingSi)}
             />
-            <div className={`mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] ${contact.showContactForm !== false && contact.showContactDetails !== false
-              ? 'lg:grid-cols-[1.15fr_.85fr]'
-              : ''
-              }`}>
+            <div
+              className={`mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] ${
+                contact.showContactForm !== false && contact.showContactDetails !== false
+                  ? 'lg:grid-cols-[1.15fr_.85fr]'
+                  : ''
+              }`}
+            >
               {contact.showContactForm !== false ? (
                 <Reveal className="p-6 sm:p-10 premium-contact-form-wrapper">
                   {contact.form && typeof contact.form === 'object' ? (
@@ -408,18 +402,35 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                       'Let’s start your English journey'}
                   </h3>
                   <p className="mt-4 leading-7 text-white/70">
-                    {localized(
-                      locale,
-                      contact.panelDescriptionEn,
-                      contact.panelDescriptionSi,
-                    ) || 'Speak with our team about classes, schedules and enrollment.'}
+                    {localized(locale, contact.panelDescriptionEn, contact.panelDescriptionSi) ||
+                      'Speak with our team about classes, schedules and enrollment.'}
                   </p>
                   <div className="mt-8 grid gap-4">
-                    <InfoCard icon={<Headphones />} label={contact.phoneInfoLabel || 'Phone'} value={settings.phone} />
-                    <InfoCard icon={<Headphones />} label={contact.mobileInfoLabel || 'Mobile'} value={settings.secondaryPhone} />
-                    <InfoCard icon={<MessageCircle />} label={contact.emailInfoLabel || 'Email'} value={settings.email} />
-                    <InfoCard icon={<MapPin />} label={contact.locationInfoLabel || 'Location'} value={localized(locale, settings.addressEn, settings.addressSi)} />
-                    <InfoCard icon={<Clock3 />} label={contact.officeHoursInfoLabel || 'Office Hours'} value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)} />
+                    <InfoCard
+                      icon={<Headphones />}
+                      label={contact.phoneInfoLabel || 'Phone'}
+                      value={settings.phone}
+                    />
+                    <InfoCard
+                      icon={<Headphones />}
+                      label={contact.mobileInfoLabel || 'Mobile'}
+                      value={settings.secondaryPhone}
+                    />
+                    <InfoCard
+                      icon={<MessageCircle />}
+                      label={contact.emailInfoLabel || 'Email'}
+                      value={settings.email}
+                    />
+                    <InfoCard
+                      icon={<MapPin />}
+                      label={contact.locationInfoLabel || 'Location'}
+                      value={localized(locale, settings.addressEn, settings.addressSi)}
+                    />
+                    <InfoCard
+                      icon={<Clock3 />}
+                      label={contact.officeHoursInfoLabel || 'Office Hours'}
+                      value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)}
+                    />
                   </div>
                   {settings.whatsappNumber ? (
                     <a
@@ -461,7 +472,10 @@ function Hero({
     confidenceIndex >= 0 ? subheading.slice(0, confidenceIndex).trimEnd() : subheading
 
   return (
-    <section className="premium-hero relative flex min-h-svh items-center lg:items-end overflow-hidden bg-[#101827] text-white" id="home">
+    <section
+      className="premium-hero relative flex min-h-svh items-center lg:items-end overflow-hidden bg-[#101827] text-white"
+      id="home"
+    >
       <div className="premium-hero-media absolute inset-0 z-0">
         <HeroSlideshow
           duration={block.slideDuration}
@@ -520,9 +534,7 @@ function Hero({
                 {block.secondaryButtonLabel || 'Student Portal'} <ArrowUpRight className="size-4" />
               </Link>
             </div>
-            <p className="hero-reveal hero-delay-4 mt-7 text-sm text-white/60">
-              Call us: {phone}
-            </p>
+            <p className="hero-reveal hero-delay-4 mt-7 text-sm text-white/60">Call us: {phone}</p>
           </div>
         </div>
         <a
@@ -539,7 +551,9 @@ function Hero({
 function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
   return (
     <section className="premium-section relative border-b border-black/5 bg-white" id="about">
-      <span aria-hidden className="premium-wordmark left-0 top-12">IEM</span>
+      <span aria-hidden className="premium-wordmark left-0 top-12">
+        IEM
+      </span>
       <div className="premium-container relative grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
         <Reveal>
           <div className="relative min-h-[30rem] overflow-hidden rounded-md bg-[#e8e9ed] shadow-[0_30px_90px_rgba(10,11,15,.13)]">
@@ -553,7 +567,9 @@ function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
               />
             ) : (
               <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-[#eef5ff] to-[#dceaff]">
-                <span className="heading-font text-[clamp(4rem,10vw,8rem)] font-semibold text-[#034EA2]/10">IEM</span>
+                <span className="heading-font text-[clamp(4rem,10vw,8rem)] font-semibold text-[#034EA2]/10">
+                  IEM
+                </span>
               </div>
             )}
           </div>
@@ -566,7 +582,9 @@ function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
           />
           <RichText
             className="mt-6 max-w-none text-lg leading-8 text-[#6b7280]"
-            data={locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn}
+            data={
+              locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn
+            }
             enableGutter={false}
           />
           {block.buttonLabel && block.buttonUrl ? (
@@ -583,7 +601,9 @@ function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
 function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Locale }) {
   return (
     <section className="relative overflow-hidden border-y border-black/5 bg-white" id="teacher">
-      <span aria-hidden className="premium-wordmark left-0 top-12">TEACHER</span>
+      <span aria-hidden className="premium-wordmark left-0 top-12">
+        TEACHER
+      </span>
       <div className="relative grid min-h-[38rem] lg:grid-cols-2">
         <Reveal className="flex items-center px-6 py-20 sm:px-12 lg:px-[clamp(4rem,8vw,10rem)] lg:py-24">
           <div className="w-full max-w-3xl">
@@ -604,12 +624,17 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
             )}
             <RichText
               className="mt-8 max-w-none text-base leading-8 text-[#4b5563] sm:text-lg"
-              data={locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn}
+              data={
+                locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn
+              }
               enableGutter={false}
             />
           </div>
         </Reveal>
-        <Reveal className="relative hidden min-h-[30rem] overflow-hidden bg-[#f1f2f4] lg:block lg:min-h-full" delay={100}>
+        <Reveal
+          className="relative hidden min-h-[30rem] overflow-hidden bg-[#f1f2f4] lg:block lg:min-h-full"
+          delay={100}
+        >
           {block.teacherImage && typeof block.teacherImage === 'object' ? (
             <>
               <Media
@@ -745,8 +770,13 @@ function Process({
   locale: Locale
 }) {
   return (
-    <section className="premium-section relative overflow-hidden bg-[#090a0e] text-white" id="process">
-      <span aria-hidden className="premium-wordmark text-white/[.025]">LEARN</span>
+    <section
+      className="premium-section relative overflow-hidden bg-[#090a0e] text-white"
+      id="process"
+    >
+      <span aria-hidden className="premium-wordmark text-white/[.025]">
+        LEARN
+      </span>
       <div className="premium-container relative">
         <SectionHeading
           dark
@@ -762,7 +792,9 @@ function Process({
               <Reveal delay={index * 100} key={step.id}>
                 <article className="relative">
                   <span className="relative z-10 grid size-16 place-items-center rounded-md bg-white text-black">
-                    <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-white text-[10px] font-bold text-black border border-black/10 shadow-sm">{index + 1}</span>
+                    <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-white text-[10px] font-bold text-black border border-black/10 shadow-sm">
+                      {index + 1}
+                    </span>
                     <Icon className="size-6 text-black" />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold">
@@ -809,19 +841,30 @@ function Results({
             kicker="Results & Trust"
             title={localized(locale, block.headingEn, block.headingSi)}
           />
-          <Link className="premium-button-primary mt-8 inline-flex" href={block.ctaUrl || '#classes'}>
+          <Link
+            className="premium-button-primary mt-8 inline-flex"
+            href={block.ctaUrl || '#classes'}
+          >
             {block.ctaLabel || 'Explore Classes'} <ArrowUpRight className="size-4" />
           </Link>
         </Reveal>
         <Reveal delay={100}>
           <div className="relative rounded-md border border-black/10 bg-[#f4f4f2] p-7 shadow-[0_24px_70px_rgba(10,11,15,.08)]">
             <div className="absolute -right-5 -top-8 grid size-32 rotate-[-4deg] place-items-center border-4 border-double border-[#ed1d26] bg-white text-center text-[#111827] shadow-xl">
-              <span className="text-sm font-medium uppercase leading-tight">Trusted<br />Since<br />2009</span>
+              <span className="text-sm font-medium uppercase leading-tight">
+                Trusted
+                <br />
+                Since
+                <br />
+                2000
+              </span>
             </div>
             <div className="grid grid-cols-2 gap-4 pt-10">
               {(metrics.length ? metrics : block.metrics || []).slice(0, 4).map((metric) => (
                 <div className="border-l-4 border-[#ed1d26] bg-white p-5" key={metric.id}>
-                  <strong className="text-4xl font-semibold text-[#111827]"><AnimatedMetric value={metric.value} /></strong>
+                  <strong className="text-4xl font-semibold text-[#111827]">
+                    <AnimatedMetric value={metric.value} />
+                  </strong>
                   <p className="mt-2 text-sm text-[#6b7280]">
                     {localized(locale, metric.labelEn, metric.labelSi)}
                   </p>
@@ -852,7 +895,10 @@ function Portal({
   locale: Locale
 }) {
   return (
-    <section className="premium-section relative overflow-hidden bg-[#034B9B] text-white" id="portal">
+    <section
+      className="premium-section relative overflow-hidden bg-[#034B9B] text-white"
+      id="portal"
+    >
       <div
         aria-hidden
         className="absolute inset-0 bg-[url('/stacked-waves-haikei-blue.svg')] bg-cover bg-center opacity-70"
@@ -914,9 +960,12 @@ function Gallery({
         ) : (
           <div className="mt-12 overflow-hidden rounded-[2rem] border border-dashed border-[#034EA2]/25 bg-gradient-to-br from-[#eaf3ff] to-white px-6 py-24 text-center">
             <GraduationCap className="mx-auto size-12 text-[#034EA2]/35" />
-            <p className="mt-5 text-xl font-medium text-[#111827]">Gallery photos will be added soon</p>
+            <p className="mt-5 text-xl font-medium text-[#111827]">
+              Gallery photos will be added soon
+            </p>
             <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#6b7280]">
-              Classroom moments, student activities and achievements can be managed from Payload Gallery.
+              Classroom moments, student activities and achievements can be managed from Payload
+              Gallery.
             </p>
           </div>
         )}
@@ -925,7 +974,15 @@ function Gallery({
   )
 }
 
-function InfoCard({ icon, label, value }: { icon: React.ReactNode; label: string; value?: null | string }) {
+function InfoCard({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode
+  label: string
+  value?: null | string
+}) {
   return (
     <div className="premium-card flex gap-4 p-5 text-[#111827]">
       <span className="grid size-11 shrink-0 place-items-center rounded-md bg-white/90 text-[#034EA2]">
@@ -933,7 +990,9 @@ function InfoCard({ icon, label, value }: { icon: React.ReactNode; label: string
       </span>
       <div className="min-w-0">
         <p className="text-xs uppercase tracking-wider text-[#6b7280]">{label}</p>
-        <p className="mt-1 break-words text-sm font-medium text-[#111827]">{value || 'Not provided'}</p>
+        <p className="mt-1 break-words text-sm font-medium text-[#111827]">
+          {value || 'Not provided'}
+        </p>
       </div>
     </div>
   )
@@ -952,14 +1011,16 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className={`premium-kicker ${dark ? 'text-[#75aff0]' : 'text-[#034EA2]'}`}>
-        {kicker}
-      </p>
-      <h2 className={`mt-4 text-4xl font-semibold leading-[1.15] tracking-[-.015em] sm:text-5xl ${dark ? 'text-white' : 'text-[#111827]'}`}>
+      <p className={`premium-kicker ${dark ? 'text-[#75aff0]' : 'text-[#034EA2]'}`}>{kicker}</p>
+      <h2
+        className={`mt-4 text-4xl font-semibold leading-[1.15] tracking-[-.015em] sm:text-5xl ${dark ? 'text-white' : 'text-[#111827]'}`}
+      >
         {title}
       </h2>
       {description ? (
-        <p className={`heading-font mt-5 text-lg leading-8 ${dark ? 'text-white/70' : 'text-[#034EA2]'}`}>
+        <p
+          className={`heading-font mt-5 text-lg leading-8 ${dark ? 'text-white/70' : 'text-[#034EA2]'}`}
+        >
           {description}
         </p>
       ) : null}
