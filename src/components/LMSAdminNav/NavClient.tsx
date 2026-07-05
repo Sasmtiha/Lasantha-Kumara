@@ -13,6 +13,8 @@ import {
   LogOut,
   Mail,
   MessageSquareText,
+  PanelBottom,
+  PanelTop,
   ChevronLeft,
   ChevronRight,
   ChevronDown,
@@ -80,6 +82,8 @@ const navGroups: LMSNavGroup[] = [
     label: 'Website Settings',
     items: [
       { href: '/admin/collections/pages', icon: FileText, label: 'Pages' },
+      { href: '/admin/globals/header', icon: PanelTop, label: 'Header' },
+      { href: '/admin/globals/footer', icon: PanelBottom, label: 'Footer' },
       { href: '/admin/collections/testimonials', icon: MessageSquareText, label: 'Testimonials' },
       { href: '/admin/collections/form-submissions', icon: Mail, label: 'Form Submissions' },
       { href: '/admin/globals/site-settings', icon: Settings, label: 'Site Settings' },
