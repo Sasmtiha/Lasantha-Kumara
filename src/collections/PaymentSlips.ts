@@ -7,6 +7,12 @@ import { admins, getRole, isAdminRole } from '@/access/roles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const supabaseStorageEnabled = Boolean(
+  process.env.SUPABASE_PROJECT_REF &&
+    process.env.SUPABASE_STORAGE_BUCKET &&
+    process.env.SUPABASE_STORAGE_ACCESS_KEY_ID &&
+    process.env.SUPABASE_STORAGE_SECRET_ACCESS_KEY,
+)
 
 export const PaymentSlips: CollectionConfig = {
   slug: 'payment-slips',
@@ -116,12 +122,13 @@ export const PaymentSlips: CollectionConfig = {
         // Define target subpath relative to public/media
         const newRelativeFilename = `students/${cardFormatted}/${gradeSanitized}/payment-slips/${monthSanitized}${ext}`
 
-        // Ensure target folder exists physically
-        const baseDir = path.resolve(dirname, '../../public/media')
-        const fullDestDir = path.dirname(path.join(baseDir, newRelativeFilename))
+        if (!supabaseStorageEnabled) {
+          const baseDir = path.resolve(dirname, '../../public/media')
+          const fullDestDir = path.dirname(path.join(baseDir, newRelativeFilename))
 
-        if (!fs.existsSync(fullDestDir)) {
-          fs.mkdirSync(fullDestDir, { recursive: true })
+          if (!fs.existsSync(fullDestDir)) {
+            fs.mkdirSync(fullDestDir, { recursive: true })
+          }
         }
 
         // Set the relative path as the filename so Payload saves it in the custom subpath
