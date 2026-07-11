@@ -1043,7 +1043,7 @@ function InfoCard({
 }: {
   icon: React.ReactNode
   label: string
-  value?: null | string
+  value?: null | React.ReactNode
 }) {
   return (
     <div className="premium-card flex gap-4 p-5 text-[#111827]">
