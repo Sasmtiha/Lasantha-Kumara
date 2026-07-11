@@ -4,15 +4,14 @@ import React from 'react'
 import type { AboutTeacherBlock as AboutTeacherBlockProps } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
-import { getSiteLocale, localized } from '@/utilities/locale'
+import { LocalizedText } from '@/components/LocalizedText'
+import { getSiteLocale } from '@/utilities/locale'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 
 const icons = { award: Award, book: BookOpen, users: Users, target: Target }
 
 export async function AboutTeacherBlock({ headingEn, headingSi, descriptionEn, descriptionSi, teacherImage, featureCards }: AboutTeacherBlockProps) {
-  const locale = await getSiteLocale()
-
   let mediaResource = teacherImage
   if (mediaResource && (typeof mediaResource === 'number' || typeof mediaResource === 'string')) {
     try {
@@ -43,16 +42,35 @@ export async function AboutTeacherBlock({ headingEn, headingSi, descriptionEn, d
       </div>
       <div className="self-center">
         <p className="section-kicker">Meet your teacher</p>
-        <h2 className="section-title">{localized(locale, headingEn, headingSi)}</h2>
-        <RichText className="mt-5 text-muted-foreground" data={locale === 'si' && descriptionSi ? descriptionSi : descriptionEn} enableGutter={false} />
+        <h2 className="section-title">
+          <LocalizedText english={headingEn} sinhala={headingSi} />
+        </h2>
+        <div className="i18n-text i18n-en">
+          <RichText className="mt-5 text-muted-foreground" data={descriptionEn} enableGutter={false} />
+        </div>
+        {descriptionSi ? (
+          <div className="i18n-text i18n-si">
+            <RichText className="mt-5 text-muted-foreground" data={descriptionSi} enableGutter={false} />
+          </div>
+        ) : (
+          <div className="i18n-text i18n-si">
+            <RichText className="mt-5 text-muted-foreground" data={descriptionEn} enableGutter={false} />
+          </div>
+        )}
         <div className="mt-9 grid gap-4 sm:grid-cols-2">
           {featureCards?.map((card) => {
             const Icon = icons[card.icon || 'award']
             return (
               <article className="rounded-2xl border bg-white p-5 shadow-sm" key={card.id}>
                 <Icon className="mb-3 size-7 text-gold-dark" aria-hidden />
-                <h3 className="font-bold text-navy">{localized(locale, card.titleEn, card.titleSi)}</h3>
-                {localized(locale, card.descriptionEn, card.descriptionSi) ? <p className="mt-2 text-sm leading-6 text-muted-foreground">{localized(locale, card.descriptionEn, card.descriptionSi)}</p> : null}
+                <h3 className="font-bold text-navy">
+                  <LocalizedText english={card.titleEn} sinhala={card.titleSi} />
+                </h3>
+                {card.descriptionEn || card.descriptionSi ? (
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    <LocalizedText english={card.descriptionEn} sinhala={card.descriptionSi} />
+                  </p>
+                ) : null}
               </article>
             )
           })}

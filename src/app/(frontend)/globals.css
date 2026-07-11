@@ -275,6 +275,15 @@ html:lang(en) .heading-font {
   font-family: var(--font-heading);
 }
 
+.i18n-text {
+  display: contents;
+}
+
+html:lang(en) .i18n-si,
+html:lang(si) .i18n-en {
+  display: none;
+}
+
 @layer components {
   .section-kicker {
     @apply mb-3 text-sm font-medium uppercase tracking-[0.12em] text-[#034EA2];
@@ -512,7 +521,7 @@ body:has(.student-portal) .site-footer {
 
 .site-loading-overlay--exiting {
   opacity: 0;
-  animation: site-loader-fade-out 250ms ease both;
+  animation: site-loader-fade-out 150ms ease both;
   pointer-events: none;
 }
 

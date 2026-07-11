@@ -32,6 +32,7 @@ import type {
 } from '@/payload-types'
 import { ContactForm } from '@/components/institute/ContactForm'
 import { FormBlock } from '@/blocks/Form/Component'
+import { LocalizedText } from '@/components/LocalizedText'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { getCachedGlobal } from '@/utilities/getGlobals'
@@ -43,6 +44,10 @@ import { HeroSlideshow } from './HeroSlideshow'
 
 type LayoutBlock = Page['layout'][number]
 type Locale = 'en' | 'si'
+
+const localeText = (english?: null | React.ReactNode, sinhala?: null | React.ReactNode) => (
+  <LocalizedText english={english} sinhala={sinhala} />
+)
 
 const getGradeNumber = (category: string) => {
   const match = category.match(/\d+/)
@@ -192,10 +197,11 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-7">
-                    <p className="text-sm font-medium text-[#034EA2]">{course.titleSi}</p>
-                    <h3 className="mt-2 text-2xl font-semibold text-[#111827]">{course.titleEn}</h3>
+                    <h3 className="mt-2 text-2xl font-semibold text-[#111827]">
+                      <LocalizedText english={course.titleEn} sinhala={course.titleSi} />
+                    </h3>
                     <p className="mt-4 leading-7 text-[#6b7280]">
-                      {localized(locale, course.shortDescriptionEn, course.shortDescriptionSi)}
+                      <LocalizedText english={course.shortDescriptionEn} sinhala={course.shortDescriptionSi} />
                     </p>
                     <div className="mt-6 flex gap-5 border-t border-[#e5e7eb] pt-5 text-sm text-[#6b7280]">
                       <span className="flex items-center gap-2">
@@ -465,11 +471,19 @@ function Hero({
   locale: Locale
   phone?: null | string
 }) {
-  const subheading = localized(locale, block.subheadingEn, block.subheadingSi)
+  const subheadingEn = block.subheadingEn || ''
+  const subheadingSi = block.subheadingSi || ''
   const confidenceText = 'Real confidence'
-  const confidenceIndex = subheading.indexOf(confidenceText)
-  const subheadingLead =
-    confidenceIndex >= 0 ? subheading.slice(0, confidenceIndex).trimEnd() : subheading
+
+  const confidenceIndexEn = subheadingEn.indexOf(confidenceText)
+  const subheadingLeadEn =
+    confidenceIndexEn >= 0 ? subheadingEn.slice(0, confidenceIndexEn).trimEnd() : subheadingEn
+  const confidencePartEn = confidenceIndexEn >= 0 ? subheadingEn.slice(confidenceIndexEn) : ''
+
+  const confidenceIndexSi = subheadingSi.indexOf(confidenceText)
+  const subheadingLeadSi =
+    confidenceIndexSi >= 0 ? subheadingSi.slice(0, confidenceIndexSi).trimEnd() : subheadingSi
+  const confidencePartSi = confidenceIndexSi >= 0 ? subheadingSi.slice(confidenceIndexSi) : ''
 
   return (
     <section
@@ -488,7 +502,7 @@ function Hero({
       <div className="premium-container relative z-10 py-20 lg:pb-24 lg:pt-40">
         <div className="max-w-5xl">
           <p className="mb-7 inline-flex items-center rounded-full bg-[#DF1D29] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] text-white shadow-lg">
-            {localized(locale, block.badgeEn, block.badgeSi)}
+            <LocalizedText english={block.badgeEn} sinhala={block.badgeSi} />
           </p>
           {block.messageArtwork && typeof block.messageArtwork === 'object' ? (
             <Media
@@ -512,11 +526,13 @@ function Hero({
           )}
           <div>
             <p className="heading-font mt-7 max-w-2xl text-lg leading-8 text-white sm:text-xl">
-              {subheadingLead}
-              {confidenceIndex >= 0 ? (
+              <LocalizedText english={subheadingLeadEn} sinhala={subheadingLeadSi} />
+              {confidencePartEn || confidencePartSi ? (
                 <>
                   <br />
-                  <span className="text-white">{subheading.slice(confidenceIndex)}</span>
+                  <span className="text-white">
+                    <LocalizedText english={confidencePartEn} sinhala={confidencePartSi} />
+                  </span>
                 </>
               ) : null}
             </p>
@@ -578,15 +594,32 @@ function AboutUs({ block, locale }: { block: AboutUsBlock; locale: Locale }) {
           <SectionHeading
             description=""
             kicker="About IEM"
-            title={localized(locale, block.headingEn, block.headingSi)}
+            title={<LocalizedText english={block.headingEn} sinhala={block.headingSi} />}
           />
-          <RichText
-            className="mt-6 max-w-none text-lg leading-8 text-[#6b7280]"
-            data={
-              locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn
-            }
-            enableGutter={false}
-          />
+          <div className="i18n-text i18n-en">
+            <RichText
+              className="mt-6 max-w-none text-lg leading-8 text-[#6b7280]"
+              data={block.descriptionEn}
+              enableGutter={false}
+            />
+          </div>
+          {block.descriptionSi ? (
+            <div className="i18n-text i18n-si">
+              <RichText
+                className="mt-6 max-w-none text-lg leading-8 text-[#6b7280]"
+                data={block.descriptionSi}
+                enableGutter={false}
+              />
+            </div>
+          ) : (
+            <div className="i18n-text i18n-si">
+              <RichText
+                className="mt-6 max-w-none text-lg leading-8 text-[#6b7280]"
+                data={block.descriptionEn}
+                enableGutter={false}
+              />
+            </div>
+          )}
           {block.buttonLabel && block.buttonUrl ? (
             <Link className="premium-button-primary mt-8 inline-flex" href={block.buttonUrl}>
               {block.buttonLabel} <ArrowUpRight className="size-4" />
@@ -609,7 +642,7 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
           <div className="w-full max-w-3xl">
             <p className="premium-kicker text-[#034EA2]">Meet Your Teacher</p>
             <h2 className="mt-5 text-4xl font-medium leading-[1.15] tracking-[-.02em] text-[#111827] sm:text-5xl lg:text-6xl">
-              {localized(locale, block.headingEn, block.headingSi)}
+              <LocalizedText english={block.headingEn} sinhala={block.headingSi} />
             </h2>
             {block.teacherImage && typeof block.teacherImage === 'object' && (
               <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f1f2f4] lg:hidden">
@@ -622,13 +655,30 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
                 />
               </div>
             )}
-            <RichText
-              className="mt-8 max-w-none text-base leading-8 text-[#4b5563] sm:text-lg"
-              data={
-                locale === 'si' && block.descriptionSi ? block.descriptionSi : block.descriptionEn
-              }
-              enableGutter={false}
-            />
+            <div className="i18n-text i18n-en">
+              <RichText
+                className="mt-8 max-w-none text-base leading-8 text-[#4b5563] sm:text-lg"
+                data={block.descriptionEn}
+                enableGutter={false}
+              />
+            </div>
+            {block.descriptionSi ? (
+              <div className="i18n-text i18n-si">
+                <RichText
+                  className="mt-8 max-w-none text-base leading-8 text-[#4b5563] sm:text-lg"
+                  data={block.descriptionSi}
+                  enableGutter={false}
+                />
+              </div>
+            ) : (
+              <div className="i18n-text i18n-si">
+                <RichText
+                  className="mt-8 max-w-none text-base leading-8 text-[#4b5563] sm:text-lg"
+                  data={block.descriptionEn}
+                  enableGutter={false}
+                />
+              </div>
+            )}
           </div>
         </Reveal>
         <Reveal
@@ -680,14 +730,16 @@ function FeaturedProgram({
       <div className="premium-container">
         <div className="text-center">
           <p className="text-sm font-medium uppercase tracking-[.14em] text-[#034EA2]">
-            {localized(locale, block.eyebrowEn, block.eyebrowSi)}
+            <LocalizedText english={block.eyebrowEn} sinhala={block.eyebrowSi} />
           </p>
           <h2 className="mx-auto mt-3 max-w-4xl text-4xl font-semibold leading-tight text-[#111827] sm:text-6xl">
-            {localized(locale, block.headingEn, block.headingSi)}
+            <LocalizedText english={block.headingEn} sinhala={block.headingSi} />
           </h2>
-          <p className="heading-font mx-auto mt-5 max-w-2xl leading-8 text-[#034EA2]">
-            {localized(locale, block.descriptionEn, block.descriptionSi)}
-          </p>
+          {block.descriptionEn || block.descriptionSi ? (
+            <p className="heading-font mx-auto mt-5 max-w-2xl leading-8 text-[#034EA2]">
+              <LocalizedText english={block.descriptionEn} sinhala={block.descriptionSi} />
+            </p>
+          ) : null}
         </div>
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.1fr_1fr] lg:items-center">
           <div className="space-y-6 order-2 lg:order-1">
@@ -748,12 +800,14 @@ function FeaturePoint({
         </span>
         <div>
           <h3 className="text-lg font-medium text-[#111827]">
-            {localized(locale, feature.titleEn, feature.titleSi)}
+            <LocalizedText english={feature.titleEn} sinhala={feature.titleSi} />
           </h3>
           <span className="mt-2 block h-1 w-10 bg-[#ed1c24]" />
-          <p className="mt-3 text-sm leading-7 text-[#6b7280]">
-            {localized(locale, feature.descriptionEn, feature.descriptionSi)}
-          </p>
+          {feature.descriptionEn || feature.descriptionSi ? (
+            <p className="mt-3 text-sm leading-7 text-[#6b7280]">
+              <LocalizedText english={feature.descriptionEn} sinhala={feature.descriptionSi} />
+            </p>
+          ) : null}
         </div>
       </article>
     </Reveal>
@@ -780,9 +834,9 @@ function Process({
       <div className="premium-container relative">
         <SectionHeading
           dark
-          description={localized(locale, block.descriptionEn, block.descriptionSi)}
+          description={<LocalizedText english={block.descriptionEn} sinhala={block.descriptionSi} />}
           kicker="Our Process"
-          title={localized(locale, block.headingEn, block.headingSi)}
+          title={<LocalizedText english={block.headingEn} sinhala={block.headingSi} />}
         />
         <div className="relative mt-16 grid gap-8 lg:grid-cols-5">
           <div className="absolute left-[10%] right-[10%] top-8 hidden h-px bg-white/15 lg:block" />
@@ -798,11 +852,13 @@ function Process({
                     <Icon className="size-6 text-black" />
                   </span>
                   <h3 className="mt-6 text-xl font-semibold">
-                    {localized(locale, step.titleEn, step.titleSi)}
+                    <LocalizedText english={step.titleEn} sinhala={step.titleSi} />
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/60">
-                    {localized(locale, step.descriptionEn, step.descriptionSi)}
-                  </p>
+                  {step.descriptionEn || step.descriptionSi ? (
+                    <p className="mt-3 text-sm leading-7 text-white/60">
+                      <LocalizedText english={step.descriptionEn} sinhala={step.descriptionSi} />
+                    </p>
+                  ) : null}
                 </article>
               </Reveal>
             )
@@ -837,9 +893,9 @@ function Results({
       <div className="premium-container relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
         <Reveal>
           <SectionHeading
-            description={localized(locale, block.descriptionEn, block.descriptionSi)}
+            description={<LocalizedText english={block.descriptionEn} sinhala={block.descriptionSi} />}
             kicker="Results & Trust"
-            title={localized(locale, block.headingEn, block.headingSi)}
+            title={<LocalizedText english={block.headingEn} sinhala={block.headingSi} />}
           />
           <Link
             className="premium-button-primary mt-8 inline-flex"
@@ -865,9 +921,11 @@ function Results({
                   <strong className="text-4xl font-semibold text-[#111827]">
                     <AnimatedMetric value={metric.value} />
                   </strong>
-                  <p className="mt-2 text-sm text-[#6b7280]">
-                    {localized(locale, metric.labelEn, metric.labelSi)}
-                  </p>
+                  {metric.labelEn || metric.labelSi ? (
+                    <p className="mt-2 text-sm text-[#6b7280]">
+                      <LocalizedText english={metric.labelEn} sinhala={metric.labelSi} />
+                    </p>
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -907,9 +965,9 @@ function Portal({
       <div className="premium-container relative">
         <SectionHeading
           dark
-          description={localized(locale, block.descriptionEn, block.descriptionSi)}
+          description={<LocalizedText english={block.descriptionEn} sinhala={block.descriptionSi} />}
           kicker="Student Portal"
-          title={localized(locale, block.headingEn, block.headingSi)}
+          title={<LocalizedText english={block.headingEn} sinhala={block.headingSi} />}
         />
         <div className="mt-14 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
           {block.features?.map((feature, index) => {
@@ -922,7 +980,7 @@ function Portal({
                     <span className="absolute right-2 top-4 size-3 rounded-full bg-white" />
                   </div>
                   <h3 className="mt-4 font-medium text-white">
-                    {localized(locale, feature.titleEn, feature.titleSi)}
+                    <LocalizedText english={feature.titleEn} sinhala={feature.titleSi} />
                   </h3>
                 </article>
               </Reveal>
@@ -1005,9 +1063,9 @@ function SectionHeading({
   title,
 }: {
   dark?: boolean
-  description?: string
+  description?: React.ReactNode
   kicker: string
-  title: string
+  title: React.ReactNode
 }) {
   return (
     <div className="max-w-3xl">

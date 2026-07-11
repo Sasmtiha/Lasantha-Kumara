@@ -3,11 +3,10 @@ import React from 'react'
 
 import type { InstituteHeroBlock as InstituteHeroBlockProps } from '@/payload-types'
 import { Media } from '@/components/Media'
-import { getSiteLocale, localized } from '@/utilities/locale'
+import { LocalizedText } from '@/components/LocalizedText'
 
 export async function InstituteHeroBlock(props: InstituteHeroBlockProps) {
   const { badgeEn, badgeSi, headingEn, headingSi, subheadingEn, subheadingSi, primaryButtonLabel, primaryButtonUrl, secondaryButtonLabel, secondaryButtonUrl, heroImage, metrics } = props
-  const locale = await getSiteLocale()
 
   return (
     <section className="relative overflow-hidden bg-navy text-white">
@@ -15,10 +14,16 @@ export async function InstituteHeroBlock(props: InstituteHeroBlockProps) {
       <div className="container relative grid min-h-[42rem] items-center gap-12 py-20 lg:grid-cols-[1.05fr_.95fr]">
         <div>
           <p className="mb-5 inline-flex rounded-full border border-gold/40 bg-white/5 px-4 py-2 text-sm font-semibold text-gold">
-            {localized(locale, badgeEn, badgeSi)}
+            <LocalizedText english={badgeEn} sinhala={badgeSi} />
           </p>
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">{localized(locale, headingEn, headingSi)}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-100">{localized(locale, subheadingEn, subheadingSi)}</p>
+          <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <LocalizedText english={headingEn} sinhala={headingSi} />
+          </h1>
+          {subheadingEn || subheadingSi ? (
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-100">
+              <LocalizedText english={subheadingEn} sinhala={subheadingSi} />
+            </p>
+          ) : null}
           <div className="mt-8 flex flex-wrap gap-4">
             <Link className="rounded-xl bg-gold px-6 py-3 font-bold text-navy transition hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold" href={primaryButtonUrl}>
               {primaryButtonLabel}
@@ -33,7 +38,9 @@ export async function InstituteHeroBlock(props: InstituteHeroBlockProps) {
             <dl className="mt-12 grid grid-cols-3 gap-4 border-t border-white/15 pt-8">
               {metrics.map((metric) => (
                 <div key={metric.id}>
-                  <dt className="text-sm text-blue-100">{localized(locale, metric.labelEn, metric.labelSi)}</dt>
+                  <dt className="text-sm text-blue-100">
+                    <LocalizedText english={metric.labelEn} sinhala={metric.labelSi} />
+                  </dt>
                   <dd className="mt-1 text-2xl font-bold text-gold">{metric.value}</dd>
                 </div>
               ))}

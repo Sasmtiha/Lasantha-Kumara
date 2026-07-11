@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
-const minVisibleTime = 500
-const settleDelay = 450
+const minVisibleTime = 0
+const settleDelay = 50
 const maxWaitTime = 15000
 
 const imageHasLoaded = (image: HTMLImageElement) =>
@@ -31,15 +32,47 @@ const getPageImages = () =>
   )
 
 export function SiteImagePreloader() {
+  const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(true)
   const [isLeaving, setIsLeaving] = useState(false)
+  const [pendingPathname, setPendingPathname] = useState<null | string>(null)
+  const runIDRef = useRef(0)
 
   useEffect(() => {
+    const onDocumentClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) return
+
+      const link = (event.target as Element | null)?.closest('a[href]')
+      if (!(link instanceof HTMLAnchorElement)) return
+
+      const url = new URL(link.href)
+      const isSameOrigin = url.origin === window.location.origin
+      const isHomeNavigation = url.pathname === '/' && window.location.pathname !== '/'
+
+      if (isSameOrigin && isHomeNavigation) {
+        setPendingPathname(url.pathname)
+        setIsLeaving(false)
+        setIsVisible(true)
+      }
+    }
+
+    document.addEventListener('click', onDocumentClick, { capture: true })
+
+    return () => {
+      document.removeEventListener('click', onDocumentClick, { capture: true })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isVisible) return
+    if (pendingPathname && pathname !== pendingPathname) return
+
     let isDone = false
     let settleTimer = 0
     let maxTimer = 0
+    const runID = runIDRef.current + 1
+    runIDRef.current = runID
     const startedAt = performance.now()
-    document.documentElement.classList.add('site-images-loading')
 
     const finish = () => {
       if (isDone) return
@@ -50,11 +83,15 @@ export function SiteImagePreloader() {
       const remainingTime = Math.max(0, minVisibleTime - (performance.now() - startedAt))
 
       window.setTimeout(() => {
+        if (runIDRef.current !== runID) return
+
         setIsLeaving(true)
         window.setTimeout(() => {
-          document.documentElement.classList.remove('site-images-loading')
-          setIsVisible(false)
-        }, 300)
+          if (runIDRef.current === runID) {
+            setPendingPathname(null)
+            setIsVisible(false)
+          }
+        }, 150)
       }, remainingTime)
     }
 
@@ -97,13 +134,12 @@ export function SiteImagePreloader() {
 
     return () => {
       isDone = true
-      document.documentElement.classList.remove('site-images-loading')
       observer.disconnect()
       window.clearTimeout(settleTimer)
       window.clearTimeout(maxTimer)
       window.removeEventListener('load', scheduleCheck)
     }
-  }, [])
+  }, [isVisible, pathname, pendingPathname])
 
   if (!isVisible) return null
 

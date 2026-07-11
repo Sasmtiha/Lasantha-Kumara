@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 import type { Header as HeaderType } from '@/payload-types'
@@ -33,7 +33,6 @@ export const HeaderNav = ({
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
-  const router = useRouter()
   const [locale, setLocale] = useState<'en' | 'si'>('en')
   const navItems = data?.navItems || []
   useEffect(() => {
@@ -45,7 +44,6 @@ export const HeaderNav = ({
     document.cookie = `site-locale=${nextLocale}; path=/; max-age=31536000; samesite=lax`
     document.documentElement.lang = nextLocale
     setLocale(nextLocale)
-    router.refresh()
   }
 
   return (
