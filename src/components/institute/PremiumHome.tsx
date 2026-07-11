@@ -238,13 +238,9 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       <section className="premium-section bg-white" id="schedule">
         <div className="premium-container">
           <SectionHeading
-            description={localized(locale, scheduleBlock?.subtitleEn, scheduleBlock?.subtitleSi)}
+            description={<LocalizedText english={scheduleBlock?.subtitleEn} sinhala={scheduleBlock?.subtitleSi} />}
             kicker="Schedule"
-            title={localized(
-              locale,
-              scheduleBlock?.headingEn || 'Find a class time that works',
-              scheduleBlock?.headingSi,
-            )}
+            title={<LocalizedText english={scheduleBlock?.headingEn || 'Find a class time that works'} sinhala={scheduleBlock?.headingSi} />}
           />
           <Reveal className="mt-12">
             <div className="hidden overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_20px_70px_rgba(15,23,42,.06)] md:block">
@@ -260,13 +256,16 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                 </thead>
                 <tbody>
                   {schedules.docs.map((item) => {
+                    const course = typeof item.class === 'object' ? item.class : null
                     return (
                       <tr
                         className="border-t border-[#e5e7eb] transition hover:bg-[#f1f3fa]"
                         key={item.id}
                       >
                         <td className="px-6 py-5 font-semibold text-[#034EA2]">{item.dayOfWeek}</td>
-                        <td className="px-6 py-5">{item.batchLabel}</td>
+                        <td className="px-6 py-5">
+                          {course ? <LocalizedText english={course.titleEn} sinhala={course.titleSi} /> : item.batchLabel}
+                        </td>
                         <td className="px-6 py-5 text-[#6b7280]">
                           <span className="border-l-2 border-[#ed1d26] bg-[#f4f4f2] px-3 py-1.5 text-sm font-semibold text-[#111827]">
                             {item.startTime} – {item.endTime}
@@ -283,12 +282,15 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
           </Reveal>
           <div className="mt-8 grid gap-4 md:hidden">
             {schedules.docs.map((item) => {
+              const course = typeof item.class === 'object' ? item.class : null
               return (
                 <article className="premium-card p-6" key={item.id}>
                   <p className="text-xs font-medium uppercase tracking-widest text-[#034EA2]">
                     {item.dayOfWeek}
                   </p>
-                  <h3 className="mt-2 text-xl font-semibold">{item.batchLabel}</h3>
+                  <h3 className="mt-2 text-xl font-semibold">
+                    {course ? <LocalizedText english={course.titleEn} sinhala={course.titleSi} /> : item.batchLabel}
+                  </h3>
                   <p className="mt-3">
                     {item.startTime} – {item.endTime}
                   </p>
@@ -308,10 +310,10 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
       </section>
 
       <Gallery
-        description={localized(locale, galleryBlock?.descriptionEn, galleryBlock?.descriptionSi)}
+        description={<LocalizedText english={galleryBlock?.descriptionEn} sinhala={galleryBlock?.descriptionSi} />}
         items={gallery.docs}
         locale={locale}
-        title={localized(locale, galleryBlock?.headingEn || 'Life at IEM', galleryBlock?.headingSi)}
+        title={<LocalizedText english={galleryBlock?.headingEn || 'Life at IEM'} sinhala={galleryBlock?.headingSi} />}
       />
 
       <section
@@ -324,17 +326,9 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
         <div className="premium-container">
           <SectionHeading
             dark
-            description={localized(
-              locale,
-              testimonialsBlock?.subtitleEn,
-              testimonialsBlock?.subtitleSi,
-            )}
+            description={<LocalizedText english={testimonialsBlock?.subtitleEn} sinhala={testimonialsBlock?.subtitleSi} />}
             kicker="Student Stories"
-            title={localized(
-              locale,
-              testimonialsBlock?.headingEn || 'Progress you can hear and see',
-              testimonialsBlock?.headingSi,
-            )}
+            title={<LocalizedText english={testimonialsBlock?.headingEn || 'Progress you can hear and see'} sinhala={testimonialsBlock?.headingSi} />}
           />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {testimonials.docs.map((item, index) => (
@@ -347,7 +341,7 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     ))}
                   </div>
                   <blockquote className="mt-5 text-lg leading-8 text-white/75">
-                    “{localized(locale, item.feedbackEn, item.feedbackSi)}”
+                    “<LocalizedText english={item.feedbackEn} sinhala={item.feedbackSi} />”
                   </blockquote>
                   <figcaption className="mt-7 border-t border-white/10 pt-5">
                     <strong>{item.name}</strong>
@@ -364,9 +358,9 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
         <section className="premium-section bg-[#f4f4f2]" id="contact">
           <div className="premium-container">
             <SectionHeading
-              description={localized(locale, contact.descriptionEn, contact.descriptionSi)}
+              description={<LocalizedText english={contact.descriptionEn} sinhala={contact.descriptionSi} />}
               kicker="Contact"
-              title={localized(locale, contact.headingEn, contact.headingSi)}
+              title={<LocalizedText english={contact.headingEn} sinhala={contact.headingSi} />}
             />
             <div
               className={`mt-12 grid overflow-hidden rounded-md border border-black/10 bg-white shadow-[0_24px_80px_rgba(10,11,15,.08)] ${
@@ -404,12 +398,16 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
               {contact.showContactDetails !== false ? (
                 <Reveal className="bg-[#034B9B] p-8 text-white sm:p-10" delay={120}>
                   <h3 className="text-3xl font-semibold">
-                    {localized(locale, contact.panelHeadingEn, contact.panelHeadingSi) ||
-                      'Let’s start your English journey'}
+                    <LocalizedText
+                      english={contact.panelHeadingEn || 'Let’s start your English journey'}
+                      sinhala={contact.panelHeadingSi}
+                    />
                   </h3>
                   <p className="mt-4 leading-7 text-white/70">
-                    {localized(locale, contact.panelDescriptionEn, contact.panelDescriptionSi) ||
-                      'Speak with our team about classes, schedules and enrollment.'}
+                    <LocalizedText
+                      english={contact.panelDescriptionEn || 'Speak with our team about classes, schedules and enrollment.'}
+                      sinhala={contact.panelDescriptionSi}
+                    />
                   </p>
                   <div className="mt-8 grid gap-4">
                     <InfoCard
@@ -430,12 +428,12 @@ export async function PremiumHome({ page }: { page: Pick<Page, 'layout'> }) {
                     <InfoCard
                       icon={<MapPin />}
                       label={contact.locationInfoLabel || 'Location'}
-                      value={localized(locale, settings.addressEn, settings.addressSi)}
+                      value={<LocalizedText english={settings.addressEn} sinhala={settings.addressSi} />}
                     />
                     <InfoCard
                       icon={<Clock3 />}
                       label={contact.officeHoursInfoLabel || 'Office Hours'}
-                      value={localized(locale, settings.officeHoursEn, settings.officeHoursSi)}
+                      value={<LocalizedText english={settings.officeHoursEn} sinhala={settings.officeHoursSi} />}
                     />
                   </div>
                   {settings.whatsappNumber ? (
@@ -1010,10 +1008,10 @@ function Gallery({
   locale,
   title,
 }: {
-  description: string
+  description: React.ReactNode
   items: GalleryItem[]
   locale: Locale
-  title: string
+  title: React.ReactNode
 }) {
   return (
     <section className="premium-section bg-[#f4f4f2]" id="gallery">
