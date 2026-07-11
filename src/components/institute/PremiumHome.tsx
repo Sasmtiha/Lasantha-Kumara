@@ -473,14 +473,18 @@ function Hero({
 }) {
   const subheadingEn = block.subheadingEn || ''
   const subheadingSi = block.subheadingSi || ''
-  const confidenceText = 'Real confidence'
+  const confidenceTextEn = 'Real confidence'
+  const confidenceTextSi = 'සැබෑ විශ්වාසය'
 
-  const confidenceIndexEn = subheadingEn.indexOf(confidenceText)
+  const confidenceIndexEn = subheadingEn.indexOf(confidenceTextEn)
   const subheadingLeadEn =
     confidenceIndexEn >= 0 ? subheadingEn.slice(0, confidenceIndexEn).trimEnd() : subheadingEn
   const confidencePartEn = confidenceIndexEn >= 0 ? subheadingEn.slice(confidenceIndexEn) : ''
 
-  const confidenceIndexSi = subheadingSi.indexOf(confidenceText)
+  let confidenceIndexSi = subheadingSi.indexOf(confidenceTextSi)
+  if (confidenceIndexSi < 0) {
+    confidenceIndexSi = subheadingSi.indexOf(confidenceTextEn)
+  }
   const subheadingLeadSi =
     confidenceIndexSi >= 0 ? subheadingSi.slice(0, confidenceIndexSi).trimEnd() : subheadingSi
   const confidencePartSi = confidenceIndexSi >= 0 ? subheadingSi.slice(confidenceIndexSi) : ''
@@ -499,32 +503,32 @@ function Hero({
       </div>
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,30,65,.94)_0%,rgba(0,58,118,.68)_40%,rgba(0,45,88,.18)_72%,rgba(0,0,0,.04)_100%)]" />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#101827]/75 via-transparent to-[#101827]/10" />
-      <div className="premium-container relative z-10 py-20 lg:pb-24 lg:pt-40">
-        <div className="max-w-5xl">
-          <p className="mb-7 inline-flex items-center rounded-full bg-[#DF1D29] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] text-white shadow-lg">
-            <LocalizedText english={block.badgeEn} sinhala={block.badgeSi} />
-          </p>
-          {block.messageArtwork && typeof block.messageArtwork === 'object' ? (
-            <Media
-              className="w-full max-w-[48rem]"
-              disablePlaceholder
-              imgClassName="h-auto w-full object-contain"
-              preferredSize="large"
-              priority
-              resource={block.messageArtwork}
-              size="(max-width: 768px) calc(100vw - 2rem), 48rem"
-            />
-          ) : (
-            <Image
-              alt="Master English with IEM"
-              className="h-auto w-full max-w-[48rem] object-contain"
-              height={936}
-              priority
-              src="/hero-master-english-iem.png"
-              width={1664}
-            />
-          )}
-          <div>
+      <div className="premium-container relative z-10 py-20 lg:pb-24 lg:pt-40 min-h-[calc(100svh-4rem)] flex flex-col justify-center sm:block">
+        <div className="max-w-5xl flex-1 flex flex-col justify-between sm:block max-sm:min-h-[calc(100svh-12rem)]">
+          <div className="max-sm:flex-1 max-sm:flex max-sm:flex-col max-sm:justify-center">
+            <p className="mb-7 inline-flex items-center rounded-full bg-[#DF1D29] px-4 py-2 text-xs font-medium uppercase tracking-[.14em] text-white shadow-lg self-start">
+              <LocalizedText english={block.badgeEn} sinhala={block.badgeSi} />
+            </p>
+            {block.messageArtwork && typeof block.messageArtwork === 'object' ? (
+              <Media
+                className="w-full max-w-[48rem]"
+                disablePlaceholder
+                imgClassName="h-auto w-full object-contain"
+                preferredSize="large"
+                priority
+                resource={block.messageArtwork}
+                size="(max-width: 768px) calc(100vw - 2rem), 48rem"
+              />
+            ) : (
+              <Image
+                alt="Master English with IEM"
+                className="h-auto w-full max-w-[48rem] object-contain"
+                height={936}
+                priority
+                src="/hero-master-english-iem.png"
+                width={1664}
+              />
+            )}
             <p className="heading-font mt-7 max-w-2xl text-lg leading-8 text-white sm:text-xl">
               <LocalizedText english={subheadingLeadEn} sinhala={subheadingLeadSi} />
               {confidencePartEn || confidencePartSi ? (
@@ -536,6 +540,8 @@ function Hero({
                 </>
               ) : null}
             </p>
+          </div>
+          <div className="max-sm:mt-auto">
             <div className="hero-reveal hero-delay-4 mt-9 flex flex-row gap-2 sm:gap-3">
               <Link
                 className="hero-button-primary flex-1 !min-h-11 !px-3 !py-2.5 !text-xs sm:flex-initial sm:!min-h-14 sm:!px-7 sm:!py-4 sm:!text-[15px]"

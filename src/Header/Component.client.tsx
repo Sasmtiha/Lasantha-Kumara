@@ -71,6 +71,17 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
 
   const transparent = isHome && !scrolled
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
   if (pathname.startsWith('/student')) {
     return null
   }
@@ -78,9 +89,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
   return (
     <header
       className={cn(
-        'site-header fixed inset-x-0 top-0 z-50 will-change-transform transition-[transform,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)]',
+        'site-header fixed inset-x-0 top-0 z-50 will-change-transform ease-[cubic-bezier(.22,1,.36,1)]',
         open
-          ? 'h-svh bg-[#0f172a] text-white translate-y-0'
+          ? 'h-svh bg-white text-[#111827] translate-y-0 transition-none'
+          : 'transition-[transform,border-color,box-shadow] duration-500 xl:transition-[transform,background-color,border-color,box-shadow]',
+        open
+          ? ''
           : hidden
             ? '-translate-y-[110%]'
             : 'translate-y-0',
@@ -94,7 +108,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
     >
       <div className="premium-container xl:relative grid min-h-20 grid-cols-[1fr_auto] items-center gap-5 py-3 xl:grid-cols-[1fr_auto_1fr]">
         <Link className="justify-self-start" href="/">
-          <Logo loading="eager" priority="high" variant={transparent ? 'hero' : 'light'} />
+          <Logo loading="eager" priority="high" variant={open ? 'light' : transparent ? 'hero' : 'light'} />
         </Link>
         <HeaderNav data={data} transparent={transparent} user={user} open={open} setOpen={setOpen} />
       </div>

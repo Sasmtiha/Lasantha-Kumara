@@ -145,7 +145,7 @@ export const HeaderNav = ({
         className={cn(
           'grid size-11 place-items-center rounded-full border xl:hidden transition-colors',
           open
-            ? 'border-white/20 bg-white/10 text-white'
+            ? 'border-black/10 bg-black/5 text-[#111827]'
             : transparent
               ? 'border-white/30 bg-white/10 text-white'
               : 'border-black/10 bg-white text-[#111827]',
@@ -157,7 +157,7 @@ export const HeaderNav = ({
       </button>
 
       {open ? (
-        <div className="absolute inset-x-0 bottom-0 top-20 z-50 overflow-y-auto bg-[#0f172a] px-6 py-8 text-white xl:hidden">
+        <div className="absolute inset-x-0 bottom-0 top-20 z-50 overflow-y-auto bg-white border-t border-black/5 px-6 py-8 text-[#111827] xl:hidden">
           <nav aria-label="Mobile navigation" className="mx-auto flex max-w-xl flex-col">
             {navItems.map(({ link }, index) => {
               const href =
@@ -168,14 +168,14 @@ export const HeaderNav = ({
                     : undefined
               if (!href) return null
               return (
-                <Link className="border-b border-white/10 py-5 text-2xl font-semibold" href={href} key={index}>
+                <Link className="border-b border-black/5 py-5 text-2xl font-semibold text-[#111827]" href={href} key={index}>
                   {link.label}
                 </Link>
               )
             })}
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {user ? (
-                <Link className="premium-button-light justify-center sm:col-span-2" href={getPortalURL(user.role)}>
+                <Link className="premium-button-secondary justify-center sm:col-span-2" href={getPortalURL(user.role)}>
                   {user.role === 'student' ? 'Student Portal' : 'Dashboard'}
                 </Link>
               ) : (
@@ -183,9 +183,9 @@ export const HeaderNav = ({
               )}
             </div>
             {data.showLanguageToggle ? (
-              <button className="mt-6 grid grid-cols-2 self-start rounded-full border border-white/20 bg-white/10 p-1 text-sm font-medium" onClick={toggleLanguage} type="button">
-                <span className={cn('rounded-full px-4 py-2', locale === 'en' && 'bg-white text-[#0a0b0f]')}>English</span>
-                <span className={cn('rounded-full px-4 py-2', locale === 'si' && 'bg-white text-[#0a0b0f]')}>සිංහල</span>
+              <button className="mt-6 grid grid-cols-2 self-start rounded-full border border-black/10 bg-black/5 p-1 text-sm font-medium text-[#111827]" onClick={toggleLanguage} type="button">
+                <span className={cn('rounded-full px-4 py-2 transition-colors duration-200', locale === 'en' && 'bg-[#034ea2] text-white')}>English</span>
+                <span className={cn('rounded-full px-4 py-2 transition-colors duration-200', locale === 'si' && 'bg-[#034ea2] text-white')}>සිංහල</span>
               </button>
             ) : null}
           </nav>
