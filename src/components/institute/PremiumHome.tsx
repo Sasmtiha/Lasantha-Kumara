@@ -702,12 +702,15 @@ function AboutTeacher({ block, locale }: { block: AboutTeacherBlock; locale: Loc
             </>
           ) : null}
         </Reveal>
-        <span
-          aria-hidden
-          className="absolute left-1/2 top-1/2 z-10 hidden size-18 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#034EA2] text-white shadow-[0_16px_40px_rgba(3,78,162,.3)] lg:grid"
+        <a
+          className="absolute left-1/2 top-1/2 z-10 hidden size-18 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#034EA2] text-white shadow-[0_16px_40px_rgba(3,78,162,.3)] lg:grid hover:bg-[#ed1c24] hover:scale-110 hover:shadow-[0_16px_45px_rgba(237,28,36,.45)] active:scale-95 transition-all duration-300 cursor-pointer"
+          href="https://www.youtube.com/@lasanthakumara8109/featured"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Watch Teacher Intro Video on YouTube"
         >
           <Play className="ml-1 size-6 fill-current" />
-        </span>
+        </a>
       </div>
     </section>
   )
