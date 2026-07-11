@@ -1571,6 +1571,7 @@ export interface PaymentSlip {
   gradeLevel: string;
   status: 'pending' | 'approved' | 'rejected';
   adminNotes?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -2704,6 +2705,7 @@ export interface PaymentSlipsSelect<T extends boolean = true> {
   gradeLevel?: T;
   status?: T;
   adminNotes?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

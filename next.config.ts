@@ -44,6 +44,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/*': ['./public/media/**/*', './public/gallery/**/*'],
     '/api/resource-files/file/*': ['./protected/resource-files/**/*'],
+    '/api/payment-slips/file/*': ['./protected/payment-slips/**/*'],
   },
   // Temporarily required on Windows until Next.js fixes Turbopack Sass resolution.
   // See: https://github.com/vercel/next.js/issues/86431

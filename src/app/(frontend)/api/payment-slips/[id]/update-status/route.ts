@@ -35,7 +35,7 @@ export async function POST(
       overrideAccess: true,
       data: {
         status: body.status,
-        adminNotes: body.adminNotes || undefined,
+        adminNotes: typeof body.adminNotes === 'string' ? body.adminNotes.trim().slice(0, 1000) : undefined,
       },
     })
 
@@ -62,8 +62,7 @@ export async function POST(
     }
 
     return Response.json({ success: true, slip })
-  } catch (error) {
-    const msg = error instanceof Error ? error.message : 'Internal Server Error'
-    return Response.json({ error: msg }, { status: 500 })
+  } catch (_error) {
+    return Response.json({ error: 'Payment slip could not be updated.' }, { status: 500 })
   }
 }

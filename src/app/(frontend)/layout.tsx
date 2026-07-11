@@ -5,6 +5,7 @@ import { Noto_Sans_Sinhala, Source_Sans_3, Space_Grotesk } from 'next/font/googl
 import React from 'react'
 
 import { SmoothAnchorScroll } from '@/components/institute/SmoothAnchorScroll'
+import { SiteImagePreloader } from '@/components/SiteImagePreloader'
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
@@ -48,6 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <body>
+        <SiteImagePreloader />
         <Providers>
           <SmoothAnchorScroll />
           <Header />

@@ -27,9 +27,9 @@ export const PaymentSlips: CollectionConfig = {
     hidden: true,
   },
   access: {
-    create: ({ req }) => getRole(req.user) === 'student',
+    create: ({ req }) => isAdminRole(getRole(req.user)) || getRole(req.user) === 'student',
     read: ({ req }) => {
-      if (isAdminRole(getRole(req.user)) || getRole(req.user) === 'teacher') return true
+      if (isAdminRole(getRole(req.user))) return true
       if (!req.user?.id) return false
       return { user: { equals: req.user.id } }
     },
@@ -76,7 +76,7 @@ export const PaymentSlips: CollectionConfig = {
     },
   ],
   upload: {
-    staticDir: path.resolve(dirname, '../../public/media'),
+    staticDir: path.resolve(dirname, '../../protected/payment-slips'),
     mimeTypes: ['image/*', 'application/pdf'],
     adminThumbnail: 'thumbnail',
   },
@@ -85,7 +85,26 @@ export const PaymentSlips: CollectionConfig = {
       async ({ data, req, operation }) => {
         if (operation !== 'create') return data
 
-        const studentId = data.student
+        let studentId = data.student
+        const isAdmin = isAdminRole(getRole(req.user))
+
+        if (!isAdmin) {
+          if (!req.user?.id || getRole(req.user) !== 'student') {
+            throw new APIError('Only students can upload payment slips.', 403, null, true)
+          }
+
+          const students = await req.payload.find({
+            collection: 'students',
+            depth: 0,
+            limit: 1,
+            overrideAccess: true,
+            req,
+            where: { user: { equals: req.user.id } },
+          })
+
+          studentId = students.docs[0]?.id
+        }
+
         if (!studentId) return data
 
         // Resolve student
@@ -99,6 +118,16 @@ export const PaymentSlips: CollectionConfig = {
         if (!student) {
           throw new APIError('Student record not found.', 400)
         }
+
+        const studentUserID = typeof student.user === 'object' ? student.user.id : student.user
+
+        if (!isAdmin && String(studentUserID) !== String(req.user?.id)) {
+          throw new APIError('You can only upload payment slips for your own student record.', 403, null, true)
+        }
+
+        data.student = student.id
+        data.user = studentUserID
+        data.gradeLevel = student.gradeLevel
 
         // Format card number with a hyphen (e.g., IEM0051 -> IEM-0051)
         const rawId = student.cardNumber || 'unknown'
@@ -119,20 +148,23 @@ export const PaymentSlips: CollectionConfig = {
         // Get extension
         const ext = path.extname(data.filename).toLowerCase() || '.bin'
 
-        // Define target subpath relative to public/media
-        const newRelativeFilename = `students/${cardFormatted}/${gradeSanitized}/payment-slips/${monthSanitized}${ext}`
+        const storagePrefix = `students/${cardFormatted}/${gradeSanitized}/payment-slips`
+        const storageFilename = `${monthSanitized}${ext}`
+        const newRelativeFilename = `${storagePrefix}/${storageFilename}`
 
         if (!supabaseStorageEnabled) {
-          const baseDir = path.resolve(dirname, '../../public/media')
+          const baseDir = path.resolve(dirname, '../../protected/payment-slips')
           const fullDestDir = path.dirname(path.join(baseDir, newRelativeFilename))
 
           if (!fs.existsSync(fullDestDir)) {
             fs.mkdirSync(fullDestDir, { recursive: true })
           }
-        }
 
-        // Set the relative path as the filename so Payload saves it in the custom subpath
-        data.filename = newRelativeFilename
+          data.filename = newRelativeFilename
+        } else {
+          data.prefix = storagePrefix
+          data.filename = storageFilename
+        }
 
         return data
       },

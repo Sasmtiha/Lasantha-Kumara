@@ -118,6 +118,7 @@ export const plugins: Plugin[] = [
       },
       'payment-slips': {
         generateFileURL: getSupabaseMediaUrl,
+        prefix: '',
       },
     },
   }),

@@ -491,6 +491,105 @@ body:has(.student-portal) .site-footer {
   display: none;
 }
 
+.site-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #ffffff;
+  color: #111827;
+  pointer-events: all;
+  isolation: isolate;
+}
+
+.site-loading-overlay--entering {
+  opacity: 1;
+  animation: site-loader-fade-in 250ms ease both;
+}
+
+.site-loading-overlay--exiting {
+  opacity: 0;
+  animation: site-loader-fade-out 250ms ease both;
+  pointer-events: none;
+}
+
+.site-loading-overlay__bars {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  align-items: center;
+}
+
+.site-loading-overlay__bar {
+  width: 2px;
+  height: 15px;
+  background-color: currentColor;
+}
+
+.site-loading-overlay__bar:nth-child(1),
+.site-loading-overlay__bar:nth-child(3),
+.site-loading-overlay__bar:nth-child(5) {
+  transform: translateY(0);
+  animation: site-loader-bar-odd 1.25s infinite;
+}
+
+.site-loading-overlay__bar:nth-child(2),
+.site-loading-overlay__bar:nth-child(4) {
+  transform: translateY(-2px);
+  animation: site-loader-bar-even 1.25s infinite;
+}
+
+@keyframes site-loader-bar-even {
+  0% {
+    transform: translateY(2px);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+
+  100% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes site-loader-bar-odd {
+  0% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes site-loader-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes site-loader-fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 .hero-slide {
   position: absolute;
   inset: 0;

@@ -6,7 +6,7 @@ import { getStudentPortalData } from '@/utilities/studentPortal'
 import { PaymentSlipUpload } from '@/components/PaymentSlipUpload'
 
 export default async function StudentPaymentsPage() {
-  const { enrollments, student, payload, user } = await getStudentPortalData()
+  const { enrollments, student, payload, req, user } = await getStudentPortalData()
   const approved = enrollments.filter((item) => item.status === 'approved')
   const latest = enrollments[0]
 
@@ -20,7 +20,8 @@ export default async function StudentPaymentsPage() {
     const slips = await payload.find({
       collection: 'payment-slips',
       limit: 100,
-      overrideAccess: true,
+      overrideAccess: false,
+      req,
       where: {
         student: { equals: student.id },
       },

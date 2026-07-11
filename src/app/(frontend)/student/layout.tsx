@@ -1,6 +1,6 @@
 import React from 'react'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { createLocalReq, getPayload } from 'payload'
 
 import { PortalNav } from '@/components/institute/PortalNav'
 import { getMeUser } from '@/utilities/getMeUser'
@@ -14,10 +14,12 @@ export default async function StudentLayout({ children }: { children: React.Reac
 
   // Fetch student record for card number display
   const payload = await getPayload({ config: configPromise })
+  const req = await createLocalReq({ user }, payload)
   const studentResult = await payload.find({
     collection: 'students',
     limit: 1,
-    overrideAccess: true,
+    overrideAccess: false,
+    req,
     where: { user: { equals: user.id } },
   })
   const student = studentResult.docs[0] || null

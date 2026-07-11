@@ -14,7 +14,7 @@ export async function GET(
       return Response.json({ error: 'Please sign in again.' }, { status: 401 })
     }
 
-    const allowedRoles = ['admin', 'super_admin', 'teacher']
+    const allowedRoles = ['admin', 'super_admin']
     if (!allowedRoles.includes(user.role || '')) {
       return Response.json({ error: 'Access denied.' }, { status: 403 })
     }
